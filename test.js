@@ -11,7 +11,8 @@ zöxmcäkznxlkznvkxzmcä
 
 zmsckzbvlkhb<dzipjvh<ksjvm
 
-zfczx
+zfczxasjfdäasf
+
 
 Testar jockebranch
 // Välkommen till Björns gren, tolkat som ni vill...
