@@ -7,7 +7,7 @@ body{
 h1{
     text-align: center;
     font-family: sans-serif;
-    color: rgb(216, 213, 213);
+    color: seashell;
 }
 p{
     text-align: center;
@@ -55,7 +55,8 @@ body.Student{
 }
 .container{
     margin: auto;
-    color: rgb(216, 213, 213);
+    font-size: 110%;
+    color: seashell;
     font-family: sans-serif;
     width: 50%;
     clear: both;
@@ -91,8 +92,8 @@ body.Student{
     margin-top: 5%;
     width: 20vw;
     height: 10vh;
-    background-color: #2c71ae;
-    border: 0.1vw solid #2c71ae;
+    background-color: seashell;
+    border: 0.1vw solid seashell;
     border-radius: 0.2vw;
     color: rgb(12, 12, 12);
     cursor: pointer;
