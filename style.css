@@ -6,6 +6,8 @@ body{
 }
 h1{
     text-align: center;
+    font-family: sans-serif;
+    color: rgb(216, 213, 213);
 }
 p{
     text-align: center;
@@ -14,6 +16,14 @@ p{
 /* login */
 
 body.login{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url('images/img5.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+body.Student{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
@@ -30,22 +40,64 @@ body.login{
     margin: 0 auto;
     background: rgba(0,0,0,0.5);
 }
+
+/*Student Register */
+.StudentDiv{
+    background-color: #fff;
+    width: 40%;
+    height: 100vh;
+    position: absolute;
+    left: 33%;
+    margin: auto;
+    background: rgba(0,0,0,0.5);
+    clear: both;
+    
+}
+.container{
+    margin: auto;
+    color: rgb(216, 213, 213);
+    font-family: sans-serif;
+    width: 50%;
+    clear: both;
+}
+.container input{
+  
+    width: 100%;
+    clear: both;
+}
+
 #password_div{
     text-align: center;
     padding: 5%;
 }
 #uname_div{
     text-align: center;
+
+
 }
+
 #login_btn{
     width: 20vw;
     height: 10vh;
     background-color: #2c71ae;
     border: 0.1vw solid #2c71ae;
     border-radius: 0.2vw;
+    text-align: center;
     color: #fff;
     cursor: pointer;
     margin-left: 30%;
+}
+#create_btn{
+    margin-top: 5%;
+    width: 20vw;
+    height: 10vh;
+    background-color: #2c71ae;
+    border: 0.1vw solid #2c71ae;
+    border-radius: 0.2vw;
+    color: rgb(12, 12, 12);
+    cursor: pointer;
+    margin-left: 25%;
+    font-size: 150%;
 }
 img{
     height: 30vh;
