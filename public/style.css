@@ -102,7 +102,6 @@ body.Student{
     cursor: pointer;
     margin-left: 30%;
 }
-<<<<<<< HEAD:style.css
 #create_btn{
     margin-top: 5%;
     width: 20vw;
@@ -116,9 +115,20 @@ body.Student{
     font-size: 150%;
 }
 img{
-=======
-img.Login{
->>>>>>> b95a80d1577b25e06848ca35492fb7124b6c4cfa:public/style.css
     height: 30vh;
     margin-left: 30%;
+}
+
+a{
+    font-size: 200%;
+    color: grey;
+    background-color: seashell;
+    padding: 3vh 6vh 3vh 6vh;
+    cursor: pointer;
+    text-decoration: None;
+
+    margin-top: 80%;
+   
+    margin-left: 40%;
+    
 }
