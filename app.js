@@ -6,24 +6,30 @@ let app = express();
 
 var con = mysql.createConnection({
     host: "83.255.197.121",
-    user: "mans",
-    password: "forslund",
+    user: "joakim",
+    password: "jockele",
     port: "3306",
     database: "simmhoppdb"
 });
-
 app.set('port', 3000);
-
 var server = app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + server.address().port);
 });
 
 app.get('/', function(req,res) {
-    res.send('hello world');
     con.connect(function (err) {
         if (err) {
             console.log('error while connectiong to database' + err);
         }
-        console.log("Connected!");
-    })
+    console.log("Connected!");
+
+    con.query('SELECT * from jumpers', function(err,results) {
+        if (err) throw err
+        for (var i in results) {
+            console.log('Results: ', results[i].PID);
+            res.write(results[i].PID + '\n');
+            }
+        res.end();
+        })
+    })  
 })
