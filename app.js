@@ -9,7 +9,7 @@ var con = mysql.createConnection({
     user: "joakim",
     password: "jockele",
     port: "3306",
-    database: "simmhoppdb"
+    database: "webslingers"
 });
 app.set('port', 3000);
 var server = app.listen(app.get('port'), function () {
@@ -23,11 +23,11 @@ app.get('/', function(req,res) {
         }
     console.log("Connected!");
 
-    con.query('SELECT * from jumpers', function(err,results) {
+    con.query('SELECT * from users', function(err,results) {
         if (err) throw err
         for (var i in results) {
-            console.log('Results: ', results[i].PID);
-            res.write(results[i].PID + '\n');
+            console.log('Results: ', results[i].ID);
+            res.write(results[i].ID + ' ' + results[i].Password + ' ' + results[i].Role + '\n');
             }
         res.end();
         })
