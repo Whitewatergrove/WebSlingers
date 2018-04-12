@@ -1,0 +1,65 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    font-family: sans-serif;
+    background-image: url('images/StartPicture.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.modal {
+    height: 50vh;
+    width: 50vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    /*visibility: hidden;*/
+    text-align: center;
+}
+.modal input{
+    width: 20vw;
+    margin-bottom: 20px;
+}
+.modal input[type="text"], [type="password"]{
+    /*border: none;*/
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 5vh;
+}
+.modal input[type=submit]{
+    text-decoration: none;
+}
+.avatar{
+    height: 40vh;
+    width: 20vw;
+    float: left;
+    padding: 4vh 0 0 2vw;
+}
+.img_div{
+    height: 100%;
+    width: 25vw;
+    background: rgba(0, 0, 0, 0.8);
+    margin: 0;
+}
+.form_div{
+    transform: translate(25%, -150%);
+}
+.btn{
+    height: 5vh;
+    background: rgba(0, 0, 0, 0.8);
+    outline:none;
+    border: none;
+    color: #fff;
+}
+#user_name, #pass_word, #user_label, #pass_label{
+    color: #fff;
+}
+::placeholder {
+    color: #fff;
+    opacity: 1;
+
+}
