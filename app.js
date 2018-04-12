@@ -2,7 +2,7 @@ let mysql = require('mysql');
 let express = require('express');
 let app = express();
 
-//app.use(express.static('public'));
+app.use(express.static('public'));
 
 var con = mysql.createConnection({
     host: "83.255.197.121",
