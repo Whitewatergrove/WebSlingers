@@ -23,13 +23,17 @@ app.get('/', function(req,res) {
         }
     console.log("Connected!");
 
-    con.query('SELECT * from users', function(err,results) {
-        if (err) throw err
-        for (var i in results) {
-            console.log('Results: ', results[i].ID);
-            res.write(results[i].ID + ' ' + results[i].Password + ' ' + results[i].Role + '\n');
+    // con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', ['jocke2', 'Jocketest1', 'student1'], function(err, result) {
+    //     if (err) throw err
+        con.query('SELECT * FROM users', function(err, results) {
+            if (err) throw err
+            let temp = '';
+            for(var i in results) {
+                temp += ('<tr><td>' + results[i].ID + '</td><td>' + results[i].Password + '</td><td>' + results[i].Role + '</td></tr>');
             }
-        res.end();
+            res.write('<table>' + temp + '</table>')
+            res.end();
+            })
         })
-    })  
+    // })  
 })
