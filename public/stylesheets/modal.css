@@ -50,7 +50,7 @@ body{
     border: none;
     color: #fff;
 }
-#user_name, #pass_word, #user_label, #pass_label{
+#username, #password, #user_label, #pass_label{
     color: #fff;
 }
 ::placeholder {
