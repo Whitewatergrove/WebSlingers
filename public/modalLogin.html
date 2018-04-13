@@ -4,21 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="./stylesheets/modal.css">
     <title>Modal</title>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="modal.js"></script>
 </head>
 <body>
-    <div class="modal">
-        <div class="img_div"><img src="images/login1.png" alt="login logo" class="avatar"></div>
-        <div class="form_div">
-            <form action="fallbackhandler.php">
-                <label for="username" id="user_label">Username</label><br/>
-                <input type="text" name="username" id="user_name" placeholder="Enter username..."><br/>
-                <label for="password" id="pass_label">Password</label><br/>
-                <input type="password" name="password" id="pass_word" placeholder="Enter password..."><br/>
-                <input type="submit" name="submit" class="btn">
-            </form>
-        </div>
+    <div class="container"> 
+        <br>
+            <center> 
+                <button onclick="document.getElementById('myModal').style.display='block'">Login</button>
+            </center>
+        <br>
+    </div>
+    <div class="modal " id="myModal">
+        <div class="modal_container animate">   
+            <ul class="tabs">
+                <li><a href="#0">Sign in</a></li>
+                <li><a href="#0">New account</a></li>
+            </ul>
+            <div>
+                <span onclick="document.getElementById('myModal').style.display='none'" class="close" title="Close window">&times;</span>
+            </div>
+            <img src="./images/login1.png" alt="login logo" class="avatar">
+            <div class="login_form">
+                <form action="fallbackhandler.php">
+                    <label for="username" id="user_label">Username</label><br/>
+                    <input type="text" name="username" id="user_name" placeholder="Enter username..."><br/>
+                    <label for="password" id="pass_label">Password</label><br/>
+                    <input type="password" name="password" id="pass_word" placeholder="Enter password..."><br/>
+                    <input type="submit" name="submit" class="btn">
+                </form>
+            </div>
+        </div> 
     </div>
 </body>
 </html>

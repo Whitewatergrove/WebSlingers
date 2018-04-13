@@ -1,0 +1,135 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    font-family: sans-serif;
+    background-image: url('../images/StartPicture.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.modal {
+    height: 50vh;
+    width: 50vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1;
+    /*text-align: center;*/
+}
+.modal.is-visible{
+    visibility: visible;
+    opacity: 1;
+}
+.modal input{
+    width: 20vw;
+    margin-bottom: 20px;
+}
+.modal input[type="text"], [type="password"]{
+    /*border: none;*/
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 5vh;
+}
+.modal input[type=submit]{
+    text-decoration: none;
+}
+.avatar{
+    height: 40vh;
+    width: 25vw;
+    float: left;
+    padding: 0 1.5vw 0 1vw;
+    overflow: hidden;
+    margin-top: -1.5vh;
+}
+.btn{
+    height: 5vh;
+    background: rgba(0, 0, 0, 0.8);
+    outline:none;
+    border: none;
+    color: #fff;
+}
+#user_name, #pass_word, #user_label, #pass_label{
+    color: #fff;
+}
+::placeholder {
+    color: #fff;
+    opacity: 1;
+}
+.tabs li{
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+.tabs li:first-child a {
+    border-radius: .25em 0 0 0;
+}
+.tabs li:last-child a {
+    border-radius: .25em 0 0 0;
+}
+.tabs{
+    display: block;
+    width: 100%;
+    height: 10vh;
+    line-height: 50px;
+}
+.tabs a.selected{
+    background: rgba(0, 0, 0, 0.8);
+}
+.tabs:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+a, ul, li{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+ul{
+    list-style: none;
+}
+.tabs li a{
+    text-decoration: none;
+    background: rgba(0, 0, 0, 1);
+    color: #fff;
+    display: block;
+}
+.modal_container{
+    height: 100%;
+    position: relative;
+    cursor: auto;
+    border-radius: 0.25em;
+    background: rgba(0, 0, 0, 0.8);
+}
+.close {
+    position: absolute;
+    right: 1vw;
+    top: 0;
+    color: #fff;
+    font-size: 2vw;
+    font-weight: bold;
+}
+.close:hover, .close:focus {
+    color: red;
+    cursor: pointer;
+}
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
