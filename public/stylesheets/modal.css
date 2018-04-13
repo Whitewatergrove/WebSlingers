@@ -37,12 +37,11 @@ body{
     text-decoration: none;
 }
 .avatar{
-    height: 40vh;
-    width: 25vw;
+    height: 30vh;
+    width: 15vw;
     float: left;
-    padding: 0 1.5vw 0 1vw;
+    padding: 3vh 5vw 0 5vw;
     overflow: hidden;
-    margin-top: -1.5vh;
 }
 .btn{
     height: 5vh;
