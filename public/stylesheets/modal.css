@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+
 body{
     margin: 0;
     padding: 0;
     background-color: #000;
-    font-family: sans-serif;
     background-image: url('../images/StartPicture.png');
     background-size: cover;
     background-repeat: no-repeat;
+    font-family: sans-serif;
 }
 .modal {
     height: 50vh;
@@ -16,25 +20,61 @@ body{
     transform: translate(-50%, -50%);
     display: none;
     z-index: 1;
-    /*text-align: center;*/
 }
-.modal.is-visible{
-    visibility: visible;
+.modal_container{
+    height: 100%;
+    position: relative;
+    cursor: auto;
+    border-radius: 0.25em;
+    background: rgba(0, 0, 0, 0.8);
+}
+.modal .input_style{
+    font-size: 1.5em;
+    width: 80%;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    font-family: inherit;
+    -webkit-appearance: none;
+    border-radius: 0;
+    padding: 0;
+    cursor: text;
+}
+.modal input:focus {
+    outline: 0;
+    border-bottom: 1px solid #666;
+  }
+.modal input:placeholder-shown + label {
+    cursor: text;
+    max-width: 66.66%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform-origin: left bottom;
+    transform: translate(0, 2rem) scale(1.5);
+}
+::-webkit-input-placeholder {
+    opacity: 0;
+    transition: inherit;
+}
+.modal input:focus::-webkit-input-placeholder {
     opacity: 1;
 }
-.modal input{
-    width: 20vw;
-    margin-bottom: 20px;
-}
-.modal input[type="text"], [type="password"]{
-    /*border: none;*/
-    border-bottom: 1px solid #fff;
-    background: transparent;
-    outline: none;
-    height: 5vh;
+.modal input:not(:placeholder-shown) + label,
+.modal input:focus + label {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
 }
 .modal input[type=submit]{
     text-decoration: none;
+}
+.field{
+    display: flex;
+    flex-flow: column-reverse;
+    margin-bottom: 1em;
+}
+label, input {
+    transition: all 0.2s;
+    touch-action: manipulation;
 }
 .avatar{
     height: 30vh;
@@ -50,23 +90,8 @@ body{
     border: none;
     color: #fff;
 }
-#username, #password, #user_label, #pass_label{
-    color: #fff;
-}
-::placeholder {
-    color: #fff;
-    opacity: 1;
-}
-.tabs li{
-    width: 50%;
-    float: left;
-    text-align: center;
-}
-.tabs li:first-child a {
-    border-radius: .25em 0 0 0;
-}
-.tabs li:last-child a {
-    border-radius: .25em 0 0 0;
+.btn:focus{
+    border: 0.1em solid;
 }
 .tabs{
     display: block;
@@ -74,24 +99,10 @@ body{
     height: 10vh;
     line-height: 50px;
 }
-.tabs a.selected{
-    background: rgba(0, 0, 0, 0.8);
-}
-.tabs:after{
-    content: "";
-    display: table;
-    clear: both;
-}
-a, ul, li{
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-ul{
-    list-style: none;
+.tabs li{
+    width: 50%;
+    float: left;
+    text-align: center;
 }
 .tabs li a{
     text-decoration: none;
@@ -99,12 +110,15 @@ ul{
     color: #fff;
     display: block;
 }
-.modal_container{
-    height: 100%;
-    position: relative;
-    cursor: auto;
-    border-radius: 0.25em;
-    background: rgba(0, 0, 0, 0.8);
+a, ul, li{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+}
+ul{
+    list-style: none;
 }
 .close {
     position: absolute;
@@ -119,16 +133,14 @@ ul{
     cursor: pointer;
 }
 .animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
+    -webkit-animation: zoom_ani 0.6s;
+    animation: zoom_ani 0.6s
 }
-
-@-webkit-keyframes animatezoom {
+@-webkit-keyframes zoom_ani {
     from {-webkit-transform: scale(0)}
     to {-webkit-transform: scale(1)}
 }
-
-@keyframes animatezoom {
+@keyframes zoom_ani {
     from {transform: scale(0)}
     to {transform: scale(1)}
 }

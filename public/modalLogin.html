@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./stylesheets/modal.css">
+    <script src="./scripts/modal.js"></script>
     <title>Modal</title>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </head>
 <body>
     <div class="container"> 
@@ -19,21 +19,43 @@
     <div class="modal " id="myModal">
         <div class="modal_container animate">   
             <ul class="tabs">
-                <li><a href="#0">Sign in</a></li>
-                <li><a href="#0">New account</a></li>
+                <li><a href="#" onclick="openTab('login')">Sign in</a></li>
+                <li><a href="#" onclick="openTab('register')">New account</a></li>
             </ul>
             <div>
                 <span onclick="document.getElementById('myModal').style.display='none'" class="close" title="Close window">&times;</span>
             </div>
-            <img src="./images/login1.png" alt="login logo" class="avatar">
-            <div class="login_form">
-                <form action="/test" method="POST">
-                    <label for="username" id="user_label">Username</label><br/>
-                    <input type="text" name="username" id="username" placeholder="Enter username..."><br/>
-                    <label for="password" id="pass_label">Password</label><br/>
-                    <input type="password" name="password" id="password" placeholder="Enter password..."><br/>
-                    <input type="submit" value="Register" class="btn">
-                </form>
+            <div class="tab" id="login">
+                <img src="./images/login1.png" alt="login logo" class="avatar">
+                <div class="login_form">
+                    <form action="/test" method="POST">
+                        <div class="field">
+                            <input type="text" class="input_style" name="username" id="username" placeholder="Enter username...">
+                            <label for="username" id="user_label">Username</label>
+                        </div>
+                        <div class="field">
+                            <input type="password" class="input_style" name="password" id="password" placeholder="Enter password...">
+                            <label for="password" id="pass_label">Password</label>
+                        </div>
+                        <input type="submit" value="Sign In" class="btn">
+                    </form>
+                </div>
+            </div>   
+            <div class="tab" id="register" style="display:none">
+                <img src="./images/login1.png" alt="login logo" class="avatar">
+                <div class="register_form">
+                    <form action="/test1" method="POST">
+                        <div class="field">
+                            <input type="text" name="username" class="input_style" id="username" placeholder="Enter username...">
+                            <label for="username" id="user_label">Username</label>
+                        </div>
+                        <div class="field">
+                            <input type="password" name="password" class="input_style" id="password" placeholder="Enter password...">
+                            <label for="password" id="pass_label">Password</label>
+                        </div>
+                        <input type="submit" value="Register" class="btn">
+                    </form>
+                </div>
             </div>
         </div> 
     </div>
