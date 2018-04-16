@@ -18,6 +18,7 @@ body {
 	border-bottom: 3px solid #2e78ba;
 }
 
+
 .si{
     position: absolute;
     bottom: 5%;
@@ -31,10 +32,11 @@ body {
 	font-weight: 700;
 }
 .header .logo {
-	color: #5e6168;
+	color: #2e78ba;
 }
+/* #648baf*/
 .side-nav .logo {
-	background-color: #5e6168;
+	background-color: #2e78ba;
 	color: #fff;
 }
 .header .logo {
@@ -45,7 +47,7 @@ body {
 	z-index: 1;
 	padding: 10px;
 	font-weight: 700;
-	color: #5e6168;
+	color: #2e78ba;
 }
 .logo  i {
 	font-size: 22px;
@@ -85,7 +87,7 @@ body {
 	position: absolute;
 	width: 100%;
 	height: 100vh;
-	background-color: #2e78ba;
+	background-color: #7193b3;
 	z-index: 1;
 	display: none;
 }
@@ -98,7 +100,7 @@ body {
 }
 .side-nav ul li {
 	padding: 16px 16px;
-	border-bottom: 1px solid #2c71ae;
+	border-bottom: 1px solid ;
 	position: relative;
 }
 .side-nav ul li.active:before {
@@ -135,17 +137,17 @@ body {
 	overflow: scroll;
 }
 .main-content .title {
-	background-color: #5e6168;
+	background-color: #faf9f6; /*student board */
 	border-bottom: 1px solid #faf9f6;
 	padding: 10px 20px;
 	font-weight: 700;
-	color: #fff;
+	color: #faf9f6;
 	font-size: 18px;
 }
 /* set element styles to fit tablet and higher(desktop) */
 @media screen and (min-width: 600px) {
 	.header {
-		background-color: #2e78ba;
+		background-color: #7193b3; 
 		z-index: 1;
 	}
 	.header .logo {
@@ -233,7 +235,7 @@ body {
 	position: relative;
 }
 .widget .title {
-	background-color: #5e6168;
+	background-color: #2e78ba;
 	border-bottom: 1px solid #dfe4ec;
 	padding: 10px;
 	border-top-left-radius: 6px;
