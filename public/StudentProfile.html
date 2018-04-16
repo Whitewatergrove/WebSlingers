@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Responsive vertical menu navigation</title>
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
+
+        <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/data.js"></script>
+		<script src="./scripts/StudentPScript.js"></script>
+		<script src="./scripts/profile.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<div class="logo">
+                <img src= "images/oru-16x16.png">
+				<span>Webslingers</span>
+			</div>
+			<a href="#" class="nav-trigger"><span></span></a>
+		</div>
+		<div class="side-nav">
+			<div class="logo">
+                <img src="images/oru-16x16.png">
+				<span>Webslingers</span>
+			</div>
+			<nav>
+				<ul class="tabs">
+					<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open">
+						<a>
+							<span><i class="fa fa-user"></i></span>
+							<span>Profile</span>
+						</a>
+					</li>
+					<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
+						<a> 
+							<span><i class="fa fa-envelope"></i></span>
+							<span>Messages</span>
+						</a>
+					</li>
+					<li class="tabBorder" onclick="openTab('comments', 'Job')" id="Job">
+						<a>
+							<span><i class="fas fa-folder"></i></span>
+							<span>Ex-Job</span>
+						</a>
+					</li>
+					<li>
+						<a>
+							<span><i class="fa fa-credit-card-alt"></i></span>
+							<span>Erik</span>
+						</a>
+                    </li>
+                        <img src="./images/oru.png" class="si">
+				</ul>
+			</nav>
+		</div>
+		<div class="main-content" id="home">
+			<div class="title">
+				Anton
+			</div>
+			<div class="main">
+				<div class="widget">
+					<div class="title">Number of views</div>
+					<div class="chart"></div>
+				</div>
+				<div class="widget">
+					<div class="title">Number of likes</div>
+					<div class="chart"></div>
+				</div>
+				<div class="widget">
+					<div class="title">Number of comments</div>
+					<div class="chart"></div>
+                </div>
+            </div>
+		</div>
+		<div class="main-content" id="likes" style="display:none">
+			<div class="title">
+				hejhejhejhej Monika
+			</div>
+			<div class="main">
+				<div class="widget">
+					<div class="title">Number of views</div>
+					<div class="chart"></div>
+				</div>
+            </div>
+		</div>
+		<div class="main-content" id="comments" style="display:none">
+			<div class="title">
+				hehheheheh Måns
+			</div>
+			<div class="main">
+				<div class="widget">
+					<div class="title">Number of views</div>
+					<div class="chart"></div>
+				</div>
+				<div class="widget">
+					<div class="title">Number of likes</div>
+					<div class="chart"></div>
+				</div>
+            </div>
+		</div>
+	</body>
+</html>
