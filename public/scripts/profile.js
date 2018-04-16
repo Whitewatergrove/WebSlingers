@@ -1,5 +1,5 @@
 function openTab(pageName, tab) {
-    var i = 0, content, tabBorder;
+    var i = 0, y= 0 ,content, tabBorder;
     var content = document.getElementsByClassName("main-content");
 
     console.log(this);
@@ -9,10 +9,10 @@ function openTab(pageName, tab) {
         i++;
     }
     tabBorder = document.getElementsByClassName("tabBorder");
-    while(i < tabBorder.length)
+    while(y < tabBorder.length)
     {
-        tabBorder[i].style.display = "none"
-        i++
+        tabBorder[y].style.borderLeft = ""
+        y++
     }
     document.getElementById(tab).style.borderLeft = "5px solid #fff";
     document.getElementById(pageName).style.display = "block";
