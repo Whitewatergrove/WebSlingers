@@ -5,12 +5,12 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser')
 
-app.use( bodyParser.json() );       
+app.use(bodyParser.json());       
 app.use(bodyParser.urlencoded({     
   extended: true
 })); 
 app.use(express.json());     
-app.use(express.urlencoded()); 
+app.use(express.urlencoded());
 
 app.use(express.static('public'));
 
@@ -25,14 +25,12 @@ app.set('port', 3000);
 var server = app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + server.address().port);
 });
-
 app.get('/', function(req,res) {
     con.connect(function (err) {
         if (err) {
             console.log('error while connectiong to database' + err);
         }
     console.log("Connected!");
-
     // con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', ['jocke2', 'Jocketest1', 'student1'], function(err, result) {
     //     if (err) throw err
         con.query('SELECT * FROM users', function(err, results) {
@@ -45,7 +43,7 @@ app.get('/', function(req,res) {
             res.end();
             })
         })
-    // })  
+    // })
 })
 app.post('/test', function (req, res) {
      var ID = req.body.username;
@@ -61,5 +59,5 @@ app.post('/test', function (req, res) {
              if (err) throw err
        res.sendFile(__dirname + '/public/modalLogin.html');
        console.log('new user added')
-     });
-   });
+    });
+});
