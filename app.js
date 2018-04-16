@@ -27,10 +27,6 @@ var server = app.listen(app.get('port'), function () {
 });
 
 app.get('/', function(req,res) {
-<<<<<<< HEAD
-    res.send('hello world');
-})
-=======
     con.connect(function (err) {
         if (err) {
             console.log('error while connectiong to database' + err);
@@ -67,4 +63,3 @@ app.post('/test', function (req, res) {
        console.log('new user added')
      });
    });
->>>>>>> a2fbb28ce24f5164a63ff30d1873ff73b29fe0b9
