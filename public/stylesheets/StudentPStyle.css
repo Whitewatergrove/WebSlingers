@@ -5,7 +5,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Source Sans Pro', sans-serif;
-	background-color: #d5dae5;
+	background-color: #faf9f6;
 	-webkit-font-smoothing: antialiased;
   	-moz-osx-font-smoothing: grayscale;
 }
@@ -17,6 +17,13 @@ body {
 	background-color: #fff;
 	border-bottom: 3px solid #2e78ba;
 }
+
+.si{
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    width: 80%;
+}
 /* logo in header(mobile version) and side-nav (tablet & desktop) */
 .logo {
 	height: 44px;
@@ -24,10 +31,10 @@ body {
 	font-weight: 700;
 }
 .header .logo {
-	color: #233245;
+	color: #5e6168;
 }
 .side-nav .logo {
-	background-color: #233245;
+	background-color: #5e6168;
 	color: #fff;
 }
 .header .logo {
@@ -38,7 +45,7 @@ body {
 	z-index: 1;
 	padding: 10px;
 	font-weight: 700;
-	color: #233245;
+	color: #5e6168;
 }
 .logo  i {
 	font-size: 22px;
@@ -128,11 +135,11 @@ body {
 	overflow: scroll;
 }
 .main-content .title {
-	background-color: #eef1f7;
-	border-bottom: 1px solid #b8bec9;
+	background-color: #5e6168;
+	border-bottom: 1px solid #faf9f6;
 	padding: 10px 20px;
 	font-weight: 700;
-	color: #333;
+	color: #fff;
 	font-size: 18px;
 }
 /* set element styles to fit tablet and higher(desktop) */
@@ -172,7 +179,13 @@ body {
 	}
 	.main-content {
 		margin-left: 70px;
-	}
+    }
+    .si{
+        position: absolute;
+        bottom: 5%;
+        left: 15%;
+        width: 70%;
+    }
 }
 /* set element styles for desktop */
 @media screen and (min-width: 800px) {
@@ -196,7 +209,13 @@ body {
 	}
 	.main-content {
 		margin-left: 200px;
-	}
+    }
+    .si{
+        position: absolute;
+        bottom: 5%;
+        left: 15%;
+        width: 70%;
+    }
 }
 
 /* main box container */
@@ -214,13 +233,11 @@ body {
 	position: relative;
 }
 .widget .title {
-	background-color: #eef1f7;
+	background-color: #5e6168;
 	border-bottom: 1px solid #dfe4ec;
 	padding: 10px;
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
-	color: #617085;
+	color: #fff;
 	font-weight: 600;
 }
-
-
