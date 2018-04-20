@@ -1,11 +1,20 @@
-function openTab(tab) {
-    var i = 0;
-    var x = document.getElementsByClassName("tab");
+'use strict';
 
-    while(i < x.length)
+document.onreadystatechange = () => {
+    if(readystate === "complete")
     {
-        x[i].style.display = 'none';
-        i++;
+        function openTab(tab) {
+            var i = 0;
+            var x = document.getElementsByClassName("tab");
+
+            while(i < x.length)
+            {
+                x[i].style.display = 'none';
+                i++;
+            }
+            document.getElementById(tab).style.display = "block";  
+        }
+        var temp = getuname();
+        console.log(temp);
     }
-    document.getElementById(tab).style.display = "block";  
-}
+};
