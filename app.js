@@ -30,7 +30,18 @@ var server = app.listen(app.get('port'), function () {
 
 app.get('/test', function(req, res)
 {
-    res.write(dbfunctions.getuname());
+  dbfunctions.getuname(function(err,result){
+    if (err) throw err;
+    res.json(result);
+})
+});
+
+app.get('/hepp', function(req, res)
+{
+    var femton = dbfunctions.tryhard()
+    res.send(femton);
+    res.json(obj);
+    res.end();
 });
 
 //app.get('/', function(req,res) {

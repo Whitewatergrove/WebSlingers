@@ -15,20 +15,21 @@ var con = mysql.createConnection({
 
 module.exports = {
 
-    getuname: function(){
-        con.connect(function (err) {
+    getuname: function(callback){
+        con.connect(function (err) {    
             if (err) {
                 console.log('error while connectiong to database' + err);
             }
-        console.log("Connected!");
+            console.log("Connected!");
         
-        con.query('SELECT * FROM users', function(err, results) {
-            if (err) throw err
-            let temp = '';
-            for(var i in results) {
-                temp += ('<tr><td>' + results[i].ID + '</td><td>' + results[i].Password + '</td><td>' + results[i].Role + '</td></tr>');
-            }
-            return results;
+            con.query('SELECT * FROM users', function(err, results) {
+                if (err){
+                console.log('error in query');
+                }
+                else{
+                console.log('query functional');
+                }
+                callback(null, results);
             })
         })
     }
