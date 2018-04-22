@@ -12,9 +12,14 @@
         <h1>Registrera Student</h1>
         <form action="fallbackhandler.php" method="POST">
             <div class="container">
+                
                 <label>Username</label>
-                <input type="text" name="Uname"><br />
-                <label>Password</label>
+                <input type="text" id="Uname" name="name" required size="45"
+                placeholder="Username" pattern="[a-z]{4,16}">
+                <span class= "validity"></span>
+                <!-- <p>Username must be lowercase and 4-16 characters in length.</p> -->
+                
+                <label>Password</label> 
                 <input type="text" name="Pword"><br />
                 <label>Name</label>
                 <input type="text" name="name"><br />

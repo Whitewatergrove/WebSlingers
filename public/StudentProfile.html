@@ -20,7 +20,7 @@
 		
 		
 	</head>
-	<body>
+	<body id="edit profile">	
 		<div class="header">
 			<div class="logo">
                 <img src= "images/oru-16x16.png">
@@ -65,24 +65,27 @@
 				</ul>
 			</nav>
 		</div>
-		<div class="main-content">
+		<div></div>
+		
+			<div class="main-content">
 			<div class="title">
 				Student
 			</div>
 			<div class="main">
 				<div class="widget">
-					<div class="title">Number of views</div>
-					<div class="chart"></div>
+					<div class="title">Edit user profile</div>
+					<div class="container">
+						<fieldset>
+							<label>New Email</label>
+							<input type="text" placeholder="Email" id="student mail"><br />
+							<label>New Password</label>
+							<input type="text" placeholder="Password"><br  />
+							<br><button onclick="Save">Save Profile</button>
+							<button onclick="Cancel">Cancel</button>
+					</div>
 				</div>
-				<div class="widget">
-					<div class="title">Number of likes</div>
-					<div class="chart"></div>
-				</div>
-				<div class="widget">
-					<div class="title">Number of comments</div>
-					<div class="chart"></div>
-                </div>
-            </div>
+			</div>
+		</fieldset>
 		</div>
 	</body>
 </html>

@@ -3,7 +3,7 @@
 let mysql = require('mysql');
 let express = require('express');
 let app = express();
-let bodyParser = require('body-parser')
+let bodyParser = require('body-parser');
 
 app.use(bodyParser.json());       
 app.use(bodyParser.urlencoded({     
@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.json());     
 app.use(express.urlencoded());
 
-app.use(express.static('public'));
+ app.use(express.static('public'));
 
 var con = mysql.createConnection({
     host: "83.255.197.121",
