@@ -33,20 +33,10 @@ app.get('/test', function(req, res)
   var uname = "måns";
   dbfunctions.getstudentinfo(uname, function(err,result){
     if (err) throw err;
-    //res.json(result);
-    console.log(result);
-  })
-  dbfunctions.getstudentqual(uname, function(err,result){
-    if (err) throw err;
-    //res.json(result);
-    console.log(result);
-  })
-  dbfunctions.getqualcategories(uname, function(err,result){
-    if (err) throw err;
-    //res.json(result);
-    console.log(result);
+    res.json(result);
   })
 });
+
 
 
 

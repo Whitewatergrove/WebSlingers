@@ -35,57 +35,38 @@ module.exports = {
     },
 
     getstudentinfo: function(username, callback){
-        con.connect(function (err){
+        con.query("SELECT Name FROM students WHERE UID = '"+username+"' GROUP BY Name;" , function(err, results) {
             if(err){
-                console.log('db error' + err);
+                console.log("query error" + err);
             }
-            console.log("connected..");
-
-            con.query("SELECT Name FROM students WHERE UID = '"+username+"' GROUP BY Name;" , function(err, results) {
-                if(err){
-                    console.log("query error" + err);
-                }
-                else{
-                    console.log("query ok");
-                }
-                callback(null, results);
-            })
-    })   
+            else{
+                console.log("query ok");
+            }
+            callback(null, results);
+        }) 
     },
 
     getstudentqual: function(username, callback){
-        con.connect(function(err){
+        con.query("SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = '"+username+"' GROUP BY pnr);", function(err, results){
             if(err){
-                console.log("db error" + err);
+                console.lof("query error");
             }
-            console.log("connected..");
-            con.query("SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = '"+username+"' GROUP BY pnr);", function(err, results){
-                if(err){
-                    console.lof("query error");
-                }
-                else{
-                    console.log("query ok");
-                }
-                callback(null, results);
-            })
+            else{
+                console.log("query ok");
+            }
+            callback(null, results);
         })
     },
 
     getqualcategories: function(username, callback){
-        con.connect(function(err){
+        con.query("SELECT class FROM catagories WHERE qualifications IN (SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = '"+username+"' GROUP BY pnr));", function(err, results){
             if(err){
-                console.log("db error" + err);
+                console.lof("query error");
             }
-            console.log("connected..");
-            con.query("SELECT class FROM catagories WHERE qualifications IN (SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = '"+username+"' GROUP BY pnr));", function(err, results){
-                if(err){
-                    console.lof("query error");
-                }
-                else{
-                    console.log("query ok");
-                }
-                callback(null, results);
-            })
+            else{
+                console.log("query ok");
+            }
+            callback(null, results);
         })
     }
 };
