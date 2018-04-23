@@ -26,7 +26,7 @@ function Validate()
 
     }
     // validate username
-    if (username.value.length < 4 && username.value.length > 16) 
+    if (username.value.length < 4 || username.value.length > 16) 
     {
     username.style.border = "1px solid red";
     document.getElementById('username').style.color = "red";
