@@ -30,19 +30,25 @@ var server = app.listen(app.get('port'), function () {
 
 app.get('/test', function(req, res)
 {
-  dbfunctions.getuname(function(err,result){
+  var uname = "måns";
+  dbfunctions.getstudentinfo(uname, function(err,result){
     if (err) throw err;
-    res.json(result);
-})
+    //res.json(result);
+    console.log(result);
+  })
+  dbfunctions.getstudentqual(uname, function(err,result){
+    if (err) throw err;
+    //res.json(result);
+    console.log(result);
+  })
+  dbfunctions.getqualcategories(uname, function(err,result){
+    if (err) throw err;
+    //res.json(result);
+    console.log(result);
+  })
 });
 
-app.get('/hepp', function(req, res)
-{
-    var femton = dbfunctions.tryhard()
-    res.send(femton);
-    res.json(obj);
-    res.end();
-});
+
 
 //app.get('/', function(req,res) {
 //    con.connect(function (err) {
