@@ -9,18 +9,26 @@
 <body class="Student">
     <div class="StudentDiv">
         <img src="images/oru.png" alt="ORU logo">
-        <h1>Registrera Student</h1>
-        <form action="fallbackhandler.php" method="POST">
+        <h2>Registrera Student</h2>
+        <form action="fallbackhandler.php" method="POST" action="index.html" onsubmit="return Validity" name="validate">
             <div class="container">
-                
                 <label>Username</label>
-                <input type="text" id="Uname" name="name" required size="45"
-                placeholder="Username" pattern="[a-z]{4,16}">
-                <span class= "validity"></span>
-                <!-- <p>Username must be lowercase and 4-16 characters in length.</p> -->
-                
+                <input type="text" id="Uname" name="username" class="textInput">
+                <div id="username_error"> </div>
+                <!-- ta bort labels och skriv i istället för mer plats -->
                 <label>Password</label> 
-                <input type="text" name="Pword"><br />
+                <input type="password" id="Pword" name="password" class="textInput" >
+                <div id="password_error"> </div>
+                
+                <!-- <div id="password confirm"></div> -->
+                <label>Password confirmed</label>
+                <input type="password" name="password_confirm" class="textInput">
+                <div id="password_error"></div>
+
+
+               
+
+
                 <label>Name</label>
                 <input type="text" name="name"><br />
                 <label>Personnummer</label>
@@ -30,8 +38,10 @@
                 <label>Gender</label>
                 <input type="text" name="gender"><br />
             </div>
+            <!-- <input type="submit" name="Registrera" value="Register" class="btn"> -->
             <button id="create_btn" href="login.html">Registrera </button>  
         </form>
     </div>
 </body>
 </html>
+<script>type="Validates.js"</script>
