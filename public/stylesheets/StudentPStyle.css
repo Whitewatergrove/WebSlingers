@@ -25,6 +25,8 @@ body {
     left: 5%;
     width: 80%;
 }
+
+
 /* logo in header(mobile version) and side-nav (tablet & desktop) */
 .logo {
 
@@ -136,7 +138,7 @@ body {
 	padding: 0;
 	padding-top: 44px;
 	height: 100%;
-	overflow: scroll;
+	overflow: hidden;
 }
 .main-content .title {
 	background-color: #faf9f6; /*student board */
@@ -192,7 +194,14 @@ body {
         bottom: 5%;
         left: 15%;
         width: 70%;
-    }
+	}
+	.font2{
+
+		text-align: center;
+	
+		margin: auto;
+		clear: both;
+	}
 }
 /* set element styles for desktop */
 @media screen and (min-width: 800px) {
@@ -220,6 +229,7 @@ body {
 	}
 	.main-content {
 		margin-left: 200px;
+		background-image: url("./images/oru.png");
     }
     .si{
         position: absolute;
@@ -230,9 +240,19 @@ body {
 }
 
 /* main box container */
+.main2 {
+	display: flex;
+	flex-flow: row wrap;
+	text-align: center;
+	height: 100%;
+
+	background-color: #faf9f6;
+}
 .main {
 	display: flex;
 	flex-flow: row wrap;
+	text-align: center;
+
 }
 .widget {
 	flex-basis: 300px;
@@ -244,7 +264,7 @@ body {
 	position: relative;
 }
 .widget .title {
-	background-color: #2e78ba;
+	
 	border-bottom: 1px solid #dfe4ec;
 	padding: 10px;
 	border-top-left-radius: 6px;
@@ -252,3 +272,43 @@ body {
 	color: #fff;
 	font-weight: 600;
 }
+
+.StudentDiv2
+{
+	text-align: center;
+
+	width: 80%;
+	padding-left: 20%;
+
+	
+
+}
+#button2
+{
+	width: 100%;
+	padding: 3%;
+	border-radius: 1%;
+	outline: 0px;
+}
+#butt
+{
+	width: 100%;
+	padding: 3%;
+	border-radius: 1%;
+	outline: 0px;
+}
+.font2
+{
+	
+	/* background-color: #6d6e70; */
+	text-align: center;
+	width: 50%;
+
+	margin: auto;
+	clear: both;
+}
+.h2
+{
+	background-color: #dfe4ec;
+}
+
