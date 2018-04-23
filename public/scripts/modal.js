@@ -1,3 +1,4 @@
+
 function openTab(tab) {
     var i = 0;
     var x = document.getElementsByClassName("tab");
@@ -8,4 +9,4 @@ function openTab(tab) {
         i++;
     }
     document.getElementById(tab).style.display = "block";  
-}
+};
