@@ -33,7 +33,7 @@
 			</div>
 			<nav>
 				<ul class="tabs">
-					<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open">
+					<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-left: 5px solid #fff">
 						<a>
 							<span><i class="fa fa-user"></i></span>
 							<span>Profile</span>
@@ -45,7 +45,7 @@
 							<span>Messages</span>
 						</a>
 					</li>
-					<li class="tabBorder" onclick="openTab('comments', 'Job')" id="Job">
+					<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
 						<a>
 							<span><i class="fas fa-folder"></i></span>
 							<span>Ex-Job</span>
@@ -91,18 +91,12 @@
 				</div>
             </div>
 		</div>
-		<div class="main-content" id="comments" style="display:none">
-			<div class="title">
-				hehheheheh Måns
-			</div>
+		<div class="main-content" id="Jobs" style="display:none">
+			
 			<div class="main">
-				<div class="widget">
-					<div class="title">Number of views</div>
-					<div class="chart"></div>
-				</div>
-				<div class="widget">
-					<div class="title">Number of likes</div>
-					<div class="chart"></div>
+				<div class="widget" id="JobsWidget">
+					<div class="title">Available jobs</div>
+					<div class="Tinder"></div>
 				</div>
             </div>
 		</div>

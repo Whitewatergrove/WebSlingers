@@ -2,7 +2,7 @@
 
 let express = require('express');
 let app = express();
-let bodyParser = require('body-parser')
+let bodyParser = require('body-parser');
 
 app.use(bodyParser.json());       
 app.use(bodyParser.urlencoded({     
@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({
 })); 
 app.use(express.json());     
 app.use(express.urlencoded());
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 const mymodule = require('./DBfunctions')
 
