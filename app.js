@@ -34,6 +34,7 @@ app.get('/test', function(req, res)
   dbfunctions.getstudentinfo(uname, function(err,result){
     if (err) throw err;
     res.json(result);
+    console.log(result);
   })
 });
 

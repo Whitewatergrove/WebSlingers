@@ -15,22 +15,26 @@ var con = mysql.createConnection({
 
 module.exports = {
 
-    getuname: function(callback){
-        con.connect(function (err) {    
-            if (err) {
-                console.log('error while connectiong to database' + err);
+    getuname: function(username,callback){
+        con.query("SELECT * FROM users WHERE ID ='"+username+"' GROUP BY ID;", function(err, results) {
+            if (err){
+            console.log('error in query');
             }
-            console.log("Connected..");
-        
-            con.query('SELECT * FROM users', function(err, results) {
-                if (err){
-                console.log('error in query');
-                }
-                else{
-                console.log('query functional');
-                }
-                callback(null, results);
-            })
+            else{
+            console.log('query functional');
+            }
+            callback(null, results);
+        })
+    },
+    getuname: function(username,callback){
+        con.query("SELECT password FROM users WHERE ID ='"+username+"' GROUP BY ID;", function(err, results) {
+            if (err){
+            console.log('error in query');
+            }
+            else{
+            console.log('query functional');
+            }
+            callback(null, results);
         })
     },
 
@@ -68,7 +72,25 @@ module.exports = {
             }
             callback(null, results);
         })
+    },
+
+    getcompanyid: function(username, callback){
+        con.query("SELECT orgnr FROM companies WHERE UID = '"+username+"';", function(err, results){
+            if(err){
+                console.lof("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+            callback(null, results);
+        })
     }
+
+    
+
+
+
+
 };
 
 
