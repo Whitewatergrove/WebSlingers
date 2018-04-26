@@ -18,7 +18,6 @@ var con = mysql.createConnection({
 router.get('/', (req, res) => {
     res.render('pages/index');
 });
-
 router.get('/register', (req, res) => {
     res.render('pages/register');
 });
@@ -63,10 +62,6 @@ router.get('/profile', (req, res) => {
             console.log("Query completed");
         }
     });
-});
-
-router.get('/user', (req, res) => {
-    res.send('You are on the user page');
 });
 
 module.exports = router;
