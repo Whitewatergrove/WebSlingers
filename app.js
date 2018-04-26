@@ -1,5 +1,4 @@
 'use strict'
-
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
@@ -11,19 +10,23 @@ app.use(bodyParser.urlencoded({
 app.use(express.json());     
 app.use(express.urlencoded());
 app.use(express.static(__dirname + '/public'));
+app.set('view engine', 'ejs');
 
-const mymodule = require('./DBfunctions')
+const routes = require('./routes/routes');
 
-app.get('/test', function(req, res) {
-    mymodule.get_users(null, null, function(err, result){
-        if (err) throw err;
-        res.json(result);
-    })
-})
+app.use('/', routes);
+
 app.set('port', 80);
 var server = app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + server.address().port);
 });
+
+// app.get('/test', function(req, res) {
+//     mymodule.get_users(null, null, function(err, result){
+//         if (err) throw err;
+//         res.json(result);
+//     })
+// })
 // app.get('/', function(req,res) {
 //     con.connect(function (err) {
 //         if (err) {

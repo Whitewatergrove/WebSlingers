@@ -96,7 +96,15 @@
 			<div class="main">
 				<div class="widget" id="JobsWidget">
 					<div class="title">Available jobs</div>
-					<div class="Tinder"></div>
+					<div class="Tinder">
+							<ul>
+									<% results.forEach(function(result) { %>
+										<li>
+											<%= result.ID %> - <%= result.Password %> - <%= result.Role %>
+										</li>
+									<% }); %>
+							</ul>
+					</div>
 				</div>
             </div>
 		</div>
