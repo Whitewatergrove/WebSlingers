@@ -15,10 +15,7 @@
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
-		<script src="./scripts/StudentPScript.js"></script>
-
-		
-		
+		<script src="./scripts/profile.js"></script>
 	</head>
 	<body>
 		<div class="header">
@@ -27,6 +24,7 @@
 				<span>Webslingers</span>
 			</div>
 			<a href="#" class="nav-trigger"><span></span></a>
+			<a href="/logout">asdhasöjdhalsdhaölshdalöshdöahsödahösh</a>
 		</div>
 		<div class="side-nav">
 			<div class="logo">
@@ -34,40 +32,38 @@
 				<span>Webslingers</span>
 			</div>
 			<nav>
-				<ul>
-					<li>
-						<a href="#">
+				<ul class="tabs">
+					<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-left: 5px solid #fff">
+						<a>
 							<span><i class="fa fa-user"></i></span>
 							<span>Profile</span>
 						</a>
 					</li>
-					<li>
-						<a href="#">
-
+					<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
+						<a> 
 							<span><i class="fa fa-envelope"></i></span>
 							<span>Messages</span>
 						</a>
 					</li>
-					<li class="active">
-						<a href="#">
+					<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
+						<a>
 							<span><i class="fas fa-folder"></i></span>
 							<span>Ex-Job</span>
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a>
 							<span><i class="fa fa-credit-card-alt"></i></span>
 							<span>Erik</span>
 						</a>
                     </li>
-                            <img src="./images/oru.png" class="si">
-                    
+                        <img src="./images/oru.png" class="si">
 				</ul>
 			</nav>
 		</div>
-		<div class="main-content">
+		<div class="main-content" id="home">
 			<div class="title">
-				Student
+				Anton
 			</div>
 			<div class="main">
 				<div class="widget">
@@ -82,6 +78,34 @@
 					<div class="title">Number of comments</div>
 					<div class="chart"></div>
                 </div>
+            </div>
+		</div>
+		<div class="main-content" id="likes" style="display:none">
+			<div class="title">
+				hejhejhejhej Monika
+			</div>
+			<div class="main">
+				<div class="widget">
+					<div class="title">Number of views</div>
+					<div class="chart"></div>
+				</div>
+            </div>
+		</div>
+		<div class="main-content" id="Jobs" style="display:none">
+			
+			<div class="main">
+				<div class="widget" id="JobsWidget">
+					<div class="title">Available jobs</div>
+					<div class="Tinder">
+							<ul>
+									<% results.forEach(function(result) { %>
+										<li>
+											<%= result.ID %> - <%= result.Password %> - <%= result.Role %>
+										</li>
+									<% }); %>
+							</ul>
+					</div>
+				</div>
             </div>
 		</div>
 	</body>
