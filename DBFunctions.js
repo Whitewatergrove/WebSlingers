@@ -15,6 +15,9 @@ var con = mysql.createConnection({
 
 module.exports = {
 
+    //***********************************************************************************/
+    //selects
+
     getlogin: function(username, pass,callback){
         var sql = "SELECT * FROM users WHERE ID = ? AND password = ? GROUP BY ID;";
         con.query(sql, [username, pass], function(err, results) {
@@ -142,7 +145,43 @@ module.exports = {
             }
             callback(null, results);
         })
-    }, 
+    },
+    //********************************************************************************/
+    //inserts
+
+    insert_user: function(username, password, role){
+        var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";
+        con.query(sql, [username, password, role]){
+            if(err){
+                console.log("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+        })
+    },
+    insert_student: function(pnr, name, gender, mail, adress, tel){
+        var sql = "INSERT INTO students (pnr, Name, Gender, Email, Adress, Tel, Status) VALUES (?, ?, ?, ?, ?, ?, 0);";
+        con.query(sql, [pnr, name, gender, mail, adress, tel]){
+            if(err){
+                console.log("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+        })
+    },
+    insert_company: function(orgnr, name, adress, mail, tel){
+        var sql = "INSERT INTO companies (Orgnr, Name, Adress, Email, Tel) VALUES (?, ?, ?, ?, ?);";
+        con.query(sql, [orgnr, name, adress, mail, tel]){
+            if(err){
+                console.log("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+        })
+    },
 };
 
 

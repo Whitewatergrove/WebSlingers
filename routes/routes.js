@@ -49,19 +49,16 @@ router.get('/register', (req, res) => {
 //    });
 //});
 router.get('/login', function (req, res) {
-    db.get_users(null, null, function (err, results) {
-        if (err) throw err
-        else if (hasCookie(req.cookies)) {
-            res.render('pages/StudentProfile', {
-                results: results
-            });
-        }
-        else
-            res.render('pages/temp');
-        console.log("Query completed");
-        console.log("cookie: ", req.cookies);
-
-    });
+    db.get_users(function(err, results){
+    if (hasCookie(req.cookies)) {
+        res.render('pages/StudentProfile', {results:results});
+    }
+    else {
+        res.render('pages/temp');
+    }
+    console.log("Query completed");
+    console.log("cookie: ", req.cookies);
+})
 });
 router.post('/login', function (req, res) {
     var username = req.body.username,
