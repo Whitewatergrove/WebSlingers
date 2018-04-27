@@ -66,7 +66,7 @@ router.post('/login', function (req, res) {
     var username = req.body.username,
         password = req.body.password;
 
-    var sql = `SELECT * FROM users WHERE users.ID = ? AND users.Password = ? `
+    var sql = `SELECT * FROM users WHERE users.ID = ? AND users.Password = ?`
     con.query(sql, [username, password], function (err, result) {
         console.log("mysql:", result);
         if (err) throw err;
@@ -86,7 +86,7 @@ router.post('/login', function (req, res) {
             //     req.session.cookie.expires = false;
             //   }
             //   req.session.userid = user._id;
-            // res.cookie(result[0].ID, Math.random(), options);
+            //res.cookie(result[0].ID, Math.random(), options);
             res.cookie('test', Math.random(), options);
             res.redirect('/profile');
         }
