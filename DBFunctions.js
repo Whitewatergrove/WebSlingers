@@ -93,7 +93,20 @@ module.exports = {
     }, 
     
     getxjobs: function(username, callback){
-        var sql = "SELECT orgnr FROM companies WHERE UID = ?;";
+        var sql = "SELECT ID,Name FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
+        con.query(sql, username, function(err, results){
+            if(err){
+                console.lof("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+            callback(null, results);
+        })
+    }, 
+
+    getxjobs: function(username, callback){
+        var sql = "SELECT QID FROM demanded WHERE EID = (SELECT ID FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?));;"
         con.query(sql, username, function(err, results){
             if(err){
                 console.lof("query error");
