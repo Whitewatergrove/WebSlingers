@@ -16,7 +16,8 @@ var con = mysql.createConnection({
 module.exports = {
 
     getuname: function(username,callback){
-        con.query("SELECT * FROM users WHERE ID ='"+username+"' GROUP BY ID;", function(err, results) {
+        var sql = "SELECT * FROM users WHERE ID = ? GROUP BY ID;";
+        con.query(sql, username, function(err, results) {
             if (err){
             console.log('error in query');
             }
@@ -26,7 +27,7 @@ module.exports = {
             callback(null, results);
         })
     },
-    getuname: function(username,callback){
+    getpassword: function(username,callback){
         con.query("SELECT password FROM users WHERE ID ='"+username+"' GROUP BY ID;", function(err, results) {
             if (err){
             console.log('error in query');
@@ -87,7 +88,8 @@ module.exports = {
     }, 
     
     getxjobs: function(username, callback){
-        con.query("SELECT orgnr FROM companies WHERE UID = '"+username+"';", function(err, results){
+        var sql = "SELECT orgnr FROM companies WHERE UID = ?;";
+        con.query(sql, username, function(err, results){
             if(err){
                 console.lof("query error");
             }
