@@ -36,8 +36,8 @@ router.get('/', (req, res) => {
     res.render('pages/index');
     console.log("cookie", req.cookies);
 });
-router.get('/register', (req, res) => {
-    res.render('pages/register');
+router.get('/reg', (req, res) => {
+    res.render('pages/reg');
     // console.log("cookie", req.cookies);    
 });
 //router.post('/register', (req, res) => {
@@ -120,4 +120,30 @@ router.get('/logout', function (req, res) {
     res.redirect('/');
     // console.log("cookie: ", req.cookies)
 });
+
+router.post('/reg', function(req, res){
+    var uname = req.body.Uname,
+    password = req.body.Pword,
+    role = req.body.role,
+    name = req.body.name,
+    pnr = req.body.pnum,
+    mail = req.body.email,
+    gender = req.body.gender,
+    tel = req.body.tel,
+    adress = req.body.adress,
+    status = 0;
+
+    db.insert_user(uname, password, role, function(err, result){
+        if(err) throw err;
+        else
+        {
+            db.insert_student(pnr, uname, name, gender, mail, adress, tel, status, function(err, result){
+                if(err) throw err;
+                else
+                    res.render('pages/login');
+            })
+        }
+    })
+    
+})
 module.exports = router;

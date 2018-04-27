@@ -151,7 +151,7 @@ module.exports = {
 
     insert_user: function(username, password, role){
         var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";
-        con.query(sql, [username, password, role]){
+        con.query(sql, [username, password, role], function(err, res){
             if(err){
                 console.log("query error");
             }
@@ -160,9 +160,9 @@ module.exports = {
             }
         })
     },
-    insert_student: function(pnr, name, gender, mail, adress, tel){
-        var sql = "INSERT INTO students (pnr, Name, Gender, Email, Adress, Tel, Status) VALUES (?, ?, ?, ?, ?, ?, 0);";
-        con.query(sql, [pnr, name, gender, mail, adress, tel]){
+    insert_student: function(pnr, uname, name, gender, mail, adress, tel, status){
+        var sql = "INSERT INTO students (pnr, UID, Name, Gender, Email, Adress, Tel, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        con.query(sql, [pnr, uname, name, gender, mail, adress, tel, status], function(err, res){
             if(err){
                 console.log("query error");
             }
@@ -173,7 +173,7 @@ module.exports = {
     },
     insert_company: function(orgnr, name, adress, mail, tel){
         var sql = "INSERT INTO companies (Orgnr, Name, Adress, Email, Tel) VALUES (?, ?, ?, ?, ?);";
-        con.query(sql, [orgnr, name, adress, mail, tel]){
+        con.query(sql, [orgnr, name, adress, mail, tel], function(err, res){
             if(err){
                 console.log("query error");
             }
