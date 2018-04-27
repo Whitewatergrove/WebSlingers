@@ -28,7 +28,8 @@ module.exports = {
         })
     },
     getpassword: function(username,callback){
-        con.query("SELECT password FROM users WHERE ID ='"+username+"' GROUP BY ID;", function(err, results) {
+        var sql = "SELECT password FROM users WHERE ID = ? GROUP BY ID;";
+        con.query(sql, username, function(err, results) {
             if (err){
             console.log('error in query');
             }
@@ -40,7 +41,8 @@ module.exports = {
     },
 
     getstudentinfo: function(username, callback){
-        con.query("SELECT Name FROM students WHERE UID = '"+username+"' GROUP BY Name;" , function(err, results) {
+        var sql = "SELECT Name FROM students WHERE UID = ? GROUP BY Name;";
+        con.query( sql, username, function(err, results) {
             if(err){
                 console.log("query error" + err);
             }
@@ -52,7 +54,8 @@ module.exports = {
     },
 
     getstudentqual: function(username, callback){
-        con.query("SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = '"+username+"' GROUP BY pnr);", function(err, results){
+        var sql = "SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = ? GROUP BY pnr);";
+        con.query(sql, username, function(err, results){
             if(err){
                 console.lof("query error");
             }
@@ -64,7 +67,8 @@ module.exports = {
     },
 
     getqualcategories: function(username, callback){
-        con.query("SELECT class FROM catagories WHERE qualifications IN (SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = '"+username+"' GROUP BY pnr));", function(err, results){
+        var sql = "SELECT class FROM catagories WHERE qualifications IN (SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = ? GROUP BY pnr));";
+        con.query(sql, username, function(err, results){
             if(err){
                 console.lof("query error");
             }
@@ -76,7 +80,8 @@ module.exports = {
     },
 
     getcompanyid: function(username, callback){
-        con.query("SELECT orgnr FROM companies WHERE UID = '"+username+"';", function(err, results){
+        var sql = "SELECT orgnr FROM companies WHERE UID = ?;"
+        con.query(sql, username, function(err, results){
             if(err){
                 console.lof("query error");
             }
