@@ -15,6 +15,19 @@ var con = mysql.createConnection({
 
 module.exports = {
 
+    getlogin: function(username, pass,callback){
+        var sql = "SELECT * FROM users WHERE ID = ? AND password = ? GROUP BY ID;";
+        con.query(sql, [username, pass], function(err, results) {
+            if (err){
+            console.log('error in query');
+            }
+            else{
+            console.log('query functional');
+            }
+            callback(null, results);
+        })
+    },
+
     getuname: function(username,callback){
         var sql = "SELECT * FROM users WHERE ID = ? GROUP BY ID;";
         con.query(sql, username, function(err, results) {

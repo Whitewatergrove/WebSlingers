@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 let bodyParser = require('body-parser');
 
-let mymodule = require('../DBfunctions');
+let db = require('../DBfunctions');
 
 let mysql = require('mysql');
 
@@ -66,18 +66,24 @@ router.post('/login', function (req, res) {
     var username = req.body.username,
         password = req.body.password;
 
-    var sql = `SELECT * FROM users WHERE users.ID = ? AND users.Password = ? `
-    con.query(sql, [username, password], function (err, result) {
-        console.log("mysql:", result);
+    db.getlogin(username, password, function(req, result){
         if (err) throw err;
         if (result.length != 0) {
 
             let options = {
-                maxAge: 1000 * 60 * 1,
-                httpOnly: true,
-                signed: false
+            maxAge: 1000 * 60 * 1,
+            httpOnly: true,
+            signed: false
             }
 
+            res.cookie('test', Math.random(), options);
+            res.redirect('/profile');   
+        }
+        else{
+            res.redirect('/login');
+        }
+                   
+    })
             // if ( req.body.remember ) {
             //     var hour = 3600000;
             //     req.session.cookie.maxAge = 14 * 24 * hour; //2 weeks
@@ -86,13 +92,7 @@ router.post('/login', function (req, res) {
             //     req.session.cookie.expires = false;
             //   }
             //   req.session.userid = user._id;
-            // res.cookie(result[0].ID, Math.random(), options);
-            res.cookie('test', Math.random(), options);
-            res.redirect('/profile');
-        }
-        else
-            res.redirect('/login');
-    });
+            // res.cookie(result[0].ID, Math.random(), options);           
 });
 
 router.get('/profile', (req, res) => {
