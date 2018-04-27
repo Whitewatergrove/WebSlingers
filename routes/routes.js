@@ -40,63 +40,59 @@ router.get('/register', (req, res) => {
     res.render('pages/register');
     // console.log("cookie", req.cookies);    
 });
-router.post('/register', (req, res) => {
-    var username = req.body.username,
-        password = req.body.password;
-    con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', [username, password, 'student1'], function (err, result) {
-        if (err) throw err
-        res.redirect('/login');
-    });
-});
+//router.post('/register', (req, res) => {
+//    var username = req.body.username,
+//        password = req.body.password;
+//    con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', [username, password, 'student1'], function (err, result) {
+//        if (err) throw err
+//        res.redirect('/login');
+//    });
+//});
 router.get('/login', function (req, res) {
-    mymodule.get_users(null, null, function (err, results) {
-        if (err) throw err
-        else if (hasCookie(req.cookies)) {
-            res.render('pages/StudentProfile', {
-                results: results
-            });
-        }
-        else
-            res.render('pages/temp');
-        console.log("Query completed");
-        console.log("cookie: ", req.cookies);
-    });
+    if (hasCookie(req.cookies)) {
+        res.render('pages/StudentProfile');
+    }
+    else {
+        res.render('pages/temp');
+    }
+    console.log("Query completed");
+    console.log("cookie: ", req.cookies);
 });
 router.post('/login', function (req, res) {
     var username = req.body.username,
         password = req.body.password;
 
-    db.getlogin(username, password, function(req, result){
+    db.getlogin(username, password, function (req, result) {
         if (err) throw err;
         if (result.length != 0) {
 
             let options = {
-            maxAge: 1000 * 60 * 1,
-            httpOnly: true,
-            signed: false
+                maxAge: 1000 * 60 * 1,
+                httpOnly: true,
+                signed: false
             }
 
             res.cookie('test', Math.random(), options);
-            res.redirect('/profile');   
+            res.redirect('/profile');
         }
-        else{
+        else {
             res.redirect('/login');
         }
-                   
+
     })
-            // if ( req.body.remember ) {
-            //     var hour = 3600000;
-            //     req.session.cookie.maxAge = 14 * 24 * hour; //2 weeks
-            //   } 
-            //   else {
-            //     req.session.cookie.expires = false;
-            //   }
-            //   req.session.userid = user._id;
-            // res.cookie(result[0].ID, Math.random(), options);           
+    // if ( req.body.remember ) {
+    //     var hour = 3600000;
+    //     req.session.cookie.maxAge = 14 * 24 * hour; //2 weeks
+    //   } 
+    //   else {
+    //     req.session.cookie.expires = false;
+    //   }
+    //   req.session.userid = user._id;
+    // res.cookie(result[0].ID, Math.random(), options);           
 });
 
 router.get('/profile', (req, res) => {
-    mymodule.get_users(null, null, function (err, results) {
+    db.get_users(null, null, function (err, results) {
         if (err) throw err
         else if (hasCookie(req.cookies)) {
             res.render('pages/StudentProfile', {
