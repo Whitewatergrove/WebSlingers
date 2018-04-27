@@ -57,7 +57,7 @@ module.exports = {
         var sql = "SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = ? GROUP BY pnr);";
         con.query(sql, username, function(err, results){
             if(err){
-                console.lof("query error");
+                console.log("query error");
             }
             else{
                 console.log("query ok");
@@ -70,7 +70,7 @@ module.exports = {
         var sql = "SELECT class FROM catagories WHERE qualifications IN (SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = ? GROUP BY pnr));";
         con.query(sql, username, function(err, results){
             if(err){
-                console.lof("query error");
+                console.log("query error");
             }
             else{
                 console.log("query ok");
@@ -83,7 +83,7 @@ module.exports = {
         var sql = "SELECT orgnr FROM companies WHERE UID = ?;"
         con.query(sql, username, function(err, results){
             if(err){
-                console.lof("query error");
+                console.log("query error");
             }
             else{
                 console.log("query ok");
@@ -96,7 +96,7 @@ module.exports = {
         var sql = "SELECT ID,Name FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
         con.query(sql, username, function(err, results){
             if(err){
-                console.lof("query error");
+                console.log("query error");
             }
             else{
                 console.log("query ok");
@@ -109,7 +109,7 @@ module.exports = {
         var sql = "SELECT QID FROM demanded WHERE EID = (SELECT ID FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?));;"
         con.query(sql, username, function(err, results){
             if(err){
-                console.lof("query error");
+                console.log("query error");
             }
             else{
                 console.log("query ok");
