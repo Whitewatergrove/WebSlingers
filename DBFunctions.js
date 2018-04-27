@@ -84,7 +84,19 @@ module.exports = {
             }
             callback(null, results);
         })
-    }
+    }, 
+    
+    getxjobs: function(username, callback){
+        con.query("SELECT orgnr FROM companies WHERE UID = '"+username+"';", function(err, results){
+            if(err){
+                console.lof("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+            callback(null, results);
+        })
+    }, 
 };
 
 
