@@ -3,14 +3,22 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 
-app.use(bodyParser.json());       
-app.use(bodyParser.urlencoded({     
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
   extended: true
-})); 
-app.use(express.json());     
+}));
+app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
+
+var cookieParser = require('cookie-parser')
+app.use(cookieParser())
+
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: ['key1', 'key2']
+// }))
 
 const routes = require('./routes/routes');
 
@@ -18,7 +26,7 @@ app.use('/', routes);
 
 app.set('port', 80);
 var server = app.listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + server.address().port);
+  console.log('Express server listening on port ' + server.address().port);
 });
 // app.get('/test', function(req, res) {
 //     mymodule.get_users(null, null, function(err, result){
@@ -56,7 +64,7 @@ var server = app.listen(app.get('port'), function () {
 //      console.log('Password = %s' , Password);
 //      console.log('req.body.password = %s', req.body.password);
 //      console.log('Role : %s',Role);
-     
+
 //      con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', [ID, Password, Role], function(err, resp) {
 //              if (err) throw err
 //        res.sendFile(__dirname + '/public/modalLogin.html');
