@@ -8,14 +8,14 @@
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
+        <link rel="stylesheet" href="/stylesheets/StudentPstyle.css">
 
         <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
-		<script src="./scripts/profile.js"></script>
+		<script src="/scripts/profile.js"></script>
 	</head>
 	<body>
 		<div class="header">
@@ -24,7 +24,6 @@
 				<span>Webslingers</span>
 			</div>
 			<a href="#" class="nav-trigger"><span></span></a>
-			<a href="/logout">asdhasöjdhalsdhaölshdalöshdöahsödahösh</a>
 		</div>
 		<div class="side-nav">
 			<div class="logo">
@@ -56,7 +55,13 @@
 							<span><i class="fa fa-credit-card-alt"></i></span>
 							<span>Erik</span>
 						</a>
-                    </li>
+					</li>
+					<li  id="signout">
+							<a href="/logout">
+								<span><i class="fas fa-sign-out-alt"></i></span>
+								<span>Sign Out</span>
+							</a>
+					</li>
                         <img src="./images/oru.png" class="si">
 				</ul>
 			</nav>
@@ -97,13 +102,27 @@
 				<div class="widget" id="JobsWidget">
 					<div class="title">Available jobs</div>
 					<div class="Tinder">
-							<ul>
-									<% results.forEach(function(result) { %>
-										<li>
-											<%= result.ID %> - <%= result.Password %> - <%= result.Role %>
-										</li>
-									<% }); %>
-							</ul>
+						<div id="user">
+							<p><strong>Name: <span></strong></span><%= results[0].ID %></p>
+							<p><strong>Password: <span></strong><%= results[0].Password %> </span></p>
+							<p><strong>Role: <span></strong><%= results[0].Role %> </span></p>
+						</div>
+						<div id="usertable">
+								<table>
+									<tr>
+										<th>UserName</th>
+										<th>Password</th>
+										<th>Role</th>
+									</tr>
+									<tr><% results.forEach(function(result) { %>
+										<td><%= result.ID %></td>
+										<td><%= result.Password %></td>
+										<td><%= result.Role %></td>										
+										<% }); %>
+									</tr>
+								</table>
+						</div>
+						<a href="/register"> register button</a>
 					</div>
 				</div>
             </div>

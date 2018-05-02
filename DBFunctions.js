@@ -116,7 +116,17 @@ module.exports = {
             }
             callback(null, results);
         })
-    }, 
+    },
+    get_users: function(req, res, callback) {   
+        con.query('SELECT * FROM users', function(err, results) {
+            if (err) {
+                callback(err, null);
+            }
+            else {
+                callback(null, results);
+            }
+        })
+    },
 };
 
 
