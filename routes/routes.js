@@ -39,7 +39,7 @@ router.get('/login', function (req, res) {
         });
     }
     else
-        res.render('pages/temp')
+        res.render('pages/modal')
     console.log(req.session.user);
 });
 router.post('/login', function (req, res) {
