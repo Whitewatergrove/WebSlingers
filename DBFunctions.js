@@ -31,7 +31,7 @@ module.exports = {
         })
     },
 
-    get_users: function(username, pass,callback){
+    get_users: function(username, pass, callback){
         var sql = "SELECT * FROM users";
         con.query(sql, function(err, results) {
             if (err){
@@ -44,7 +44,7 @@ module.exports = {
         })
     },
 
-    getuname: function(username,callback){
+    getuname: function(username, callback){
         var sql = "SELECT * FROM users WHERE ID = ? GROUP BY ID;";
         con.query(sql, username, function(err, results) {
             if (err){
@@ -160,9 +160,9 @@ module.exports = {
             }
         })
     },
-    insert_student: function(pnr, uname, name, gender, adress, tel, status){
+    insert_student: function(pnr, uname, name, gender, adress, tel){
         var sql = "INSERT INTO students (pnr, UID, Name, Gender, Adress, Tel) VALUES (?, ?, ?, ?, ?, ?);";
-        con.query(sql, [pnr, uname, gender, adress, tel, status], function(err, res){
+        con.query(sql, [pnr, uname, name, gender, adress, tel], function(err, res){
             if(err){
                 console.log("insert student query not working: " + err);
             }

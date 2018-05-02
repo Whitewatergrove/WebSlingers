@@ -131,18 +131,20 @@ router.post('/reg', function(req, res){
     tel = req.body.tel,
     adress = req.body.adress;
 
+    res.redirect("/login");
+
     db.insert_user(uname, password, role, function(err, result){
         if(err) throw err;
         else{
-            db.insert_student(pnr, uname, name, gender, adress, tel, function(err, result){
-                if(err) throw err
-                else
-                    res.render('pages/login');
-                    console.log("sup?")
-            })
+            
         }
     })
-    
-    
+    db.insert_student(pnr, uname, name, gender, adress, tel, function(err, result){
+        if(err) throw err
+        else
+            
+            console.log("sup?")
+    })
+   
 })
 module.exports = router;
