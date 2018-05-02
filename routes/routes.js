@@ -40,7 +40,7 @@ router.get('/login', function (req, res) {
         });
     }
     else
-        res.render('pages/modal')
+        res.render('pages/index')
     console.log(req.session.user);
 });
 router.post('/login', function (req, res) {
