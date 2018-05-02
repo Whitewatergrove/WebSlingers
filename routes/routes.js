@@ -22,10 +22,12 @@ router.get('/register', (req, res) => {
     res.render('pages/register');
     // console.log("cookie", req.cookies);    
 });
+
 router.post('/register', (req, res) => {
     var username = req.body.username,
-        password = req.body.password;
-    con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', [username, password, 'student1'], function (err, result) {
+        password = req.body.password,
+        role = req.body.role;
+    con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', [username, password, role], function (err, result) {
         if (err) throw err
         res.redirect('/login');
     });
@@ -39,7 +41,7 @@ router.get('/login', function (req, res) {
         });
     }
     else
-        res.render('pages/temp')
+        res.render('pages/index')
     console.log(req.session.user);
 });
 router.post('/login', function (req, res) {
