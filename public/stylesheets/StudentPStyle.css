@@ -141,8 +141,8 @@ body {
 	overflow: hidden;
 }
 .main-content .title {
-	background-color: #faf9f6; /*student board */
-	border-bottom: 1px solid #faf9f6;
+	background-color: #2e78ba; /*student board */
+	border-bottom: 1px solid #2e78ba;
 	padding: 10px 20px;
 	font-weight: 700;
 	color: #faf9f6;

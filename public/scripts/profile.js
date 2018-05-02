@@ -14,7 +14,7 @@ function openTab(pageName, tab) {
         tabBorder[y].style.borderLeft = ""
         y++
     }
-    document.getElementById(tab).style.borderLeft = "5px solid #fff";
+    document.getElementById(tab).style.borderLeft = "5px solid #2e78ba";
     document.getElementById(pageName).style.display = "block";
 }
 // document.getElementById("Open").click();
