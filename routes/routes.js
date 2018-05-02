@@ -22,6 +22,7 @@ router.get('/register', (req, res) => {
     res.render('pages/register');
     // console.log("cookie", req.cookies);    
 });
+
 router.post('/register', (req, res) => {
     var username = req.body.username,
         password = req.body.password,
