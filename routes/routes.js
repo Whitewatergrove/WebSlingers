@@ -3,6 +3,7 @@ let router = express.Router();
 let bodyParser = require('body-parser');
 
 let db = require('../DBfunctions');
+let match = require('../search');
 
 let mysql = require('mysql');
 
@@ -147,3 +148,5 @@ router.post('/reg', function(req, res){
     
 })
 module.exports = router;
+
+match.testmatch();

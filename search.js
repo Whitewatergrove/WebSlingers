@@ -159,3 +159,106 @@ void sortMatch(pers, relaterat)
 }
 
 match();
+
+void testmatch()
+{
+    var students;
+    search.get('/test', function(req, res) {
+        db.get_students(null, null, function(err, result){
+            if (err) throw err;
+            res.json(result);
+            students = results;
+            console.log(result);
+        })
+      });
+    
+      for(var i = 0; i < students.length; i++)
+      {
+          db.getstudentqual(students[i].UID,function(req, res){
+            if (err) throw err;
+            res.json(result);
+            students[i].QUAL = result;
+          })
+      }
+
+      console.log(students);
+}
+void match2()
+{
+    var students;
+    search.get('/test', function(req, res) {
+        db.get_students(null, null, function(err, result){
+            if (err) throw err;
+            res.json(result);
+            students = results;
+            console.log(result);
+        })
+      });
+    
+      for(var i = 0; i < students.length; i++)
+      {
+          db.getstudentqual(students[i].UID,function(req, res){
+            if (err) throw err;
+            res.json(result);
+            students[i].QUAL = result;
+          })
+      }
+
+      console.log(students);
+
+
+    for(var i = 0; i< students.length; i++)
+    {
+        console.log(students[i].UID, ":");
+
+
+    }
+
+    
+    for(var i = 0; i < persList.length; i++)
+    {
+        var tempListRelaterat =[];
+        console.log(persList[i].namn, ":");
+
+        for(var j = 0; j< persList[i].kunskap.length; j++)
+        {
+            var count = 0;
+            for(var k = 0; k<arr.length; k++)
+            {
+                if(arr[k].Q === persList[i].kunskap[j])
+                {
+                    for(var h = 0; h < arr.length; h++)
+                    {
+                        if(arr[k].class === arr[h].class)
+                        {
+                            tempListRelaterat[tempListRelaterat.length] = JSON.parse(JSON.stringify(arr[h].Q));
+                            count ++;
+                        }
+                    }
+                }
+            }
+            if( count == 0)
+                {
+                    tempListRelaterat[tempListRelaterat.length] = JSON.parse(JSON.stringify(persList[i].kunskap[j]));
+                }
+        }
+
+        for(var j = 0; j < exList.length; j++)
+        {
+            for(var k = 0; k< tempListRelaterat.length; k++)
+            {
+                for(h = 0; h < exList[j].krav.length; h++)
+                {
+                    if(tempListRelaterat[k] === exList[j].krav[h])
+                    {
+                        //console.log(exList[j].namn);
+                        continue;
+                    }
+                }
+            }
+        }
+        sortMatch(persList[i], tempListRelaterat);
+        console.log("");
+    }
+
+}
