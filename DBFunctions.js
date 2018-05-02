@@ -153,21 +153,21 @@ module.exports = {
         var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";
         con.query(sql, [username, password, role], function(err, res){
             if(err){
-                console.log("query error");
+                console.log("insert user query not working: "+err);
             }
             else{
-                console.log("query ok");
+                console.log("insert user query ok");
             }
         })
     },
     insert_student: function(pnr, uname, name, gender, adress, tel, status){
-        var sql = "INSERT INTO `webslingers`.`students` (`pnr`, `UID`, `Name`, `Gender`, `Adress`, `Tel`, `Status`) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        var sql = "INSERT INTO students (pnr, UID, Name, Gender, Adress, Tel) VALUES (?, ?, ?, ?, ?, ?);";
         con.query(sql, [pnr, uname, gender, adress, tel, status], function(err, res){
             if(err){
-                console.log("query error");
+                console.log("insert student query not working: " + err);
             }
             else{
-                console.log("query ok");
+                console.log("insert student query ok");
             }
         })
     },
