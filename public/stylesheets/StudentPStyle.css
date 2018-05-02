@@ -312,3 +312,25 @@ body {
 	background-color: #dfe4ec;
 }
 
+#JobsWidget{
+	height: 80vh;
+	background-color: #fff;
+}
+#user{
+	background: beige;
+	padding: 0;
+	margin: 0;
+	width: 20vw;
+}
+#usertable{
+	background: rgb(177, 167, 125);
+	padding: 0;
+	margin: 0;
+	display: table;
+}
+#usertable th{
+	background: beige;
+}
+#usertable table, th, td{
+	border: 1px solid black;
+}
