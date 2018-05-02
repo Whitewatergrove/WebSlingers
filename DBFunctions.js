@@ -84,13 +84,12 @@ module.exports = {
             }
             callback(null, results);
         })
+    },
+
+    get: function(exjobs,callback){
+
     }
-
-    
-
-
-
-
+        
 };
 
 
