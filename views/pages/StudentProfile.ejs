@@ -15,7 +15,6 @@
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.highcharts.com/highcharts.js"></script>
 		<script src="https://code.highcharts.com/modules/data.js"></script>
-		<script src="./scripts/StudentPScript.js"></script>
 		<script src="./scripts/profile.js"></script>
 	</head>
 	<body id="edit profile">	
@@ -25,6 +24,7 @@
 				<span>Webslingers</span>
 			</div>
 			<a href="#" class="nav-trigger"><span></span></a>
+			<a href="/logout">asdhasöjdhalsdhaölshdalöshdöahsödahösh</a>
 		</div>
 		<div class="side-nav">
 			<div class="logo">
@@ -33,7 +33,7 @@
 			</div>
 			<nav>
 				<ul class="tabs">
-					<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open">
+					<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-left: 5px solid #fff">
 						<a>
 							<span><i class="fa fa-user"></i></span>
 							<span>Profile</span>
@@ -45,7 +45,7 @@
 							<span>Messages</span>
 						</a>
 					</li>
-					<li class="tabBorder" onclick="openTab('comments', 'Job')" id="Job">
+					<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
 						<a>
 							<span><i class="fas fa-folder"></i></span>
 							<span>Ex-Job</span>
@@ -94,18 +94,20 @@
 				</div>
             </div>
 		</div>
-		<div class="main-content" id="comments" style="display:none">
-			<div class="title">
-				hehheheheh Måns
-			</div>
+		<div class="main-content" id="Jobs" style="display:none">
+			
 			<div class="main">
-				<div class="widget">
-					<div class="title">Number of views</div>
-					<div class="chart"></div>
-				</div>
-				<div class="widget">
-					<div class="title">Number of likes</div>
-					<div class="chart"></div>
+				<div class="widget" id="JobsWidget">
+					<div class="title">Available jobs</div>
+					<div class="Tinder">
+							<ul>
+									<% results.forEach(function(result) { %>
+										<li>
+											<%= result.ID %> - <%= result.Password %> - <%= result.Role %>
+										</li>
+									<% }); %>
+							</ul>
+					</div>
 				</div>
             </div>
 		</div>

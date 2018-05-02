@@ -8,5 +8,7 @@ function openTab(tab) {
         x[i].style.display = 'none';
         i++;
     }
+
     document.getElementById(tab).style.display = "block";  
 };
+

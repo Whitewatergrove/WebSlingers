@@ -1,3 +1,8 @@
+$(document).ready(function() {
+    $('.nav-trigger').click(function() {
+        $('.side-nav').toggleClass('visible');
+    });
+});
 function openTab(pageName, tab) {
     var i = 0, y= 0 ,content, tabBorder;
     var content = document.getElementsByClassName("main-content");

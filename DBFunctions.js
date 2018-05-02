@@ -15,8 +15,12 @@ var con = mysql.createConnection({
 
 module.exports = {
 
-    getuname: function(username,callback){
-        con.query("SELECT * FROM users WHERE ID ='"+username+"' GROUP BY ID;", function(err, results) {
+    //***********************************************************************************/
+    //selects
+
+    getlogin: function(username, pass,callback){
+        var sql = "SELECT * FROM users WHERE ID = ? AND password = ? GROUP BY ID;";
+        con.query(sql, [username, pass], function(err, results) {
             if (err){
             console.log('error in query');
             }
@@ -26,8 +30,35 @@ module.exports = {
             callback(null, results);
         })
     },
+
+    get_users: function(username, pass,callback){
+        var sql = "SELECT * FROM users";
+        con.query(sql, function(err, results) {
+            if (err){
+            console.log('error in query');
+            }
+            else{
+            console.log('query functional');
+            }
+            callback(null, results);
+        })
+    },
+
     getuname: function(username,callback){
-        con.query("SELECT password FROM users WHERE ID ='"+username+"' GROUP BY ID;", function(err, results) {
+        var sql = "SELECT * FROM users WHERE ID = ? GROUP BY ID;";
+        con.query(sql, username, function(err, results) {
+            if (err){
+            console.log('error in query');
+            }
+            else{
+            console.log('query functional');
+            }
+            callback(null, results);
+        })
+    },
+    getpassword: function(username,callback){
+        var sql = "SELECT password FROM users WHERE ID = ? GROUP BY ID;";
+        con.query(sql, username, function(err, results) {
             if (err){
             console.log('error in query');
             }
@@ -39,7 +70,8 @@ module.exports = {
     },
 
     getstudentinfo: function(username, callback){
-        con.query("SELECT Name FROM students WHERE UID = '"+username+"' GROUP BY Name;" , function(err, results) {
+        var sql = "SELECT Name FROM students WHERE UID = ? GROUP BY Name;";
+        con.query( sql, username, function(err, results) {
             if(err){
                 console.log("query error" + err);
             }
@@ -51,9 +83,10 @@ module.exports = {
     },
 
     getstudentqual: function(username, callback){
-        con.query("SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = '"+username+"' GROUP BY pnr);", function(err, results){
+        var sql = "SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = ? GROUP BY pnr);";
+        con.query(sql, username, function(err, results){
             if(err){
-                console.lof("query error");
+                console.log("query error");
             }
             else{
                 console.log("query ok");
@@ -63,9 +96,10 @@ module.exports = {
     },
 
     getqualcategories: function(username, callback){
-        con.query("SELECT class FROM catagories WHERE qualifications IN (SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = '"+username+"' GROUP BY pnr));", function(err, results){
+        var sql = "SELECT class FROM catagories WHERE qualifications IN (SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = ? GROUP BY pnr));";
+        con.query(sql, username, function(err, results){
             if(err){
-                console.lof("query error");
+                console.log("query error");
             }
             else{
                 console.log("query ok");
@@ -75,9 +109,36 @@ module.exports = {
     },
 
     getcompanyid: function(username, callback){
-        con.query("SELECT orgnr FROM companies WHERE UID = '"+username+"';", function(err, results){
+        var sql = "SELECT orgnr FROM companies WHERE UID = ?;"
+        con.query(sql, username, function(err, results){
             if(err){
-                console.lof("query error");
+                console.log("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+            callback(null, results);
+        })
+    }, 
+    
+    getxjobs: function(username, callback){
+        var sql = "SELECT ID,Name FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
+        con.query(sql, username, function(err, results){
+            if(err){
+                console.log("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+            callback(null, results);
+        })
+    }, 
+
+    getxjobs: function(username, callback){
+        var sql = "SELECT QID FROM demanded WHERE EID = (SELECT ID FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?));;"
+        con.query(sql, username, function(err, results){
+            if(err){
+                console.log("query error");
             }
             else{
                 console.log("query ok");
@@ -85,11 +146,56 @@ module.exports = {
             callback(null, results);
         })
     },
+    //********************************************************************************/
+    //inserts
 
-    get: function(exjobs,callback){
+    insert_user: function(username, password, role){
+        var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";
+        con.query(sql, [username, password, role], function(err, res){
+            if(err){
+                console.log("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+        })
+    },
+    insert_student: function(pnr, uname, name, gender, mail, adress, tel, status){
+        var sql = "INSERT INTO students (pnr, UID, Name, Gender, Email, Adress, Tel, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        con.query(sql, [pnr, uname, name, gender, mail, adress, tel, status], function(err, res){
+            if(err){
+                console.log("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+        })
+    },
+    insert_company: function(orgnr, name, adress, mail, tel){
+        var sql = "INSERT INTO companies (Orgnr, Name, Adress, Email, Tel) VALUES (?, ?, ?, ?, ?);";
+        con.query(sql, [orgnr, name, adress, mail, tel], function(err, res){
+            if(err){
+                console.log("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+        })
+    },
+    insert_exjobs: function(Id, name, info){
+        var sql = "INSERT INTO companies (id, name, info) VALUES (?, ?, ?);";
+        con.query(sql,[Id, name, info], function(err,res){
+            if (err) {
+                console.log("insert query error");
+                
+            }
+            else{
+                console.log("insert query ok");
+            }
+        })
+    },
 
-    }
-        
+
 };
 
 
