@@ -42,8 +42,9 @@ router.get('/register', (req, res) => {
 });
 router.post('/register', (req, res) => {
     var username = req.body.username,
-        password = req.body.password;
-    con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', [username, password, 'student1'], function (err, result) {
+        password = req.body.password,
+        role = req.body.role;
+    con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', [username, password, role], function (err, result) {
         if (err) throw err
         res.redirect('/login');
     });
