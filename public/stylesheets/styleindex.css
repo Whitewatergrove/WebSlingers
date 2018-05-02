@@ -1,63 +1,45 @@
-/*Index*/
-@import url('https//fonts.googleapis.com/css?family=Raleway');
-@import url('https//fonts.googleapis.com/css?family=Oswald');
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
 
-html, body {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
     width: 100%;
+    margin-bottom: 15px;
 }
-.firstpage{
-    height: 100%;
-    width: 100%;
-    margin: auto;
-    background: url("../images/StartPicture.png") no-repeat 50% 50%;
-    display: table;
-    top: 0;
-    background-size: cover;
-}
-.firstpage .inner{
-    display: table-cell;
-    vertical-align: middle;
-    width: 100%;
-    max-width: none;
-}
-.content{
-    max-width: 500px;
-    margin: 0 auto;
+
+.icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
     text-align: center;
 }
-.content h1 {
-    font-family: 'Raleway', sans-serif;
-    color: #F9F3F4;
-    text-shadow: 0px 0px 300px #000;
-    font-size: 400%;
-}
-.btn {
-    border-radius: 9px;
-    font-family: 'Oswald', sans-serif;
-    color:	#fff;
-    font-size: 200%;
-    padding: 10px 20px;
-    border: solid	#fff 6px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background-color 1000ms, color 1000ms;
-}
-.btn:hover{
-    background-color: rgba(255,255,255,1);
-    color: #2c71ae;
-    cursor: pointer;
 
-    transition: background-color 1000ms, color 1000ms;
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
 }
-@media screen and (max-width: 768px) {
-    .content h1{
-        font-size: 250%;
-    }
-    .btn{
-        font-size: 110%;
-        padding: 7px 15px;
-    }
+
+.input-field:focus {
+    border: 2px solid dodgerblue;
 }
+
+/* Set a style for the submit button */
+.btn {
+    background-color: dodgerblue;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    opacity: 1;
+}
+</style>

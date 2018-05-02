@@ -31,6 +31,7 @@ router.post('/register', (req, res) => {
     });
 });
 router.get('/login', function (req, res) {
+<<<<<<< HEAD
     if (req.session.user) {
         con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
             if (err) throw err;
@@ -41,6 +42,20 @@ router.get('/login', function (req, res) {
     else
         res.render('pages/temp')
     console.log(req.session.user);
+=======
+    mymodule.get_users(null, null, function (err, results) {
+        if (err) throw err
+        else if (hasCookie(req.cookies)) {
+            res.render('pages/StudentProfile', {
+                results: results
+            });
+        }
+        else
+            res.render('pages/modal');
+        console.log("Query completed");
+        console.log("cookie: ", req.cookies);
+    });
+>>>>>>> 59dcab57389d520a74f89cdae14e1f8c9953f334
 });
 router.post('/login', function (req, res) {
     var username = req.body.username,
@@ -54,12 +69,26 @@ router.post('/login', function (req, res) {
             if (req.body.remember) {
                 req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 365 * 100;
             }
+<<<<<<< HEAD
             else {
                 req.session.cookie.expires = null;
             }
             console.log("remember", req.body.remember);
             console.log(req.session.user);
             req.session.user = username;
+=======
+
+            // if ( req.body.remember ) {
+            //     var hour = 3600000;
+            //     req.session.cookie.maxAge = 14 * 24 * hour; //2 weeks
+            //   } 
+            //   else {
+            //     req.session.cookie.expires = false;
+            //   }
+            //   req.session.userid = user._id;
+            // res.cookie(result[0].ID, Math.random(), options);
+            res.cookie(result[0].ID, Math.random(), options);
+>>>>>>> 59dcab57389d520a74f89cdae14e1f8c9953f334
             res.redirect('/profile');
         }
         else
