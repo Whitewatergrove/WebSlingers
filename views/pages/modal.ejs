@@ -48,48 +48,38 @@
             <div class="tab-content">
                 <div id="login" class="tab-pane fade in active">
                     <form action="/login" method="POST" style="max-width:500px;margin:auto">
-                        <h2>Register Form</h2>
+                        <h2>Sign in</h2>
                         <div class="input-container">
                             <i class="fa fa-user icon"></i>
-                            <input class="input-field" type="text" placeholder="Username" name="usrnm">
+                            <input class="input-field" type="text" placeholder="Username" name="username">
                         </div>
-                          
                             
                         <div class="input-container">
                             <i class="fa fa-key icon"></i>
-                            <input class="input-field" type="password" placeholder="Password" name="psw">
+                            <input class="input-field" type="password" placeholder="Password" name="password">
                         </div>
-                      
-                        <button type="submit" class="btn">Login</button>
+                        <button type="submit" class="btn" href="/profile">Login</button>
                     </form>
                           
                 </div>
-                <!-- <div id="register" class="tab-pane fade in active">
+                <div id="register" class="tab-pane fade in active">
                     <form action="/register" method="POST">
+                        <h2>Sign up</h2>
+                        <select name="role">
+                            <option value="student">Student</option>
+                            <option value="company">Company</option>
+                        </select>
                         <div class="field">
-                            <input type="text" class="input_style" name="username" id="username" placeholder="Enter username...">
-                            <label for="username" id="user_label">Username</label>
+                            <input type="email" class="input_style" name="username" id="username" placeholder="Example@example.com...">
+                            <label for="username" id="user_label">Email</label>
                         </div>
                         <div class="field">
                             <input type="text" class="input_style" name="password" id="password" placeholder="Enter password...">
                             <label for="password" id="user_label">Password</label>
                         </div>
-                        <div class="field">
-                            <input type="text" class="input_style" name="password" id="password" placeholder="Enter password...">
-                            <label for="password" id="user_label">Password</label>
-                        </div>
-                        <div class="field">
-                            <input type="text" class="input_style" name="password" id="password" placeholder="Enter password...">
-                            <label for="password" id="user_label">Password</label>
-                        </div>
-
-                        <p class="remember">
-                            <input type="checkbox" id="remember" name="remember" value="1" />
-                            <label for="remember">Remember me</label>
-                            <input type="submit" value="Sign In" class="btn">
-                        </p>
+                        <button type="submit" class="btn" href="/register" value="Submit"></button>
                     </form>
-                </div> -->
+                </div>
             </div>
         </div>
         
