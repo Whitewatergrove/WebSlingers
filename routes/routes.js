@@ -66,7 +66,6 @@ router.post('/login', function (req, res) {
             res.redirect('/login');
     });
 });
-
 router.get('/profile', (req, res) => {
     if (req.session.user) {
         con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
