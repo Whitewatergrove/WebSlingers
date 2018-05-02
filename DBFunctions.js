@@ -160,9 +160,9 @@ module.exports = {
             }
         })
     },
-    insert_student: function(pnr, uname, name, gender, mail, adress, tel, status){
-        var sql = "INSERT INTO students (pnr, UID, Name, Gender, Email, Adress, Tel, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-        con.query(sql, [pnr, uname, name, gender, mail, adress, tel, status], function(err, res){
+    insert_student: function(pnr, uname, name, gender, adress, tel, status){
+        var sql = "INSERT INTO `webslingers`.`students` (`pnr`, `UID`, `Name`, `Gender`, `Adress`, `Tel`, `Status`) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        con.query(sql, [pnr, uname, gender, adress, tel, status], function(err, res){
             if(err){
                 console.log("query error");
             }
