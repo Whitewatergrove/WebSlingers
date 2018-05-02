@@ -57,7 +57,7 @@ router.get('/login', function (req, res) {
             });
         }
         else
-            res.render('pages/temp');
+            res.render('pages/modal');
         console.log("Query completed");
         console.log("cookie: ", req.cookies);
     });
@@ -87,7 +87,7 @@ router.post('/login', function (req, res) {
             //   }
             //   req.session.userid = user._id;
             // res.cookie(result[0].ID, Math.random(), options);
-            res.cookie('test', Math.random(), options);
+            res.cookie(result[0].ID, Math.random(), options);
             res.redirect('/profile');
         }
         else
