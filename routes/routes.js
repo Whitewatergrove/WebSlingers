@@ -14,19 +14,6 @@ let con = mysql.createConnection({
     port: "3306",
     database: "webslingers"
 });
-// router.get("/*", function (req, res, next) {
-//     console.log(isNotEmpty(req.cookies));
-//     console.log(req.cookies)
-//     if (isNotEmpty(req.cookies)) { // or req.cookies['cookiename'] if you want a specific one
-//         res.render('pages/CompanyProfile')
-//     }
-//     else {
-//         res.render('pages/index')
-//     }
-//     //You can optionally put next() here, depending on your code
-// });
-
-//använd * för att tvinga alla urls till den här 
 router.get('/', (req, res) => {
     res.render('pages/index');
     console.log("cookie", req.cookies);
@@ -57,27 +44,27 @@ router.get('/login', function (req, res) {
 });
 router.post('/login', function (req, res) {
     var username = req.body.username,
-    password = req.body.password;
+        password = req.body.password;
 
-var sql = `SELECT * FROM users WHERE users.ID = ? AND users.Password = ? `
-con.query(sql, [username, password], function (err, result) {
-    console.log(result);
-    if (err) throw err;
-    if (result.length != 0) {
-        if (req.body.remember) {
-            req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 365 * 100;
+    var sql = `SELECT * FROM users WHERE users.ID = ? AND users.Password = ? `
+    con.query(sql, [username, password], function (err, result) {
+        console.log(result);
+        if (err) throw err;
+        if (result.length != 0) {
+            if (req.body.remember) {
+                req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 365 * 100;
+            }
+            else {
+                req.session.cookie.expires = null;
+            }
+            console.log("remember", req.body.remember);
+            console.log(req.session.user);
+            req.session.user = username;
+            res.redirect('/profile');
         }
-        else {
-            req.session.cookie.expires = null;
-        }
-        console.log("remember", req.body.remember);
-        console.log(req.session.user);
-        req.session.user = username;
-        res.redirect('/profile');
-    }
-    else
-        res.redirect('/login');
-});
+        else
+            res.redirect('/login');
+    });
 });
 
 router.get('/profile', (req, res) => {
