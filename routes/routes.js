@@ -16,7 +16,6 @@ let con = mysql.createConnection({
 });
 router.get('/', (req, res) => {
     res.render('pages/index');
-    console.log("cookie", req.cookies);
 });
 router.get('/reg', (req, res) => {
     res.render('pages/reg');  
@@ -46,7 +45,6 @@ router.post('/login', function (req, res) {
 
     var sql = `SELECT * FROM users WHERE users.ID = ? AND users.Password = ? `
     con.query(sql, [username, password], function (err, result) {
-        console.log(result);
         if (err) throw err;
         if (result.length != 0) {
             if (req.body.remember) {
@@ -55,8 +53,6 @@ router.post('/login', function (req, res) {
             else {
                 req.session.cookie.expires = null;
             }
-            console.log("remember", req.body.remember);
-            console.log(req.session.user);
             req.session.user = username;
             req.session.role = result[0].Role;
             res.redirect('/profile');
@@ -81,9 +77,7 @@ router.get('/profile', (req, res) => {
     else if (req.session.user && req.session.role == 'company') {
         con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
             if (err) throw err;
-            res.render('pages/companyProfile', {
-                results: result
-            });
+            res.render('pages/companyProfile');
             console.log(req.session.user);
             console.log(req.session.role);
         });
@@ -91,13 +85,10 @@ router.get('/profile', (req, res) => {
     else
         res.redirect('/login')
 });
-
 router.get('/logout', (req, res) => {
-    console.log(req.session.user);
     req.session.destroy();
     res.redirect('/');
 });
-
 router.post('/reg', function(req, res){
     var uname = req.body.Uname,
     password = req.body.Pword,
@@ -112,16 +103,9 @@ router.post('/reg', function(req, res){
 
     db.insert_user(uname, password, role, function(err, result){
         if(err) throw err;
-        else{
-            
-        }
     })
     db.insert_student(pnr, uname, name, gender, adress, tel, function(err, result){
         if(err) throw err
-        else
-            
-            console.log("sup?")
     })
-   
 })
 module.exports = router;
