@@ -316,10 +316,6 @@ body {
 	height: 80vh;
 	background-color: #fff;
 }
-<<<<<<< HEAD
-.Tinder{
-	
-=======
 #user{
 	background: beige;
 	padding: 0;
@@ -337,5 +333,4 @@ body {
 }
 #usertable table, th, td{
 	border: 1px solid black;
->>>>>>> 07ca6b8b4980bde9c273ff76d282d212187f0893
 }
