@@ -184,10 +184,10 @@ module.exports = {
         var sql = "INSERT INTO companies (Orgnr, Name, Adress, Email, Tel) VALUES (?, ?, ?, ?, ?);";
         con.query(sql, [orgnr, name, adress, mail, tel], function(err, res){
             if(err){
-                console.log("query error");
+                console.log("insert company query error");
             }
             else{
-                console.log("query ok");
+                console.log("insert company query ok");
             }
         })
     },
@@ -195,14 +195,26 @@ module.exports = {
         var sql = "INSERT INTO companies (id, name, info) VALUES (?, ?, ?);";
         con.query(sql,[Id, name, info], function(err,res){
             if (err) {
-                console.log("insert query error");
+                console.log("insert exjob query error");
                 
             }
             else{
-                console.log("insert query ok");
+                console.log("insert exjob query ok");
             }
         })
     },
+    insert_messages: function(){
+        var sql = "INSERT INTO messages (id, timestamp, message) VALUES (?, ?, ?);";
+        con.query(sql,[id, timestamp, message], function(err,res){
+            if (err) {
+                console.log("insert message query error ");
+            }
+            else{
+                console.log("insert message query ok");
+            }
+        })
+    },
+    
 
 
 };
