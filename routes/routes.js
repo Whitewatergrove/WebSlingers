@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 let bodyParser = require('body-parser');
 
+router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
 
 let mysql = require('mysql');
@@ -13,112 +14,88 @@ let con = mysql.createConnection({
     port: "3306",
     database: "webslingers"
 });
-function hasCookie(obj) {
-    for (let i in obj) {
-        return true;
-    }
-    return false;
-}
-// router.get("/*", function (req, res, next) {
-//     console.log(isNotEmpty(req.cookies));
-//     console.log(req.cookies)
-//     if (isNotEmpty(req.cookies)) { // or req.cookies['cookiename'] if you want a specific one
-//         res.render('pages/CompanyProfile')
-//     }
-//     else {
-//         res.render('pages/index')
-//     }
-//     //You can optionally put next() here, depending on your code
-// });
-
-//använd * för att tvinga alla urls till den här 
 router.get('/', (req, res) => {
     res.render('pages/index');
     console.log("cookie", req.cookies);
 });
 router.get('/reg', (req, res) => {
-    res.render('pages/reg');
-    // console.log("cookie", req.cookies);    
+    res.render('pages/reg');  
 });
-//router.post('/register', (req, res) => {
-//    var username = req.body.username,
-//        password = req.body.password;
-//    con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', [username, password, 'student1'], function (err, result) {
-//        if (err) throw err
-//        res.redirect('/login');
-//    });
-//});
+router.post('/register', (req, res) => {
+    var username = req.body.username,
+        password = req.body.password,
+        role = req.body.role;
+    con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', [username, password, role], function (err, result) {
+        if (err) throw err
+        res.redirect('/login');
+    });
+});
 router.get('/login', function (req, res) {
-    db.get_users(function(err, results){
-    if (hasCookie(req.cookies)) {
-        res.render('pages/StudentProfile', {results:results});
+    if (req.session.user) {
+        con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
+            if (err) throw err;
+            res.redirect('/profile');
+        });
     }
-    else {
-        res.render('pages/temp');
-    }
-    console.log("Query completed");
-    console.log("cookie: ", req.cookies);
-})
+    else
+        res.render('pages/index')
 });
 router.post('/login', function (req, res) {
     var username = req.body.username,
         password = req.body.password;
 
-    db.getlogin(username, password, function (err, result) {
+    var sql = `SELECT * FROM users WHERE users.ID = ? AND users.Password = ? `
+    con.query(sql, [username, password], function (err, result) {
+        console.log(result);
         if (err) throw err;
         if (result.length != 0) {
-
-            let options = {
-                maxAge: 1000 * 60 * 1,
-                httpOnly: true,
-                signed: false
+            if (req.body.remember) {
+                req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 365 * 100;
             }
-
-            res.cookie('test', Math.random(), options);
+            else {
+                req.session.cookie.expires = null;
+            }
+            console.log("remember", req.body.remember);
+            console.log(req.session.user);
+            req.session.user = username;
+            req.session.role = result[0].Role;
             res.redirect('/profile');
         }
         else {
             res.redirect('/login');
         }
 
-    })
-    // if ( req.body.remember ) {
-    //     var hour = 3600000;
-    //     req.session.cookie.maxAge = 14 * 24 * hour; //2 weeks
-    //   } 
-    //   else {
-    //     req.session.cookie.expires = false;
-    //   }
-    //   req.session.userid = user._id;
-    // res.cookie(result[0].ID, Math.random(), options);           
+    })         
 });
-
 router.get('/profile', (req, res) => {
-    db.get_users(null, null, function (err, results) {
-        if (err) throw err
-        else if (hasCookie(req.cookies)) {
+    if (req.session.user && req.session.role == 'student') {
+        con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
+            if (err) throw err;
             res.render('pages/StudentProfile', {
-                results: results
+                results: result
             });
-        }
-        else
-            res.render('pages/temp');
-        console.log("Query completed");
-        console.log("cookie: ", req.cookies);
-
-    });
+            console.log(req.session.user);
+            console.log(req.session.role);
+        });
+    }
+    else if (req.session.user && req.session.role == 'company') {
+        con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
+            if (err) throw err;
+            res.render('pages/companyProfile', {
+                results: result
+            });
+            console.log(req.session.user);
+            console.log(req.session.role);
+        });
+    }
+    else
+        res.redirect('/login')
 });
 
-router.get('/logout', function (req, res) {
-    for (var properties in req.cookies) {
-        if (!req.cookies.hasOwnProperty(properties)) {
-            continue;
-        }
-        res.cookie(properties, '', { expires: new Date(0) });
-        console.log("cookie: ", req.cookies);
-    }
+router.get('/logout', (req, res) => {
+    console.log(req.session.user);
+    req.session.destroy();
     res.redirect('/');
-    // console.log("cookie: ", req.cookies)
 });
 
 router.post('/reg', function(req, res){

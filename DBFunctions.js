@@ -146,9 +146,18 @@ module.exports = {
             callback(null, results);
         })
     },
+    get_users: function(req, res, callback) {   
+        con.query('SELECT * FROM users', function(err, results) {
+            if (err) {
+                callback(err, null);
+            }
+            else {
+                callback(null, results);
+            }
+        })
+    },
     //********************************************************************************/
     //inserts
-
     insert_user: function(username, password, role){
         var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";
         con.query(sql, [username, password, role], function(err, res){

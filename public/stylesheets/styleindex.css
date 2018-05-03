@@ -1,6 +1,11 @@
-/*Index*/
-@import url('https//fonts.googleapis.com/css?family=Raleway');
-@import url('https//fonts.googleapis.com/css?family=Oswald');
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('../images/StartPicture.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+}
 
 html, body {
     margin: 0px;
@@ -8,18 +13,14 @@ html, body {
     height: 100%;
     width: 100%;
 }
-.firstpage{
-    height: 100%;
-    width: 100%;
-    margin: auto;
-    background: url("../images/StartPicture.png") no-repeat 50% 50%;
-    display: table;
-    top: 0;
-    background-size: cover;
+.icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
+    text-align: center;
 }
-.firstpage .inner{
-    display: table-cell;
-    vertical-align: middle;
+.input-field {
     width: 100%;
     max-width: none;
 }
@@ -49,15 +50,5 @@ html, body {
     background-color: rgba(255,255,255,1);
     color: #2c71ae;
     cursor: pointer;
-
-    transition: background-color 1000ms, color 1000ms;
-}
-@media screen and (max-width: 768px) {
-    .content h1{
-        font-size: 250%;
-    }
-    .btn{
-        font-size: 110%;
-        padding: 7px 15px;
-    }
+    opacity: 1;
 }
