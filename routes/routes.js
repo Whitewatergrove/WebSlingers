@@ -111,7 +111,7 @@ router.get('/logout', (req, res) => {
 });
 
 // test reg
-router.post('/StudentProfile', function(req, res){
+router.post('/change_profile', function(req, res){
     var uname = req.body.username,
     password = req.body.password,
     name = req.body.name,
@@ -122,15 +122,10 @@ router.post('/StudentProfile', function(req, res){
 
     db.insert_user(uname, password, function(err, result){
         if(err) throw err;
-        else{
-            
-        }
     })
     db.insert_student(pnr, uname, name, gender, adress, tel, function(err, result){
-        if(err) throw err
-        else
-            res.redirect("/login");
+        if(err) throw err    
     })
-   
+    res.redirect("/profile");
 })
 module.exports = router;
