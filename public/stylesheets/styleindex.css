@@ -6,11 +6,10 @@ body {
     background-attachment: fixed;
     background-position: center; 
 }
-
-html, body {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
+* {box-sizing: border-box;}
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
     width: 100%;
 }
 .icon {

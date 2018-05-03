@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -21,7 +22,7 @@
 <div class="container">
   <h1>Let's go Örebro!</h1>
   <!-- Button to Open the Modal -->
-  <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
+  <button type="button" class="loginbtn" data-toggle="modal" data-target="#myModal">
     Start by log in!
   </button>
 
@@ -65,17 +66,22 @@
                 <div id="register" class="tab-pane fade in active">
                     <form action="/register" method="POST">
                         <h2>Sign up</h2>
-                        <select name="role">
-                            <option value="student">Student</option>
-                            <option value="company">Company</option>
-                        </select>
-                        <div class="field">
-                            <input type="email" class="input_style" name="username" id="username" placeholder="Example@example.com...">
-                            <label for="username" id="user_label">Email</label>
+                        <div class="input-container">
+                            <i class="fa fa-user icon"></i>
+                            <select name="role">
+                                <option value="student">Student</option>
+                                <option value="company">Company</option>
+                            </select>
                         </div>
-                        <div class="field">
-                            <input type="text" class="input_style" name="password" id="password" placeholder="Enter password...">
-                            <label for="password" id="user_label">Password</label>
+
+                        <div class="input-container">
+                            <i class="fa fa-user icon"></i>
+                            <input class="input-field" type="text" placeholder="Example@example.com..." name="username">
+                        </div>
+
+                        <div class="input-container">
+                            <i class="fa fa-user icon"></i>
+                            <input class="input-field" type="text" placeholder="Password..." name="password" id="password">
                         </div>
                         <button type="submit" class="btn" href="/register" value="Submit">Sign up</button>
                     </form>
