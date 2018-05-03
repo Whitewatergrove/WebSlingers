@@ -1,9 +1,4 @@
 'use strict'
-<<<<<<< HEAD
-
-let mysql = require('mysql');
-=======
->>>>>>> 07ca6b8b4980bde9c273ff76d282d212187f0893
 let express = require('express');
 let app = express();
 
