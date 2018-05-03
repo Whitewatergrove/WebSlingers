@@ -15,7 +15,36 @@ var con = mysql.createConnection({
 
 module.exports = {
 
-    getuname: function(username,callback){
+    //***********************************************************************************/
+    //selects
+
+    getlogin: function(username, pass,callback){
+        var sql = "SELECT * FROM users WHERE ID = ? AND password = ? GROUP BY ID;";
+        con.query(sql, [username, pass], function(err, results) {
+            if (err){
+            console.log('error in query');
+            }
+            else{
+            console.log('query functional');
+            }
+            callback(null, results);
+        })
+    },
+
+    get_users: function(username, pass, callback){
+        var sql = "SELECT * FROM users";
+        con.query(sql, function(err, results) {
+            if (err){
+            console.log('error in query');
+            }
+            else{
+            console.log('query functional');
+            }
+            callback(null, results);
+        })
+    },
+
+    getuname: function(username, callback){
         var sql = "SELECT * FROM users WHERE ID = ? GROUP BY ID;";
         con.query(sql, username, function(err, results) {
             if (err){
@@ -124,6 +153,41 @@ module.exports = {
             }
             else {
                 callback(null, results);
+            }
+        })
+    },
+    //********************************************************************************/
+    //inserts
+    insert_user: function(username, password, role){
+        var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";
+        con.query(sql, [username, password, role], function(err, res){
+            if(err){
+                console.log("insert user query not working: "+err);
+            }
+            else{
+                console.log("insert user query ok");
+            }
+        })
+    },
+    insert_student: function(pnr, uname, name, gender, adress, tel){
+        var sql = "INSERT INTO students (pnr, UID, Name, Gender, Adress, Tel) VALUES (?, ?, ?, ?, ?, ?);";
+        con.query(sql, [pnr, uname, name, gender, adress, tel], function(err, res){
+            if(err){
+                console.log("insert student query not working: " + err);
+            }
+            else{
+                console.log("insert student query ok");
+            }
+        })
+    },
+    insert_company: function(orgnr, name, adress, mail, tel){
+        var sql = "INSERT INTO companies (Orgnr, Name, Adress, Email, Tel) VALUES (?, ?, ?, ?, ?);";
+        con.query(sql, [orgnr, name, adress, mail, tel], function(err, res){
+            if(err){
+                console.log("query error");
+            }
+            else{
+                console.log("query ok");
             }
         })
     },
