@@ -147,6 +147,8 @@ router.post('/reg', function(req, res){
     })
     
 })
-module.exports = router;
+router.get('/search',function(req, res){
+    match.testmatch();
+});
 
-match.testmatch();
+module.exports = router;
