@@ -169,9 +169,9 @@ module.exports = {
             }
         })
     },
-    insert_student: function(pnr, uname, name, gender, adress, tel){
-        var sql = "INSERT INTO students (pnr, UID, Name, Gender, Adress, Tel) VALUES (?, ?, ?, ?, ?, ?);";
-        con.query(sql, [pnr, uname, name, gender, adress, tel], function(err, res){
+    insert_student: function(uname, pnr){
+        var sql = "INSERT INTO students (pnr, UID, Name, Gender, Adress, Tel) VALUES (?, ?, 'Name', 'Gender', 'Address', 'Phonenumber');";
+        con.query(sql, [pnr, uname], function(err, res){
             if(err){
                 console.log("insert student query not working: " + err);
             }
@@ -180,9 +180,9 @@ module.exports = {
             }
         })
     },
-    insert_company: function(orgnr, name, adress, mail, tel){
-        var sql = "INSERT INTO companies (Orgnr, Name, Adress, Email, Tel) VALUES (?, ?, ?, ?, ?);";
-        con.query(sql, [orgnr, name, adress, mail, tel], function(err, res){
+    insert_company: function(uname, orgnr){
+        var sql = "INSERT INTO companies (Orgnr, Name, Adress, Tel) VALUES (?, ?, 'Name', 'Address', 'Phonenumber');";
+        con.query(sql, [orgnr, uname], function(err, res){
             if(err){
                 console.log("query error");
             }
@@ -191,6 +191,17 @@ module.exports = {
             }
         })
     },
+    //**************************************************************************************************/
+    //updates
+    update_studentprofile: function(pnr, uname, name, gender, adress, tel){
+        var sql = "UPDATE students SET pnr = ?, UID = ?, Name = ?, Gender = ?, Adress = ?, Tel = ? WHERE pnr = ?;";
+        con.query(sql, [pnr, uname, name, gender, adress, tel], function(err, res){
+            if(err){
+                console.log("query error");
+            }
+            else{
+                console.log("query ok");
+            }
+        })
+    }
 };
-
-

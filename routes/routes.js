@@ -25,10 +25,22 @@ router.get('/reg', (req, res) => {
 router.post('/register', (req, res) => {
     var username = req.body.username,
         password = req.body.password,
-        role = req.body.role;
+        role = req.body.role,
+        pnum = req.body.pnum;
     db.insert_user(username, password, role, function(err, result){
-        if (err) throw err
+        if (err) throw err;
+        if(role == 'student'){
+            db.insert_student(username, pnum, function(err, result){
+                if(err) throw err;
+            })
+        }
+        if(role == 'company'){
+            db.insert_company(username, pnum, function(err, result){
+                if(err) throw err;
+            })
+        }
         res.redirect('/login');
+    
     });
 });
 router.get('/login', function (req, res) {
@@ -99,19 +111,16 @@ router.get('/logout', (req, res) => {
 });
 
 // test reg
-router.post('/reg', function(req, res){
-    var uname = req.body.Uname,
-    password = req.body.Pword,
-    role = req.body.role,
+router.post('/StudentProfile', function(req, res){
+    var uname = req.body.username,
+    password = req.body.password,
     name = req.body.name,
     pnr = req.body.pnum,
     gender = req.body.gender,
     tel = req.body.tel,
-    adress = req.body.adress;
+    adress = req.body.address;
 
-    
-
-    db.insert_user(uname, password, role, function(err, result){
+    db.insert_user(uname, password, function(err, result){
         if(err) throw err;
         else{
             
