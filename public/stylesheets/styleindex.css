@@ -12,9 +12,9 @@ body {
     display: flex;
     width: 100%;
 }
-.icon {
-    padding: 10px;
-    background: dodgerblue;
+#icon {
+    padding: 12px;
+    background: #AAAAAA;
     color: white;
     min-width: 50px;
     text-align: center;
