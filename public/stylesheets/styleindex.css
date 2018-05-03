@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 /*Index*/
 @import url('https//fonts.googleapis.com/css?family=Raleway');
 @import url('https//fonts.googleapis.com/css?family=Oswald');
+=======
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('../images/StartPicture.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+}
+>>>>>>> a2838fa36fa67c63cc8418a1607fce0d4c011379
 
 html, body {
     margin: 0px;
@@ -8,6 +19,7 @@ html, body {
     height: 100%;
     width: 100%;
 }
+<<<<<<< HEAD
 .firstpage{
     height: 100%;
     width: 100%;
@@ -20,6 +32,16 @@ html, body {
 .firstpage .inner{
     display: table-cell;
     vertical-align: middle;
+=======
+.icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+.input-field {
+>>>>>>> a2838fa36fa67c63cc8418a1607fce0d4c011379
     width: 100%;
     max-width: none;
 }
@@ -50,6 +72,7 @@ html, body {
     color: #2c71ae;
     cursor: pointer;
 
+<<<<<<< HEAD
     transition: background-color 1000ms, color 1000ms;
 }
 @media screen and (max-width: 768px) {
@@ -60,4 +83,8 @@ html, body {
         font-size: 110%;
         padding: 7px 15px;
     }
+=======
+.btn:hover {
+    opacity: 1;
+>>>>>>> a2838fa36fa67c63cc8418a1607fce0d4c011379
 }
