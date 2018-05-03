@@ -146,6 +146,7 @@ module.exports = {
             callback(null, results);
         })
     },
+<<<<<<< HEAD
     //********************************************************************************/
     //inserts
 
@@ -179,6 +180,15 @@ module.exports = {
             }
             else{
                 console.log("query ok");
+=======
+    get_users: function(req, res, callback) {   
+        con.query('SELECT * FROM users', function(err, results) {
+            if (err) {
+                callback(err, null);
+            }
+            else {
+                callback(null, results);
+>>>>>>> c5c1cca3802668967fbd0346628bf32b60b1685a
             }
         })
     },

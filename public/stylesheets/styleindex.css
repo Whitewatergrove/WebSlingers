@@ -1,63 +1,46 @@
-/*Index*/
-@import url('https//fonts.googleapis.com/css?family=Raleway');
-@import url('https//fonts.googleapis.com/css?family=Oswald');
-
-html, body {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-    width: 100%;
-}
-.firstpage{
-    height: 100%;
-    width: 100%;
-    margin: auto;
-    background: url("../images/StartPicture.png") no-repeat 50% 50%;
-    display: table;
-    top: 0;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('../images/StartPicture.png');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
 }
-.firstpage .inner{
-    display: table-cell;
-    vertical-align: middle;
+
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
     width: 100%;
-    max-width: none;
+    margin-bottom: 15px;
 }
-.content{
-    max-width: 500px;
-    margin: 0 auto;
+.icon {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 50px;
     text-align: center;
 }
-.content h1 {
-    font-family: 'Raleway', sans-serif;
-    color: #F9F3F4;
-    text-shadow: 0px 0px 300px #000;
-    font-size: 400%;
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
 }
-.btn {
-    border-radius: 9px;
-    font-family: 'Oswald', sans-serif;
-    color:	#fff;
-    font-size: 200%;
-    padding: 10px 20px;
-    border: solid	#fff 6px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background-color 1000ms, color 1000ms;
-}
-.btn:hover{
-    background-color: rgba(255,255,255,1);
-    color: #2c71ae;
-    cursor: pointer;
 
-    transition: background-color 1000ms, color 1000ms;
+.input-field:focus {
+    border: 2px solid dodgerblue;
 }
-@media screen and (max-width: 768px) {
-    .content h1{
-        font-size: 250%;
-    }
-    .btn{
-        font-size: 110%;
-        padding: 7px 15px;
-    }
+
+/* Set a style for the submit button */
+.btn {
+    background-color: dodgerblue;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    opacity: 1;
 }

@@ -1,23 +1,97 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
-    <title>Startpage</title>
-    <link rel="stylesheet" type="text/css" href="./stylesheets/styleindex.css">
-    <script src="./scripts/DBFunctions.js"></script>
+  <title>Startpage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="./scripts/DBFunctions.js"></script>
+  <link rel="stylesheet" type="text/css" href="./stylesheets/styleindex.css">
 </head>
 <body>
-    <section class="firstpage">
-        <div class="inner">
-            <div class="content">
-                <h1>Let's go Örebro!</h1>
-                <a class="btn" href="/login">LOG IN</a>
+
+<div class="container">
+  <h1>Let's go Örebro!</h1>
+  <!-- Button to Open the Modal -->
+  <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
+    Start by log in!
+  </button>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        
+    <div class="modal-header">
+        <h4 class="modal-title">Please login</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="container">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#login">Log in</a></li>
+                    <li><a data-toggle="tab" href="#register">Register</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div id="login" class="tab-pane fade in active">
+                    <form action="/login" method="POST" style="max-width:500px;margin:auto">
+                        <h2>Sign in</h2>
+                        <div class="input-container">
+                            <i class="fa fa-user icon"></i>
+                            <input class="input-field" type="text" placeholder="Username" name="username">
+                        </div>
+                            
+                        <div class="input-container">
+                            <i class="fa fa-key icon"></i>
+                            <input class="input-field" type="password" placeholder="Password" name="password">
+                        </div>
+                        <button type="submit" class="btn" href="/profile">Sign in</button>
+                    </form>
+                          
+                </div>
+                <div id="register" class="tab-pane fade in active">
+                    <form action="/register" method="POST">
+                        <h2>Sign up</h2>
+                        <select name="role">
+                            <option value="student">Student</option>
+                            <option value="company">Company</option>
+                        </select>
+                        <div class="field">
+                            <input type="email" class="input_style" name="username" id="username" placeholder="Example@example.com...">
+                            <label for="username" id="user_label">Email</label>
+                        </div>
+                        <div class="field">
+                            <input type="text" class="input_style" name="password" id="password" placeholder="Enter password...">
+                            <label for="password" id="user_label">Password</label>
+                        </div>
+                        <button type="submit" class="btn" href="/register" value="Submit">Sign up</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </section>
-</body>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
 
+</body>
 </html>

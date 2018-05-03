@@ -91,6 +91,7 @@ body.Student{
     font-family: sans-serif;
     width: 50%;
     clear: both;
+    text-align: center;
 }
 .container input{
   
