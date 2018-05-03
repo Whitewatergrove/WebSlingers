@@ -14,9 +14,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="./scripts/DBFunctions.js"></script>
   <link rel="stylesheet" type="text/css" href="./stylesheets/styleindex.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
+    <script src="../scripts/profile.js"></script>
 </head>
 <body>
 
@@ -87,8 +87,8 @@
 
                         <!-- Role dropdown -->
                         <div class="input-container">
-                            <i id="icon" class="fas fa-portrait"></i>
-                            <select name="role">
+                            <i id="icon" class="dropdownRole"></i>
+                            <select name="role" onclick="setIcon()">
                                 <option value="student">Student</option>
                                 <option value="company">Company</option>
                             </select>
