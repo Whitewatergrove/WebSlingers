@@ -27,22 +27,24 @@ router.post('/register', (req, res) => {
         password = req.body.password,
         role = req.body.role,
         pnum = req.body.pnum;
+    
     db.insert_user(username, password, role, function(err, result){
         if (err) throw err;
-        if(role == 'student'){
-            db.insert_student(username, pnum, function(err, result){
-                if(err) throw err;
-            })
-        }
-        if(role == 'company'){
-            db.insert_company(username, pnum, function(err, result){
-                if(err) throw err;
-            })
-        }
-        res.redirect('/login');
-    
-    });
+    })
+
+    if(role === "student"){
+        db.insert_student(username, pnum, function(err, result){
+        if(err) throw err;
+        })
+    }
+    if(role === "company"){
+        db.insert_company(username, pnum, function(err, result){
+        if(err) throw err;
+        })
+    }  
+    res.redirect('/login');  
 });
+
 router.get('/login', function (req, res) {
     if (req.session.user) {
         db.getuname(re.session.user, function(err, result){
@@ -81,7 +83,7 @@ router.post('/login', function (req, res) {
 });
 router.get('/profile', (req, res) => {
     if (req.session.user && req.session.role == 'student') {
-        db.getuname(req.session.user, function(err, result){
+        db.get_student_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
             res.render('pages/StudentProfile', {
                 results: result
@@ -91,9 +93,24 @@ router.get('/profile', (req, res) => {
         });
     }
     else if (req.session.user && req.session.role == 'company') {
-        db.getuname(req.session.user, function(err, result){
+        db.get_company_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
             res.render('pages/companyProfile', {
+                results: result
+            });
+            console.log(req.session.user);
+            console.log(req.session.role);
+        });
+    }
+    else
+        res.redirect('/login')
+});
+
+router.get('/StudentRegister', (req, res) => {
+    if (req.session.user && req.session.role == 'student') {
+        db.get_student_user_and_nr(req.session.user, function(err, result){
+            if (err) throw err;
+            res.render('pages/StudentRegister', {
                 results: result
             });
             console.log(req.session.user);
@@ -120,10 +137,10 @@ router.post('/change_profile', function(req, res){
     tel = req.body.tel,
     adress = req.body.address;
 
-    db.insert_user(uname, password, function(err, result){
+    db.update_user(uname, password, function(err, result){
         if(err) throw err;
     })
-    db.insert_student(pnr, uname, name, gender, adress, tel, function(err, result){
+    db.update_studentprofile(pnr, uname, name, gender, adress, tel, function(err, result){
         if(err) throw err    
     })
     res.redirect("/profile");
