@@ -200,9 +200,6 @@ module.exports = {
 
             lists[0].forEach(student => {
                 student.QUAL = db.get_student_qual_promise(student.UID);
-                /*student.QUAL.forEach(qualification => {
-                    student.class[student.class.lenght] = db.get_qual_categories_promise(student.UID);
-                })*/
                 student.class = db.get_qual_categories_promise(student.UID);
             }),
             students = lists[0],
