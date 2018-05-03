@@ -19,10 +19,15 @@ router.get('/', (req, res) => {
     console.log("cookie", req.cookies);
 });
 router.get('/register', (req, res) => {
-    res.render('pages/register');
-    // console.log("cookie", req.cookies);    
+    if (req.session.role == 'company') {
+        res.render('pages/StudentRegister');
+    }
+    else if(req.session.role == 'student'){
+        res.render('pages/TeacherRegister')
+    }
+    else
+        res.redirect('/')
 });
-
 router.post('/register', (req, res) => {
     var username = req.body.username,
         password = req.body.password,
@@ -37,12 +42,10 @@ router.get('/login', function (req, res) {
         con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
             if (err) throw err;
             res.redirect('/profile');
-            console.log(req.session.user);
         });
     }
     else
         res.render('pages/index')
-    console.log(req.session.user);
 });
 router.post('/login', function (req, res) {
     var username = req.body.username,
@@ -62,6 +65,7 @@ router.post('/login', function (req, res) {
             console.log("remember", req.body.remember);
             console.log(req.session.user);
             req.session.user = username;
+            req.session.role = result[0].Role;
             res.redirect('/profile');
         }
         else
@@ -69,13 +73,24 @@ router.post('/login', function (req, res) {
     });
 });
 router.get('/profile', (req, res) => {
-    if (req.session.user) {
+    if (req.session.user && req.session.role == 'student') {
         con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
             if (err) throw err;
             res.render('pages/StudentProfile', {
                 results: result
             });
             console.log(req.session.user);
+            console.log(req.session.role);
+        });
+    }
+    else if (req.session.user && req.session.role == 'company') {
+        con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
+            if (err) throw err;
+            res.render('pages/companyProfile', {
+                results: result
+            });
+            console.log(req.session.user);
+            console.log(req.session.role);
         });
     }
     else

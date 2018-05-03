@@ -6,11 +6,11 @@ body {
     background-attachment: fixed;
 }
 
-.input-container {
-    display: -ms-flexbox; /* IE10 */
-    display: flex;
+html, body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
     width: 100%;
-    margin-bottom: 15px;
 }
 .icon {
     padding: 10px;
@@ -21,25 +21,33 @@ body {
 }
 .input-field {
     width: 100%;
-    padding: 10px;
-    outline: none;
+    max-width: none;
 }
-
-.input-field:focus {
-    border: 2px solid dodgerblue;
+.content{
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
 }
-
-/* Set a style for the submit button */
+.content h1 {
+    font-family: 'Raleway', sans-serif;
+    color: #F9F3F4;
+    text-shadow: 0px 0px 300px #000;
+    font-size: 400%;
+}
 .btn {
-    background-color: dodgerblue;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
+    border-radius: 9px;
+    font-family: 'Oswald', sans-serif;
+    color:	#fff;
+    font-size: 200%;
+    padding: 10px 20px;
+    border: solid	#fff 6px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 1000ms, color 1000ms;
 }
-
-.btn:hover {
+.btn:hover{
+    background-color: rgba(255,255,255,1);
+    color: #2c71ae;
+    cursor: pointer;
     opacity: 1;
 }
