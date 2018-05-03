@@ -5,15 +5,16 @@ let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
 
-let mysql = require('mysql');
+//let mysql = require('mysql');
+//
+//let con = mysql.createConnection({
+//    host: "83.255.197.121",
+//    user: "joakim",
+//    password: "jockele",
+//    port: "3306",
+//    database: "webslingers"
+//});
 
-let con = mysql.createConnection({
-    host: "83.255.197.121",
-    user: "joakim",
-    password: "jockele",
-    port: "3306",
-    database: "webslingers"
-});
 router.get('/', (req, res) => {
     res.render('pages/index');
     console.log("cookie", req.cookies);
@@ -25,14 +26,14 @@ router.post('/register', (req, res) => {
     var username = req.body.username,
         password = req.body.password,
         role = req.body.role;
-    con.query('INSERT INTO users (ID, Password, Role) VALUES (?, ?, ?)', [username, password, role], function (err, result) {
+    db.insert_user(username, password, role, function(err, result){
         if (err) throw err
         res.redirect('/login');
     });
 });
 router.get('/login', function (req, res) {
     if (req.session.user) {
-        con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
+        db.getuname(re.session.user, function(err, result){
             if (err) throw err;
             res.redirect('/profile');
         });
@@ -44,8 +45,7 @@ router.post('/login', function (req, res) {
     var username = req.body.username,
         password = req.body.password;
 
-    var sql = `SELECT * FROM users WHERE users.ID = ? AND users.Password = ? `
-    con.query(sql, [username, password], function (err, result) {
+    db.getlogin(username, password, function(err, result){
         console.log(result);
         if (err) throw err;
         if (result.length != 0) {
@@ -69,7 +69,7 @@ router.post('/login', function (req, res) {
 });
 router.get('/profile', (req, res) => {
     if (req.session.user && req.session.role == 'student') {
-        con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
+        db.getuname(req.session.user, function(err, result){
             if (err) throw err;
             res.render('pages/StudentProfile', {
                 results: result
@@ -79,7 +79,7 @@ router.get('/profile', (req, res) => {
         });
     }
     else if (req.session.user && req.session.role == 'company') {
-        con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
+        db.getuname(req.session.user, function(err, result){
             if (err) throw err;
             res.render('pages/companyProfile', {
                 results: result
@@ -98,6 +98,7 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+// test reg
 router.post('/reg', function(req, res){
     var uname = req.body.Uname,
     password = req.body.Pword,
@@ -108,7 +109,7 @@ router.post('/reg', function(req, res){
     tel = req.body.tel,
     adress = req.body.adress;
 
-    res.redirect("/login");
+    
 
     db.insert_user(uname, password, role, function(err, result){
         if(err) throw err;
@@ -119,8 +120,7 @@ router.post('/reg', function(req, res){
     db.insert_student(pnr, uname, name, gender, adress, tel, function(err, result){
         if(err) throw err
         else
-            
-            console.log("sup?")
+            res.redirect("/login");
     })
    
 })
