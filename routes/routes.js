@@ -2,8 +2,8 @@ let express = require('express');
 let router = express.Router();
 let bodyParser = require('body-parser');
 
-let mymodule = require('../DBfunctions');
 router.use(bodyParser.urlencoded({ extended: true }));
+let db = require('../DBfunctions');
 
 let mysql = require('mysql');
 
@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
     res.render('pages/index');
     console.log("cookie", req.cookies);
 });
-router.get('/register', (req, res) => {
-    res.render('pages/register');
+router.get('/reg', (req, res) => {
+    res.render('pages/reg');
     // console.log("cookie", req.cookies);    
 });
 
@@ -64,9 +64,20 @@ router.post('/login', function (req, res) {
             req.session.user = username;
             res.redirect('/profile');
         }
-        else
+        else {
             res.redirect('/login');
-    });
+        }
+
+    })
+    // if ( req.body.remember ) {
+    //     var hour = 3600000;
+    //     req.session.cookie.maxAge = 14 * 24 * hour; //2 weeks
+    //   } 
+    //   else {
+    //     req.session.cookie.expires = false;
+    //   }
+    //   req.session.userid = user._id;
+    // res.cookie(result[0].ID, Math.random(), options);           
 });
 
 router.get('/profile', (req, res) => {
@@ -88,4 +99,31 @@ router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
+
+router.post('/reg', function(req, res){
+    var uname = req.body.Uname,
+    password = req.body.Pword,
+    role = req.body.role,
+    name = req.body.name,
+    pnr = req.body.pnum,
+    gender = req.body.gender,
+    tel = req.body.tel,
+    adress = req.body.adress;
+
+    res.redirect("/login");
+
+    db.insert_user(uname, password, role, function(err, result){
+        if(err) throw err;
+        else{
+            
+        }
+    })
+    db.insert_student(pnr, uname, name, gender, adress, tel, function(err, result){
+        if(err) throw err
+        else
+            
+            console.log("sup?")
+    })
+   
+})
 module.exports = router;
