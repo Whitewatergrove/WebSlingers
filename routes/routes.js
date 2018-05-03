@@ -106,6 +106,6 @@ router.post('/reg', function(req, res){
     })
     db.insert_student(pnr, uname, name, gender, adress, tel, function(err, result){
         if(err) throw err
-    })
+    })  
 })
 module.exports = router;

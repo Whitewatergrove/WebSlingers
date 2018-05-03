@@ -23,3 +23,6 @@ function openTab(pageName, tab) {
     document.getElementById(pageName).style.display = "block";
 }
 // document.getElementById("Open").click();
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}

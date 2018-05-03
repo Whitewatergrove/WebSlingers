@@ -21,7 +21,6 @@
 	<script src="./scripts/StudentPScript.js"></script>
 	<script src="./scripts/profile.js"></script>
 </head>
-
 <body>
 	<div class="header">
 		<div class="logo">
@@ -40,7 +39,6 @@
 		<nav>
 			<ul class="tabs">
 				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba";>
-
 					<a>
 						<span>
 							<i class="fa fa-user"></i>
@@ -56,7 +54,7 @@
 						<span>Messages</span>
 					</a>
 				</li>
-				<li class="tabBorder" onclick="openTab('comments', 'Job')" id="Job">
+				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
 					<a>
 						<span>
 							<i class="fas fa-folder"></i>
@@ -73,13 +71,13 @@
 					</a>
 				</li>
 				<li>
-						<a href="/logout">
-							<span>
-								<i class="fas fa-sign-out-alt"></i>
-							</span>
-							<span>Sign out</span>
-						</a>
-					</li>
+					<a href="/logout">
+						<span>
+							<i class="fas fa-sign-out-alt"></i>
+						</span>
+						<span>Sign out</span>
+					</a>
+				</li>
 				<img src="./images/oru.png" class="si">
 			</ul>
 		</nav>
@@ -88,6 +86,7 @@
 		<div class="main2">
 			<div class="font2">
 				<div class="StudentDiv2">
+					<h2>Välkommen <%= results[0].ID %></h2>
 					<h1>Ändra Personuppgifter</h1>
 					<form action="fallbackhandler.php" method="POST">
 						<div class="container">
@@ -117,7 +116,6 @@
 						</div>
 						<Button type="submit" id="butt" >Update changes</Button>
 					</form>
-
 					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
 				</div>
 			</div>
@@ -128,47 +126,40 @@
 			<div class="font2">
 				<div class="StudentDiv2">
 					<h2>Chat</h2>
-
-
 					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
-
 				</div>
-
 			</div>
-
-		</div>
-		<div class="main-content" id="Jobs" style="display:none">
-			
-			<div class="main">
-				<div class="widget" id="JobsWidget">
-					<div class="title">Available jobs</div>
-					<div class="Tinder">
-						<div id="user">
-							<p><strong>Name: <span></strong></span><%= results[0].ID %></p>
-							<p><strong>Password: <span></strong><%= results[0].Password %> </span></p>
-							<p><strong>Role: <span></strong><%= results[0].Role %> </span></p>
-						</div>
-						<div id="usertable">
-								<table>
-									<tr>
-										<th>UserName</th>
-										<th>Password</th>
-										<th>Role</th>
-									</tr>
-									<tr><% results.forEach(function(result) { %>
-										<td><%= result.ID %></td>
-										<td><%= result.Password %></td>
-										<td><%= result.Role %></td>										
-										<% }); %>
-									</tr>
-								</table>
-						</div>
-						<a href="/register"> register button</a>
-					</div>
-				</div>
-            </div>
 		</div>
 	</div>
+	<div class="main-content" id="Jobs" style="display:none">
+		<div class="main">
+			<div class="widget" id="JobsWidget">
+				<div class="title">Available jobs</div>
+				<div class="Tinder">
+					<div id="user">						
+						<p><strong>Name: <span></strong></span><%= results[0].ID %></p>
+						<p><strong>Password: <span></strong><%= results[0].Password %> </span></p>
+						<p><strong>Role: <span></strong><%= results[0].Role %> </span></p>
+					</div>
+				</div>
+			</div>
+        </div>
+	</div>
 </body>
-
 </html>
+
+<!-- <div id="usertable">
+						<table>
+							<tr>
+								<th>UserName</th>
+								<th>Password</th>
+								<th>Role</th>
+							</tr>
+							<tr><% results.forEach(function(result) { %>
+								<td><%= result.ID %></td>
+								<td><%= result.Password %></td>
+								<td><%= result.Role %></td>										
+								<% }); %>
+							</tr>
+						</table>
+					</div> -->
