@@ -286,10 +286,10 @@ module.exports = {
         var sql = "INSERT INTO companies (Orgnr, Name, Adress, Tel) VALUES (?, ?, 'Name', 'Address', 'Phonenumber');";
         con.query(sql, [orgnr, uname], function(err, res){
             if(err){
-                console.log("query error");
+                console.log("insert company query error");
             }
             else{
-                console.log("query ok");
+                console.log("insert company query ok");
             }
         })
     },
