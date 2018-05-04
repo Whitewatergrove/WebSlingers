@@ -14,18 +14,20 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="./scripts/DBFunctions.js"></script>
   <link rel="stylesheet" type="text/css" href="./stylesheets/styleindex.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
+    <script src="../scripts/profile.js"></script>
 </head>
 <body>
 
 <div class="container">
+    <div id="modalBG">
   <h1>Let's go Örebro!</h1>
   <!-- Button to Open the Modal -->
   <button type="button" class="loginbtn" data-toggle="modal" data-target="#myModal">
     Start by log in!
   </button>
-
+</div>
   <!-- The Modal -->
   <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-dialog-centered">
@@ -34,55 +36,83 @@
         <!-- Modal Header -->
         
     <div class="modal-header">
-        <h4 class="modal-title">Please login</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Please login</h4>
     </div>
         
         <!-- Modal body -->
         <div class="modal-body">
             <div class="container">
+
+                <!-- Tab-navigering -->
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#login">Log in</a></li>
                     <li><a data-toggle="tab" href="#register">Register</a></li>
                 </ul>
             </div>
+
             <div class="tab-content">
+
+                <!-- Tab login-content -->
                 <div id="login" class="tab-pane fade in active">
                     <form action="/login" method="POST" style="max-width:500px;margin:auto">
+                        
                         <h2>Sign in</h2>
+
+                        <!-- Username input -->
                         <div class="input-container">
-                            <i class="fa fa-user icon"></i>
-                            <input class="input-field" type="text" placeholder="Username" name="username">
+                            <i id="icon" class="fas fa-user"></i>
+                            <input required class="input-field" type="text" placeholder="Username" name="username">
                         </div>
                             
+                        <!-- Password input -->
                         <div class="input-container">
-                            <i class="fa fa-key icon"></i>
-                            <input class="input-field" type="password" placeholder="Password" name="password">
+                            <i id="icon" class="fas fa-key"></i>
+                            <input required class="input-field" type="password" placeholder="Password" name="password">
                         </div>
+
+                        <!-- Remember me checkbox -->
+                        <div class="input-container">
+                            <i>Remember me </i>
+                            <input required id="checkBox" type="checkbox">
+                        </div>
+                        <!-- Sign in button -->
                         <button type="submit" class="btn" href="/profile">Sign in</button>
                     </form>
-                          
                 </div>
-                <div id="register" class="tab-pane fade in active">
+
+                <!-- Tab register-content -->
+                <div id="register" class="tab-pane fade in active" style="display: none">
                     <form action="/register" method="POST">
                         <h2>Sign up</h2>
+
+                        <!-- Role dropdown -->
                         <div class="input-container">
-                            <i class="fa fa-user icon"></i>
-                            <select name="role">
+                            <i id="icon" name="icontest" class="fas fa-graduation-cap"></i>
+                            <select id="role" onchange="setIcon()">
                                 <option value="student">Student</option>
                                 <option value="company">Company</option>
                             </select>
                         </div>
 
+                        <!-- Username input -->
                         <div class="input-container">
-                            <i class="fa fa-user icon"></i>
-                            <input class="input-field" type="text" placeholder="Example@example.com..." name="username">
+                            <i id="icon" class="fas fa-user"></i>
+                            <input required class="input-field" type="text" placeholder="Example@example.com..." name="username">
                         </div>
 
                         <div class="input-container">
-                            <i class="fa fa-user icon"></i>
-                            <input class="input-field" type="text" placeholder="Password..." name="password" id="password">
+                            <i id="icon" class="fas fa-key"></i>
+                            <input required class="input-field" type="password" placeholder="Password" name="password">
                         </div>
+
+                        <!-- Personal id input -->
+                        <div class="input-container">
+                            <i id="icon" class="fas fa-calendar-plus"></i>
+                            <input required class="input-field" type="text" placeholder="yymmddxxxx..." name="pnum" id="pnum">
+                        </div>
+
+                        <!-- Sign up button -->
                         <button type="submit" class="btn" href="/register" value="Submit">Sign up</button>
                     </form>
                 </div>
