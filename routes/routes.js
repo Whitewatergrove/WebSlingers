@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
     res.render('pages/index');
 });
 router.get('/reg', (req, res) => {
-    res.render('pages/reg');  
+    res.render('pages/reg');
 });
 router.post('/register', (req, res) => {
     var username = req.body.username,
@@ -61,7 +61,7 @@ router.post('/login', function (req, res) {
             res.redirect('/login');
         }
 
-    })         
+    })
 });
 router.get('/profile', (req, res) => {
     if (req.session.user && req.session.role == 'student') {
@@ -75,37 +75,37 @@ router.get('/profile', (req, res) => {
         });
     }
     else if (req.session.user && req.session.role == 'company') {
-        con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
-            if (err) throw err;
-            res.render('pages/companyProfile');
-            console.log(req.session.user);
-            console.log(req.session.role);
-        });
-    }
+    con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
+        if (err) throw err;
+        res.render('pages/companyProfile');
+        console.log(req.session.user);
+        console.log(req.session.role);
+    });
+}
     else
-        res.redirect('/login')
+res.redirect('/login')
 });
 router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
-router.post('/reg', function(req, res){
+router.post('/reg', function (req, res) {
     var uname = req.body.Uname,
-    password = req.body.Pword,
-    role = req.body.role,
-    name = req.body.name,
-    pnr = req.body.pnum,
-    gender = req.body.gender,
-    tel = req.body.tel,
-    adress = req.body.adress;
+        password = req.body.Pword,
+        role = req.body.role,
+        name = req.body.name,
+        pnr = req.body.pnum,
+        gender = req.body.gender,
+        tel = req.body.tel,
+        adress = req.body.adress;
 
     res.redirect("/login");
 
-    db.insert_user(uname, password, role, function(err, result){
-        if(err) throw err;
+    db.insert_user(uname, password, role, function (err, result) {
+        if (err) throw err;
     })
-    db.insert_student(pnr, uname, name, gender, adress, tel, function(err, result){
-        if(err) throw err
-    })  
+    db.insert_student(pnr, uname, name, gender, adress, tel, function (err, result) {
+        if (err) throw err
+    })
 })
 module.exports = router;
