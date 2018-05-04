@@ -44,7 +44,6 @@ module.exports = {
         })
     },
 
-<<<<<<< HEAD
     get_students: function(username, pass,callback){
         var sql = "SELECT * FROM students";
         con.query(sql, function(err, results) {
@@ -58,10 +57,8 @@ module.exports = {
         })
     },
 
-    getuname: function(username,callback){
-=======
     getuname: function(username, callback){
->>>>>>> 83dc6332c8c0b4fc694c8f24879e4d8208ecf577
+
         var sql = "SELECT * FROM users WHERE ID = ? GROUP BY ID;";
         con.query(sql, username, function(err, results) {
             if (err){
