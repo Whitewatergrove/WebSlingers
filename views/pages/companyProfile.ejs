@@ -90,29 +90,25 @@
 					<h1>Ändra Personuppgifter</h1>
 					<form action="/change_company_profile" method="POST">
 						<div class="container">
+							<input type="text" name="pnum" id="button2" disabled value = <%= results[0].Orgnr %>>
+							<br />
+							<br/>
 							<input type="text" name="username" id="button2" disabled value = <%= results[0].UID %>>
 							<br />
 							<br/>
-							<input type="password" name="password" id="button2" placeholder="Enter Password...">
+							<input type="password" name="password" id="button2" required placeholder="Enter Password...">
 							<br />
 							<br/>
-							<input type="text" name="name" id="button2" placeholder="Enter Name...">
+							<input type="text" name="name" id="button2" required placeholder="Enter Name...">
 							<br />
 							<br/>
-<<<<<<< HEAD
-							<input type="text" name="pnum" id="button2" value = <%= results[0].Orgnr %>>
-=======
-							<input type="text" name="pnum" id="button2" disabled value = <%= results[0].Orgnr %>>
->>>>>>> 8a4d618a094dbd6b0a4ced5a5cbfaaae78dd1070
+							<input type="text" name="address" id="button2" required placeholder="Enter address...">
 							<br />
 							<br/>
-							<input type="text" name="address" id="button2" placeholder="Enter address...">
+							<input type="text" name="tel" id="button2" required placeholder="Enter Phonenumber...">
 							<br />
 							<br/>
-							<input type="text" name="tel" id="button2" placeholder="Enter Phonenumber...">
-							<br />
-							<br/>
-							<select name="gender">
+							<select name="gender" required>
 								<option value="Male">Male</option>
 								<option value="Female">Female</option>
 								<option value="Other">Other</option>
@@ -168,8 +164,4 @@
 								<% }); %>
 							</tr>
 						</table>
-<<<<<<< HEAD
 					</div> -->
-=======
-					</div> -->
->>>>>>> 8a4d618a094dbd6b0a4ced5a5cbfaaae78dd1070
