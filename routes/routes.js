@@ -68,6 +68,7 @@ router.post('/login', function (req, res) {
             }
             req.session.user = username;
             req.session.role = result[0].Role;
+            req.session.pnr = result[0].pnr;
             res.redirect('/profile');
         }
         else {
@@ -121,7 +122,25 @@ router.get('/logout', (req, res) => {
 });
 
 // test reg
-router.post('/change_profile', function(req, res){
+router.post('/change_student_profile', function(req, res){
+    var uname = req.body.username,
+    password = req.body.password,
+    name = req.body.name,
+    pnr = req.body.pnum,
+    gender = req.body.gender,
+    tel = req.body.tel,
+    adress = req.body.address;
+    
+    db.update_user(req.session.user, password, function(err, result){
+        if(err) throw err;
+    })
+    db.update_studentprofile(req.session.pnr, req.session.user, name, gender, adress, tel, function(err, result){
+        if(err) throw err    
+    })
+    res.redirect("/profile");
+});
+
+router.post('/change_company_profile', function(req, res){
     var uname = req.body.username,
     password = req.body.password,
     name = req.body.name,
@@ -137,7 +156,8 @@ router.post('/change_profile', function(req, res){
         if(err) throw err    
     })
     res.redirect("/profile");
-})
+});
+
 router.get('/search',function(req, res){
     match.testmatch();
 });
