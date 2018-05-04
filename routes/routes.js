@@ -27,7 +27,7 @@ router.post('/register', (req, res) => {
         password = req.body.password,
         role = req.body.role,
         pnum = req.body.pnum;
-    
+    console.log(role);
     db.insert_user(username, password, role, function(err, result){
         if (err) throw err;
     })
