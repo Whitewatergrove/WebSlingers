@@ -16,7 +16,14 @@ let db = require('../DBfunctions');
 //});
 
 router.get('/', (req, res) => {
-    res.render('pages/index');
+    if (req.session.user) {
+        db.getuname(req.session.user, function(err, result){
+            if (err) throw err;
+            res.redirect('/profile');
+        });
+    }
+    else
+        res.render('pages/index')
 });
 router.get('/reg', (req, res) => {
     res.render('pages/reg');
@@ -46,7 +53,7 @@ router.post('/register', (req, res) => {
 
 router.get('/login', function (req, res) {
     if (req.session.user) {
-        db.getuname(re.session.user, function(err, result){
+        db.getuname(req.session.user, function(err, result){
             if (err) throw err;
             res.redirect('/profile');
         });
