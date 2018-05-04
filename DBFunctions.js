@@ -56,6 +56,33 @@ module.exports = {
             callback(null, results);
         })
     },
+
+    get_student_user_and_nr: function(username, callback){
+        var sql = "select UID, pnr from students where UID = ?;";
+        con.query(sql, username, function(err, results) {
+            if (err){
+            console.log('error in query');
+            }
+            else{
+            console.log('query functional');
+            }
+            callback(null, results);
+        })
+    },
+
+    get_company_user_and_nr: function(username, callback){
+        var sql = "select UID, pnr from students where UID = ?;";
+        con.query(sql, username, function(err, results) {
+            if (err){
+            console.log('error in query');
+            }
+            else{
+            console.log('query functional');
+            }
+            callback(null, results);
+        })
+    },
+
     getpassword: function(username,callback){
         var sql = "SELECT password FROM users WHERE ID = ? GROUP BY ID;";
         con.query(sql, username, function(err, results) {
@@ -121,7 +148,7 @@ module.exports = {
         })
     }, 
     
-    getxjobs: function(username, callback){
+    get_xjob_company: function(username, callback){
         var sql = "SELECT ID,Name FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
         con.query(sql, username, function(err, results){
             if(err){
@@ -169,9 +196,9 @@ module.exports = {
             }
         })
     },
-    insert_student: function(pnr, uname, name, gender, adress, tel){
-        var sql = "INSERT INTO students (pnr, UID, Name, Gender, Adress, Tel) VALUES (?, ?, ?, ?, ?, ?);";
-        con.query(sql, [pnr, uname, name, gender, adress, tel], function(err, res){
+    insert_student: function(uname, pnr){
+        var sql = "INSERT INTO students (pnr, UID, Name, Gender, Adress, Tel, Status) VALUES (?, ?, 'Name', 'Gender', 'Address', 'Phonenumber', '0');";
+        con.query(sql, [pnr, uname], function(err, res){
             if(err){
                 console.log("insert student query not working: " + err);
             }
@@ -180,9 +207,9 @@ module.exports = {
             }
         })
     },
-    insert_company: function(orgnr, name, adress, mail, tel){
-        var sql = "INSERT INTO companies (Orgnr, Name, Adress, Email, Tel) VALUES (?, ?, ?, ?, ?);";
-        con.query(sql, [orgnr, name, adress, mail, tel], function(err, res){
+    insert_company: function(uname, orgnr){
+        var sql = "INSERT INTO companies (Orgnr, Name, Adress, Tel) VALUES (?, ?, 'Name', 'Address', 'Phonenumber');";
+        con.query(sql, [orgnr, uname], function(err, res){
             if(err){
                 console.log("insert company query error");
             }
@@ -191,32 +218,29 @@ module.exports = {
             }
         })
     },
-    insert_exjobs: function(Id, name, info){
-        var sql = "INSERT INTO companies (id, name, info) VALUES (?, ?, ?);";
-        con.query(sql,[Id, name, info], function(err,res){
-            if (err) {
-                console.log("insert exjob query error");
-                
+    //**************************************************************************************************/
+    //updates
+    update_studentprofile: function(pnr, uname, name, gender, adress, tel){
+        var sql = "UPDATE students SET pnr = ?, UID = ?, Name = ?, Gender = ?, Adress = ?, Tel = ? WHERE pnr = ?;";
+        con.query(sql, [pnr, uname, name, gender, adress, tel, pnr], function(err, res){
+            if(err){
+                console.log("update student query error "+ err);
             }
             else{
-                console.log("insert exjob query ok");
+                console.log("update student query ok");
             }
         })
     },
-    insert_messages: function(){
-        var sql = "INSERT INTO messages (id, timestamp, message) VALUES (?, ?, ?);";
-        con.query(sql,[id, timestamp, message], function(err,res){
-            if (err) {
-                console.log("insert message query error ");
+
+    update_user: function(username, password){
+        var sql = "UPDATE users SET ID = ?, Password = ? WHERE ID = ?;";
+        con.query(sql, [username, password, username], function(err, res){
+            if(err){
+                console.log("update user query error"+ err);
             }
             else{
-                console.log("insert message query ok");
+                console.log("update user query ok");
             }
         })
-    },
-    
-
-
+    }
 };
-
-

@@ -13,26 +13,14 @@
         <form action="fallbackhandler.php" method="POST" action="index.html" onsubmit="return Validity" name="validate">
             <div class="container">
                 <label>Username</label>
-                <input type="text" id="Uname" name="username" class="textInput">
-                <div id="username_error"> </div>
-                <!-- ta bort labels och skriv i istället för mer plats -->
-                <label>Password</label> 
-                <input type="password" id="Pword" name="password" class="textInput" >
-                <div id="password_error"> </div>
-                
-                <!-- <div id="password confirm"></div> -->
-                <label>Password confirmed</label>
-                <input type="password" name="password_confirm" class="textInput">
-                <div id="password_error"></div>
-
-
-               
-
-
+                <input disabled type="text" name="Uname"><br />
+                <label>Password</label>
+                <input type="text" name="Pword"><br />
                 <label>Name</label>
                 <input type="text" name="name"><br />
                 <label>Personnummer</label>
-                <input type="text" name="pnum"><br />
+                <input disabled type="text" name="pnum"><br />
+                <p> <%= results[0].UID %> </p>
                 <label>Email</label>
                 <input type="text" name="email"><br />
                 <label>Gender</label>

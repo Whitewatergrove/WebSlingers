@@ -89,18 +89,26 @@
 			<div class="font2">
 				<div class="StudentDiv2">
 					<h1>Ändra Personuppgifter</h1>
-					<form action="fallbackhandler.php" method="POST">
+					<form action="/change_profile" method="POST">
 						<div class="container">
-							<input type="text" name="Uname" id="button2" placeholder="Enter username(email)">
+							<input type="text" name="username" id="button2" disabled value = <%= results[0].UID %>>
+							<br />
+							<p> <%= results[0].UID %> </p>
+							<br/>
+							<input type="password" name="password" id="button2" placeholder="Enter Password...">
 							<br />
 							<br/>
-							<input type="text" name="Pword" id="button2" placeholder="Enter Password">
+							<input type="text" name="name" id="button2" placeholder="Enter Name...">
+							<br />
+							<p> <%= results[0].pnr %> </p>
+							<br/>
+							<input type="text" name="pnum" id="button2" value = <%- results[0].pnr %>>
 							<br />
 							<br/>
-							<input type="text" name="name" id="button2" placeholder="Enter Name">
+							<input type="text" name="address" id="button2" placeholder="Enter address...">
 							<br />
 							<br/>
-							<input type="text" name="pnum" id="button2" placeholder="Enter ID">
+							<input type="text" name="tel" id="button2" placeholder="Enter Phonenumber...">
 							<br />
 							<br/>
 							<select name="gender">
@@ -108,11 +116,7 @@
 								<option value="Female">Female</option>
 								<option value="Other">Other</option>
 							</select>
-							<input type="radio" name="gender" value="male" checked> Male
-							<br/>
-							<input type="radio" name="gender" value="female"> Female
-							<br/>
-							<input type="radio" name="gender" value="other"> Other
+							<br />
 							<br/>
 						</div>
 						<Button type="submit" id="butt" >Update changes</Button>

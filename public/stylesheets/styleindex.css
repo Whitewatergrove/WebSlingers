@@ -13,9 +13,9 @@ body {
     width: 100%;
     margin-bottom: 15px;
 }
-.icon {
-    padding: 10px;
-    background: dodgerblue;
+#icon {
+    padding: 12px;
+    background: #AAAAAA;
     color: white;
     min-width: 50px;
     text-align: center;
