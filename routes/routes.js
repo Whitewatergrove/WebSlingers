@@ -57,7 +57,7 @@ router.post('/login', function (req, res) {
         password = req.body.password;
 
     db.getlogin(username, password, function(err, result){
-        console.log(result);
+        console.log("getlogin: "+ result);
         if (err) throw err;
         if (result.length != 0) {
             if (req.body.remember) {
@@ -68,7 +68,7 @@ router.post('/login', function (req, res) {
             }
             req.session.user = username;
             req.session.role = result[0].Role;
-            req.session.pnr = result[0].pnr;
+            console.log("req user: "+ req.session.user);
             res.redirect('/profile');
         }
         else {
@@ -80,6 +80,7 @@ router.get('/profile', (req, res) => {
     if (req.session.user && req.session.role == 'student') {
         db.get_student_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
+            req.session.pnr = result[0].pnr;
             res.render('pages/StudentProfile', {
                 results: result
             });
@@ -90,6 +91,7 @@ router.get('/profile', (req, res) => {
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
+            req.session.orgnr = result[0].Orgnr;
             res.render('pages/companyProfile', {
                 results: result
             });
@@ -149,10 +151,10 @@ router.post('/change_company_profile', function(req, res){
     tel = req.body.tel,
     adress = req.body.address;
 
-    db.update_user(uname, password, function(err, result){
+    db.update_company(req.session.user, password, function(err, result){
         if(err) throw err;
     })
-    db.update_studentprofile(pnr, uname, name, gender, adress, tel, function(err, result){
+    db.update_companyprofile(req.session.orgnr, req.session.user, name, adress, tel, function(err, result){
         if(err) throw err    
     })
     res.redirect("/profile");
