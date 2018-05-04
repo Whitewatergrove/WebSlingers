@@ -58,7 +58,7 @@ module.exports = {
     },
 
     get_student_user_and_nr: function(username, callback){
-        var sql = "select pnr, UID, Name, Gender, Adress, Tel, Password from students, users where UID = 'agneta' and ID = 'agneta' group by UID;";
+        var sql = "select UID, pnr from students where UID = ?;";
         con.query(sql, username, function(err, results) {
             if (err){
             console.log('error in query');
