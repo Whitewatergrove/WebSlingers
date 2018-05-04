@@ -47,11 +47,7 @@ router.post('/register', (req, res) => {
 
 router.get('/login', function (req, res) {
     if (req.session.user) {
-<<<<<<< HEAD
-        db.getuname(res.session.user, function(err, result){
-=======
         db.getuname(req.session.user, function(err, result){
->>>>>>> 4d53fc055bd47f25acb5f982d19797f59bb75c37
             if (err) throw err;
             res.redirect('/profile');
         });
