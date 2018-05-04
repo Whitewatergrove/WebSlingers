@@ -88,18 +88,20 @@
 				<div class="StudentDiv2">
 					<h2>Välkommen <%= results[0].ID %></h2>
 					<h1>Ändra Personuppgifter</h1>
-					<form action="fallbackhandler.php" method="POST">
+					<form action="/change_profile" method="POST">
 						<div class="container">
-							<input disabled type="text" name="username" id="test2" placeholder="Enter username(email)...">
+							<input type="text" name="username" id="button2" disabled value = <%= results[0].UID %>>
 							<br />
+							<p> <%= results[0].UID %> </p>
 							<br/>
 							<input type="password" name="password" id="button2" placeholder="Enter Password...">
 							<br />
 							<br/>
 							<input type="text" name="name" id="button2" placeholder="Enter Name...">
 							<br />
+							<p> <%= results[0].pnr %> </p>
 							<br/>
-							<input type="text" name="pnum" id="button2" placeholder="Enter personal id...">
+							<input type="text" name="pnum" id="button2" value = <%- results[0].pnr %>>
 							<br />
 							<br/>
 							<input type="text" name="address" id="button2" placeholder="Enter address...">
