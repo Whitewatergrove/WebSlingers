@@ -1,112 +1,167 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Responsive vertical menu navigation</title>
-		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
 
-        <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Responsive vertical menu navigation</title>
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
 
-		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script src="https://code.highcharts.com/highcharts.js"></script>
-		<script src="https://code.highcharts.com/modules/data.js"></script>
-		<script src="./scripts/profile.js"></script>
-	</head>
-	<body>
-		<div class="header">
-			<div class="logo">
-                <img src= "images/oru-16x16.png">
-				<span>Webslingers</span>
-			</div>
-			<a href="#" class="nav-trigger"><span></span></a>
-			<a href="/logout">asdhasöjdhalsdhaölshdalöshdöahsödahösh</a>
+
+	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+	    crossorigin="anonymous"></script>
+
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="./scripts/StudentPScript.js"></script>
+	<script src="./scripts/profile.js"></script>
+</head>
+<body>
+	<div class="header">
+		<div class="logo">
+			<img src="images/oru-16x16.png">
+			<span>Webslingers</span>
 		</div>
-		<div class="side-nav">
-			<div class="logo">
-                <img src="images/oru-16x16.png">
-				<span>Webslingers</span>
-			</div>
-			<nav>
-				<ul class="tabs">
-					<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-left: 5px solid #fff">
-						<a>
-							<span><i class="fa fa-user"></i></span>
-							<span>Profile</span>
-						</a>
-					</li>
-					<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
-						<a> 
-							<span><i class="fa fa-envelope"></i></span>
-							<span>Messages</span>
-						</a>
-					</li>
-					<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
-						<a>
-							<span><i class="fas fa-folder"></i></span>
-							<span>Ex-Job</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span><i class="fa fa-credit-card-alt"></i></span>
-							<span>Erik</span>
-						</a>
-                    </li>
-                        <img src="./images/oru.png" class="si">
-				</ul>
-			</nav>
+		<a href="#" class="nav-trigger">
+			<span></span>
+		</a>
+	</div>
+	<div class="side-nav">
+		<div class="logo">
+			<img src="images/oru-16x16.png">
+			<span>Webslingers</span>
 		</div>
-		<div class="main-content" id="home">
-			<div class="title">
-				Anton
-			</div>
-			<div class="main">
-				<div class="widget">
-					<div class="title">Number of views</div>
-					<div class="chart"></div>
+		<nav>
+			<ul class="tabs">
+				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba";>
+					<a>
+						<span>
+							<i class="fa fa-user"></i>
+						</span>
+						<span>Profile</span>
+					</a>
+				</li>
+				<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
+					<a>
+						<span>
+							<i class="fa fa-envelope"></i>
+						</span>
+						<span>Messages</span>
+					</a>
+				</li>
+				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
+					<a>
+						<span>
+							<i class="fas fa-folder"></i>
+						</span>
+						<span>Ex-Job</span>
+					</a>
+				</li>
+				<li>
+					<a>
+						<span>
+							<i class="fa fa-credit-card-alt"></i>
+						</span>
+						<span>Manual</span>
+					</a>
+				</li>
+				<li>
+					<a href="/logout">
+						<span>
+							<i class="fas fa-sign-out-alt"></i>
+						</span>
+						<span>Sign out</span>
+					</a>
+				</li>
+				<img src="./images/oru.png" class="si">
+			</ul>
+		</nav>
+	</div>
+	<div class="main-content" id="home">
+		<div class="main2">
+			<div class="font2">
+				<div class="StudentDiv2">
+					<h2>Välkommen <%= results[0].ID %></h2>
+					<h1>Ändra Personuppgifter</h1>
+					<form action="/change_profile" method="POST">
+						<div class="container">
+							<input type="text" name="username" id="button2" disabled value = <%= results[0].UID %>>
+							<br />
+							<br/>
+							<input type="password" name="password" id="button2" placeholder="Enter Password...">
+							<br />
+							<br/>
+							<input type="text" name="name" id="button2" placeholder="Enter Name...">
+							<br />
+							<br/>
+							<input type="text" name="pnum" id="button2" value = <%= results[0].pnr %>>
+							<br />
+							<br/>
+							<input type="text" name="address" id="button2" placeholder="Enter address...">
+							<br />
+							<br/>
+							<input type="text" name="tel" id="button2" placeholder="Enter Phonenumber...">
+							<br />
+							<br/>
+							<select name="gender">
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+								<option value="Other">Other</option>
+							</select>
+							<br />
+							<br/>
+						</div>
+						<Button type="submit" id="butt" >Update changes</Button>
+					</form>
+					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
 				</div>
-				<div class="widget">
-					<div class="title">Number of likes</div>
-					<div class="chart"></div>
-				</div>
-				<div class="widget">
-					<div class="title">Number of comments</div>
-					<div class="chart"></div>
-                </div>
-            </div>
-		</div>
-		<div class="main-content" id="likes" style="display:none">
-			<div class="title">
-				hejhejhejhej Monika
 			</div>
-			<div class="main">
-				<div class="widget">
-					<div class="title">Number of views</div>
-					<div class="chart"></div>
-				</div>
-            </div>
 		</div>
-		<div class="main-content" id="Jobs" style="display:none">
-			
-			<div class="main">
-				<div class="widget" id="JobsWidget">
-					<div class="title">Available jobs</div>
-					<div class="Tinder">
-							<ul>
-									<% results.forEach(function(result) { %>
-										<li>
-											<%= result.ID %> - <%= result.Password %> - <%= result.Role %>
-										</li>
-									<% }); %>
-							</ul>
+	</div>
+	<div class="main-content" id="likes" style="display:none">
+		<div class="main2">
+			<div class="font2">
+				<div class="StudentDiv2">
+					<h2>Chat</h2>
+					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-content" id="Jobs" style="display:none">
+		<div class="main">
+			<div class="widget" id="JobsWidget">
+				<div class="title">Available jobs</div>
+				<div class="Tinder">
+					<div id="user">						
+						<p><strong>Name: <span></strong></span><%= results[0].ID %></p>
+						<p><strong>Password: <span></strong><%= results[0].Password %> </span></p>
+						<p><strong>Role: <span></strong><%= results[0].Role %> </span></p>
 					</div>
 				</div>
-            </div>
-		</div>
-	</body>
+			</div>
+        </div>
+	</div>
+</body>
 </html>
+
+<!-- <div id="usertable">
+						<table>
+							<tr>
+								<th>UserName</th>
+								<th>Password</th>
+								<th>Role</th>
+							</tr>
+							<tr><% results.forEach(function(result) { %>
+								<td><%= result.ID %></td>
+								<td><%= result.Password %></td>
+								<td><%= result.Role %></td>										
+								<% }); %>
+							</tr>
+						</table>
+					</div> -->

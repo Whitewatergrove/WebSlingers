@@ -1,25 +1,25 @@
-/*Index*/
-@import url('https//fonts.googleapis.com/css?family=Raleway');
-@import url('https//fonts.googleapis.com/css?family=Oswald');
-
-html, body {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-    width: 100%;
-}
-.firstpage{
-    height: 100%;
-    width: 100%;
-    margin: auto;
-    background: url("../images/StartPicture.png") no-repeat 50% 50%;
-    display: table;
-    top: 0;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('../images/StartPicture.png');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
 }
-.firstpage .inner{
-    display: table-cell;
-    vertical-align: middle;
+* {box-sizing: border-box;}
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+}
+#icon {
+    padding: 12px;
+    background: #AAAAAA;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+.input-field {
     width: 100%;
     max-width: none;
 }
@@ -49,15 +49,23 @@ html, body {
     background-color: rgba(255,255,255,1);
     color: #2c71ae;
     cursor: pointer;
-
-    transition: background-color 1000ms, color 1000ms;
+    opacity: 1;
 }
-@media screen and (max-width: 768px) {
-    .content h1{
-        font-size: 250%;
-    }
-    .btn{
-        font-size: 110%;
-        padding: 7px 15px;
-    }
-}
+/* #modalBG{
+    width: 50%;
+    height: 100%;
+    min-height: 300px;
+    min-width: 500px;
+    background:rgba(0,0,0,0.7);
+    margin: auto;
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+} */
