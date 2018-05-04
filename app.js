@@ -1,25 +1,20 @@
-let mysql = require('mysql');
+'use strict'
 let express = require('express');
 let app = express();
 
-app.use(express.static('public'));
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
+const routes = require('./routes/routes');
+let session = require('express-session');
 
-var con = mysql.createConnection({
-    host: "83.255.197.121",
-    user: "mans",
-    password: "forslund",
-    port: "3306",
-    database: "simmhoppdb"
-});
+app.use(session({
+    secret: 'jocketest',
+    resave: false,
+    saveUninitialized: false
+}))
+app.use('/', routes);
 
-con.connect(function (err) {
-    if (err) {
-        console.log('error while connectiong to database' + err);
-    }
-    console.log("Connected!");
-})
-app.set('port', 3000);
-
+app.set('port', 80);
 var server = app.listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + server.address().port);
+  console.log('Express server listening on port ' + server.address().port);
 });
