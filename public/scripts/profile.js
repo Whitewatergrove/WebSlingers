@@ -22,17 +22,18 @@ function openTab(pageName, tab) {
     document.getElementById(tab).style.borderLeft = "5px solid #2e78ba";
     document.getElementById(pageName).style.display = "block";
 }
-
 function setIcon(){
-    var icon = document.getElementsByClassName("dropdownRole");
-    var role = document.getElementsByName("role");
-    
-    if(role === "student")
-        icon = "fas fa-graduation-cap";
-    else
-        icon = "fas fa-industry";
-}
-// document.getElementById("Open").click();
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    var el = document.getElementsByName("icontest")[0];
+    var selectedRole = document.getElementById("role").value;
+    console.log(selectedRole);
+    console.log(el.className);
+    if(selectedRole == "student"){
+        el.className -= " fas fa-industry";
+        el.className += ' fas fa-graduation-cap';
+
+    }
+    else if(selectedRole == 'company'){
+        el.className -= " fas fa-graduation-cap";        
+        el.className += " fas fa-industry";
+    }
 }
