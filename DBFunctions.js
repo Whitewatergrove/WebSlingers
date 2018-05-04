@@ -197,10 +197,95 @@ module.exports = {
                 callback(null, results);
             }
         })
+      
+    },
+    get_messages: function(req, res, callback) {   
+        con.query('SELECT * FROM messages', function(err, results) {
+            if (err) {
+                callback(err, null);
+            }
+            else {
+                callback(null, results);
+            }
+        })
+      
     },
 
 /*************************************************************************************************************************************
     PROMISE             */
+
+
+    get_qualifications_catagories_promise: function(catagoriesqual){
+        return new promise ((resolve, reject) => {
+            let sql = "SELECT qualifications FROM catagories where class = ?; "
+            con.query(sql, demanded, function(err,results){
+                if (err) {
+                    err.log('get_exjobs_promise error in query');
+                    let msg = "Promise error";
+                    reject(new Error(msg));
+                }
+                else{
+                    console.log('get_exjobs_promise query functional');
+                    catagoriesqual = result;
+                    resolve(catagoriesqual);
+                }
+            })
+        })
+    },
+
+    get_class_catagories_promise: function(catagoriesclass){
+        return new promise ((resolve,reject) => {
+            let sql = "SELECT class FROM catagories GROUP BY class;"
+            con.query(sql, demanded, function(err,results){
+                if (err) {
+                    err.log('get_exjobs_promise error in query');
+                    let msg = "Promise error";
+                    reject(new Error(msg));
+                }
+                else{
+                    console.log('get_exjobs_promise query functional');
+                    
+                    resolve(catagoriesclass);
+                }
+            })
+        })
+    },
+    get_xjob_demanded_promise: function(demanded){
+        return new Promise((resolve,reject) => {
+            let sql = "SELECT QID FROM demanded WHERE EID = ?;"
+            con.query(sql, demanded, function(err,results){
+                if (err) {
+                    err.log('get_exjobs_promise error in query');
+                    let msg = "Promise error";
+                    reject(new Error(msg));
+                }
+                else{
+                    console.log('get_exjobs_promise query functional');
+                    
+                    resolve(demanded);
+                }
+            })
+        })
+    },
+
+    get_xjob_promise: function(exjobs){
+        return new Promise((resolve, reject) => {
+            let sql = "SELECT ID, 'Name', ExOID FROM exjobs;"
+            con.query(sql,function(err,results){
+                if (err) {
+                    err.log('get_exjobs_promise error in query');
+                    let msg = "Promise error";
+                    reject(new Error(msg));
+                }
+                else{
+                    console.log('get_exjobs_promise query functional');
+                    exjobs = result;
+                    resolve(exjobs);
+                }
+            })
+        })
+    }, 
+
 
     get_students_promise: function(student){
         return new Promise((resolve, reject) => {
