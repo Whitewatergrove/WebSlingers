@@ -12,7 +12,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
-
 app.use('/', routes);
 
 app.set('port', 80);
