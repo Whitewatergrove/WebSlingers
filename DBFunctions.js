@@ -19,8 +19,9 @@ module.exports = {
     //selects
 
     getlogin: function(username, pass,callback){
-        var sql = "SELECT * FROM users WHERE ID = ? AND password = ? GROUP BY ID;";
-        con.query(sql, [username, pass], function(err, results) {
+        var sql = "SELECT * FROM users full join students WHERE ID = ? AND password = ? AND UID = ? GROUP BY ID;";
+        con.query(sql, [username, pass, username], function(err, results) {
+            console.log(results);
             if (err){
             console.log('error in query');
             }

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 
@@ -87,9 +86,9 @@
 		<div class="main2">
 			<div class="font2">
 				<div class="StudentDiv2">
-					<h2>Välkommen <%= results[0].ID %></h2>
+					<h2>Välkommen <%= results[0].UID %></h2>
 					<h1>Ändra Personuppgifter</h1>
-					<form action="/change_profile" method="POST">
+					<form action="/change_company_profile" method="POST">
 						<div class="container">
 							<input type="text" name="username" id="button2" disabled value = <%= results[0].UID %>>
 							<br />
@@ -100,7 +99,7 @@
 							<input type="text" name="name" id="button2" placeholder="Enter Name...">
 							<br />
 							<br/>
-							<input type="text" name="pnum" id="button2" value = <%= results[0].pnr %>>
+							<input type="text" name="pnum" id="button2" disabled value = <%= results[0].Orgnr %>>
 							<br />
 							<br/>
 							<input type="text" name="address" id="button2" placeholder="Enter address...">
@@ -166,5 +165,3 @@
 							</tr>
 						</table>
 					</div> -->
-=======
->>>>>>> 224f64b8106349aee7707ea3d75234f5857df60f
