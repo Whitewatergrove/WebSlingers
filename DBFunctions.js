@@ -85,7 +85,7 @@ module.exports = {
     },
 
     get_company_user_and_nr: function(username, callback){
-        var sql = "select UID, pnr from students where UID = ?;";
+        var sql = "select Orgnr, UID from companies where UID = ?;";
         con.query(sql, username, function(err, results) {
             if (err){
             console.log('error in query');
@@ -283,7 +283,7 @@ module.exports = {
         })
     },
     insert_company: function(uname, orgnr){
-        var sql = "INSERT INTO companies (Orgnr, Name, Adress, Tel) VALUES (?, ?, 'Name', 'Address', 'Phonenumber');";
+        var sql = "INSERT INTO companies (Orgnr, UID, Name, Adress, Tel) VALUES (?, ?, 'Name', 'Address', 'Phonenumber');";
         con.query(sql, [orgnr, uname], function(err, res){
             if(err){
                 console.log("insert company query error");
