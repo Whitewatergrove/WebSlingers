@@ -11,6 +11,7 @@ body {
     display: -ms-flexbox; /* IE10 */
     display: flex;
     width: 100%;
+    margin-bottom: 15px;
 }
 #icon {
     padding: 12px;
@@ -21,36 +22,29 @@ body {
 }
 .input-field {
     width: 100%;
-    max-width: none;
+    padding: 10px;
+    outline: none;
 }
-.content{
-    max-width: 500px;
-    margin: 0 auto;
-    text-align: center;
+
+.input-field:focus {
+    border: 2px solid dodgerblue;
 }
-.content h1 {
-    font-family: 'Raleway', sans-serif;
-    color: #F9F3F4;
-    text-shadow: 0px 0px 300px #000;
-    font-size: 400%;
-}
+
+/* Set a style for the submit button */
 .btn {
-    border-radius: 9px;
-    font-family: 'Oswald', sans-serif;
-    color:	#fff;
-    font-size: 200%;
-    padding: 10px 20px;
-    border: solid	#fff 6px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background-color 1000ms, color 1000ms;
-}
-.btn:hover{
-    background-color: rgba(255,255,255,1);
-    color: #2c71ae;
+    background-color: dodgerblue;
+    color: white;
+    padding: 15px 20px;
+    border: none;
     cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn:hover {
     opacity: 1;
 }
+ 
 /* #modalBG{
     width: 50%;
     height: 100%;
