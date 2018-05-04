@@ -6,16 +6,6 @@ router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
 let match = require('../search');
 
-//let mysql = require('mysql');
-//
-//let con = mysql.createConnection({
-//    host: "83.255.197.121",
-//    user: "joakim",
-//    password: "jockele",
-//    port: "3306",
-//    database: "webslingers"
-//});
-
 router.get('/', (req, res) => {
     if (req.session.user) {
         db.getuname(req.session.user, function(err, result){
@@ -49,7 +39,7 @@ router.post('/register', (req, res) => {
         if(err) throw err;
         })
     }  
-    res.redirect('/login');  
+    res.redirect('/');  
 });
 
 router.get('/login', function (req, res) {
@@ -81,9 +71,8 @@ router.post('/login', function (req, res) {
             res.redirect('/profile');
         }
         else {
-            res.redirect('/login');
+            res.redirect('/');
         }
-
     })
 });
 router.get('/profile', (req, res) => {
@@ -100,13 +89,15 @@ router.get('/profile', (req, res) => {
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
-            res.render('pages/companyProfile');
+            res.render('pages/companyProfile', {
+                results: result
+            });
             console.log(req.session.user);
             console.log(req.session.role);
         });
     }
     else
-res.redirect('/login')
+res.redirect('/')
 });
 
 router.get('/StudentRegister', (req, res) => {
@@ -121,7 +112,7 @@ router.get('/StudentRegister', (req, res) => {
         });
     }
     else
-        res.redirect('/login')
+        res.redirect('/')
 });
 
 router.get('/logout', (req, res) => {
