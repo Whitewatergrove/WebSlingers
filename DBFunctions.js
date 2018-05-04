@@ -21,6 +21,7 @@ module.exports = {
     getlogin: function(username, pass,callback){
         var sql = "SELECT * FROM users WHERE ID = ? AND password = ? GROUP BY ID;";
         con.query(sql, [username, pass], function(err, results) {
+            console.log(results);
             if (err){
             console.log('error in query');
             }
@@ -197,10 +198,95 @@ module.exports = {
                 callback(null, results);
             }
         })
+      
+    },
+    get_messages: function(req, res, callback) {   
+        con.query('SELECT * FROM messages', function(err, results) {
+            if (err) {
+                callback(err, null);
+            }
+            else {
+                callback(null, results);
+            }
+        })
+      
     },
 
 /*************************************************************************************************************************************
     PROMISE             */
+
+
+    get_qualifications_catagories_promise: function(catagoriesqual){
+        return new promise ((resolve, reject) => {
+            let sql = "SELECT qualifications FROM catagories where class = ?; "
+            con.query(sql, demanded, function(err,results){
+                if (err) {
+                    err.log('get_exjobs_promise error in query');
+                    let msg = "Promise error";
+                    reject(new Error(msg));
+                }
+                else{
+                    console.log('get_exjobs_promise query functional');
+                    catagoriesqual = result;
+                    resolve(catagoriesqual);
+                }
+            })
+        })
+    },
+
+    get_class_catagories_promise: function(catagoriesclass){
+        return new promise ((resolve,reject) => {
+            let sql = "SELECT class FROM catagories GROUP BY class;"
+            con.query(sql, demanded, function(err,results){
+                if (err) {
+                    err.log('get_exjobs_promise error in query');
+                    let msg = "Promise error";
+                    reject(new Error(msg));
+                }
+                else{
+                    console.log('get_exjobs_promise query functional');
+                    
+                    resolve(catagoriesclass);
+                }
+            })
+        })
+    },
+    get_xjob_demanded_promise: function(demanded){
+        return new Promise((resolve,reject) => {
+            let sql = "SELECT QID FROM demanded WHERE EID = ?;"
+            con.query(sql, demanded, function(err,results){
+                if (err) {
+                    err.log('get_exjobs_promise error in query');
+                    let msg = "Promise error";
+                    reject(new Error(msg));
+                }
+                else{
+                    console.log('get_exjobs_promise query functional');
+                    
+                    resolve(demanded);
+                }
+            })
+        })
+    },
+
+    get_xjob_promise: function(exjobs){
+        return new Promise((resolve, reject) => {
+            let sql = "SELECT ID, 'Name', ExOID FROM exjobs;"
+            con.query(sql,function(err,results){
+                if (err) {
+                    err.log('get_exjobs_promise error in query');
+                    let msg = "Promise error";
+                    reject(new Error(msg));
+                }
+                else{
+                    console.log('get_exjobs_promise query functional');
+                    exjobs = result;
+                    resolve(exjobs);
+                }
+            })
+        })
+    }, 
+
 
     get_students_promise: function(student){
         return new Promise((resolve, reject) => {
@@ -296,8 +382,8 @@ module.exports = {
     //**************************************************************************************************/
     //updates
     update_studentprofile: function(pnr, uname, name, gender, adress, tel){
-        var sql = "UPDATE students SET pnr = ?, UID = ?, Name = ?, Gender = ?, Adress = ?, Tel = ? WHERE pnr = ?;";
-        con.query(sql, [pnr, uname, name, gender, adress, tel, pnr], function(err, res){
+        var sql = "UPDATE students SET UID = ?, Name = ?, Gender = ?, Adress = ?, Tel = ? WHERE pnr = ?;";
+        con.query(sql, [uname, name, gender, adress, tel, pnr], function(err, res){
             if(err){
                 console.log("update student query error "+ err);
             }
@@ -308,8 +394,8 @@ module.exports = {
     },
 
     update_user: function(username, password){
-        var sql = "UPDATE users SET ID = ?, Password = ? WHERE ID = ?;";
-        con.query(sql, [username, password, username], function(err, res){
+        var sql = "UPDATE users SET Password = ? WHERE ID = ?;";
+        con.query(sql, [password, username], function(err, res){
             if(err){
                 console.log("update user query error"+ err);
             }
@@ -317,5 +403,28 @@ module.exports = {
                 console.log("update user query ok");
             }
         })
-    }
+    },
+
+    update_companyprofile: function(orgnr, uname, name, adress, tel){
+        var sql = "UPDATE companies SET Name = ?, Adress = ?, Tel = ? WHERE Orgnr = ?;";
+        con.query(sql, [name, adress, tel, orgnr], function(err, res){
+            if(err){
+                console.log("update company query error "+ err);
+            }
+            else{
+                console.log("update company query ok");
+            }
+        })
+    },
+    update_company: function(username, password){
+        var sql = "UPDATE users SET Password = ? WHERE ID = ?;";
+        con.query(sql, [password, username], function(err, res){
+            if(err){
+                console.log("update user query error"+ err);
+            }
+            else{
+                console.log("update user query ok");
+            }
+        })
+    },
 };
