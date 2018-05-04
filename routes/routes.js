@@ -19,14 +19,14 @@ router.get('/', (req, res) => {
     res.render('pages/index');
 });
 router.get('/reg', (req, res) => {
-    res.render('pages/reg');  
+    res.render('pages/reg');
 });
 router.post('/register', (req, res) => {
     var username = req.body.username,
         password = req.body.password,
         role = req.body.role,
         pnum = req.body.pnum;
-    
+    console.log(role);
     db.insert_user(username, password, role, function(err, result){
         if (err) throw err;
     })
@@ -76,7 +76,7 @@ router.post('/login', function (req, res) {
             res.redirect('/login');
         }
 
-    })         
+    })
 });
 router.get('/profile', (req, res) => {
     if (req.session.user && req.session.role == 'student') {
@@ -98,7 +98,7 @@ router.get('/profile', (req, res) => {
         });
     }
     else
-        res.redirect('/login')
+res.redirect('/login')
 });
 
 router.get('/StudentRegister', (req, res) => {
