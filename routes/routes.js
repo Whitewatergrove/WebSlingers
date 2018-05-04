@@ -17,7 +17,6 @@ let db = require('../DBfunctions');
 
 router.get('/', (req, res) => {
     res.render('pages/index');
-    console.log("cookie", req.cookies);
 });
 router.get('/reg', (req, res) => {
     res.render('pages/reg');  
@@ -47,7 +46,7 @@ router.post('/register', (req, res) => {
 
 router.get('/login', function (req, res) {
     if (req.session.user) {
-        db.getuname(re.session.user, function(err, result){
+        db.getuname(res.session.user, function(err, result){
             if (err) throw err;
             res.redirect('/profile');
         });
@@ -69,8 +68,6 @@ router.post('/login', function (req, res) {
             else {
                 req.session.cookie.expires = null;
             }
-            console.log("remember", req.body.remember);
-            console.log(req.session.user);
             req.session.user = username;
             req.session.role = result[0].Role;
             res.redirect('/profile');
@@ -95,9 +92,7 @@ router.get('/profile', (req, res) => {
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
-            res.render('pages/companyProfile', {
-                results: result
-            });
+            res.render('pages/companyProfile');
             console.log(req.session.user);
             console.log(req.session.role);
         });
@@ -122,7 +117,6 @@ router.get('/StudentRegister', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-    console.log(req.session.user);
     req.session.destroy();
     res.redirect('/');
 });
