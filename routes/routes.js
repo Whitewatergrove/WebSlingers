@@ -95,10 +95,7 @@ router.get('/profile', (req, res) => {
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
-<<<<<<< HEAD
-=======
             req.session.orgnr = result[0].Orgnr;
->>>>>>> d72928740aa711c7e9a268e2fc562c5b05e83667
             res.render('pages/companyProfile', {
                 results: result
             });

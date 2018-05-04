@@ -18,12 +18,23 @@ body {
 	border-bottom: 3px solid #2e78ba;
 }
 
+#HomeID{
+	background-image: url('../images/safe_image.jpg');
+	max-height: 500px;
+	height: 500px;
+    background-position: center;
+    background-size: cover;
+}
+#HomeH1{
+	color: #FFF;
+}
+
 
 .si{
-    position: absolute;
+	position: absolute;
     bottom: 5%;
     left: 5%;
-    width: 80%;
+    width: 20%;
 }
 
 
