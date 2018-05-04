@@ -90,15 +90,6 @@ router.get('/profile', (req, res) => {
         });
     }
     else if (req.session.user && req.session.role == 'company') {
-<<<<<<< HEAD
-    con.query(`SELECT * FROM users WHERE users.ID = ?`, req.session.user, function (err, result) {
-        if (err) throw err;
-        res.render('pages/companyProfile');
-        console.log(req.session.user);
-        console.log(req.session.role);
-    });
-}
-=======
         db.get_company_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
             res.render('pages/companyProfile');
@@ -106,7 +97,6 @@ router.get('/profile', (req, res) => {
             console.log(req.session.role);
         });
     }
->>>>>>> 51731cf46908a0de45d006d6504285cb97ba64ba
     else
 res.redirect('/login')
 });
@@ -130,26 +120,6 @@ router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
-<<<<<<< HEAD
-router.post('/reg', function (req, res) {
-    var uname = req.body.Uname,
-        password = req.body.Pword,
-        role = req.body.role,
-        name = req.body.name,
-        pnr = req.body.pnum,
-        gender = req.body.gender,
-        tel = req.body.tel,
-        adress = req.body.adress;
-
-    res.redirect("/login");
-
-    db.insert_user(uname, password, role, function (err, result) {
-        if (err) throw err;
-    })
-    db.insert_student(pnr, uname, name, gender, adress, tel, function (err, result) {
-        if (err) throw err
-    })
-=======
 
 // test reg
 router.post('/change_profile', function(req, res){
@@ -168,6 +138,5 @@ router.post('/change_profile', function(req, res){
         if(err) throw err    
     })
     res.redirect("/profile");
->>>>>>> 51731cf46908a0de45d006d6504285cb97ba64ba
 })
 module.exports = router;
