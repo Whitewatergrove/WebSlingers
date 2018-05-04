@@ -16,16 +16,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="./stylesheets/styleindex.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
+    <script src="../scripts/profile.js"></script>
 </head>
 <body>
 
 <div class="container">
+    <div id="modalBG">
   <h1>Let's go Örebro!</h1>
   <!-- Button to Open the Modal -->
   <button type="button" class="loginbtn" data-toggle="modal" data-target="#myModal">
     Start by log in!
   </button>
-
+</div>
   <!-- The Modal -->
   <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-dialog-centered">
@@ -86,8 +88,8 @@
 
                         <!-- Role dropdown -->
                         <div class="input-container">
-                            <i id="icon" class="fas fa-portrait"></i>
-                            <select id="role" onchange="setIcon()" name="role">
+                            <i id="icon" name="icontest" class="fas fa-graduation-cap"></i>
+                            <select id="role" onchange="setIcon()" name = "role">
                                 <option value="student">Student</option>
                                 <option value="company">Company</option>
                             </select>
