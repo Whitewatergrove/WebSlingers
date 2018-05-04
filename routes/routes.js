@@ -92,7 +92,9 @@ router.get('/profile', (req, res) => {
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
-            res.render('pages/companyProfile');
+            res.render('pages/companyProfile', {
+                results: result
+            });
             console.log(req.session.user);
             console.log(req.session.role);
         });
