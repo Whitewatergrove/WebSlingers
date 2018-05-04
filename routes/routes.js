@@ -4,6 +4,7 @@ let bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
+let match = require('../search');
 
 //let mysql = require('mysql');
 //
@@ -46,7 +47,7 @@ router.post('/register', (req, res) => {
 
 router.get('/login', function (req, res) {
     if (req.session.user) {
-        db.getuname(re.session.user, function(err, result){
+        db.getuname(req.session.user, function(err, result){
             if (err) throw err;
             res.redirect('/profile');
         });
@@ -141,4 +142,8 @@ router.post('/change_profile', function(req, res){
     })
     res.redirect("/profile");
 })
+router.get('/search',function(req, res){
+    match.testmatch();
+});
+
 module.exports = router;

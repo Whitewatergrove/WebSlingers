@@ -44,7 +44,21 @@ module.exports = {
         })
     },
 
+    get_students: function(username, pass,callback){
+        var sql = "SELECT * FROM students";
+        con.query(sql, function(err, results) {
+            if (err){
+            console.log('error in query');
+            }
+            else{
+            console.log('query functional');
+            }
+            callback(null, results);
+        })
+    },
+
     getuname: function(username, callback){
+
         var sql = "SELECT * FROM users WHERE ID = ? GROUP BY ID;";
         con.query(sql, username, function(err, results) {
             if (err){
@@ -162,7 +176,7 @@ module.exports = {
     }, 
 
     getxjobs: function(username, callback){
-        var sql = "SELECT QID FROM demanded WHERE EID = (SELECT ID FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?));;"
+        var sql = "SELECT QID FROM demanded WHERE EID = (SELECT ID FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?));"
         con.query(sql, username, function(err, results){
             if(err){
                 console.log("query error");
@@ -173,6 +187,7 @@ module.exports = {
             callback(null, results);
         })
     },
+
     get_users: function(req, res, callback) {   
         con.query('SELECT * FROM users', function(err, results) {
             if (err) {
@@ -183,6 +198,66 @@ module.exports = {
             }
         })
     },
+
+/*************************************************************************************************************************************
+    PROMISE             */
+
+    get_students_promise: function(student){
+        return new Promise((resolve, reject) => {
+            let sql = "SELECT * FROM students";
+            con.query(sql, function(err, results) {
+                if (err){
+                    console.log('get_students_promise error in query');
+                    let msg = "Promise error";
+                    reject(new Error(msg));
+                }
+                else{
+                    console.log('get_students_promise query functional');
+                    student = results;
+                    resolve(student);
+                }
+            })
+
+        })
+        
+    },
+
+    get_student_qual_promise: function(username){
+        return new Promise((resolve, reject) => {
+            var sql = "SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = ? GROUP BY pnr);";
+            con.query(sql, username, function(err, results){
+                if(err){
+                    console.log("get_student_qual_promise query error");
+                    con.onerror = function(){
+                        let msg = "Promise error";
+                        reject(new Error(msg));
+                    }  
+                }
+                else{
+                    console.log("get_student_qual_promise query functional");
+                    resolve(results);
+                }
+            })
+        })
+    },
+    get_qual_categories_promise: function(username){
+        return new Promise((resolve, reject) => {
+            var sql = "SELECT class FROM catagories WHERE qualifications IN (SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = ? GROUP BY pnr)) GROUP BY class;";
+            con.query(sql, username, function(err, results){
+                if(err){
+                    console.log("get_qual_categories_promise query error");
+                    let msg = "Promise error";
+                    reject(new Error(msg));
+                }
+                else{
+                    console.log("get_qual_categories_promise query ok");
+                    resolve(results);
+                }
+            })
+        })
+    },
+
+
     //********************************************************************************/
     //inserts
     insert_user: function(username, password, role){
@@ -211,10 +286,10 @@ module.exports = {
         var sql = "INSERT INTO companies (Orgnr, Name, Adress, Tel) VALUES (?, ?, 'Name', 'Address', 'Phonenumber');";
         con.query(sql, [orgnr, uname], function(err, res){
             if(err){
-                console.log("query error");
+                console.log("insert company query error");
             }
             else{
-                console.log("query ok");
+                console.log("insert company query ok");
             }
         })
     },
