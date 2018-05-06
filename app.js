@@ -6,6 +6,9 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 const routes = require('./routes/routes');
 let session = require('express-session');
+let bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
     secret: 'jocketest',
