@@ -11,7 +11,6 @@ let cookieParser = require('cookie-parser');
 let session = require('express-session');
 let flash = require('connect-flash');
 
-
 app.use(cookieParser());
 app.use(flash());
 
@@ -20,7 +19,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
-
 
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {

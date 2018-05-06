@@ -21,6 +21,10 @@
 	<script src="https://code.highcharts.com/modules/data.js"></script>
 	<script src="./scripts/StudentPScript.js"></script>
 	<script src="./scripts/profile.js"></script>
+
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 </head>
 
 <body>
@@ -96,6 +100,8 @@
 		<div class="main2" id="HomeID">
 			<div class="font2">
 				<div class="StudentDiv2">
+					
+					<%- messages('message', locals) %>
 					<h1 id="HomeH1">Välkommen <em><%= results[0].UID %></em>!<br/> Till din företagsida </h1>
 					
 
