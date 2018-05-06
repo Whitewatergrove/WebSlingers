@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Responsive vertical menu navigation</title>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
@@ -20,6 +21,7 @@
 	<script src="https://code.highcharts.com/modules/data.js"></script>
 	<script src="./scripts/profile.js"></script>
 </head>
+
 <body>
 	<div class="header">
 		<div class="logo">
@@ -37,7 +39,15 @@
 		</div>
 		<nav>
 			<ul class="tabs">
-				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba";>
+				<li class="tabBorder" onclick="openTab('Frontpage', 'Home')" id="Home" style="border-Left: 5px solid #2e78ba";>
+					<a>
+						<span>
+							<i class="fas fa-home"></i>
+						</span>
+						<span>Home</span>
+					</a>
+				</li>
+				<li class="tabBorder" onclick="openTab('profile', 'Open')" id="Open" ;>
 					<a>
 						<span>
 							<i class="fa fa-user"></i>
@@ -58,7 +68,7 @@
 						<span>
 							<i class="fas fa-folder"></i>
 						</span>
-						<span>Add Ex-Job</span>
+						<span>Ex-Job</span>
 					</a>
 				</li>
 				<li>
@@ -81,15 +91,25 @@
 			</ul>
 		</nav>
 	</div>
-	<div class="main-content" id="home">
+	<div class="main-content" id="Frontpage">
+		<div class="main2" id="HomeID">
+			<div class="font2">
+				<div class="StudentDiv2">
+					<h1 id="HomeH1">Välkommen <em><%= results[0].UID %></em>!<br/> Till din företagsida </h1>
+					
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-content" id="profile" style="display:none">
 		<div class="main2">
 			<div class="font2">
 				<div class="StudentDiv2">
-					<h2>Välkommen <%= results[0].UID %></h2>
 					<h1>Ändra Personuppgifter</h1>
 					<form action="/change_company_profile" method="POST">
 						<div class="container">
-							<input type="text" name="pnum" id="button2" disabled value = <%= results[0].Orgnr %>>
+							<input type="text" name="username" id="button2" disabled value= <%= results[0].UID %>>
 							<br />
 							<br/>
 							<input type="text" name="pnum" id="button2" disabled value = <%= results[0].Orgnr %>>
@@ -108,7 +128,7 @@
 							<br />
 							<br/>
 						</div>
-						<Button type="submit" id="butt" >Update changes</Button>
+						<Button type="submit" id="butt">Update changes</Button>
 					</form>
 					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
 				</div>
@@ -128,16 +148,23 @@
 	<div class="main-content" id="Jobs" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
-				<div class="title">Available jobs</div>
-				<div class="Tinder">
-					<div id="user">						
-						<p><strong>Name: <span></strong></span><%= results[0].ID %></p>
-						<p><strong>Password: <span></strong><%= results[0].Password %> </span></p>
-						<p><strong>Role: <span></strong><%= results[0].Role %> </span></p>
+				<div class="title">Add an ex-job</div>
+				<!-- <div class="Tinder"> -->
+					<div class="container">
+						<input type="text" name="exjobname" id="button2" placeholder="Enter titel...">
+						<br />
+						<br/>
+						<input type="text" name="description" id="button2" placeholder="Enter description...">
+						<br />
+						<br/>
 					</div>
 				</div>
 			</div>
-        </div>
+		</div>
 	</div>
 </body>
+<<<<<<< HEAD:views/pages/companyProfile.ejs
 </html>
+=======
+</html>
+>>>>>>> eb62e038842af8dea948353ad5c44931c89b0880:views/companyProfile.ejs

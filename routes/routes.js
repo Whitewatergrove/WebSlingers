@@ -14,10 +14,10 @@ router.get('/', (req, res) => {
         });
     }
     else
-        res.render('pages/index')
+        res.render('index')
 });
 router.get('/reg', (req, res) => {
-    res.render('pages/reg');
+    res.render('reg');
 });
 router.post('/register', (req, res) => {
     var username = req.body.username,
@@ -50,16 +50,18 @@ router.get('/login', function (req, res) {
         });
     }
     else
-        res.render('pages/index')
+        res.render('index')
 });
 router.post('/login', function (req, res) {
     var username = req.body.username,
         password = req.body.password;
-
+    console.log(username);
+    console.log(password);
     db.getlogin(username, password, function(err, result){
         console.log("getlogin: "+ result);
         if (err) throw err;
         if (result.length != 0) {
+            console.log('remember ' ,req.body.remember)
             if (req.body.remember) {
                 req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 365 * 100;
             }
@@ -81,7 +83,7 @@ router.get('/profile', (req, res) => {
         db.get_student_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
             req.session.pnr = result[0].pnr;
-            res.render('pages/StudentProfile', {
+            res.render('StudentProfile', {
                 results: result
             });
             console.log(req.session.user);
@@ -92,7 +94,7 @@ router.get('/profile', (req, res) => {
         db.get_company_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
             req.session.orgnr = result[0].Orgnr;
-            res.render('pages/companyProfile', {
+            res.render('companyProfile', {
                 results: result
             });
             console.log(req.session.user);
@@ -107,7 +109,7 @@ router.get('/StudentRegister', (req, res) => {
     if (req.session.user && req.session.role == 'student') {
         db.get_student_user_and_nr(req.session.user, function(err, result){
             if (err) throw err;
-            res.render('pages/StudentRegister', {
+            res.render('StudentRegister', {
                 results: result
             });
             console.log(req.session.user);
