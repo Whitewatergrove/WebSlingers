@@ -63,6 +63,7 @@ body, html {
     text-align: center;
     outline: none;
     text-decoration: none;
+    min-width: 300px;
   }
   .loginbtn:hover,
   .loginbtn:active {
