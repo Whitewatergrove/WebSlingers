@@ -55,11 +55,13 @@ router.get('/login', function (req, res) {
 router.post('/login', function (req, res) {
     var username = req.body.username,
         password = req.body.password;
-
+    console.log(username);
+    console.log(password);
     db.getlogin(username, password, function(err, result){
         console.log("getlogin: "+ result);
         if (err) throw err;
         if (result.length != 0) {
+            console.log('remember ' ,req.body.remember)
             if (req.body.remember) {
                 req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 365 * 100;
             }
