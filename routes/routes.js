@@ -90,6 +90,7 @@ router.post('/login', function (req, res) {
         else {
             bcrypt.compare(password, results[0].Password, function (err, match) {
                 if (match) {
+                    console.log(req.body.remember);
                     if (req.body.remember) {
                         req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 365 * 100;
                     }
