@@ -35,26 +35,36 @@ router.post('/register', (req, res) => {
         password = req.body.password,
         role = req.body.role,
         pnum = req.body.pnum;
+
     console.log(role);
 
     bcrypt.hash(req.body.password, 10, function (err, hash) {
         if (err) throw err;
 
         db.insert_user(username, hash, role, function (err, result) {
-            if (err) throw err;
+            console.log('db.insert_user')
+            if (err) {
+                console.log("fel: " + err);
+                req.flash('danger', 'User already exists. Please choose another username and try again.')
+                res.redirect('/');
+            }
+            else if (role === "student" && !err) {
+                console.log('db.insert_student')
+                db.insert_student(username, pnum, function (err, result) {
+                    if (err) throw err;
+                    req.flash('success', 'You have successfully registered your account.');
+                    res.redirect('/');
+                })
+            }
+            else if (role === "company" && !err) {
+                console.log('db.insert_company')
+                db.insert_company(username, pnum, function (err, result) {
+                    if (err) throw err;
+                    req.flash('success', 'You have successfully registered your account.');
+                    res.redirect('/');
+                })
+            }
         })
-        if (role === "student") {
-            db.insert_student(username, pnum, function (err, result) {
-                if (err) throw err;
-            })
-        }
-        if (role === "company") {
-            db.insert_company(username, pnum, function (err, result) {
-                if (err) throw err;
-            })
-        }
-        req.flash('success', 'You have successfully registered your account');
-        res.redirect('/');
     })
 });
 

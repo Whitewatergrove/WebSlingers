@@ -346,9 +346,10 @@ module.exports = {
 
     //********************************************************************************/
     //inserts
-    insert_user: function(username, password, role){
+    insert_user: function(username, password, role, callback){
         var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";
         con.query(sql, [username, password, role], function(err, res){
+            callback(err, res);
             if(err){
                 console.log("insert user query not working: "+err);
             }
@@ -357,9 +358,10 @@ module.exports = {
             }
         })
     },
-    insert_student: function(uname, pnr){
+    insert_student: function(uname, pnr, callback){
         var sql = "INSERT INTO students (pnr, UID, Name, Gender, Adress, Tel, Status) VALUES (?, ?, 'Name', 'Gender', 'Address', 'Phonenumber', '0');";
         con.query(sql, [pnr, uname], function(err, res){
+            callback(err, res);
             if(err){
                 console.log("insert student query not working: " + err);
             }
@@ -368,9 +370,10 @@ module.exports = {
             }
         })
     },
-    insert_company: function(uname, orgnr){
+    insert_company: function(uname, orgnr, callback){
         var sql = "INSERT INTO companies (Orgnr, UID, Name, Adress, Tel) VALUES (?, ?, 'Name', 'Address', 'Phonenumber');";
         con.query(sql, [orgnr, uname], function(err, res){
+            callback(err, res);
             if(err){
                 console.log("insert company query error");
             }

@@ -75,9 +75,8 @@
 
                             <!-- Tab login-content -->
                             <div id="login" class="tab-pane fade in active">
-                                <form action="/login" method="POST" style="max-width:500px;margin:auto">
+                                <form action="/login" method="POST">
 
-                                    <h2>Sign in</h2>
 
                                     <!-- Username input -->
                                     <div class="input-container">
@@ -93,8 +92,9 @@
 
                                     <!-- Remember me checkbox -->
                                     <div class="input-container">
-                                        <i>Remember me </i>
+                                        <i>Remember me&ensp;</i>
                                         <input id="checkBox" type="checkbox" name="remember">
+                                        <br>
                                     </div>
                                     <!-- Sign in button -->
                                     <button type="submit" class="btn" href="/profile">Sign in</button>
@@ -104,7 +104,6 @@
                             <!-- Tab register-content -->
                             <div id="register" class="tab-pane fade in active" style="display: none">
                                 <form action="/register" method="POST">
-                                    <h2>Sign up</h2>
 
                                     <!-- Role dropdown -->
                                     <div class="input-container">
@@ -134,6 +133,7 @@
                                     </div>
 
                                     <!-- Sign up button -->
+                                    
                                     <button type="submit" class="btn" href="/register" value="Submit">Sign up</button>
                                 </form>
                             </div>
