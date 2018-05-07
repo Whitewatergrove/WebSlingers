@@ -139,6 +139,8 @@ router.get('/profile', (req, res) => {
         res.redirect('/')
 });
 
+
+
 router.get('/StudentRegister', (req, res) => {
     if (req.session.user && req.session.role == 'student') {
         db.get_student_user_and_nr(req.session.user, function (err, result) {
@@ -161,6 +163,7 @@ router.get('/logout', (req, res) => {
 
 // test reg
 router.post('/change_student_profile', function (req, res) {
+    
     var uname = req.body.username,
         name = req.body.name,
         pnr = req.body.pnum,
