@@ -38,3 +38,6 @@ function setIcon() {
         el.className += " fas fa-industry";
     }
 }
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
