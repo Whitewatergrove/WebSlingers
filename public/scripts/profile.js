@@ -27,13 +27,16 @@ function openTab(pageName, tab) {
 function setIcon() {
     var el = document.getElementsByName("icontest")[0];
     var selectedRole = document.getElementById("role").value;
+    var ph = document.getElementById("pnum");
     console.log(selectedRole);
     console.log(el.className);
     if (selectedRole == "student") {
+        ph.placeholder = 'yymmddxxxx...';
         el.className -= " fas fa-industry";
         el.className += ' fas fa-graduation-cap';
 
     } else if (selectedRole == 'company') {
+        ph.placeholder = 'Organisationnumber...';
         el.className -= " fas fa-graduation-cap";
         el.className += " fas fa-industry";
     }
