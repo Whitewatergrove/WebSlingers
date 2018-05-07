@@ -13,6 +13,9 @@
 	<link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
 
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
 	    crossorigin="anonymous"></script>
 
@@ -39,10 +42,7 @@
 		</div>
 		<nav>
 			<ul class="tabs">
-<<<<<<< HEAD:views/pages/companyProfile.ejs
-				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
-=======
-				<li class="tabBorder" onclick="openTab('Frontpage', 'Home')" id="Home" style="border-Left: 5px solid #2e78ba";>
+				<li class="tabBorder" onclick="openTab('Frontpage', 'Home')" id="Home" style="border-Left: 5px solid #2e78ba" ;>
 					<a>
 						<span>
 							<i class="fas fa-home"></i>
@@ -51,7 +51,6 @@
 					</a>
 				</li>
 				<li class="tabBorder" onclick="openTab('profile', 'Open')" id="Open" ;>
->>>>>>> 919ff4f9d894c59655fad64bd2540390fdc54e4b:views/companyProfile.ejs
 					<a>
 						<span>
 							<i class="fa fa-user"></i>
@@ -99,8 +98,12 @@
 		<div class="main2" id="HomeID">
 			<div class="font2">
 				<div class="StudentDiv2">
-					<h1 id="HomeH1">Välkommen <em><%= results[0].UID %></em>!<br/> Till din företagsida </h1>
-					
+					<h1 id="HomeH1">Välkommen
+						<em>
+							<%= results[0].UID %>
+						</em>!
+						<br/> Till din företagsida </h1>
+
 
 				</div>
 			</div>
@@ -110,33 +113,16 @@
 		<div class="main2">
 			<div class="font2">
 				<div class="StudentDiv2">
-<<<<<<< HEAD:views/pages/companyProfile.ejs
-					<h2>Welcome
-						<%= results[0].UID %>
-					</h2>
-					<h1>Change information</h1>
+					<h1>Ändra Personuppgifter</h1>
 					<form action="/change_company_profile" method="POST">
 						<div class="container">
 							<input type="text" name="username" id="button2" disabled value=< %=r esults[0].UID %>>
 							<br />
 							<br/>
-							<input type="password" name="password" id="button2" placeholder="Enter Password...">
-=======
-					<h1>Ändra Personuppgifter</h1>
-					<form action="/change_company_profile" method="POST">
-						<div class="container">
-							<input type="text" name="username" id="button2" disabled value= <%= results[0].UID %>>
->>>>>>> 919ff4f9d894c59655fad64bd2540390fdc54e4b:views/companyProfile.ejs
-							<br />
-							<br/>
-							<input type="text" name="pnum" id="button2" disabled value = <%= results[0].Orgnr %>>
-							<br />
-							<br/>
-<<<<<<< HEAD:views/pages/companyProfile.ejs
 							<input type="text" name="pnum" id="button2" disabled value=< %=r esults[0].Orgnr %>>
-=======
+							<br />
+							<br/>
 							<input type="password" name="password" id="button2" placeholder="Enter Password...">
->>>>>>> 919ff4f9d894c59655fad64bd2540390fdc54e4b:views/companyProfile.ejs
 							<br />
 							<br/>
 							<input type="text" name="name" id="button2" placeholder="Enter Name...">
@@ -169,38 +155,44 @@
 	<div class="main-content" id="Jobs" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
-<<<<<<< HEAD:views/pages/companyProfile.ejs
 				<h1>Your jobs:</h1>
-				<button>Add job here...</button>
+				<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add job</button>
+				<div id="id01" class="modal">
+					<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+					<form class="modal-content" action="/action_page.php">
+						<div class="container">
+							<div class="w3-container">
+								<h2>Add job</h2>
+							</div>
+							<hr>
+							<form class="w3-container">
+								<p>
+									<label><strong>Title</strong></label>
+									<input id="Job-title" class="w3-input" type="text">
+								</p>
+								<p>
+									<label><strong>Job info</strong></label>
+									<input id="Job-info" class="w3-input" type="text">
+								</p>
+							</form>
+							<div class="clearfix">
+								<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+								<button type="submit" class="updatebtn">Update</button>
+							</div>
+						</div>
+					</form>
+				</div>
 				<ul class="Job-list">
-					<li name="SQL expert">
-						<header>SQL expert</header>
+					<li name="SQL-expert">
+						<h4>SQL expert</h4>
 						<p>Headlight sweden reqruiting a IT-student.</p>
-					</li>
-					<li name="SQL manager">
-						<header>SQL manager</header>
-						<p>Headlight sweden reqruiting a IT-student.</p>
+						<button class="changebtn">Change</button>
+						<button class="removebtn">Remove</button>
 					</li>
 				</ul>
-
 			</div>
 		</div>
 	</div>
-=======
-				<div class="title">Add an ex-job</div>
-				<!-- <div class="Tinder"> -->
-					<div class="container">
-						<input type="text" name="exjobname" id="button2" placeholder="Enter titel...">
-						<br />
-						<br/>
-						<input type="text" name="description" id="button2" placeholder="Enter description...">
-						<br />
-						<br/>
-					</div>
-				</div>
-			</div>
-		</div>
->>>>>>> 919ff4f9d894c59655fad64bd2540390fdc54e4b:views/companyProfile.ejs
 	</div>
 </body>
 
