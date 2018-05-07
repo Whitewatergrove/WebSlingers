@@ -39,15 +39,28 @@ body {
 #main2Profile{
 	margin: auto;
 }
-.fa{
+
+
+
+#blueb{
+	background-color: #f2f4f7;
+}
+
+#blueP{
 	color: #2e78ba;
 }
 
+#SideIcon{
+	color:rgb(100, 97, 97);
+}
+#BlackT{
+	color: #000000;
+}
 
 
 .si{
 	position: absolute;
-    bottom: 5%;
+    bottom: 100%;
     left: 5%;
     width: 20%;
 }
