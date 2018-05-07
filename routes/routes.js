@@ -27,9 +27,6 @@ router.get('/', (req, res) => {
     else
         res.render('index')
 });
-router.get('/reg', (req, res) => {
-    res.render('reg');
-});
 router.post('/register', (req, res) => {
     var username = req.body.username,
         password = req.body.password,
@@ -139,21 +136,6 @@ router.get('/profile', (req, res) => {
         res.redirect('/')
 });
 
-router.get('/StudentRegister', (req, res) => {
-    if (req.session.user && req.session.role == 'student') {
-        db.get_student_user_and_nr(req.session.user, function (err, result) {
-            if (err) throw err;
-            res.render('StudentRegister', {
-                results: result
-            });
-            console.log(req.session.user);
-            console.log(req.session.role);
-        });
-    }
-    else
-        res.redirect('/')
-});
-
 router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
@@ -173,9 +155,9 @@ router.post('/change_student_profile', function (req, res) {
         if (err) throw err;
     })
     db.update_studentprofile(req.session.pnr, req.session.user, name, gender, adress, tel, function (err, result) {
-        if (err) throw err
+        if (err) throw err;
     })
-    res.redirect("/profile");
+    res.redirect('/profile');
 });
 
 router.post('/change_company_profile', function (req, res) {
