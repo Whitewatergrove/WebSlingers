@@ -162,18 +162,19 @@ router.get('/logout', (req, res) => {
 // test reg
 router.post('/change_student_profile', function (req, res) {
     var uname = req.body.username,
-        password = req.body.password,
         name = req.body.name,
         pnr = req.body.pnum,
         gender = req.body.gender,
         tel = req.body.tel,
         adress = req.body.address;
-
-    db.update_user(req.session.user, password, function (err, result) {
+    bcrypt.hash(req.body.password, 10, function (err, hash) {
         if (err) throw err;
-    })
-    db.update_studentprofile(req.session.pnr, req.session.user, name, gender, adress, tel, function (err, result) {
-        if (err) throw err
+        db.update_user(req.session.user, hash, function (err, result) {
+            if (err) throw err;
+        })
+        db.update_studentprofile(req.session.pnr, req.session.user, name, gender, adress, tel, function (err, result) {
+            if (err) throw err
+        })
     })
     res.redirect("/profile");
 });
@@ -186,12 +187,14 @@ router.post('/change_company_profile', function (req, res) {
         gender = req.body.gender,
         tel = req.body.tel,
         adress = req.body.address;
-
-    db.update_company(req.session.user, password, function (err, result) {
+    bcrypt.hash(req.body.password, 10, function (err, hash) {
         if (err) throw err;
-    })
-    db.update_companyprofile(req.session.orgnr, req.session.user, name, adress, tel, function (err, result) {
-        if (err) throw err
+        db.update_company(req.session.user, hash, function (err, result) {
+            if (err) throw err;
+        })
+        db.update_companyprofile(req.session.orgnr, req.session.user, name, adress, tel, function (err, result) {
+            if (err) throw err
+        })
     })
     res.redirect("/profile");
 });
