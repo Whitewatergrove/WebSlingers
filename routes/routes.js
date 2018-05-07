@@ -83,7 +83,6 @@ router.post('/login', function (req, res) {
         password = req.body.password;
     var sql = "SELECT * FROM users WHERE ID = ?";
     con.query(sql, username, function (err, results) {
-        console.log("getlogin: " + results);
         if (err) throw err;
         if (results.length == 0) {
             req.flash('danger', 'Invalid username or password');
@@ -92,6 +91,7 @@ router.post('/login', function (req, res) {
         else {
             bcrypt.compare(password, results[0].Password, function (err, match) {
                 if (match) {
+                    console.log(req.body.remember);
                     if (req.body.remember) {
                         req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 365 * 100;
                     }
@@ -100,7 +100,7 @@ router.post('/login', function (req, res) {
                     }
                     req.session.user = username;
                     req.session.role = results[0].Role;
-                    req.flash('success', 'Successfully logged in');
+                    req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
                 }
                 else {
