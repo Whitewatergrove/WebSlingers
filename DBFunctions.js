@@ -45,7 +45,7 @@ module.exports = {
         })
     },
 
-    get_students: function (username, pass, callback) {
+    get_students: function (callback) {
         var sql = "SELECT * FROM students";
         con.query(sql, function (err, results) {
             if (err) {
