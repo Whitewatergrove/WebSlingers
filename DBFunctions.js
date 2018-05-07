@@ -20,7 +20,7 @@ module.exports = {
 
     getlogin: function(username, pass,callback){
         var sql = "SELECT * FROM users WHERE ID = ? AND password = ? GROUP BY ID;";
-        con.query(sql, [username, pass, username], function(err, results) {
+        con.query(sql, [username, pass], function(err, results) {
             console.log(results);
             if (err){
             console.log('error in query');
@@ -346,9 +346,10 @@ module.exports = {
 
     //********************************************************************************/
     //inserts
-    insert_user: function(username, password, role){
+    insert_user: function(username, password, role, callback){
         var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";
         con.query(sql, [username, password, role], function(err, res){
+            callback(err, res);
             if(err){
                 console.log("insert user query not working: "+err);
             }
@@ -357,9 +358,10 @@ module.exports = {
             }
         })
     },
-    insert_student: function(uname, pnr){
+    insert_student: function(uname, pnr, callback){
         var sql = "INSERT INTO students (pnr, UID, Name, Gender, Adress, Tel, Status) VALUES (?, ?, 'Name', 'Gender', 'Address', 'Phonenumber', '0');";
         con.query(sql, [pnr, uname], function(err, res){
+            callback(err, res);
             if(err){
                 console.log("insert student query not working: " + err);
             }
@@ -368,9 +370,10 @@ module.exports = {
             }
         })
     },
-    insert_company: function(uname, orgnr){
+    insert_company: function(uname, orgnr, callback){
         var sql = "INSERT INTO companies (Orgnr, UID, Name, Adress, Tel) VALUES (?, ?, 'Name', 'Address', 'Phonenumber');";
         con.query(sql, [orgnr, uname], function(err, res){
+            callback(err, res);
             if(err){
                 console.log("insert company query error");
             }
@@ -382,8 +385,8 @@ module.exports = {
     //**************************************************************************************************/
     //updates
     update_studentprofile: function(pnr, uname, name, gender, adress, tel){
-        var sql = "UPDATE students SET pnr = ?, UID = ?, Name = ?, Gender = ?, Adress = ?, Tel = ? WHERE pnr = ?;";
-        con.query(sql, [pnr, uname, name, gender, adress, tel, pnr], function(err, res){
+        var sql = "UPDATE students SET UID = ?, Name = ?, Gender = ?, Adress = ?, Tel = ? WHERE pnr = ?;";
+        con.query(sql, [uname, name, gender, adress, tel, pnr], function(err, res){
             if(err){
                 console.log("update student query error "+ err);
             }
@@ -394,8 +397,8 @@ module.exports = {
     },
 
     update_user: function(username, password){
-        var sql = "UPDATE users SET ID = ?, Password = ? WHERE ID = ?;";
-        con.query(sql, [username, password, username], function(err, res){
+        var sql = "UPDATE users SET Password = ? WHERE ID = ?;";
+        con.query(sql, [password, username], function(err, res){
             if(err){
                 console.log("update user query error"+ err);
             }
@@ -403,5 +406,28 @@ module.exports = {
                 console.log("update user query ok");
             }
         })
-    }
+    },
+
+    update_companyprofile: function(orgnr, uname, name, adress, tel){
+        var sql = "UPDATE companies SET Name = ?, Adress = ?, Tel = ? WHERE Orgnr = ?;";
+        con.query(sql, [name, adress, tel, orgnr], function(err, res){
+            if(err){
+                console.log("update company query error "+ err);
+            }
+            else{
+                console.log("update company query ok");
+            }
+        })
+    },
+    update_company: function(username, password){
+        var sql = "UPDATE users SET Password = ? WHERE ID = ?;";
+        con.query(sql, [password, username], function(err, res){
+            if(err){
+                console.log("update user query error"+ err);
+            }
+            else{
+                console.log("update user query ok");
+            }
+        })
+    },
 };
