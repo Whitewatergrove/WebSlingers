@@ -24,7 +24,12 @@ module.exports = {
             console.log(results);
             if (err) {
                 console.log('error in query');
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log('query functional');
             }
             callback(null, results);
@@ -36,7 +41,12 @@ module.exports = {
         con.query(sql, function (err, results) {
             if (err) {
                 console.log('error in query');
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log('query functional');
             }
             callback(null, results);
@@ -48,7 +58,12 @@ module.exports = {
         con.query(sql, function (err, results) {
             if (err) {
                 console.log('error in query');
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log('query functional');
             }
             callback(null, results);
@@ -61,7 +76,12 @@ module.exports = {
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log('error in query');
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log('query functional');
             }
             callback(null, results);
@@ -73,7 +93,12 @@ module.exports = {
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log('error in query');
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log('query functional');
             }
             callback(null, results);
@@ -85,7 +110,12 @@ module.exports = {
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log('error in query');
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log('query functional');
             }
             callback(null, results);
@@ -97,7 +127,12 @@ module.exports = {
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log('error in query');
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log('query functional');
             }
             callback(null, results);
@@ -109,7 +144,12 @@ module.exports = {
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log("query error" + err);
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("query ok");
             }
             callback(null, results);
@@ -121,7 +161,12 @@ module.exports = {
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log("query error");
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("query ok");
             }
             callback(null, results);
@@ -133,7 +178,12 @@ module.exports = {
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log("query error");
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("query ok");
             }
             callback(null, results);
@@ -145,7 +195,12 @@ module.exports = {
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log("query error");
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("query ok");
             }
             callback(null, results);
@@ -157,7 +212,12 @@ module.exports = {
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log("query error");
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("query ok");
             }
             callback(null, results);
@@ -169,7 +229,12 @@ module.exports = {
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log("query error");
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("query ok");
             }
             callback(null, results);
@@ -209,7 +274,12 @@ module.exports = {
                     err.log('get_exjobs_promise error in query');
                     let msg = "Promise error";
                     reject(new Error(msg));
+<<<<<<< HEAD
                 } else {
+=======
+                }
+                else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                     console.log('get_exjobs_promise query functional');
                     catagoriesqual = result;
                     resolve(catagoriesqual);
@@ -226,7 +296,12 @@ module.exports = {
                     err.log('get_exjobs_promise error in query');
                     let msg = "Promise error";
                     reject(new Error(msg));
+<<<<<<< HEAD
                 } else {
+=======
+                }
+                else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                     console.log('get_exjobs_promise query functional');
 
                     resolve(catagoriesclass);
@@ -242,7 +317,12 @@ module.exports = {
                     err.log('get_exjobs_promise error in query');
                     let msg = "Promise error";
                     reject(new Error(msg));
+<<<<<<< HEAD
                 } else {
+=======
+                }
+                else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                     console.log('get_exjobs_promise query functional');
 
                     resolve(demanded);
@@ -259,7 +339,12 @@ module.exports = {
                     err.log('get_exjobs_promise error in query');
                     let msg = "Promise error";
                     reject(new Error(msg));
+<<<<<<< HEAD
                 } else {
+=======
+                }
+                else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                     console.log('get_exjobs_promise query functional');
                     exjobs = result;
                     resolve(exjobs);
@@ -277,7 +362,12 @@ module.exports = {
                     console.log('get_students_promise error in query');
                     let msg = "Promise error";
                     reject(new Error(msg));
+<<<<<<< HEAD
                 } else {
+=======
+                }
+                else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                     console.log('get_students_promise query functional');
                     student = results;
                     resolve(student);
@@ -298,7 +388,12 @@ module.exports = {
                         let msg = "Promise error";
                         reject(new Error(msg));
                     }
+<<<<<<< HEAD
                 } else {
+=======
+                }
+                else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                     console.log("get_student_qual_promise query functional");
                     resolve(results);
                 }
@@ -313,7 +408,12 @@ module.exports = {
                     console.log("get_qual_categories_promise query error");
                     let msg = "Promise error";
                     reject(new Error(msg));
+<<<<<<< HEAD
                 } else {
+=======
+                }
+                else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                     console.log("get_qual_categories_promise query ok");
                     resolve(results);
                 }
@@ -324,6 +424,7 @@ module.exports = {
 
     //********************************************************************************/
     //inserts
+<<<<<<< HEAD
 
     insert_categories: function(qualifications, class, callback){
         var sql " INSERT INTO catagories (qualifications, class) VALUES (?, ?);";
@@ -351,13 +452,20 @@ module.exports = {
     },
 
 
+=======
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
     insert_user: function (username, password, role, callback) {
         var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";
         con.query(sql, [username, password, role], function (err, res) {
             callback(err, res);
             if (err) {
                 console.log("insert user query not working: " + err);
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("insert user query ok");
             }
         })
@@ -368,7 +476,12 @@ module.exports = {
             callback(err, res);
             if (err) {
                 console.log("insert student query not working: " + err);
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("insert student query ok");
             }
         })
@@ -379,51 +492,100 @@ module.exports = {
             callback(err, res);
             if (err) {
                 console.log("insert company query error");
+<<<<<<< HEAD
             } else {
+=======
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("insert company query ok");
             }
         })
     },
     //**************************************************************************************************/
     //updates
+<<<<<<< HEAD
     update_studentprofile: function (pnr, uname, name, gender, adress, tel) {
         var sql = "UPDATE students SET UID = ?, Name = ?, Gender = ?, Adress = ?, Tel = ? WHERE pnr = ?;";
         con.query(sql, [uname, name, gender, adress, tel, pnr], function (err, res) {
             if (err) {
                 console.log("update student query error " + err);
             } else {
+=======
+    update_studentprofile: function (pnr, uname, name, gender, adress, tel, callback) {
+        var sql = "UPDATE students SET UID = ?, Name = ?, Gender = ?, Adress = ?, Tel = ? WHERE pnr = ?;";
+        con.query(sql, [uname, name, gender, adress, tel, pnr], function (err, res) {
+            callback(err, res);
+            if (err) {
+                console.log("update student query error " + err);
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("update student query ok");
             }
         })
     },
 
+<<<<<<< HEAD
     update_user: function (username, password) {
         var sql = "UPDATE users SET Password = ? WHERE ID = ?;";
         con.query(sql, [password, username], function (err, res) {
             if (err) {
                 console.log("update user query error" + err);
             } else {
+=======
+    update_user: function (username, password, callback) {
+        var sql = "UPDATE users SET Password = ? WHERE ID = ?;";
+        con.query(sql, [password, username], function (err, res) {
+            callback(err, res);
+            if (err) {
+                console.log("update user query error" + err);
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("update user query ok");
             }
         })
     },
 
+<<<<<<< HEAD
     update_companyprofile: function (orgnr, uname, name, adress, tel) {
         var sql = "UPDATE companies SET Name = ?, Adress = ?, Tel = ? WHERE Orgnr = ?;";
         con.query(sql, [name, adress, tel, orgnr], function (err, res) {
             if (err) {
                 console.log("update company query error " + err);
             } else {
+=======
+    update_companyprofile: function (orgnr, uname, name, adress, tel, callback) {
+        var sql = "UPDATE companies SET Name = ?, Adress = ?, Tel = ? WHERE Orgnr = ?;";
+        con.query(sql, [name, adress, tel, orgnr], function (err, res) {
+            callback(err, res);
+            if (err) {
+                console.log("update company query error " + err);
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("update company query ok");
             }
         })
     },
+<<<<<<< HEAD
     update_company: function (username, password) {
         var sql = "UPDATE users SET Password = ? WHERE ID = ?;";
         con.query(sql, [password, username], function (err, res) {
             if (err) {
                 console.log("update user query error" + err);
             } else {
+=======
+    update_company: function (username, password, callback) {
+        var sql = "UPDATE users SET Password = ? WHERE ID = ?;";
+        con.query(sql, [password, username], function (err, res) {
+            callback(err, res);
+            if (err) {
+                console.log("update user query error" + err);
+            }
+            else {
+>>>>>>> 0f1e309ce485443c5cddf2ce3c99076c08198563
                 console.log("update user query ok");
             }
         })

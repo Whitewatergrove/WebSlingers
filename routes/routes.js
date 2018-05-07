@@ -27,9 +27,6 @@ router.get('/', (req, res) => {
     else
         res.render('index')
 });
-router.get('/reg', (req, res) => {
-    res.render('reg');
-});
 router.post('/register', (req, res) => {
     var username = req.body.username,
         password = req.body.password,
@@ -83,7 +80,6 @@ router.post('/login', function (req, res) {
         password = req.body.password;
     var sql = "SELECT * FROM users WHERE ID = ?";
     con.query(sql, username, function (err, results) {
-        console.log("getlogin: " + results);
         if (err) throw err;
         if (results.length == 0) {
             req.flash('danger', 'Invalid username or password');
@@ -92,6 +88,7 @@ router.post('/login', function (req, res) {
         else {
             bcrypt.compare(password, results[0].Password, function (err, match) {
                 if (match) {
+                    console.log(req.body.remember);
                     if (req.body.remember) {
                         req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 365 * 100;
                     }
@@ -100,7 +97,7 @@ router.post('/login', function (req, res) {
                     }
                     req.session.user = username;
                     req.session.role = results[0].Role;
-                    req.flash('success', 'Successfully logged in');
+                    req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
                 }
                 else {
@@ -139,43 +136,40 @@ router.get('/profile', (req, res) => {
         res.redirect('/')
 });
 
-router.get('/StudentRegister', (req, res) => {
-    if (req.session.user && req.session.role == 'student') {
-        db.get_student_user_and_nr(req.session.user, function (err, result) {
-            if (err) throw err;
-            res.render('StudentRegister', {
-                results: result
-            });
-            console.log(req.session.user);
-            console.log(req.session.role);
-        });
-    }
-    else
-        res.redirect('/')
-});
-
 router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
 
-// test reg
 router.post('/change_student_profile', function (req, res) {
     var uname = req.body.username,
-        password = req.body.password,
         name = req.body.name,
         pnr = req.body.pnum,
         gender = req.body.gender,
         tel = req.body.tel,
         adress = req.body.address;
 
-    db.update_user(req.session.user, password, function (err, result) {
+    bcrypt.hash(req.body.password, 10, function (err, hash) {
         if (err) throw err;
+        db.update_user(req.session.user, hash, function (err, result) {
+            if (err) {
+                req.flash('danger', 'An error has occured while updating');
+                res.redirect('/profile');
+            }
+            else if (!err) {
+                db.update_studentprofile(req.session.pnr, req.session.user, name, gender, adress, tel, function (err, result) {
+                    if (err) {
+                        req.flash('danger', 'An error has occured while updating');
+                        res.redirect('/profile');
+                    }
+                    else {
+                        req.flash('success', 'You have succcessfully updated your profile');
+                        res.redirect('/profile');
+                    }
+                })
+            }
+        })
     })
-    db.update_studentprofile(req.session.pnr, req.session.user, name, gender, adress, tel, function (err, result) {
-        if (err) throw err
-    })
-    res.redirect("/profile");
 });
 
 router.post('/change_company_profile', function (req, res) {
@@ -186,14 +180,27 @@ router.post('/change_company_profile', function (req, res) {
         gender = req.body.gender,
         tel = req.body.tel,
         adress = req.body.address;
-
-    db.update_company(req.session.user, password, function (err, result) {
+    bcrypt.hash(req.body.password, 10, function (err, hash) {
         if (err) throw err;
+        db.update_company(req.session.user, hash, function (err, result) {
+            if (err) {
+                req.flash('danger', 'An error has occured while updating');
+                res.redirect('/profile');
+            }
+            else if (!err) {
+                db.update_companyprofile(req.session.orgnr, req.session.user, name, adress, tel, function (err, result) {
+                    if (err) {
+                        req.flash('danger', 'An error has occured while updating');
+                        res.redirect('/profile');
+                    }
+                    else {
+                        req.flash('success', 'You have succcessfully updated your profile');
+                        res.redirect('/profile');
+                    }
+                })
+            }
+        })
     })
-    db.update_companyprofile(req.session.orgnr, req.session.user, name, adress, tel, function (err, result) {
-        if (err) throw err
-    })
-    res.redirect("/profile");
 });
 
 router.get('/search', function (req, res) {
