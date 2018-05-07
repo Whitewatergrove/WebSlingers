@@ -345,9 +345,9 @@ module.exports = {
     //********************************************************************************/
     //inserts
 
-    insert_categories: function(qualifications, class, callback){
+    insert_categories: function(qualifications, klass, callback){
         var sql " INSERT INTO catagories (qualifications, class) VALUES (?, ?);";
-        con.query(sql, [qualifications, class], function (err,res){
+        con.query(sql, [qualifications, klass], function (err,res){
             callback(err,res);      
             if (err) {
                 console.log("insert user query not working: " + err);
