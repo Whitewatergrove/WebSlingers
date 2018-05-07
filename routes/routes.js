@@ -156,16 +156,18 @@ router.post('/change_student_profile', function (req, res) {
                 req.flash('danger', 'An error has occured while updating');
                 res.redirect('/profile');
             }
-            db.update_studentprofile(req.session.pnr, req.session.user, name, gender, adress, tel, function (err, result) {
-                if (err) {
-                    req.flash('danger', 'An error has occured while updating');
-                    res.redirect('/profile');
-                }
-                else {
-                    req.flash('success', 'You have succcessfully updated your profile');
-                    res.redirect('/profile');
-                }
-            })
+            else if (!err) {
+                db.update_studentprofile(req.session.pnr, req.session.user, name, gender, adress, tel, function (err, result) {
+                    if (err) {
+                        req.flash('danger', 'An error has occured while updating');
+                        res.redirect('/profile');
+                    }
+                    else {
+                        req.flash('success', 'You have succcessfully updated your profile');
+                        res.redirect('/profile');
+                    }
+                })
+            }
         })
     })
 });
@@ -181,13 +183,24 @@ router.post('/change_company_profile', function (req, res) {
     bcrypt.hash(req.body.password, 10, function (err, hash) {
         if (err) throw err;
         db.update_company(req.session.user, hash, function (err, result) {
-            if (err) throw err;
-        })
-        db.update_companyprofile(req.session.orgnr, req.session.user, name, adress, tel, function (err, result) {
-            if (err) throw err
+            if (err) {
+                req.flash('danger', 'An error has occured while updating');
+                res.redirect('/profile');
+            }
+            else if (!err) {
+                db.update_companyprofile(req.session.orgnr, req.session.user, name, adress, tel, function (err, result) {
+                    if (err) {
+                        req.flash('danger', 'An error has occured while updating');
+                        res.redirect('/profile');
+                    }
+                    else {
+                        req.flash('success', 'You have succcessfully updated your profile');
+                        res.redirect('/profile');
+                    }
+                })
+            }
         })
     })
-    res.redirect("/profile");
 });
 
 router.get('/search', function (req, res) {
