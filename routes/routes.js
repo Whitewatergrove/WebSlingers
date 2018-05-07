@@ -27,22 +27,27 @@ router.post('/register', (req, res) => {
         password = req.body.password,
         role = req.body.role,
         pnum = req.body.pnum;
+        
     console.log(role);
     db.insert_user(username, password, role, function(err, result){
-        if (err) throw err;
+        console.log('db.insert_user')
+        if (err){
+            console.log("fel: " + err);
+        } 
+        else if(role === "student" && !err){
+            console.log('db.insert_student')
+            db.insert_student(username, pnum, function(err, result){
+            if(err) throw err;
+            })
+        }
+        else if(role === "company" && !err){
+            console.log('db.insert_company')
+            db.insert_company(username, pnum, function(err, result){
+            if(err) throw err;
+            })
+        }
     })
-
-    if(role === "student"){
-        db.insert_student(username, pnum, function(err, result){
-        if(err) throw err;
-        })
-    }
-    if(role === "company"){
-        db.insert_company(username, pnum, function(err, result){
-        if(err) throw err;
-        })
-    }  
-    res.redirect('/login');  
+    res.redirect("/login");
 });
 
 router.get('/login', function (req, res) {
