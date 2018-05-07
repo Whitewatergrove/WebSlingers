@@ -334,3 +334,42 @@ body {
 #usertable table, th, td{
 	border: 1px solid black;
 }
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.item1 {
+	grid-area: myArea;
+  }
+  .grid-container {
+	display: grid;
+	grid-template-areas: 'myArea myArea myArea myArea myArea';
+	grid-gap: 10px;
+	background-color: rgba(30, 143, 255, 0.197);
+	padding: 10px;
+  }
+  .grid-container > div {
+	background-color: dodgerblue;
+	text-align: center;
+	padding: 20px 0;
+	font-size: 30px;
+  }
+  .Job-list > li{
+	  padding: 10px;
+	  background-color: #2e78ba;
+	  list-style-type: none;
+
+  }

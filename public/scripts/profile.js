@@ -36,7 +36,7 @@ function setIcon() {
         el.className += ' fas fa-graduation-cap';
 
     } else if (selectedRole == 'company') {
-        ph.placeholder = 'Organisationnumber...';
+        ph.placeholder = 'Organization number...';
         el.className -= " fas fa-graduation-cap";
         el.className += " fas fa-industry";
     }
