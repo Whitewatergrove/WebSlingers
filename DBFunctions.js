@@ -346,7 +346,7 @@ module.exports = {
     //inserts
 
     insert_categories: function(qualifications, klass, callback){
-        var sql " INSERT INTO catagories (qualifications, class) VALUES (?, ?);";
+        var sql= " INSERT INTO catagories (qualifications, class) VALUES (?, ?);";
         con.query(sql, [qualifications, klass], function (err,res){
             callback(err,res);      
             if (err) {
