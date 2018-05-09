@@ -228,53 +228,63 @@ router.post('/forgot', function (req, res) {
             bcrypt.compare(results[0].Password, results[0].Password, function (err, match) {
                 if (err) throw err;
                 else if (match)
-                bcrypt.hash('password', 10, function (err, hash) {
-                    if (err) throw err;
-                    db.update_user(req.body.email, hash, function (err, result) {
-                        if (err) {
-                            req.flash('danger', 'An error has occured while updating');
-                            res.redirect('/profile');
-                        }
-                        else if (!err) {
-                            var transporter = nodemailer.createTransport({
-                                service: 'gmail',
-                                auth: {
-                                    user: 'customerservice.webslingers@gmail.com',
-                                    pass: 'jocketest'
-                                },
-                                tls: {
-                                    rejectUnauthorized: false
-                                }
-                            });
-                            const mailOptions = {
-                                from: "Jocke Le 💩<customerservice.webslingers@hotmail.com>",
-                                to: req.body.email,
-                                subject: 'Password Reset - Webslingers',
-                                html: output
-                                // html: '<p>You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-                                // 'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                                // 'http://' + /*req.headers.host + */ '/reset/' /*+ token*/ + '\n\n' +
-                                // 'If you did not request this, please ignore this email and your password will remain unchanged.\n</p>'// plain text body
+                    bcrypt.hash('password', 10, function (err, hash) {
+                        if (err) throw err;
+                        db.update_user(req.body.email, hash, function (err, result) {
+                            if (err) {
+                                req.flash('danger', 'An error has occured while updating');
+                                res.redirect('/profile');
+                            }
+                            else if (!err) {
+                                var transporter = nodemailer.createTransport({
+                                    service: 'gmail',
+                                    auth: {
+                                        user: 'customerservice.webslingers@gmail.com',
+                                        pass: 'jocketest'
+                                    },
+                                    tls: {
+                                        rejectUnauthorized: false
+                                    }
+                                });
+                                const mailOptions = {
+                                    from: "Jocke Le 💩<customerservice.webslingers@hotmail.com>",
+                                    to: req.body.email,
+                                    subject: 'Password Reset - Webslingers',
+                                    html: output
+                                    // html: '<p>You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                                    // 'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                                    // 'http://' + /*req.headers.host + */ '/reset/' /*+ token*/ + '\n\n' +
+                                    // 'If you did not request this, please ignore this email and your password will remain unchanged.\n</p>'// plain text body
 
-                            };
-                            transporter.sendMail(mailOptions, function (err, info) {
-                                if (err) throw err;
-                                else {
-                                    req.flash('success', 'An email has been sent to you. Please check your inbox.');
-                                    res.redirect('/');
-                                }
-                            });
-                        }
+                                };
+                                transporter.sendMail(mailOptions, function (err, info) {
+                                    if (err) throw err;
+                                    else {
+                                        req.flash('success', 'An email has been sent to you. Please check your inbox.');
+                                        res.redirect('/');
+                                    }
+                                });
+                            }
+                        })
                     })
-                })
             })
         }
     });
 });
-router.post('/upload_file', function(req, res){
-    console.log(req.body);
-    console.log(req.files);
-    console.log(req.files.file);
-})
+router.post('/add_job', function (req, res) {
+    console.log(req.body.title);
+    console.log(req.body.info);
+    console.log(req.session.orgnr);
+    db.insert_exjobs(req.session.orgnr, req.body.title, req.body.info, function (err, results) {
+        if (err) {
+            req.flash('danger', 'An error has occured');
+            res.redirect('/profile');
+        }
+        else {
+            req.flash('success', 'You have added a new job');
+            res.redirect('/profile');
+        }
+    })
+});
 
 module.exports = router;
