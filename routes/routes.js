@@ -208,4 +208,10 @@ router.get('/search', function (req, res) {
     match.testmatch();
 });
 
+router.get('/profileStudentProfile',function(req, res){
+    res.render("pages/profileStudentProfile");
+})
+
 module.exports = router;
+
+

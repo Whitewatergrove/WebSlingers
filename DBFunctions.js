@@ -193,8 +193,7 @@ module.exports = {
         con.query('SELECT * FROM users', function (err, results) {
             if (err) {
                 callback(err, null);
-            }
-            else {
+            } else {
                 callback(null, results);
             }
         })
@@ -204,8 +203,7 @@ module.exports = {
         con.query('SELECT * FROM messages', function (err, results) {
             if (err) {
                 callback(err, null);
-            }
-            else {
+            } else {
                 callback(null, results);
             }
         })
@@ -346,6 +344,33 @@ module.exports = {
 
     //********************************************************************************/
     //inserts
+
+    insert_categories: function(qualifications, klass, callback){
+        var sql= " INSERT INTO catagories (qualifications, class) VALUES (?, ?);";
+        con.query(sql, [qualifications, klass], function (err,res){
+            callback(err,res);      
+            if (err) {
+                console.log("insert user query not working: " + err);
+            } else {
+                console.log("insert user query ok");
+            }
+        })
+    },
+
+
+    insert_exjobs: function (ExOID, Name, Info,callback) {
+        var sql = "INSERT INTO exjobs (ExOID, Name, Info) VALUES (?, ?, ,?);";
+        con.query(sql, [ExOID, Name, Info], function (err, res) {
+           callback(err,res);
+            if (err) {
+                console.log("insert user query not working: " + err);
+            } else {
+                console.log("insert user query ok");
+            }
+        })
+    },
+
+
     insert_user: function (username, password, role, callback) {
         var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";
         con.query(sql, [username, password, role], function (err, res) {
@@ -434,4 +459,35 @@ module.exports = {
             }
         })
     },
+
+
+    //**************************************************************************************************/
+    //Deletes
+    delete_exjob: function (orgnr, callback) {
+        var sql = "DELETE FROM exjobs WHERE ID = (Select * from (select ID FROM exjobs  WHERE ExOID =  (SELECT orgnr FROM companies WHERE UID = ? ) ) as alias1);";
+        con.query(sql, [orgnr], function (err, res) {
+            if (err) {
+                console.log("delete user query error" + err);
+            } else {
+                console.log("delete user query ok");
+            }
+        })
+    },
+
+    delete_user: function(ID,callback){
+        var sql = "DELETE FROM users WHERE ID  = ?; ";
+        con.query(sql,[ID], function (err,res){
+            if (err) {
+                console.log("delete user query error" + err);
+            } else {
+                console.log("delete user query ok");
+            } 
+        })
+    },
+
+
+
+
+
+
 };
