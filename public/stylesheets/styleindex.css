@@ -34,12 +34,12 @@ body, html {
 }
 
 .input-field:focus {
-    border: 2px solid dodgerblue;
+    border: 2px solid #2e78ba;
 }
 
 /* Set a style for the submit button */
 .btn {
-    background-color: dodgerblue;
+    background-color: #2e78ba;
     color: white;
     padding: 15px 20px;
     border: none;
@@ -74,8 +74,8 @@ body, html {
   .loginbtn:hover,
   .loginbtn:active {
     background-color: rgba(30, 146, 255, 0.295);
-    border-color: dodgerblue;
-    color: dodgerblue;
+    border-color: #2e78ba;
+    color: #2e78ba;
   }
 
   .tab-content{
