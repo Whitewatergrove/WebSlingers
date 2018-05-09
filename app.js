@@ -9,8 +9,14 @@ const routes = require('./routes/routes');
 let bcrypt = require('bcrypt');
 let cookieParser = require('cookie-parser');
 let session = require('express-session');
+let bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+
+<<<<<<< HEAD
+=======
 let flash = require('connect-flash');
 
+>>>>>>> f8b38e99131cac4589ddcb708ad842d4986ea6c9
 app.use(cookieParser());
 app.use(flash());
 
@@ -27,7 +33,7 @@ app.use(function (req, res, next) {
 });
 app.use('/', routes);
 
-app.set('port', 3000);
+app.set('port', 80);
 var server = app.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + server.address().port);
 });

@@ -29,15 +29,17 @@ body, html {
     width: 100%;
     padding: 10px;
     outline: none;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .input-field:focus {
-    border: 2px solid dodgerblue;
+    border: 2px solid #2e78ba;
 }
 
 /* Set a style for the submit button */
 .btn {
-    background-color: dodgerblue;
+    background-color: #2e78ba;
     color: white;
     padding: 15px 20px;
     border: none;
@@ -65,8 +67,21 @@ body, html {
     text-decoration: none;
     min-width: 300px;
   }
+.nav-tabs{
+    max-width: 500px;
+    margin-bottom: 3%;
+}
   .loginbtn:hover,
   .loginbtn:active {
-    background-color: #fff;
-    color: #000;
+    background-color: rgba(30, 146, 255, 0.295);
+    border-color: #2e78ba;
+    color: #2e78ba;
+  }
+
+  .tab-content{
+    font-family: "Raleway", sans-serif;
+  }
+  i{
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
   }

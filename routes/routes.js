@@ -17,6 +17,17 @@ var con = mysql.createConnection({
     database: "webslingers"
 });
 
+let bcrypt = require('bcrypt');
+let mysql = require('mysql');
+
+var con = mysql.createConnection({
+    host: "83.255.197.121",
+    user: "joakim",
+    password: "joakim97",
+    port: "3306",
+    database: "webslingers"
+});
+
 router.get('/', (req, res) => {
     if (req.session.user) {
         db.getuname(req.session.user, function (err, result) {
@@ -34,6 +45,7 @@ router.post('/register', (req, res) => {
         pnum = req.body.pnum;
 
     console.log(role);
+<<<<<<< HEAD
 
     bcrypt.hash(req.body.password, 10, function (err, hash) {
         if (err) throw err;
@@ -63,6 +75,37 @@ router.post('/register', (req, res) => {
     });
     
     
+=======
+
+    bcrypt.hash(req.body.password, 10, function (err, hash) {
+        if (err) throw err;
+
+        db.insert_user(username, hash, role, function (err, result) {
+            console.log('db.insert_user')
+            if (err) {
+                console.log("fel: " + err);
+                req.flash('danger', 'User already exists. Please choose another username and try again.')
+                res.redirect('/');
+            }
+            else if (role === "student" && !err) {
+                console.log('db.insert_student')
+                db.insert_student(username, pnum, function (err, result) {
+                    if (err) throw err;
+                    req.flash('success', 'You have successfully registered your account.');
+                    res.redirect('/');
+                })
+            }
+            else if (role === "company" && !err) {
+                console.log('db.insert_company')
+                db.insert_company(username, pnum, function (err, result) {
+                    if (err) throw err;
+                    req.flash('success', 'You have successfully registered your account.');
+                    res.redirect('/');
+                })
+            }
+        })
+    })
+>>>>>>> f8b38e99131cac4589ddcb708ad842d4986ea6c9
 });
 
 router.get('/login', function (req, res) {
@@ -81,7 +124,10 @@ router.post('/login', function (req, res) {
         password = req.body.password;
     var sql = "SELECT * FROM users WHERE ID = ?";
     con.query(sql, username, function (err, results) {
+<<<<<<< HEAD
         console.log("getlogin: " + results);
+=======
+>>>>>>> f8b38e99131cac4589ddcb708ad842d4986ea6c9
         if (err) throw err;
         if (results.length == 0) {
             req.flash('danger', 'Invalid username or password');
@@ -99,11 +145,19 @@ router.post('/login', function (req, res) {
                     }
                     req.session.user = username;
                     req.session.role = results[0].Role;
+<<<<<<< HEAD
                     req.flash('success', 'Successfully logged in');
                     res.redirect('/profile');
                 }
                 else {
                     console.log('failed while comparing hash');
+=======
+                    req.flash('success', 'You have successfully logged in');
+                    res.redirect('/profile');
+                }
+                else {
+                    console.log('wtf');
+>>>>>>> f8b38e99131cac4589ddcb708ad842d4986ea6c9
                     req.flash('danger', 'Invalid username or password');
                     res.redirect('/');
                 }
@@ -135,6 +189,7 @@ router.get('/profile', (req, res) => {
         });
     }
     else
+<<<<<<< HEAD
         res.redirect('/')
 });
 
@@ -150,6 +205,8 @@ router.get('/StudentRegister', (req, res) => {
         });
     }
     else
+=======
+>>>>>>> f8b38e99131cac4589ddcb708ad842d4986ea6c9
         res.redirect('/')
 });
 
@@ -158,23 +215,50 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
+<<<<<<< HEAD
 // test reg
 router.post('/change_student_profile', function (req, res) {
     var uname = req.body.username,
         password = req.body.password,
+=======
+router.post('/change_student_profile', function (req, res) {
+    var uname = req.body.username,
+>>>>>>> f8b38e99131cac4589ddcb708ad842d4986ea6c9
         name = req.body.name,
         pnr = req.body.pnum,
         gender = req.body.gender,
         tel = req.body.tel,
         adress = req.body.address;
 
+<<<<<<< HEAD
     db.update_user(req.session.user, password, function (err, result) {
         if (err) throw err;
     })
     db.update_studentprofile(req.session.pnr, req.session.user, name, gender, adress, tel, function (err, result) {
         if (err) throw err
+=======
+    bcrypt.hash(req.body.password, 10, function (err, hash) {
+        if (err) throw err;
+        db.update_user(req.session.user, hash, function (err, result) {
+            if (err) {
+                req.flash('danger', 'An error has occured while updating');
+                res.redirect('/profile');
+            }
+            else if (!err) {
+                db.update_studentprofile(req.session.pnr, req.session.user, name, gender, adress, tel, function (err, result) {
+                    if (err) {
+                        req.flash('danger', 'An error has occured while updating');
+                        res.redirect('/profile');
+                    }
+                    else {
+                        req.flash('success', 'You have succcessfully updated your profile');
+                        res.redirect('/profile');
+                    }
+                })
+            }
+        })
+>>>>>>> f8b38e99131cac4589ddcb708ad842d4986ea6c9
     })
-    res.redirect("/profile");
 });
 
 router.post('/change_company_profile', function (req, res) {
@@ -185,14 +269,36 @@ router.post('/change_company_profile', function (req, res) {
         gender = req.body.gender,
         tel = req.body.tel,
         adress = req.body.address;
+<<<<<<< HEAD
 
     db.update_company(req.session.user, password, function (err, result) {
         if (err) throw err;
     })
     db.update_companyprofile(req.session.orgnr, req.session.user, name, adress, tel, function (err, result) {
         if (err) throw err
+=======
+    bcrypt.hash(req.body.password, 10, function (err, hash) {
+        if (err) throw err;
+        db.update_company(req.session.user, hash, function (err, result) {
+            if (err) {
+                req.flash('danger', 'An error has occured while updating');
+                res.redirect('/profile');
+            }
+            else if (!err) {
+                db.update_companyprofile(req.session.orgnr, req.session.user, name, adress, tel, function (err, result) {
+                    if (err) {
+                        req.flash('danger', 'An error has occured while updating');
+                        res.redirect('/profile');
+                    }
+                    else {
+                        req.flash('success', 'You have succcessfully updated your profile');
+                        res.redirect('/profile');
+                    }
+                })
+            }
+        })
+>>>>>>> f8b38e99131cac4589ddcb708ad842d4986ea6c9
     })
-    res.redirect("/profile");
 });
 
 router.get('/search', function (req, res) {
