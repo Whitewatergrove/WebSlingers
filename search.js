@@ -208,7 +208,7 @@ async function set_student_qual(list)                               // Fetches a
         console.log(x);
         logga(line);
         x.onload = function() {
-            console.log("onload " + x);
+            logga(x);
             logga(line);
             resolve(x);
         }
