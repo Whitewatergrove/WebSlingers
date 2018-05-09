@@ -68,7 +68,7 @@ module.exports = {
             else {
                 console.log('query functional');
             }
-            callback(null, results);
+            callback(err, results);
         })
     },
 
