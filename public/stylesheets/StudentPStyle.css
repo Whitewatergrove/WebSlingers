@@ -22,7 +22,6 @@ body {
 
 #HomeID {
 	background-image: url('../images/safe_image.jpg');
-<<<<<<< HEAD
 	overflow: auto;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -33,12 +32,6 @@ body {
 	bottom: 0;
 	position: fixed;
 	margin: auto;
-=======
-	max-height: 500px;
-	height: 500px;
-	background-position: center;
-	background-size: cover;
->>>>>>> f8b38e99131cac4589ddcb708ad842d4986ea6c9
 }
 
 #HomeH1 {
@@ -69,15 +62,9 @@ body {
 
 .si {
 	position: absolute;
-<<<<<<< HEAD
     bottom: 100%;
     left: 5%;
     width: 20%;
-=======
-	bottom: 5%;
-	left: 5%;
-	width: 20%;
->>>>>>> f8b38e99131cac4589ddcb708ad842d4986ea6c9
 }
 
 /* logo in header(mobile version) and side-nav (tablet & desktop) */
