@@ -11,8 +11,24 @@ let cookieParser = require('cookie-parser');
 let session = require('express-session');
 let bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-
 let flash = require('connect-flash');
+/*-----------------Socket.io-------------------------- */
+let http = require('http').Server(app); // server
+let io = require('socket.io')(http);
+
+
+/*-----------------Server function-------------------------- */
+io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+      });
+    });
+
+   /*------------------------------------------------------*/ 
+
+
+
 
 app.use(cookieParser());
 app.use(flash());
@@ -33,4 +49,10 @@ app.use('/', routes);
 app.set('port', 80);
 var server = app.listen(app.get('port'), function () {
   console.log('Express server listening on port ' + server.address().port);
+
+
+
+
+  
+
 });
