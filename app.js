@@ -13,20 +13,43 @@ let bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 let flash = require('connect-flash');
 /*-----------------Socket.io-------------------------- */
-let http = require('http').Server(app); // server
-let io = require('socket.io')(http);
+// let http = require('http').Server(app); // server
+// let io = require('socket.io')(http);
 
 
-/*-----------------Server function-------------------------- */
-io.on('connection', function(socket){
-    console.log('a user connected');
-    socket.on('disconnect', function(){
-        console.log('user disconnected');
-      });
-    });
+// /*-----------------Server function-------------------------- */
+// io.on('connection', function(client){
+//     console.log('a user connected');
 
-   /*------------------------------------------------------*/ 
+//     client.on('chat message', function(msg){
+//         io.emit('chat message', msg);
+//       });
+//     client.on('disconnect', function(){
+//         console.log('user disconnected');
+//         client.emit('thread')
+//       });
+//     });
 
+//    /*-----------------------------------------------------*/ 
+  
+
+
+// var server = require('http').createServer(app);
+// var io = require('socket.io')(server);
+
+
+// io.on('connection', function(client) {
+// 	console.log('Client connected...');
+
+// 	client.on('join', function(data) {
+// 		console.log(data);
+// 	});
+
+// 	client.on('messages', function(data){
+// 		client.emit('thread', data);
+// 		client.broadcast.emit('thread', data);
+// 	});
+// });
 
 
 
