@@ -14,10 +14,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let flash = require('connect-flash');
 /*-----------------Socket.io-------------------------- */
 // let http = require('http').Server(app); // server
-// let io = require('socket.io')(http);
+let io = require('socket.io')(server); // instansierar socket.io
 
 
 // /*-----------------Server function-------------------------- */
+// listen on every connection
+io.on('connection', (socket) => {
+    console.log('new user connected')
+    // default username
+    socket.io = "Anonymous"
+    // listen on change username
+    socket.io('change username', (data) => {
+        socket.username = data.username
+    })
+    // listen on new msg
+    socket.on('new msg', (data) => {
+        // broadcast the new msg
+        io.socket.emit('new msg', {message : data.message, username : socket.username});
+    })
+});
+
+
 // io.on('connection', function(client){
 //     console.log('a user connected');
 
@@ -31,11 +48,7 @@ let flash = require('connect-flash');
 //     });
 
 //    /*-----------------------------------------------------*/ 
-  
 
-
-// var server = require('http').createServer(app);
-// var io = require('socket.io')(server);
 
 
 // io.on('connection', function(client) {
@@ -68,6 +81,10 @@ app.use(function (req, res, next) {
     next();
 });
 app.use('/', routes);
+
+app.get('/',(req,res)=> {
+    res.send('StudentProfile')
+});
 
 app.set('port', 80);
 var server = app.listen(app.get('port'), function () {
