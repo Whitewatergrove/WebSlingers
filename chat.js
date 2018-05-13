@@ -1,5 +1,34 @@
-// // initializing socket, connection to server
-// var socket = io.connect('http://localhost');
+// initializing socket, connection to server
+ let socket = io.connect('http://localhost/profile');
+
+
+ let send_message = $("#send_message");
+ //let username = $("#username");
+ var message = $("#message")
+
+
+//Emit message
+send_message.click(function(){
+    socket.emit('new_message', {message : message.val()})
+})
+
+//Listen on new_message
+socket.on("new_message", (data) => {
+    feedback.html('');
+    message.val('');
+    chatroom.append("<p class='message'>"  + data.message + "</p>")
+})
+
+
+
+
+
+
+
+
+
+
+
 // socket.on('connect', function(data) {
 //    socket.emit('join', 'Hello server from client');
 // });

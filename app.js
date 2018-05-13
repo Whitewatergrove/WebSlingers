@@ -14,12 +14,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let flash = require('connect-flash');
 /*-----------------Socket.io-------------------------- */
 // let http = require('http').Server(app); // server
-// let io = require('socket.io')(http);
+ 
+let io = require('socket.io')(server);
 
 
 // /*-----------------Server function-------------------------- */
-// io.on('connection', function(client){
-//     console.log('a user connected');
+io.on('connection', function(client){
+    console.log('a user connected');
+
+    //default username
+    client.username = "Anonymous"   
+});
 
 //     client.on('chat message', function(msg){
 //         io.emit('chat message', msg);
@@ -68,6 +73,9 @@ app.use(function (req, res, next) {
     next();
 });
 app.use('/', routes);
+app.use('/', (req, res)=> {
+    res.render('StudentProfile');
+});
 
 app.set('port', 80);
 var server = app.listen(app.get('port'), function () {
