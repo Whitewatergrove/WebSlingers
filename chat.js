@@ -24,11 +24,6 @@ socket.on("new_message", (data) => {
 
 
 
-
-
-
-
-
 // socket.on('connect', function(data) {
 //    socket.emit('join', 'Hello server from client');
 // });
