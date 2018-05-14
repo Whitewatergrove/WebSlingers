@@ -163,21 +163,8 @@ module.exports = {
         })
     },
 
-    get_xjob_company: function (username, callback) {
+    get_exjobs: function (username, callback) {
         var sql = "SELECT ID,Name FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
-        con.query(sql, username, function (err, results) {
-            if (err) {
-                console.log("query error");
-            }
-            else {
-                console.log("query ok");
-            }
-            callback(null, results);
-        })
-    },
-
-    getxjobs: function (username, callback) {
-        var sql = "SELECT QID FROM demanded WHERE EID = (SELECT ID FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?));"
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log("query error");
@@ -456,6 +443,19 @@ module.exports = {
             }
             else {
                 console.log("update user query ok");
+            }
+        })
+    },
+
+    update_exjob: function(id, callback){
+        var sql = "UPDATE exjobs SET Name = ?, Info = ? WHERE ID = ?;";
+        con.query(sql, [id], function(err, res){
+            callback(err, res);
+            if(err){
+                console.log("update exjob failed: "+ err);
+            }
+            else{
+                console.log("update exjobs query working");
             }
         })
     },
