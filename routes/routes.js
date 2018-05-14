@@ -4,7 +4,7 @@ let bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
-let match = require('../search');
+let match = require('./search');
 
 //let mysql = require('mysql');
 //

@@ -3,7 +3,7 @@ let express = require('express');
 let mysql = require('mysql');
 let app = express();
 let bodyParser = require('body-parser')
-let db = require('./DBFunctions');
+let db = require('../DBFunctions');
 
 //let db = ["mySQL", "msSQL", "mimer"];
 //let oop = ["C#","Java","C++","SmalTalk"];
@@ -205,11 +205,7 @@ async function set_student_qual(list)                               // Fetches a
             student.QUAL = db.get_student_qual_promise(student.UID);
         })
         let x = list;
-        console.log(x);
-        logga(line);
         x.onload = function() {
-            logga(x);
-            logga(line);
             resolve(x);
         }
 
@@ -291,23 +287,94 @@ async function get_me_promises(st, ex, cl)
     })
 }
 
+function promising_chaining_test()
+{
+    let students;
+    let exjobs;
+    let classes;
+    let line = '---------------------------------------------';
+    let matched;
+
+    new Promise((resolve, reject) =>{
+
+        let lists = [];
+
+        lists[0] = db.get_students_promise(students);
+        logga(lists[0]);    
+        lists[1] = db.get_xjob_promise(exjobs);
+        logga(lists[1]);   
+        lists[2] = db.get_class_catagories_promise(classes);
+        logga(lists[2]);
+
+        resolve(lists);
+
+    }).then((lists) => {
+        logga(lists);
+        let results = [];
+        lists[0].forEach(student => {
+            student.QUAL = db.get_student_qual_promise(student.UID);
+            });
+            students = lists[0];
+
+            lists[1].forEach(exjob => {
+                exjob.demanded = db.get_xjob_demanded_promise(exjob.ID);
+            });
+            exjobs = lists[1];
+
+            lists[2].forEach(klass => {
+                klass.qualification = db.get_qualifications_catagories_promise(klass.class);
+            });
+            classes = lists[2];
+
+            results[0] = students;
+            results[1] = exjobs;
+            results[2] = classes;
+    }).then(function(results) {
+
+            console.log("resluts: ");
+            logga(results);
+            logga(line);
+
+            console.log("students: ");
+            logga(students);
+            logga(line);
+
+            console.log("exjobs: ");
+            logga(exjobs);
+            logga(line);
+
+            console.log("classes: ");
+            logga(classes);
+            logga(line);
+            
+    })
+
+}
+
+
 module.exports = {
+
 
     testmatch: function()
     {
-        let students;
+        /*let students;
         let exjobs;
         let classes;
         let line = '---------------------------------------------';
-        let matched;
+        let matched;*/
 
-        Promise.all([
+        promising_chaining_test();
+
+        console.log("Meeh")
+        logga(line);
+
+        /*Promise.all([
             db.get_students_promise(students),                      // Fetching all students
             db.get_xjob_promise(exjobs),                            // Fetching all exjobs
             db.get_class_catagories_promise(classes),               // Fetching all classes
         ]).then((lists) => {
 
-            /*lists[0].forEach(student => {
+            lists[0].forEach(student => {
             student.QUAL = db.get_student_qual_promise(student.UID);
             }),
 
@@ -342,10 +409,31 @@ module.exports = {
             logga("mellan här"),
             logga(lists[0][2].QUAL),
             logga("och här"),
-            logga(line),*/
+            logga(line);
             
-            /*students.forEach(student => {
+            
+        }).then(function(results) {
+            
+            logga(results),
+            logga(line),
+
+            logga(students),
+            logga(line),
+
+            logga(exjobs),
+            logga(line),
+
+            logga(classes),
+            logga(line),
+            
+            logga(students),
+            logga(line),
+
+
+            students.forEach(student => {
                 console.log("student");
+                let pos = mathced.length
+                matched[pos].student = student; 
                 logga(student.QUAL.Array.length);
                 exjobs.forEach(exjob => {
                     let check = 0;
@@ -358,24 +446,26 @@ module.exports = {
                                 console.log("demd");
                                 if(qual === demd)
                                 {
+                                    matched[pos].exjob = exjob;
                                 }
                             })
                         })
                     }
                 })
-            }),*/
+            }),
             
-            matched = get_me_promises(lists[0], lists[1], lists[2])
+            //matched = get_me_promises(lists[0], lists[1], lists[2])
 
-            /*logga(matched),
-            logga(line),*/
+            logga(matched),
+            logga(line),
 
             logga(line);
+
         }).catch((error) => {
             // handle error here
             console.error("HÄR"),
             loggaerror();
-        });
+        });*/
         
     }
 }

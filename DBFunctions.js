@@ -220,7 +220,7 @@ module.exports = {
             let sql = "SELECT qualifications FROM catagories where class = ?; "
             con.query(sql, catagoriesqual, function(err,results){
                 if (err) {
-                    err.log('get_exjobs_promise error in query');
+                    console.error('get_exjobs_promise error in query');
                     let msg = "Promise error";
                     reject(new Error(msg));
                 }
@@ -237,7 +237,7 @@ module.exports = {
             let sql = "SELECT class FROM catagories GROUP BY class;"
             con.query(sql, catagoriesclass, function(err,results){
                 if (err) {
-                    err.log('get_exjobs_promise error in query');
+                    console.error('get_exjobs_promise error in query');
                     let msg = "Promise error";
                     reject(new Error(msg));
                 }
@@ -254,7 +254,7 @@ module.exports = {
             let sql = "SELECT QID FROM demanded WHERE EID = ?;"
             con.query(sql, demanded, function(err,results){
                 if (err) {
-                    err.log('get_exjobs_promise error in query');
+                    console.error('get_exjobs_promise error in query');
                     con.onerror = function(){
                         let msg = "Promise error";
                         reject(new Error(msg));
@@ -273,7 +273,7 @@ module.exports = {
             let sql = "SELECT ID, Name, ExOID FROM exjobs;"
             con.query(sql,function(err,results){
                 if (err) {
-                    err.log('get_exjobs_promise error in query');
+                    console.error('get_exjobs_promise error in query');
                     let msg = "Promise error";
                     reject(new Error(msg));
                 }
@@ -292,7 +292,7 @@ module.exports = {
             let sql = "SELECT * FROM students";
             con.query(sql, function(err, results) {
                 if (err){
-                    err.log('get_students_promise error in query');
+                    console.error('get_students_promise error in query');
                     let msg = "Promise error";
                     reject(new Error(msg));
                 }
