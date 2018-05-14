@@ -3,7 +3,7 @@
 }
 
 body {
-	margin: 0;
+	margin: auto;
 	padding: 0;
 	font-family: 'Source Sans Pro', sans-serif;
 	background-color: #faf9f6;
@@ -22,21 +22,47 @@ body {
 
 #HomeID {
 	background-image: url('../images/safe_image.jpg');
-	max-height: 500px;
-	height: 500px;
-	background-position: center;
+	overflow: auto;
+	background-repeat: no-repeat;
 	background-size: cover;
+	background-position: center;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: fixed;
+	margin: auto;
 }
 
 #HomeH1 {
 	color: #FFF;
 }
 
+#dbtest{
+	width: 50%;
+	height: 50%;
+}
+
+#blueb{
+	background-color: #f2f4f7;
+}
+
+#blueP{
+	color: #2e78ba;
+}
+
+#SideIcon{
+	color:rgb(100, 97, 97);
+}
+#BlackT{
+	color: #000000;
+}
+
 .si {
 	position: absolute;
-	bottom: 5%;
-	left: 5%;
-	width: 20%;
+    bottom: 100%;
+    left: 5%;
+    width: 20%;
 }
 
 /* logo in header(mobile version) and side-nav (tablet & desktop) */
@@ -119,7 +145,7 @@ span:after {
 .side-nav {
 	position: absolute;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	background-color: #f2f4f7;
 	z-index: 1;
 	display: none;
@@ -176,7 +202,7 @@ span:after {
 	padding: 0;
 	padding-top: 44px;
 	height: 100%;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .main-content .title {
@@ -322,12 +348,30 @@ span:after {
 	width: 80%;
 	padding-left: 20%;
 }
+.Editbtn{
+	width: 100%;
+	padding: 3%;
+	border-radius: 1%;
+	outline: 0px;
+}
 
 #button2 {
 	width: 100%;
 	padding: 3%;
 	border-radius: 1%;
 	outline: 0px;
+}
+
+#buttondbtest{
+	width: 20%;
+	height: 20%;
+	margin: auto;
+}
+
+#textdbdtest{
+	width: 50%;
+	height: 50%;
+	margin: auto;
 }
 
 #butt {
