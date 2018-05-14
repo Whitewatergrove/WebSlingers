@@ -357,18 +357,18 @@ module.exports = {
 
     testmatch: function()
     {
-        /*let students;
+        let students;
         let exjobs;
         let classes;
         let line = '---------------------------------------------';
-        let matched;*/
+        let matched;
 
-        promising_chaining_test();
+        //promising_chaining_test();
 
         console.log("Meeh")
         logga(line);
 
-        /*Promise.all([
+        Promise.all([
             db.get_students_promise(students),                      // Fetching all students
             db.get_xjob_promise(exjobs),                            // Fetching all exjobs
             db.get_class_catagories_promise(classes),               // Fetching all classes
@@ -430,7 +430,7 @@ module.exports = {
             logga(line),
 
 
-            students.forEach(student => {
+            /*students.forEach(student => {
                 console.log("student");
                 let pos = mathced.length
                 matched[pos].student = student; 
@@ -452,7 +452,7 @@ module.exports = {
                         })
                     }
                 })
-            }),
+            }),*/
             
             //matched = get_me_promises(lists[0], lists[1], lists[2])
 
@@ -465,7 +465,7 @@ module.exports = {
             // handle error here
             console.error("HÄR"),
             loggaerror();
-        });*/
+        });
         
     }
 }
