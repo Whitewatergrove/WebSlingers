@@ -43,7 +43,10 @@ body {
 	margin: auto;
 }
 
-
+#dbtest{
+	width: 50%;
+	height: 50%;
+}
 
 #blueb{
 	background-color: #f2f4f7;
@@ -356,6 +359,18 @@ span:after {
 	padding: 3%;
 	border-radius: 1%;
 	outline: 0px;
+}
+
+#buttondbtest{
+	width: 20%;
+	height: 20%;
+	margin: auto;
+}
+
+#textdbdtest{
+	width: 50%;
+	height: 50%;
+	margin: auto;
 }
 
 #butt {
