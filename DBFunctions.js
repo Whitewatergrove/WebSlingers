@@ -447,9 +447,9 @@ module.exports = {
         })
     },
 
-    update_exjob: function(id, callback){
+    update_exjob: function(name, info, id, callback){
         var sql = "UPDATE exjobs SET Name = ?, Info = ? WHERE ID = ?;";
-        con.query(sql, [id], function(err, res){
+        con.query(sql, name, info, id, function(err, res){
             callback(err, res);
             if(err){
                 console.log("update exjob failed: "+ err);
@@ -463,9 +463,9 @@ module.exports = {
 
     //**************************************************************************************************/
     //Deletes
-    delete_exjob: function (orgnr, callback) {
-        var sql = "DELETE FROM exjobs WHERE ID = (Select * from (select ID FROM exjobs  WHERE ExOID =  (SELECT orgnr FROM companies WHERE UID = ? ) ) as alias1);";
-        con.query(sql, [orgnr], function (err, res) {
+    delete_exjob: function (id, callback) {
+        var sql = "DELETE FROM exjobs WHERE ID = ?";
+        con.query(sql, [id], function (err, res) {
             if (err) {
                 console.log("delete user query error" + err);
             } else {
