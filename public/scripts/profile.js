@@ -71,9 +71,9 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
-$(document).ready(function(){
-    $("#addjob").click(function(){
-        $("#job_list").append("<li><h4>" + $('#Job-title').val() + "</h4><p>" +  $('#Job-info').val() + "<p><button class = 'changebtn' style= 'width: auto'>Change</button> <button class='deletebtn'>Delete</button></li>");
-        $('.changebtn').click(function (){ document.getElementById('id02').style.display='block'})
-    });
-});
+// $(document).ready(function(){
+//     $("#addjob").click(function(){
+//         $("#job_list").append("<li><h4>" + $('#Job-title').val() + "</h4><p>" +  $('#Job-info').val() + "<p><button class = 'changebtn' style= 'width: auto'>Change</button> <button class='deletebtn'>Delete</button></li>");
+//         $('.changebtn').click(function (){ document.getElementById('id02').style.display='block'})
+//     });
+// });

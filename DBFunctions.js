@@ -86,7 +86,8 @@ module.exports = {
     },
 
     get_company_user_and_nr: function (username, callback) {
-        var sql = "select Orgnr, UID, exjobs.Name, exjobs.Info from companies,exjobs where UID = ?;";
+        var sql = "SELECT Orgnr, UID FROM companies WHERE UID = ?";
+        // var sql = "SELECT Orgnr, UID, exjobs.Name, exjobs.Info FROM companies,exjobs WHERE UID = ? AND Orgnr = ExOID;";
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log('error in query');
@@ -94,7 +95,7 @@ module.exports = {
             else {
                 console.log('query functional');
             }
-            callback(null, results);
+            callback(err, results);
         })
     },
 
@@ -163,8 +164,8 @@ module.exports = {
         })
     },
 
-    get_xjob_company: function (username, callback) {
-        var sql = "SELECT ID,Name FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
+    get_exjobs: function (username, callback) {
+        var sql = "SELECT ID,Name,Info FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log("query error");
@@ -172,7 +173,7 @@ module.exports = {
             else {
                 console.log("query ok");
             }
-            callback(null, results);
+            callback(err, results);
         })
     },
 

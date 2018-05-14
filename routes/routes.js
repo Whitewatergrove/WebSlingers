@@ -125,13 +125,23 @@ router.get('/profile', (req, res) => {
     }
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function (err, result) {
-            if (err) throw err;
-            req.session.orgnr = result[0].Orgnr;
-            res.render('companyProfile', {
-                results: result
-            });
-            console.log(req.session.user);
-            console.log(req.session.role);
+            if (err) {
+                throw err;
+            }
+            else {
+                db.get_exjobs(req.session.user, function (err, results) {
+                    if (err) {
+                        throw err;
+                    }
+                    else {
+                        res.render('companyProfile', {
+                            get_exjobs: results,
+                            get_company_user_and_nr : result
+                        });
+                    }
+                })
+                req.session.orgnr = result[0].Orgnr;
+            }
         });
     }
     else
@@ -209,7 +219,7 @@ router.get('/search', function (req, res) {
 });
 router.post('/forgot', function (req, res) {
     const output = `
-    <h3>Your account</h3>
+    <h3>Your account information</h3>
     <ul>
         <li>Account: ${req.body.email}</li>
         <li>Password: password</li>
@@ -286,5 +296,7 @@ router.post('/add_job', function (req, res) {
         }
     })
 });
+router.post('/update_job', function (req, res) {
 
+})
 module.exports = router;
