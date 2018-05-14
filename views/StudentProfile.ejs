@@ -46,25 +46,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	
-	<!--socket delen funkar inte än-->
-	<!-- <script src = "./chat.js"></script>  
-	<script src="./app.js"></script>
-	<script src="./scripts/socket.io.js"></script>
-	<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-	<script>
-  		$(function () {
-			  var socket = io();
-    		  $('form').submit(function(){
-      		  socket.emit('chat message', $('#m').val()); // hanterar skickande av meddelandet
-     		  $('#m').val('');
-				 return false;
-			});
-			socket.on('chat message', function(msg){
-     	 		$('#messages').append($('<li>').text(msg));
-    		});
-		});
-</script> -->
-<!---********************************************************* -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+	<!-- <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css"> -->
+	
+	<link rel="stylesheet" type="text/css" href="./stylesheets/test.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="../chat.js" type="text/Java-script"></script>
 
 </head>
 
@@ -131,8 +118,7 @@
 	</div>
 	<div class="main-content" id="home">
 		<div class="main2" id="main2Profile">
-			<!-- <h2>Välkommen <%= results[0].UID %></h2>  ett försök har gjorts för att få bort den -->
-			<!-- <iframe src="profileStudentProfile.html" width="1200" height="700"> </iframe> -->
+			
 
 
 			<body id="blueb">
@@ -309,17 +295,34 @@
 	</div>
 </div>
 <div class="main-content" id="likes" style="display:none">
-	<div class="main2">
+	<!-- <div class="main2">
 		<div class="font2">
-			<div class="StudentDiv2">
+			<div class="StudentDiv2"> -->
 				<h2>Chat</h2>
-					<form>
+					<!-- <form>
 						<ul id="messages"></ul>
 						  <input required class="input-field" id="messages" type="text" placeholder=" messages" autocomplete="off"/>
 						  <button type="button">Send</button>
-					  </form>
+					  </form> -->
 					  
-					
+					  <!-- <section>
+						<div id="change_username">
+					  <input id="username" type="text" />
+					  <button id="send_username" type="button">Change username</button>
+						</div>
+					  </section> -->
+				  
+					  <section id="chatroom">
+						<section id="feedback"></section>
+					  </section>
+				  
+					  
+				  
+					  <section id="input_zone"> 
+						<!-- <input required id="messages" type="text" placeholder=" messages" autocomplete="off"/> -->
+						<input id="message" class="vertical-align" type="text" placeholder="messages" autocomplete ="off"/>
+						<button id="send_message" class="vertical-align" type="button">Send</button>
+					  </section>
 
 				<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
 			</div>
@@ -339,7 +342,8 @@
 	</div>
 </div>
 </body>
-<footer class="w3-container w3-center w3-margin-top" id="BlackT">
+
+<!-- <footer class="w3-container w3-center w3-margin-top" id="BlackT">
 	<p>Find me on social media.</p>
 	<i class="fa fa-facebook-official w3-hover-opacity" id="blueP"></i>
 	<i class="fa fa-instagram w3-hover-opacity"id="blueP"></i>
@@ -349,7 +353,7 @@
 	<i class="fa fa-linkedin w3-hover-opacity"id="blueP"></i>
 	<p>Powered by Webbslingers</p>
 	<hr>
-</footer>
+</footer> -->
 
 
 

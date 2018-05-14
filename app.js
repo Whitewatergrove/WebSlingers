@@ -13,14 +13,47 @@ let bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 let flash = require('connect-flash');
 /*-----------------Socket.io-------------------------- */
-// let http = require('http').Server(app); // server
-let io = require('socket.io')(client);
+
+//routes
+app.use('/', routes)
+// app.get('/', (req, res) => {
+// 	res.render('')
+// })
+
+//socket.io instantiation
+const io = require("socket.io")(server)
 
 
-// /*-----------------Server function-------------------------- */
-    io.on('connection', function(client){
-        console.log('a user connected');
+//listen on every connection
+io.on('connection', (socket) => {
+	console.log('New user connected')
+
+	//default username
+	socket.username = "Anonymous"
+
+    //listen on change_username
+    socket.on('change_username', (data) => {
+        socket.username = data.username
     })
+    socket.on('connection', (socket) => {
+        console.log('disconnected')
+    })
+
+    //listen on new_message
+    socket.on('new_message', (data) => {
+        //broadcast the new message
+        io.sockets.emit('new_message', {message : data.message});
+    })
+
+    //listen on typing
+    socket.on('typing', (data) => {
+    	socket.broadcast.emit('typing', {username : socket.username})
+    })
+})
+
+
+
+
 //     client.on('chat message', function(msg){
 //         io.emit('chat message', msg);
 //       });
@@ -66,7 +99,11 @@ app.use(function (req, res, next) {
     res.locals.messages = require('express-messages')(req, res);
     next();
 });
-app.use('/', routes);
+// app.use('/', routes);
+
+app.get('/', (req, res)=> {
+    res.render('StudentProfile');
+});
 
 app.set('port', 80);
 var server = app.listen(app.get('port'), function () {
