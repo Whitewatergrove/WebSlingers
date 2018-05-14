@@ -1,4 +1,3 @@
-
 function openTab(tab) {
     var i = 0;
     var x = document.getElementsByClassName("tab");

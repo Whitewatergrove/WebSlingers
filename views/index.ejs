@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Startpage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./stylesheets/styleindex.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/"
+        crossorigin="anonymous">
+
+    <!-- Startpagelinks -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <script src="../scripts/profile.js"></script>
+</head>
+
+<body>
+
+    <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+            <%- messages('message', locals) %>
+
+        <div class="w3-display-middle">
+            <h1 class="w3-jumbo w3-animate-top">LET'S MAKE SOME MAGIC</h1>
+
+            <button type="button" class="loginbtn"data-toggle="modal" data-target="#myModal">
+                <strong>LOG IN</strong>
+            </button>
+        </div>
+        <div class="w3-display-bottomleft w3-padding-large">
+            Powered by
+            <strong>Webslingers</strong>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="modalBG">
+        </div>
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Please login</h4>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="container">
+
+                            <!-- Tab-navigering -->
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#login">Log in</a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#register">Register</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-content">
+
+                            <!-- Tab login-content -->
+                            <div id="login" class="tab-pane fade in active">
+                                <form action="/login" method="POST">
+
+
+                                    <!-- Username input -->
+                                    <div class="input-container">
+                                        <i id="icon" class="fas fa-user"></i>
+                                        <input required class="input-field" type="text" placeholder="Username" name="username">
+                                    </div>
+
+                                    <!-- Password input -->
+                                    <div class="input-container">
+                                        <i id="icon" class="fas fa-key"></i>
+                                        <input required class="input-field" type="password" maxlength="30" placeholder="Password" name="password">
+                                    </div>
+
+                                    <!-- Remember me checkbox -->
+                                    <div class="input-container">
+                                        <i>Remember me&ensp;</i>
+                                        <input id="checkBox" type="checkbox" name="remember">
+                                        <br>
+                                    </div>
+                                    <!-- Sign in button -->
+                                    <button type="submit" class="btn" href="/profile">Sign in</button>
+                                </form>
+                            </div>
+
+                            <!-- Tab register-content -->
+                            <div id="register" class="tab-pane fade in active" style="display: none">
+                                <form action="/register" method="POST">
+
+                                    <!-- Role dropdown -->
+                                    <div class="input-container">
+                                        <i id="icon" name="icontest" class="fas fa-graduation-cap"></i>
+                                        <select id="role" onchange="setIcon()" name="role">
+                                            <option value="student">Student</option>
+                                            <option value="company">Company</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Username input -->
+                                    <div class="input-container">
+                                        <i id="icon" class="fas fa-user"></i>
+                                        <input required class="input-field" type="text" placeholder="Example@example.com..." name="username">
+                                    </div>
+
+                                    <!-- Password input -->
+                                    <div class="input-container">
+                                        <i id="icon" class="fas fa-key"></i>
+                                        <input required class="input-field" type="password" placeholder="Password" name="password">
+                                    </div>
+
+                                    <!-- Personal id input -->
+                                    <div class="input-container">
+                                        <i id="icon" class="fas fa-calendar-plus"></i>
+                                        <input required class="input-field" type="text" placeholder="yymmddxxxx..." name="pnum" id="pnum">
+                                    </div>
+
+                                    <!-- Sign up button -->                                   
+                                    <button type="submit" class="btn" href="/register" value="Submit">Sign up</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
