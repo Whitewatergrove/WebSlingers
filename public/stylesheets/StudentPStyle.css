@@ -199,7 +199,7 @@ span:after {
 	padding: 0;
 	padding-top: 44px;
 	height: 100%;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .main-content .title {
