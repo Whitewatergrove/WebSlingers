@@ -14,13 +14,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let flash = require('connect-flash');
 /*-----------------Socket.io-------------------------- */
 // let http = require('http').Server(app); // server
-// let io = require('socket.io')(http);
+let io = require('socket.io')(client);
 
 
 // /*-----------------Server function-------------------------- */
-// io.on('connection', function(client){
-//     console.log('a user connected');
-
+    io.on('connection', function(client){
+        console.log('a user connected');
+    })
 //     client.on('chat message', function(msg){
 //         io.emit('chat message', msg);
 //       });
@@ -35,7 +35,7 @@ let flash = require('connect-flash');
 
 
 // var server = require('http').createServer(app);
-// var io = require('socket.io')(server);
+// var io = require('socket.io')(client);
 
 
 // io.on('connection', function(client) {
@@ -50,7 +50,6 @@ let flash = require('connect-flash');
 // 		client.broadcast.emit('thread', data);
 // 	});
 // });
-
 
 
 app.use(cookieParser());
@@ -71,11 +70,6 @@ app.use('/', routes);
 
 app.set('port', 80);
 var server = app.listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + server.address().port);
-
-
-
-
-  
+  console.log('Express server listening on port ' + server.address().port);  
 
 });
