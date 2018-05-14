@@ -206,6 +206,36 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
+router.post('/filetest', function (req, res){
+    db.update_user_cv(req.session.pnr, req.body.fileupload, function(err, result){
+    if (err) {
+        console.log("1");
+        req.flash('danger', 'An error has occured while updating');
+        res.redirect('/profile');
+    }
+    else if (!err) {
+        console.log("2");
+        req.flash('success', 'You have succcessfully updated your profile');
+        res.redirect('/profile');
+    }
+    })
+});
+
+router.get('/Certificate', function (req, res){
+    db.get_cv(req.session.pnr, function(err, result){
+        if(err){
+            req.flash('danger', 'An error has occured while loading');
+            res.redirect('/profile');
+        }
+        else if(!err)
+        {
+            console.log("resultatet av skiten: "+result);
+            res.redirect('/profile');
+        }
+    })
+})
+
+
 router.get('/search', function (req, res) {
     match.testmatch();
 });

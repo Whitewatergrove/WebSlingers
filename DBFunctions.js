@@ -45,6 +45,19 @@ module.exports = {
         })
     },
 
+    get_cv: function (id, callback) {
+        var sql = "select file from students where pnr = ?;";
+        con.query(sql, id, function (err, results) {
+            if (err) {
+                console.log('error in query');
+            }
+            else {
+                console.log('query functional');
+            }
+            callback(null, results);
+        })
+    },
+
     get_students: function (callback) {
         var sql = "SELECT * FROM students";
         con.query(sql, function (err, results) {
@@ -344,6 +357,7 @@ module.exports = {
         })
     },
 
+    
 
     insert_exjobs: function (ExOID, Name, Info,callback) {
         var sql = "INSERT INTO exjobs (ExOID, Name, Info) VALUES (?, ?, ,?);";
@@ -418,6 +432,19 @@ module.exports = {
             }
             else {
                 console.log("update user query ok");
+            }
+        })
+    },
+
+    update_user_cv: function(id, file, callback){
+        var sql = "UPDATE students SET File = ? WHERE pnr = ?;";
+        con.query(sql, [file, id], function(err, res){
+            callback(err, res);
+            if(err){
+                console.log("insert cv query very baaad");
+            }
+            else{
+                console.log("insert cv working");
             }
         })
     },
