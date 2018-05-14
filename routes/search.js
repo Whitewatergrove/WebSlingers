@@ -412,7 +412,7 @@ module.exports = {
             logga(line);
             
             
-        }).then(function(results) {
+        /*}).then(function(results) {
             
             logga(results),
             logga(line),
@@ -427,7 +427,7 @@ module.exports = {
             logga(line),
             
             logga(students),
-            logga(line),
+            logga(line),*/
 
 
             /*students.forEach(student => {

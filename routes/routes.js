@@ -5,6 +5,7 @@ let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
 let match = require('./search');
+let matching = require('./match');
 
 let bcrypt = require('bcrypt');
 let mysql = require('mysql');
@@ -101,6 +102,7 @@ router.post('/login', function (req, res) {
                     req.session.role = results[0].Role;
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
+                    matching.prematching(req.session.user);
                 }
                 else {
                     console.log('wtf');
@@ -206,9 +208,14 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
-//router.get('/search', function (req, res) {
-//    match.testmatch();
-//});
+router.get('/match', function (req, res) {
+    //matching.prematching(req.session.user);
+    matching.prematching('agneta');
+});
+router.post('/hejhopmanstest', function (req, res) {
+    //matching.prematching(req.session.user);
+    matching.matcha();
+});
 
 router.get('/dbtester', function (req, res) {
     db.get_students(function(err, result){
@@ -224,7 +231,7 @@ router.get('/dbtester', function (req, res) {
 });
 
 router.get('/profileStudentProfile',function(req, res){
-    res.render("pages/profileStudentProfile");
+    res.render("profileStudentProfile");
 })
 
 module.exports = router;
