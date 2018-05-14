@@ -4,7 +4,7 @@ let mysql = require('mysql');
 let app = express();
 let bodyParser = require('body-parser')
 
-
+//database connection
 var con = mysql.createConnection({
     host: "83.255.197.121",
     user: "joakim",
@@ -198,7 +198,7 @@ module.exports = {
     },
 
     /*************************************************************************************************************************************
-        PROMISE             */
+        PROMISES            */
 
 
     get_qualifications_catagories_promise: function (catagoriesqual) {
@@ -463,7 +463,7 @@ module.exports = {
 
     //**************************************************************************************************/
     //Deletes
-    delete_exjob: function (id, callback) {
+    delete_exjob: function (id, callback) { 
         var sql = "DELETE FROM exjobs WHERE ID = ?";
         con.query(sql, [id], function (err, res) {
             if (err) {

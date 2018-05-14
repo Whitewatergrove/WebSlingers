@@ -206,22 +206,22 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
-//router.get('/search', function (req, res) {
-//    match.testmatch();
-//});
-
-router.get('/dbtester', function (req, res) {
-    db.get_students(function(err, result){
-        if(err) throw err;
-        req.session.res = result;
-        console.log("dbtest: "+req.session.res[0].UID);
-        res.render('StudentProfile', {
-            eh: result
-        })
-        
-    })
-    
+router.get('/search', function (req, res) {
+    match.testmatch();
 });
+
+//router.post('/dbtester', function (req, res) {
+//    db.get_students(function(err, result){
+//        if(err) throw err;
+//        req.session.res = result;
+//        console.log("dbtest: "+req.session.res[0].UID9);
+//        res.render('StudentProfile', {
+//            students: result
+//        })
+//        
+//    })
+//    
+//});
 
 router.get('/profileStudentProfile',function(req, res){
     res.render("pages/profileStudentProfile");
