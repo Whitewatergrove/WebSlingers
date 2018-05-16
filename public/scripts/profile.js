@@ -3,7 +3,14 @@ $(document).ready(function () {
         $('.side-nav').toggleClass('visible');
     });
 });
-
+function openHelptab(tabName) {
+    var i, x;
+    x = document.getElementsByClassName("containerTab");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+  } 
 function openTab(pageName, tab) {
     var i = 0,
         y = 0,
