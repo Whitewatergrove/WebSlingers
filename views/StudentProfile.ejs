@@ -325,8 +325,8 @@
 							</div>
 							<Button type="submit" id="butt" >Update changes</Button>
 						</form>
-						<form action="/filetest" method="POST"> 
-							<input type="file" id="input" onchange="handleFiles(this.files)"> 
+						<form action="/filetest" method="POST" enctype="multipart/form-data"> 
+							<input type="file" name="filename"> 
 							<input type="submit" value="Ladda upp"> 
 						</form>
 				

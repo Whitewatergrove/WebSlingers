@@ -4,10 +4,9 @@ let bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
-let match = require('../search');
-//let fileup = require('express-fileupload');
 let bcrypt = require('bcrypt');
 let mysql = require('mysql');
+let fs = require("fs");
 
 var sort_test;
 
@@ -206,34 +205,51 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
+
 router.post('/filetest', function (req, res){
-    //var selectedFile = document.getElementById('input').files[0];
-    db.update_user_cv(req.session.pnr, selectedFile, function(err, result){
-    if (err) {
-        console.log("1");
-        req.flash('danger', 'An error has occured while updating');
-        res.redirect('/profile');
+    
+    if(req.files){
+        console.log(req.files);
+        var file = req.files.filename,
+            filename = file.name;
+        file.mv("./upload"+filename, function(err){
+            if(err){
+                console.log(err);
+                req.flash('danger', 'error occured');
+            }
+            else{
+                req.flash('success', 'Done!');
+            }
+        })
     }
-    else if (!err) {
-        console.log("2");
-        req.flash('success', 'You have succcessfully updated your profile');
-        res.redirect('/profile');
-    }
-    })
+    
+
+    //db.update_user_cv(req.session.pnr, cvfile, function(err, result){
+    //if (err) {
+    //    console.log("1");
+    //    req.flash('danger', 'An error has occured while updating');
+    //    res.redirect('/profile');
+    //}
+    //else if (!err) {
+    //    console.log("2");
+    //    req.flash('success', 'You have succcessfully updated your profile');
+    //    res.redirect('/profile');
+    //}
+    //})
 });
 
-router.get('/Certificate', function (req, res){
-    db.get_cv(req.session.pnr, function(err, result){
-        if(err){
-            req.flash('danger', 'An error has occured while loading');
-            res.redirect('/profile');
-        }
-        else if(!err)
-        {
-            console.log(result[0].file);
-        }
-    })
-})
+//router.get('/Certificate', function (req, res){
+//    db.get_cv(req.session.pnr, function(err, result){
+//        if(err){
+//            req.flash('danger', 'An error has occured while loading');
+//            res.redirect('/profile');
+//        }
+//        else if(!err)
+//        {
+//            console.log(result[0].file);
+//        }
+//    })
+//})
 
 
 router.get('/search', function (req, res) {
