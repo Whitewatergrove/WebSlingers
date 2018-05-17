@@ -198,13 +198,17 @@ module.exports = {
     },
 
     /*************************************************************************************************************************************
-        PROMISE             */
+        PROMISE             
+        
+        These functions are promises functions. They return a promise of a value and not the value from the DB.
+
+        */
 
     
-    get_qualifications_catagories_promise: function(catagoriesqual){
+    get_qualifications_catagories_promise: function(){
         return new Promise ((resolve, reject) => {
-            let sql = "SELECT qualifications FROM catagories where class = ?; "
-            con.query(sql, catagoriesqual, function(err,results){
+            let sql = "SELECT * FROM catagories;"
+            con.query(sql, function(err,results){
                 if (err) {
                     console.error('get_exjobs_promise error in query');
                     let msg = "Promise error";

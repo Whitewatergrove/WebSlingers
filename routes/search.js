@@ -374,6 +374,7 @@ module.exports = {
             db.get_xjob_promise(exjobs),                            // Fetching all exjobs
             db.get_demanded_promise(),
             db.get_class_catagories_promise(classes),               // Fetching all classes
+            db.get_qualifications_catagories_promise(),
         ]).then((lists) => {
 
             lists[0].forEach(student => {
@@ -381,14 +382,8 @@ module.exports = {
             }),
 
             students = lists[0],
-            //students = set_student_qual(lists[0]),
-            logga(lists),
-            logga(students),
-            logga(line),
-
 
             lists[1].forEach(exjob => {
-                //exjob.demanded  = db.get_xjob_demanded_promise(exjob.ID);
                 exjob.demanded = [];
                 lists[2].forEach(demand => {
                     if(exjob.ID === demand.EID)
@@ -399,44 +394,21 @@ module.exports = {
             }),
 
             exjobs = lists[1],
-            //exjobs = set_exjob_demd(lists[1]),
-            logga(exjobs),
-            logga(line),
 
             lists[3].forEach(klass => {
-                klass.qualification = db.get_qualifications_catagories_promise(klass.class);
+                klass.qual = [];
+                lists[4].forEach(qual => {
+                    if(klass.class === qual.class)
+                    {
+                        klass.qual[klass.qual.length] = qual.qualifications;
+                    }
+                })
             }),
 
             classes = lists[3],
-           // classes = set_class_qual(lists[2]),
             logga(classes),
             logga(line),
             
-            logga(students),
-            logga(line),
-
-            logga("mellan här"),
-            logga(lists[0][2].QUAL),
-            logga("och här"),
-            logga(line);
-            
-            
-        /*}).then(function(results) {
-            
-            logga(results),
-            logga(line),
-
-            logga(students),
-            logga(line),
-
-            logga(exjobs),
-            logga(line),
-
-            logga(classes),
-            logga(line),
-            
-            logga(students),
-            logga(line),*/
 
 
             /*students.forEach(student => {
@@ -462,11 +434,6 @@ module.exports = {
                     }
                 })
             }),*/
-            
-            //matched = get_me_promises(lists[0], lists[1], lists[2])
-
-            logga(matched),
-            logga(line),
 
             logga(line);
 
