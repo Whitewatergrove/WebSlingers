@@ -207,7 +207,7 @@ router.post('/change_company_profile', function (req, res) {
 });
 
 router.post('/filetest', function (req, res){
-    var selectedFile = document.getElementById('input').files[0];
+    //var selectedFile = document.getElementById('input').files[0];
     db.update_user_cv(req.session.pnr, selectedFile, function(err, result){
     if (err) {
         console.log("1");
