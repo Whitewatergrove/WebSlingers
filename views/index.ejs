@@ -32,19 +32,19 @@
 <body>
 
     <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-            <%- messages('message', locals) %>
+        <%- messages('message', locals) %>
 
-        <div class="w3-display-middle">
-            <h1 class="w3-jumbo w3-animate-top">LET'S MAKE SOME MAGIC</h1>
+            <div class="w3-display-middle">
+                <h1 class="w3-jumbo w3-animate-top">LET'S MAKE SOME MAGIC</h1>
 
-            <button type="button" class="loginbtn"data-toggle="modal" data-target="#myModal">
-                <strong>LOG IN</strong>
-            </button>
-        </div>
-        <div class="w3-display-bottomleft w3-padding-large">
-            Powered by
-            <strong>Webslingers</strong>
-        </div>
+                <button type="button" class="loginbtn" data-toggle="modal" data-target="#myModal">
+                    <strong>LOG IN</strong>
+                </button>
+            </div>
+            <div class="w3-display-bottomleft w3-padding-large">
+                Powered by
+                <strong>Webslingers</strong>
+            </div>
     </div>
 
     <div class="container">
@@ -103,6 +103,10 @@
                                     </div>
                                     <!-- Sign in button -->
                                     <button type="submit" class="btn" href="/profile">Sign in</button>
+                                </form>
+                                <form action="forgot" method="POST">
+                                    <input type="email" placeholder="Type your email here..." name="email">
+                                    <button type="submit">test</button>
                                 </form>
                             </div>
 

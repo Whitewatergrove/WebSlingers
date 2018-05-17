@@ -12,8 +12,6 @@
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
 
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
@@ -23,12 +21,19 @@
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/data.js"></script>
 	<script src="./scripts/profile.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	
+
+
+	<link rel="stylesheet" type="text/css" href="./stylesheets/chat.css" >
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="./scripts/chat.js"></script>
 </head>
 
 <body>
@@ -107,11 +112,9 @@
 				<div class="StudentDiv2">
 					<h1 id="HomeH1">Välkommen
 						<em>
-							<%= results[0].UID %>
+							<%= get_company_user_and_nr[0].UID %>
 						</em>!
 						<br/> Till din företagsida </h1>
-
-
 				</div>
 			</div>
 		</div>
@@ -150,14 +153,22 @@
 		</div>
 	</div>
 	<div class="main-content" id="likes" style="display:none">
-		<div class="main2">
-			<div class="font2">
-				<div class="StudentDiv2">
-					<h2>Chat</h2>
-					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
-				</div>
+		<h2>Chat</h2>
+		<section>
+			<div id="change_username">
+				<input id="username" type="text" />
+				<button id="send_username" type="button">Change username</button>
 			</div>
-		</div>
+		</section>
+
+		<section id="chatroom">
+			<section id="feedback"></section>
+		</section>
+
+		<section id="input_zone"> 
+			<input id="message" class="vertical-align" type="text" />
+			<button id="send_message" class="vertical-align" type="button">Send</button>
+		</section>
 	</div>
 	<div class="main-content" id="Jobs" style="display:none">
 		<div class="main">
@@ -166,7 +177,7 @@
 				<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add job</button>
 				<div id="id01" class="modal">
 					<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-					<form class="modal-content" action="/action_page.php">
+					<form class="modal-content" method="POST" action="add_job">
 						<div class="container">
 							<div class="w3-container">
 								<h2>Add job</h2>
@@ -175,27 +186,60 @@
 							<form class="w3-container">
 								<p>
 									<label><strong>Title</strong></label>
-									<input id="Job-title" class="w3-input" type="text">
+									<input id="Job-title" class="w3-input" type="text" name="title" required>
 								</p>
 								<p>
 									<label><strong>Job info</strong></label>
-									<input id="Job-info" class="w3-input" type="text">
+									<input id="Job-info" class="w3-input" type="text" name="info" required>
 								</p>
 							</form>
 							<div class="clearfix">
 								<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-								<button type="submit" class="updatebtn">Update</button>
+								<button class="updatebtn" id="addjob" type="submit">Add Job</button>
 							</div>
 						</div>
 					</form>
 				</div>
-				<ul class="Job-list">
-					<li name="SQL-expert">
-						<h4>SQL expert</h4>
-						<p>Headlight sweden reqruiting a IT-student.</p>
-						<button class="changebtn">Change</button>
-						<button class="removebtn">Remove</button>
-					</li>
+				<div id="id02" class="modal">
+						<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+						<form class="modal-content" action="update_job" method="POST">
+							<div class="container">
+								<div class="w3-container">
+									<h2>Update job</h2>
+								</div>
+								<hr>
+								<form class="w3-container">
+									<p>
+										<label><strong>Title</strong></label>
+										<input class="w3-input" type="text" name="name">
+									</p>
+									<p>
+										<label><strong>Job info</strong></label>
+										<input class="w3-input" type="text" name="info">
+									</p>
+
+									<input hidden name="job_id" value= >
+
+								</form>
+								<div class="clearfix">
+									<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+									<button type="submit" class="updatebtn">Save changes</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				<ul class="Job-list" id="job_list">
+					<% get_exjobs.forEach(function(result) { %>
+						<li> 
+							<h4><%= result.Name %></h4>
+							<p><%= result.Info %></p>
+							<button class="changebtn"  style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Change</button>
+							<form action="delete_job" method="POST">
+								<input hidden name="job_id" value= <%= result.ID %>></input>
+								<button type="submit" class="removebtn">Remove</button>
+							</form>
+						</li>
+					<% }); %>
 				</ul>
 			</div>
 		</div>
