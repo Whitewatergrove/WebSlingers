@@ -19,7 +19,7 @@ body {
 	background-color: #2e78ba;
 	border-bottom: 3px solid #2e78ba;
 }
-
+/* 
 #HomeID {
 	background-image: url('../images/safe_image.jpg');
 	overflow: auto;
@@ -32,7 +32,14 @@ body {
 	bottom: 0;
 	position: fixed;
 	margin: auto;
+} */
+removebtn{
+	float:left;
 }
+changebtn{
+	float:left;
+}
+
 
 #HomeH1 {
 	color: #FFF;

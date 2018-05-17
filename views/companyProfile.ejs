@@ -12,8 +12,6 @@
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
 
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
@@ -23,12 +21,19 @@
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/data.js"></script>
 	<script src="./scripts/profile.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	
+
+
+	<link rel="stylesheet" type="text/css" href="./stylesheets/chat.css" >
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="./scripts/chat.js"></script>
 </head>
 
 <body>
@@ -48,15 +53,15 @@
 		</div>
 		<nav>
 			<ul class="tabs">
-				<li class="tabBorder" onclick="openTab('Frontpage', 'Home')" id="Home" style="border-Left: 5px solid #2e78ba" ;>
+				<!-- <li class="tabBorder" onclick="openTab('Frontpage', 'Home')" id="Home" style="border-Left: 5px solid #2e78ba" ;>
 					<a>
 						<span>
 							<i class="fas fa-home"></i>
 						</span>
 						<span>Home</span>
 					</a>
-				</li>
-				<li class="tabBorder" onclick="openTab('profile', 'Open')" id="Open" ;>
+				</li> -->
+				<li class="tabBorder" onclick="openTab('profile', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
 					<a>
 						<span>
 							<i class="fa fa-user"></i>
@@ -100,73 +105,303 @@
 			</ul>
 		</nav>
 	</div>
-	<div class="main-content" id="Frontpage">
+	<!-- <div class="main-content" id="Frontpage">
 			<%- messages('message', locals) %>
 		<div class="main2" id="HomeID">
 			<div class="font2">
 				<div class="StudentDiv2">
 					<h1 id="HomeH1">Välkommen
 						<em>
-							<%= results[0].UID %>
+							<%= get_company_user_and_nr[0].UID %>
 						</em>!
 						<br/> Till din företagsida </h1>
-
-
 				</div>
+				aasdasdasd
 			</div>
 		</div>
-	</div>
-	<div class="main-content" id="profile" style="display:none">
-		<div class="main2">
-			<div class="font2">
-				<div class="StudentDiv2">
-					<h1>Ändra Personuppgifter</h1>
-					<form action="/change_company_profile" method="POST">
-						<div class="container">
-							<input type="text" name="username" id="button2" disabled value= <%= results[0].UID %>>
-							<br />
-							<br/>
-							<input type="text" name="pnum" id="button2" disabled value= <%= results[0].Orgnr %>>
-							<br />
-							<br/>
-							<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
-							<br />
-							<br/>
-							<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
-							<br />
-							<br/>
-							<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
-							<br />
-							<br/>
-							<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Enter Phonenumber...">
-							<br />
-							<br/>
+
+	</div> -->
+	<div class="main-content" id="profile">
+			<div class="main2" id="main2Profile">
+				<body id="blueb">
+					<!-- Page Container -->
+					<div class="w3-content w3-margin-top" style="max-width:1400px;">
+	
+						<!-- The Grid -->
+						<div class="w3-row-padding">
+	
+							<!-- Left Column -->
+							<div class="w3-third">
+	
+								<div class="w3-white w3-text-grey w3-card-4">
+									<div class="w3-display-container">
+										<img src="./images/logo.png" style="width:50%" alt="Avatar">
+										<div class="w3-display-bottomleft w3-container w3-text-black">
+	
+										</div>
+										<h2> <%= get_company_user_and_nr[0].UID %></h2>
+									</div>
+									<!-- Person information box -->
+									<div class="w3-container">
+										<p>
+											<i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= get_company_user_and_nr[0].Orgnr %>
+										</p>
+										<p>
+											<i class="fa fa-user fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>0</p>
+										
+										<p>
+											<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>0
+										</p>
+										<p>
+											<i class="fas fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>0
+										</p>
+										<p>
+											<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>0
+										</p>
+										<hr>
+										<button type="button" class="Editbtn"data-toggle="modal" data-target="#ProfileModal">
+											<strong>Edit</strong>
+										</button>
+										<hr>
+									
+										<!-- Skills -->
+										<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b></p>
+	
+										<div class="w3-light-grey w3-round-xlarge w3-small">
+										  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">C++/C#</div>
+										</div>
+									<br>
+										
+										<div class="w3-light-grey w3-round-xlarge w3-small">
+										  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:60%">Java Script</div>
+										</div>
+									<br>
+										<div class="w3-light-grey w3-round-xlarge w3-small">
+										  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:30%">Python</div>
+										</div>
+									<br>
+										<hr>
+	
+	
+									</div>
+								</div>
+								<br>
+	
+								<!-- End Left Column -->
+							</div>
+							
+	
+							<!-- Right Column -->
+							<div class="w3-twothird">
+	
+								<div class="w3-container w3-card w3-white w3-margin-bottom">
+									<h2 class="w3-text-grey w3-padding-16">
+										<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text "id="blueP"></i>Your jobs</h2>
+									<div class="w3-container">
+											<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin="auto">Add job</button>
+											<div id="id01" class="modal">
+
+												<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+												<form class="modal-content" method="POST" action="add_job">
+													<div class="container">
+														<div class="w3-container">
+															<h2>Add job</h2>
+															
+														</div>
+														<hr>
+														<form class="w3-container">
+															<p>
+																<label><strong>Title</strong></label>
+																<input id="Job-title" class="w3-input" type="text" name="title" required>
+															</p>
+															<p>
+																<label><strong>Job info</strong></label>
+																<input id="Job-info" class="w3-input" type="text" name="info" required>
+															</p>
+														</form>
+														<div class="clearfix">
+															<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+															<button class="updatebtn" id="addjob" type="submit">Add Job</button>
+														</div>
+													</div>
+												</form>
+											</div>
+											<div id="id02" class="modal">
+													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+													<form class="modal-content" action="update_job" method="POST">
+														<div class="container">
+															<div class="w3-container">
+																<h2>Update job</h2>
+															</div>
+															<hr>
+															<form class="w3-container">
+																<p>
+																	<label><strong>Title</strong></label>
+																	<input class="w3-input" type="text" name="name">
+																</p>
+																<p>
+																	<label><strong>Job info</strong></label>
+																	<input class="w3-input" type="text" name="info">
+																</p>
+							
+																<input hidden name="job_id" value= >
+							
+															</form>
+															<div class="clearfix">
+																<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+																<button type="submit" class="updatebtn">Save changes</button>
+															</div>
+														</div>
+													</form>
+												</div>
+											<ul class="Job-list" id="job_list">
+												<% get_exjobs.forEach(function(result) { %>
+										
+													<div class="w3-container">
+														<h5 class="w3-opacity">
+														<b><%= result.Name %></b>
+														</h5>
+														<h6 class="w3-text">
+														<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Mar 2012 - Dec 2014</h6>
+														<p><%= result.Info %></p>
+														<button class="changebtn"  style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Change</button>
+														<form action="delete_job" method="POST">
+															<input hidden name="job_id" value= <%= result.ID %>></input>
+															<button type="submit"style="width:auto;" class="removebtn">Remove</button>
+														</form>
+														<hr>
+													</div>
+														
+												
+												<% }); %>
+											</ul>
+										<hr>
+									</div>
+									<div class="w3-container">
+										<h5 class="w3-opacity">
+											<b>Web Developer / something.com</b>
+										</h5>
+										<h6 class="w3-text">
+											<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Mar 2012 - Dec 2014</h6>
+										<p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic.
+											Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
+										<hr>
+									</div>
+									<div class="w3-container">
+										<h5 class="w3-opacity">
+											<b>Graphic Designer / designsomething.com</b>
+										</h5>
+										<h6 class="w3-text">
+											<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Jun 2010 - Mar 2012</h6>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+										<br>
+									</div>
+								</div>
+	
+								<div class="w3-container w3-card w3-white">
+									<h2 class="w3-text-grey w3-padding-16">
+										<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Education</h2>
+									<div class="w3-container">
+										<h5 class="w3-opacity">
+											<b>W3Schools.com</b>
+										</h5>
+										<h6 class="w3-text">
+											<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Forever</h6>
+										<p>Web Development! All I need to know in one place</p>
+										<hr>
+									</div>
+									<div class="w3-container">
+										<h5 class="w3-opacity">
+											<b>London Business School</b>
+										</h5>
+										<h6 class="w3-text">
+											<i class="fa fa-calendar fa-fw w3-margin-right" id="blueP"></i>2013 - 2015</h6>
+										<p>Master Degree</p>
+										<hr>
+									</div>
+									<div class="w3-container">
+										<h5 class="w3-opacity">
+											<b>School of Coding</b>
+										</h5>
+										<h6 class="w3-text">
+											<i class="fa fa-calendar fa-fw w3-margin-right" id="blueP"></i>2010 - 2013</h6>
+										<p>Bachelor Degree</p>
+										<br>
+									</div>
+								</div>
+	
+								<!-- End Right Column -->
+							</div>
+	
+							<!-- End Grid -->
+
 						</div>
-						<Button type="submit" id="butt">Update changes</Button>
-					</form>
-					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
+	
+						<!-- End Page Container -->
+					</div>
+	<div class="container">
+		<div id="modalBG">
+		</div>
+		<!-- The Modal -->
+		<div class="modal fade" id="ProfileModal">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+	
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<button type="button" class="button3" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Edit Profile</h4>
+					</div>
+	
+					<!-- Modal body -->
+					<div class="modal-body">
+							<form action="/change_company_profile" method="POST">
+								<div class="container">
+									<input type="text" name="username" id="button2" disabled value= <%= get_company_user_and_nr[0].UID %>>
+									<input type="text" name="pnum" id="button2" disabled value= <%= get_company_user_and_nr[0].Orgnr %>>
+									<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
+									<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
+									<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
+									<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Enter Phonenumber...">
+								</div>
+								<Button type="submit" id="butt">Update changes</Button>
+							</form>
+					
+					</div>
+	
+					<!-- Modal footer -->
+					<div class="modal-footer">
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="main-content" id="likes" style="display:none">
-		<div class="main2">
-			<div class="font2">
-				<div class="StudentDiv2">
-					<h2>Chat</h2>
-					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
-				</div>
+		<h2>Chat</h2>
+		<section>
+			<div id="change_username">
+				<input id="username" type="text" />
+				<button id="send_username" type="button">Change username</button>
 			</div>
-		</div>
+		</section>
+
+		<section id="chatroom">
+			<section id="feedback"></section>
+		</section>
+
+		<section id="input_zone"> 
+			<input id="message" class="vertical-align" type="text" />
+			<button id="send_message" class="vertical-align" type="button">Send</button>
+		</section>
 	</div>
 	<div class="main-content" id="Jobs" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
 				<h1>Your jobs:</h1>
-				<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add job</button>
+				<!-- <button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add job</button>
 				<div id="id01" class="modal">
 					<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-					<form class="modal-content" action="/action_page.php">
+					<form class="modal-content" method="POST" action="add_job">
 						<div class="container">
 							<div class="w3-container">
 								<h2>Add job</h2>
@@ -175,30 +410,66 @@
 							<form class="w3-container">
 								<p>
 									<label><strong>Title</strong></label>
-									<input id="Job-title" class="w3-input" type="text">
+									<input id="Job-title" class="w3-input" type="text" name="title" required>
 								</p>
 								<p>
 									<label><strong>Job info</strong></label>
-									<input id="Job-info" class="w3-input" type="text">
+									<input id="Job-info" class="w3-input" type="text" name="info" required>
 								</p>
 							</form>
 							<div class="clearfix">
 								<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-								<button type="submit" class="updatebtn">Update</button>
+								<button class="updatebtn" id="addjob" type="submit">Add Job</button>
 							</div>
 						</div>
 					</form>
 				</div>
-				<ul class="Job-list">
-					<li name="SQL-expert">
-						<h4>SQL expert</h4>
-						<p>Headlight sweden reqruiting a IT-student.</p>
-						<button class="changebtn">Change</button>
-						<button class="removebtn">Remove</button>
-					</li>
+				<div id="id02" class="modal">
+						<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+						<form class="modal-content" action="update_job" method="POST">
+							<div class="container">
+								<div class="w3-container">
+									<h2>Update job</h2>
+								</div>
+								<hr>
+								<form class="w3-container">
+									<p>
+										<label><strong>Title</strong></label>
+										<input class="w3-input" type="text" name="name">
+									</p>
+									<p>
+										<label><strong>Job info</strong></label>
+										<input class="w3-input" type="text" name="info">
+									</p>
+
+									<input hidden name="job_id" value= >
+
+								</form>
+								<div class="clearfix">
+									<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+									<button type="submit" class="updatebtn">Save changes</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				<ul class="Job-list" id="job_list">
+					<% get_exjobs.forEach(function(result) { %>
+						<li> 
+							<h4><%= result.Name %></h4>
+							<p><%= result.Info %></p>
+							
+									<button class="changebtn"  style="width:50%;" onclick="document.getElementById('id02').style.display='block'">Change</button>
+									<form action="delete_job" method="POST">
+										<input hidden name="job_id" value= <%= result.ID %>></input>
+										<button type="submit" style="width:50%" class="removebtn">Remove</button>
+									</form>
+
+							
+						</li>
+					<% }); %>
 				</ul>
-			</div>
-		</div>
+			</div> -->
+		</div> 
 	</div>
 	</div>
 </body>

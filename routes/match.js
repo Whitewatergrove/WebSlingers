@@ -75,6 +75,6 @@ module.exports = {
         })
         console.log(temp);
 
-        return temp;            // kanske avändbar
+        return temp.ex;            // kanske avändbar
     }
 }
