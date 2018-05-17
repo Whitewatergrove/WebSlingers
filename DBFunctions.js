@@ -232,7 +232,7 @@ module.exports = {
                 else {
                     console.log('get_exjobs_promise query functional');
 
-                    resolve(catagoriesclass);
+                    resolve(results);
                 }
             })
         })
@@ -252,7 +252,7 @@ module.exports = {
                 else {
                     console.log('get_exjobs_promise query functional');
 
-                    resolve(demanded);
+                    resolve(results);
                 }
             })
         })
@@ -271,6 +271,25 @@ module.exports = {
                     console.log('get_exjobs_promise query functional');
                     exjobs = results;
                     resolve(exjobs);
+                }
+            })
+        })
+    },
+
+    get_demanded_promise: function () {
+        return new Promise((resolve, reject) => {
+            let sql = "SELECT * FROM demanded";
+            con.query(sql, function (err, results) {
+                if (err) {
+                    console.error('get_demanded_promise error in query');
+                    con.onerror = function(){
+                        let msg = "Promise error";
+                        reject(new Error(msg));
+                    }
+                }
+                else {
+                    console.log('get_demanded_promise query functional');
+                        resolve(results); 
                 }
             })
         })

@@ -217,6 +217,11 @@ router.post('/hejhopmanstest', function (req, res) {
     matching.matcha();
 });
 
+router.get('/search', function (req, res) {
+    //matching.prematching(req.session.user);
+    match.testmatch();
+});
+
 router.get('/dbtester', function (req, res) {
     db.get_students(function(err, result){
         if(err) throw err;

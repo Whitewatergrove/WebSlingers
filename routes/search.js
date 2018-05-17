@@ -358,6 +358,7 @@ module.exports = {
     testmatch: function()
     {
         let students;
+        let tempex;
         let exjobs;
         let classes;
         let line = '---------------------------------------------';
@@ -371,6 +372,7 @@ module.exports = {
         Promise.all([
             db.get_students_promise(students),                      // Fetching all students
             db.get_xjob_promise(exjobs),                            // Fetching all exjobs
+            db.get_demanded_promise(),
             db.get_class_catagories_promise(classes),               // Fetching all classes
         ]).then((lists) => {
 
@@ -379,27 +381,34 @@ module.exports = {
             }),
 
             students = lists[0],
-            students = set_student_qual(lists[0]),
+            //students = set_student_qual(lists[0]),
             logga(lists),
             logga(students),
             logga(line),
 
 
             lists[1].forEach(exjob => {
-                exjob.demanded = db.get_xjob_demanded_promise(exjob.ID);
+                //exjob.demanded  = db.get_xjob_demanded_promise(exjob.ID);
+                exjob.demanded = [];
+                lists[2].forEach(demand => {
+                    if(exjob.ID === demand.EID)
+                    {
+                        exjob.demanded[exjob.demanded.length] = demand.QID;
+                    }
+                })
             }),
 
             exjobs = lists[1],
-            exjobs = set_exjob_demd(lists[1]),
+            //exjobs = set_exjob_demd(lists[1]),
             logga(exjobs),
             logga(line),
 
-            lists[2].forEach(klass => {
+            lists[3].forEach(klass => {
                 klass.qualification = db.get_qualifications_catagories_promise(klass.class);
             }),
 
-            classes = lists[2],
-            classes = set_class_qual(lists[2]),
+            classes = lists[3],
+           // classes = set_class_qual(lists[2]),
             logga(classes),
             logga(line),
             
@@ -461,12 +470,12 @@ module.exports = {
 
             logga(line);
 
+
         }).catch((error) => {
             // handle error here
             console.error("HÄR"),
             loggaerror();
         });
-        
     }
 }
 

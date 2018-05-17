@@ -34,6 +34,7 @@ module.exports = {
             db.get_xjob_promise(exjobs),                            // Fetching all exjobs
             db.get_class_catagories_promise(classes),               // Fetching all classes
             db.get_student_qual_promise(current.student),           
+            db.get_demanded_promise(),
         ]).then((lists) => {
             
             exjobs = lists[0],
@@ -46,9 +47,15 @@ module.exports = {
             logga(line),
 
             exjobs.forEach(exjob => {
-                exjob.demanded = db.get_xjob_demanded_promise(exjob.ID);    // <------ något fel med den här!!!
+                exjob.demanded = [];
+                lists[3].forEach(demand => {
+                    if(exjob.ID === demand.EID)
+                    {
+                        exjob.demanded[exjob.demanded.length] = demand.QID;
+                    }
+                })
             }),
-            
+
             logga(exjobs),
             logga(line),
 
@@ -71,6 +78,7 @@ module.exports = {
         let temp = {}
         console.log("student");
         temp.student = students;
+        temp.ex = [];
         logga(students); 
         logga(students.QUAL.length);
         exjobs.forEach(exjob => {
@@ -80,12 +88,14 @@ module.exports = {
             {
                 students.QUAL.forEach(qual => { 
                     console.log("QUAL");
-                    console.log(exjob)
+                    logga(qual.QID);
+                    console.log(exjob.demanded)
                     exjob.demanded.forEach(demd => {
                         console.log("demd");
-                        if(qual === demd)
+                        logga(demd);
+                        if(qual.QID === demd)
                         {
-                            temp.ex[temp.ex.length].exjob = exjob;
+                            temp.ex[temp.ex.length] = exjob;
                         }
                     })
                 })
