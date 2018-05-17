@@ -5,9 +5,11 @@ let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
 
+
 let searchTest = require('./search');
 let matchingStudent = require('./match');
 let matchingCompany = require('./companyMatch');
+
 
 let bcrypt = require('bcrypt');
 let mysql = require('mysql');
