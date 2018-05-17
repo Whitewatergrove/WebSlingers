@@ -3,20 +3,9 @@ $(document).ready(function () {
         $('.side-nav').toggleClass('visible');
     });
 });
-<<<<<<< HEAD
-function openHelptab(tabName) {
-    var i, x;
-    x = document.getElementsByClassName("containerTab");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    document.getElementById(tabName).style.display = "block";
-  } 
-=======
 
 let matching = require('../routes/match');
 
->>>>>>> 8d725289f9ffb7715f60be5be01bd366134f75af
 function openTab(pageName, tab) {
     var i = 0,
         y = 0,
@@ -78,12 +67,9 @@ $(function () {
 //     ListVar.appendChild(h4Var);
 //     ListVar.appendChild(paraVar);
 
-<<<<<<< HEAD
-=======
 //     JobList.appendChild(ListVar);
 // }
 
->>>>>>> 8d725289f9ffb7715f60be5be01bd366134f75af
 // Get the modal
 var modal = document.getElementById('id01');
 

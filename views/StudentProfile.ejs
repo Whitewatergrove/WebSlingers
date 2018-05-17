@@ -41,16 +41,6 @@
 	<script src="./scripts/StudentPScript.js"></script>
 	<script src="../scripts/profile.js"></script>
 
-<<<<<<< HEAD
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	    crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	    crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	    crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-	    crossorigin="anonymous"></script>
-=======
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -58,7 +48,6 @@
 	
 
 	
->>>>>>> 8d725289f9ffb7715f60be5be01bd366134f75af
 
 </head>
 
@@ -106,11 +95,7 @@
 						<span id="BlackT">Ex-Job</span>
 					</a>
 				</li>
-<<<<<<< HEAD
 				<li class="tabBorder" onclick="openTab('Helps', 'Help')" id="Help">
-=======
-				<li  class="tabBorder" onclick="openTab('Help', 'Manual')" id="Manual">
->>>>>>> 8d725289f9ffb7715f60be5be01bd366134f75af
 					<a>
 						<span>
 							<i class="fa fa-credit-card-alt" id="SideIcon"></i>
@@ -174,18 +159,9 @@
 										<strong>Edit</strong>
 									</button>
 									<hr>
-<<<<<<< HEAD
-
-
-									<p class="w3-large">
-										<b>
-											<i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b>
-									</p>
-=======
 								
 									<!-- Skills -->
 									<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b></p>
->>>>>>> 8d725289f9ffb7715f60be5be01bd366134f75af
 
 									<div class="w3-light-grey w3-round-xlarge w3-small">
 										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">C++/C#</div>
@@ -290,81 +266,6 @@
 
 					<!-- End Page Container -->
 				</div>
-<<<<<<< HEAD
-
-				<!-- <h1>Ändra Personuppgifter</h1>
-					<form action="/change_student_profile" method="POST">
-						<div class="container">
-							<input type="text" name="username" id="button2" disabled value = <%= results[0].UID %>>
-							<br />
-							<br/>
-							<input type="text" name="pnum" id="button2" disabled value = <%= results[0].pnr %>>
-							<br />
-							<br/>
-							<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
-							<br />
-							<br/>
-							<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
-							<br />
-							<br/>
-							<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
-							<br />
-							<br/>
-							<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Enter Phonenumber...">
-							<br />
-							<br/>
-							<select name="gender">
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-								<option value="Other">Other</option>
-							</select>
-							<br />
-							<br/>
-						</div>
-						<Button type="submit" id="butt" >Update changes</Button>
-					</form> -->
-				<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
-
-				<div class="container">
-					<div id="modalBG">
-					</div>
-					<!-- The Modal -->
-					<div class="modal fade" id="ProfileModal">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content">
-
-								<!-- Modal Header -->
-								<div class="modal-header">
-									<button type="button" class="button3" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Edit Profile</h4>
-								</div>
-
-								<!-- Modal body -->
-								<div class="modal-body">
-									<form action="/change_student_profile" method="POST">
-										<div class="container">
-											<input type="text" name="username" id="button2" disabled value=< %=r esults[0].UID %>>
-											<input type="text" name="pnum" id="button2" disabled value=< %=r esults[0].pnr %>>
-											<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
-											<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
-											<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
-											<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Enter Phonenumber...">
-											<select name="gender">
-												<option value="Male">Male</option>
-												<option value="Female">Female</option>
-												<option value="Other">Other</option>
-											</select>
-											<br/>
-										</div>
-										<Button type="submit" id="butt">Update changes</Button>
-									</form>
-
-								</div>
-
-								<!-- Modal footer -->
-								<div class="modal-footer">
-								</div>
-=======
 <div class="container">
 	<div id="modalBG">
 	</div>
@@ -395,7 +296,6 @@
 									<option value="Other">Other</option>
 								</select>
 								<br/>
->>>>>>> 8d725289f9ffb7715f60be5be01bd366134f75af
 							</div>
 						</div>
 					</div>
@@ -429,7 +329,6 @@
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
 	<div class="main-content" id="Helps" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
@@ -559,57 +458,10 @@
 						<p>ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf adf ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf adf
 						</p>
 					</div>
-=======
-</div>
-<div class="main-content" id="likes" style="display:none">
-	<!-- <div class="main2">
-		<div class="font2">
-			<div class="StudentDiv2"> -->
-				<h2>Chat</h2>
-					<!-- <form>
-						<ul id="messages"></ul>
-						  <input required class="input-field" id="messages" type="text" placeholder=" messages" autocomplete="off"/>
-						  <button type="button">Send</button>
-					  </form> -->
-
-				<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
-			</div>
-		</div>
-	</div>
-</div>
-<div class="main-content" id="Jobs" style="display:none">
-	<div class="main">
-		<div class="widget" id="JobsWidget">
-			<div class="title">Available jobs</div>
-
-			<form action="/hejhopmanstest" method="POST">
-				<Button type="submit" id="buttondbtest">Update db</Button>
-			</form>
-			
-			<div class="Tinder">
-				<div id="user">
-					<p></p>
->>>>>>> 8d725289f9ffb7715f60be5be01bd366134f75af
 				</div>
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
-=======
-</div>
-<div class="main-content" id="Manual" style="display:none">
-		<div class="main">
-			<div class="widget">
-				<div class="title">Available jobs</div>
-				<div class="Tinder">
-					<div id="user">
-						<p></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
->>>>>>> 8d725289f9ffb7715f60be5be01bd366134f75af
 </body>
 <!-- <footer class="w3-container w3-center w3-margin-top" id="BlackT">
 	<p>Find me on social media.</p>
