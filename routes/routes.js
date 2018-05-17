@@ -208,10 +208,6 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
-router.get('/match', function (req, res) {
-    //matching.prematching(req.session.user);
-    matching.prematching('agneta');
-});
 router.post('/hejhopmanstest', function (req, res) {
     //matching.prematching(req.session.user);
     matching.matcha();

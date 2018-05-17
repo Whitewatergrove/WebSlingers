@@ -107,5 +107,7 @@ module.exports = {
         logga(temp);
         logga(line);
         logga(line);
+
+        return temp;            // kanske avändbar
     }
 }
