@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/styleindex.css">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -29,17 +30,15 @@
 			font-family: "Roboto", sans-serif
 		}
 	</style>
-
-
+	
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
 	    crossorigin="anonymous"></script>
 
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/data.js"></script>
-	 <!-- <script src="./scripts/StudentPScript.js"></script> -->
-	<script src="./scripts/profile.js"></script> 
-	
+	<script src="./scripts/StudentPScript.js"></script>
+	<script src="../scripts/profile.js"></script>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -133,7 +132,7 @@
 									<div class="w3-display-bottomleft w3-container w3-text-black">
 
 									</div>
-									<h2> Steffe fule löfven</h2>
+									<h2> Steffe löfven</h2>
 								</div>
 								<div class="w3-container">
 									<p>
@@ -146,21 +145,25 @@
 									<p>
 										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>1224435534</p>
 									<hr>
+									<button type="button" class="Editbtn"data-toggle="modal" data-target="#ProfileModal">
+										<strong>Edit</strong>
+									</button>
+									<hr>
+								
 
 									<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b></p>
-									<p>C++/C#</p>
+
 									<div class="w3-light-grey w3-round-xlarge w3-small">
-									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">90%</div>
+									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">C++/C#</div>
 									</div>
 								<br>
-									<p>Java-script</p>
+									
 									<div class="w3-light-grey w3-round-xlarge w3-small">
-									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:60%">60%</div>
+									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:60%">Java Script</div>
 									</div>
 								<br>
-									<p>Python</p>
 									<div class="w3-light-grey w3-round-xlarge w3-small">
-									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:30%">30%</div>
+									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:30%">Python</div>
 									</div>
 								<br>
 									<hr>
@@ -287,6 +290,50 @@
 					</form> -->
 <!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
 
+<div class="container">
+	<div id="modalBG">
+	</div>
+	<!-- The Modal -->
+	<div class="modal fade" id="ProfileModal">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<button type="button" class="button3" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Edit Profile</h4>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+						<form action="/change_student_profile" method="POST">
+							<div class="container">
+								<input type="text" name="username" id="uname" disabled value = <%= results[0].UID %>>
+								<input type="text" name="pnum" id="pnum" disabled value = <%= results[0].pnr %>>
+								<input type="password" name="password" id="pass" maxlength="30" required placeholder="Enter Password...">
+								<input type="text" name="name" id="name" maxlength="45" required placeholder="Enter Name...">
+								<input type="text" name="address" id="adress" maxlength="45" required placeholder="Enter address...">
+								<input type="text" name="tel" id="tel" maxlength="45" required placeholder="Enter Phonenumber...">
+								<select name="gender">
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
+									<option value="Other">Other</option>
+								</select>
+								<br/>
+							</div>
+							<Button type="submit" id="butt" >Update changes</Button>
+						</form>
+				
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 		</body>
 	</div>
 </div>
@@ -310,16 +357,16 @@
 	<div class="main">
 		<div class="widget" id="JobsWidget">
 			<div class="title">Available jobs</div>
-			<div class="Tinder">
-				<div id="user">
-					<p></p>
-				</div>
-			</div>
+			<form action="/dbtester" method="GET">
+				<!-- <div class="container">
+					<input type="text" name="dbtest" id="textdbtest" value = <%= results %>>
+				</div> -->
+				<p><%= results[0].UID %></p>
+				<Button type="submit" id="buttondbtest">Update db</Button>
 		</div>
 	</div>
 </div>
 </body>
-
 <!-- <footer class="w3-container w3-center w3-margin-top" id="BlackT">
 	<p>Find me on social media.</p>
 	<i class="fa fa-facebook-official w3-hover-opacity" id="blueP"></i>
@@ -331,23 +378,4 @@
 	<p>Powered by Webbslingers</p>
 	<hr>
 </footer> -->
-
-
-
 </html>
-
-<!-- <div id="usertable">
-						<table>
-							<tr>
-								<th>UserName</th>
-								<th>Password</th>
-								<th>Role</th>
-							</tr>
-							<tr><% results.forEach(function(result) { %>
-								<td><%= result.ID %></td>
-								<td><%= result.Password %></td>
-								<td><%= result.Role %></td>										
-								<% }); %>
-							</tr>
-						</table>
-					</div> -->

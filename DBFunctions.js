@@ -45,7 +45,7 @@ module.exports = {
         })
     },
 
-    get_students: function (username, pass, callback) {
+    get_students: function (callback) {
         var sql = "SELECT * FROM students";
         con.query(sql, function (err, results) {
             if (err) {
@@ -163,21 +163,8 @@ module.exports = {
         })
     },
 
-    get_xjob_company: function (username, callback) {
+    get_exjobs: function (username, callback) {
         var sql = "SELECT ID,Name FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
-        con.query(sql, username, function (err, results) {
-            if (err) {
-                console.log("query error");
-            }
-            else {
-                console.log("query ok");
-            }
-            callback(null, results);
-        })
-    },
-
-    getxjobs: function (username, callback) {
-        var sql = "SELECT QID FROM demanded WHERE EID = (SELECT ID FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?));"
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log("query error");
@@ -460,12 +447,25 @@ module.exports = {
         })
     },
 
+    update_exjob: function(name, info, id, callback){
+        var sql = "UPDATE exjobs SET Name = ?, Info = ? WHERE ID = ?;";
+        con.query(sql, name, info, id, function(err, res){
+            callback(err, res);
+            if(err){
+                console.log("update exjob failed: "+ err);
+            }
+            else{
+                console.log("update exjobs query working");
+            }
+        })
+    },
+
 
     //**************************************************************************************************/
     //Deletes
-    delete_exjob: function (orgnr, callback) {
-        var sql = "DELETE FROM exjobs WHERE ID = (Select * from (select ID FROM exjobs  WHERE ExOID =  (SELECT orgnr FROM companies WHERE UID = ? ) ) as alias1);";
-        con.query(sql, [orgnr], function (err, res) {
+    delete_exjob: function (id, callback) {
+        var sql = "DELETE FROM exjobs WHERE ID = ?";
+        con.query(sql, [id], function (err, res) {
             if (err) {
                 console.log("delete user query error" + err);
             } else {
