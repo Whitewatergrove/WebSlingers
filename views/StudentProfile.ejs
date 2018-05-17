@@ -48,6 +48,7 @@
 </head>
 
 <body>
+	<!-- Image at the top -->
 	<div class="header">
 		<div class="logo">
 			<img src="images/oru-16x16.png">
@@ -57,12 +58,14 @@
 			<span></span>
 		</a>
 	</div>
+	<!-- Image at bottom -->
 	<div class="side-nav">
 		<div class="logo">
 			<img src="images/oru-16x16.png">
 			<span>Webslingers</span>
 		</div>
 		<nav>
+			<!-- All buttoms in the sidepanel -->
 			<ul class="tabs">
 				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
 					<a>
@@ -106,6 +109,7 @@
 				</li>
 				<img src="./images/oru.png" class="si">
 			</ul>
+			<!-- End buttoms sidepanel -->
 		</nav>
 	</div>
 	<div class="main-content" id="home">
@@ -130,25 +134,32 @@
 									<div class="w3-display-bottomleft w3-container w3-text-black">
 
 									</div>
-									<h2> Steffe löfven</h2>
+									<h2> <%= results[0].Name %></h2>
 								</div>
+								<!-- Person information box -->
 								<div class="w3-container">
 									<p>
-										<i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>Designer</p>
+										<i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].pnr %>
+									</p>
 									<p>
-										<i class="fa fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>London, UK</p>
+										<i class="fa fa-user fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].gender %></p>
+									
 									<p>
 										<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].UID %>
 									</p>
 									<p>
-										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>1224435534</p>
+										<i class="fas fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].Adress %>
+									</p>
+									<p>
+										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].Tel %>
+									</p>
 									<hr>
 									<button type="button" class="Editbtn"data-toggle="modal" data-target="#ProfileModal">
 										<strong>Edit</strong>
 									</button>
 									<hr>
 								
-
+									<!-- Skills -->
 									<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b></p>
 
 									<div class="w3-light-grey w3-round-xlarge w3-small">
@@ -349,12 +360,11 @@
 	<div class="main">
 		<div class="widget" id="JobsWidget">
 			<div class="title">Available jobs</div>
-			<form action="/dbtester" method="GET">
-				<!-- <div class="container">
-					<input type="text" name="dbtest" id="textdbtest" value = <%= results %>>
-				</div> -->
-				<p><%= results[0].UID %></p>
-				<Button type="submit" id="buttondbtest">Update db</Button>
+			<div class="Tinder">
+				<div id="user">
+					<p></p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
