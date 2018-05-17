@@ -471,7 +471,7 @@ module.exports = {
 
     update_exjob: function (name, info, id, callback) {
         var sql = "UPDATE exjobs SET Name = ?, Info = ? WHERE ID = ?;";
-        con.query(sql, name, info, id, function (err, res) {
+        con.query(sql, [name, info, id], function (err, res) {
             callback(err, res);
             if (err) {
                 console.log("update exjob failed: " + err);

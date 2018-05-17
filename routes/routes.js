@@ -317,7 +317,11 @@ router.post('/add_job', function (req, res) {
         }
     })
 });
-router.post('/update_job', function (req, res) {
+router.post('/update_jobs', function (req, res) {
+    console.log('req.body.name',req.body.name);
+    console.log('req.body.info',req.body.info);
+    console.log('req.body.job_id',req.body.job_id)
+    
     db.update_exjob(req.body.name, req.body.info, req.body.job_id, function (req, res) {
         if (err) {
             req.flash('danger', 'An error has occured while updating your profile');
