@@ -68,7 +68,7 @@ module.exports = {
             else {
                 console.log('query functional');
             }
-            callback(null, results);
+            callback(err, results);
         })
     },
 
@@ -94,7 +94,7 @@ module.exports = {
             else {
                 console.log('query functional');
             }
-            callback(null, results);
+            callback(err, results);
         })
     },
 
@@ -164,15 +164,15 @@ module.exports = {
     },
 
     get_exjobs: function (username, callback) {
-        var sql = "SELECT ID,Name FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
+        var sql = "SELECT ID,Name,Info FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
         con.query(sql, username, function (err, results) {
+            callback(err, results);
             if (err) {
                 console.log("query error");
             }
             else {
                 console.log("query ok");
             }
-            callback(null, results);
         })
     },
 
@@ -374,10 +374,10 @@ module.exports = {
     //********************************************************************************/
     //inserts
 
-    insert_categories: function(qualifications, klass, callback){
-        var sql= " INSERT INTO catagories (qualifications, class) VALUES (?, ?);";
-        con.query(sql, [qualifications, klass], function (err,res){
-            callback(err,res);      
+    insert_categories: function (qualifications, klass, callback) {
+        var sql = " INSERT INTO catagories (qualifications, class) VALUES (?, ?);";
+        con.query(sql, [qualifications, klass], function (err, res) {
+            callback(err, res);
             if (err) {
                 console.log("insert user query not working: " + err);
             } else {
@@ -386,11 +386,10 @@ module.exports = {
         })
     },
 
-
-    insert_exjobs: function (ExOID, Name, Info,callback) {
-        var sql = "INSERT INTO exjobs (ExOID, Name, Info) VALUES (?, ?, ,?);";
+    insert_exjobs: function (ExOID, Name, Info, callback) {
+        var sql = "INSERT INTO exjobs (ExOID, Name, Info) VALUES (?, ?, ?);";
         con.query(sql, [ExOID, Name, Info], function (err, res) {
-           callback(err,res);
+            callback(err, res);
             if (err) {
                 console.log("insert user query not working: " + err);
             } else {
@@ -489,14 +488,14 @@ module.exports = {
         })
     },
 
-    update_exjob: function(name, info, id, callback){
+    update_exjob: function (name, info, id, callback) {
         var sql = "UPDATE exjobs SET Name = ?, Info = ? WHERE ID = ?;";
-        con.query(sql, name, info, id, function(err, res){
+        con.query(sql, name, info, id, function (err, res) {
             callback(err, res);
-            if(err){
-                console.log("update exjob failed: "+ err);
+            if (err) {
+                console.log("update exjob failed: " + err);
             }
-            else{
+            else {
                 console.log("update exjobs query working");
             }
         })
@@ -508,6 +507,7 @@ module.exports = {
     delete_exjob: function (id, callback) {
         var sql = "DELETE FROM exjobs WHERE ID = ?";
         con.query(sql, [id], function (err, res) {
+            callback(err, res);
             if (err) {
                 console.log("delete user query error" + err);
             } else {
@@ -516,20 +516,16 @@ module.exports = {
         })
     },
 
-    delete_user: function(ID,callback){
+    delete_user: function (ID, callback) {
         var sql = "DELETE FROM users WHERE ID  = ?; ";
-        con.query(sql,[ID], function (err,res){
+        con.query(sql, [ID], function (err, res) {
             if (err) {
                 console.log("delete user query error" + err);
             } else {
                 console.log("delete user query ok");
-            } 
+            }
         })
     },
-
-
-
-
 
 
 };
