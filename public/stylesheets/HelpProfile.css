@@ -1,16 +1,12 @@
-
-
-
 /* The grid: Three equal columns that floats next to each other */
 .column {
     float: left;
     width: 25%;
     padding: 10px;
-    border-bottom: 5px;
     border-bottom-color: white;
     text-align: center;
-    font-size: 16px; 
-    font-size: 3vw;
+    font-size: 2vw;
+    font-size: 12px;
     cursor: pointer;
     color: white;
 }
@@ -20,6 +16,8 @@
     width: 100%;
     padding: 20px;
     color: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 /* Clear floats after the columns */
@@ -29,4 +27,12 @@
     clear: both;
     border-top: 5px;
     border-top-color: white;
+}
+span.closebtn{
+    font-size: 20px;
+    text-align: right;
+}
+.helpRow{
+    margin-top: 5px;
+    height: 80vh;
 }
