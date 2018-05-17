@@ -4,7 +4,6 @@ let bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
-let match = require('../search');
 
 let bcrypt = require('bcrypt');
 let mysql = require('mysql');
@@ -26,6 +25,8 @@ router.get('/', (req, res) => {
         db.getuname(req.session.user, function (err, result) {
             if (err) throw err;
             res.redirect('/profile');
+            console.log('user', req.session.orgnr);
+            console.log('exid', req.session.exid);
         });
     }
     else
@@ -92,7 +93,6 @@ router.post('/login', function (req, res) {
         else {
             bcrypt.compare(password, results[0].Password, function (err, match) {
                 if (match) {
-                    console.log(req.body.remember);
                     if (req.body.remember) {
                         req.session.cookie.maxAge = 1000 * 60 * 60 * 24 * 365 * 100;
                     }
@@ -121,42 +121,38 @@ router.get('/profile', (req, res) => {
             res.render('StudentProfile', {
                 results: result
             });
-            console.log(req.session.user);
-            console.log(req.session.role);
         });
     }
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function (err, result) {
-            if (err) {
-                throw err;
-            }
+            if (err) throw err
             else {
-                db.get_exjobs(req.session.user, function (err, results) {
-                    if (err) {
-                        throw err;
-                    }
-                    else {
-                        res.render('companyProfile', {
-                            get_exjobs: results,
-                            get_company_user_and_nr : result
-                        });
-                    }
-                })
                 req.session.orgnr = result[0].Orgnr;
+                req.session.company = result;
             }
         });
+        db.get_exjobs(req.session.user, function (err, results) {
+            if (err) throw err
+
+            req.session.exid = results;
+            res.render('companyProfile', {
+                get_exjobs: results,
+                get_company_user_and_nr: req.session.company
+            });
+        })
     }
     else
         res.redirect('/')
 });
-
+router.get('/test', function (req, res) {
+    console.log('asdhaiosdha', req.session.exid);
+})
 router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');
 });
 
 router.post('/change_student_profile', function (req, res) {
-    
     var uname = req.body.username,
         name = req.body.name,
         pnr = req.body.pnum,
@@ -223,16 +219,14 @@ router.post('/change_company_profile', function (req, res) {
 //});
 
 router.get('/dbtester', function (req, res) {
-    db.get_students(function(err, result){
-        if(err) throw err;
+    db.get_students(function (err, result) {
+        if (err) throw err;
         req.session.res = result;
-        console.log("dbtest: "+req.session.res[0].UID);
+        console.log("dbtest: " + req.session.res[0].UID);
         res.render('StudentProfile', {
             eh: result
         })
-        
     })
-    
 });
 router.post('/forgot', function (req, res) {
     const output = `
@@ -314,11 +308,34 @@ router.post('/add_job', function (req, res) {
     })
 });
 router.post('/update_job', function (req, res) {
+    db.update_exjob(req.body.name, req.body.info, req.body.job_id, function (req, res) {
+        if (err) {
+            req.flash('danger', 'An error has occured while updating your profile');
+            res.redirect('/profile');
+        }
+        else {
+            req.flash('success', 'You have successfully updated a job');
+            res.redirect('/profile');
+        }
+    })
+});
+router.post('/delete_job', function (req, res) {
 
-})
-router.get('/profileStudentProfile',function(req, res){
+    console.log('.asdad', req.body.job_id);
+    db.delete_exjob(req.body.job_id, function (err, results) {
+        if (err) {
+            req.flash('danger', 'An error has occured');
+            res.redirect('/profile');
+        }
+        else {
+            req.flash('success', 'You have successfully removed a job')
+            res.redirect('/profile');
+        }
+    })
+});
+router.get('/profileStudentProfile', function (req, res) {
     res.render("pages/profileStudentProfile");
-})
+});
 
 module.exports = router;
 
