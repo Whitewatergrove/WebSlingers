@@ -284,14 +284,14 @@
 							<div class="container">
 								<input type="text" name="username" id="uname" disabled value = <%= results[0].UID %>>
 								<input type="text" name="pnum" id="pnum" disabled value = <%= results[0].pnr %>>
-								<input type="password" name="password" id="pass" maxlength="30" required placeholder="Enter Password..."
-								data-toggle="tooltip"  title="Fyll i ett nytt lösenord max 30 karaktärer">
-								<input type="text" name="name" id="name" maxlength="45" required placeholder="Enter Name..."
+								<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..."
+								data-toggle="tooltip"  title="Fyll i ett nytt lösenord  4-16 karaktärer">
+								<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..."
 								data-toggle="tooltip"  title="Fyll i ditt fullständiga namn ">
-								<input type="text" name="address" id="adress" maxlength="45" required placeholder="Enter address..."
+								<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress..."
 								data-toggle="tooltip"  title="Fyll i din postadress">
-								<input type="text" name="tel" id="tel" maxlength="45" required placeholder="Enter Phonenumber..."
-								data-toggle="tooltip"  title=>
+								<input type="text" name="tel" id="tel" maxlength="20" required placeholder="Telefonnummer..."
+								data-toggle="tooltip"  title="Fyll i ditt nummer 12 siffror" patter="[0-9]">
 								<select name="gender">
 									<option value="Male">Male</option>
 									<option value="Female">Female</option>
