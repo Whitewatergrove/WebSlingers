@@ -4,8 +4,11 @@ let bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
+<<<<<<< HEAD
 let match = require('./search');
 let matching = require('./match');
+=======
+>>>>>>> 3436bf76c61d325a0074359d699e448c20c25aed
 
 let bcrypt = require('bcrypt');
 let mysql = require('mysql');
