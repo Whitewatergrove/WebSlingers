@@ -11,8 +11,9 @@ let cookieParser = require('cookie-parser');
 let session = require('express-session');
 let bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-
 let flash = require('connect-flash');
+
+
 
 app.use(cookieParser());
 app.use(flash());
@@ -28,7 +29,10 @@ app.use(function (req, res, next) {
     res.locals.messages = require('express-messages')(req, res);
     next();
 });
+
 app.use('/', routes);
+
+
 
 app.set('port', 80);
 var server = app.listen(app.get('port'), function () {
