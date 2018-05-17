@@ -59,7 +59,7 @@ module.exports = {
         let temp = {}
         temp.student = students;
         temp.ex = [];
-        exjobs.forEach(exjob => {
+        exjobs.forEach(exjob => {                           // Checking if the student have 
             if(students.QUAL.length > 0)
             {
                 students.QUAL.forEach(qual => { 
