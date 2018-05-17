@@ -10,44 +10,30 @@ let students;
 let exjobs;
 let classes;
 let line = '---------------------------------------------';
-let matched = [];
-
-function logga(x)
-{
-    console.log(x);
-}
-function loggaerror()
-{
-    console.log("error");
-}
 
 module.exports = {
 
-    prematching: function(student)
-    {
+    prematching: function(thisStudent)                     // The function that makes all the preworking 
+    {                                                      // to match exjobs to the current student.
 
         let current = {};
-        let tempqual;
-        current.student = student;
+        current.student = thisStudent;
 
-        Promise.all([
-            db.get_xjob_promise(exjobs),                            // Fetching all exjobs
-            db.get_class_catagories_promise(classes),               // Fetching all classes
-            db.get_student_qual_promise(current.student),           
-            db.get_demanded_promise(),
-        ]).then((lists) => {
-            
+        Promise.all([                                       // Creating an array of promises. 
+            db.get_xjob_promise(exjobs),                                // Fetching all exjobs.
+            db.get_class_catagories_promise(classes),                   // Fetching all classes.
+            db.get_student_qual_promise(current.student),               // Fetching the qualificatons of the student.
+            db.get_demanded_promise(),                                  // Fetching all demanded qualifications for all exjob.
+        ]).then((lists) => {                                // Starts working with the promises when all
+                                                            // of them is resolved or rejected.
             exjobs = lists[0],
             classes = lists[1],
 
             current.QUAL = lists[2],
             students = current,
 
-            logga(current),
-            logga(line),
-
-            exjobs.forEach(exjob => {
-                exjob.demanded = [];
+            exjobs.forEach(exjob => {                                   // Looping through all exjobs and
+                exjob.demanded = [];                                    // sets their demandingqualifications.
                 lists[3].forEach(demand => {
                     if(exjob.ID === demand.EID)
                     {
@@ -56,43 +42,28 @@ module.exports = {
                 })
             }),
 
-            logga(exjobs),
-            logga(line),
-
             /*classes.forEach(klass => {
                 klass.qualification = db.get_qualifications_catagories_promise(klass.class);
             }),*/
 
-            //logga(classes),
-            logga(line),
-            logga(lists[2]),
-            logga(line);
+            //console.log(classes),
+            console.log(line);
         }).catch((error) => {
             // handle error here,
-            console.error("HÄR");
+            console.error("Student Prematching Promise Error");
         });
     },
 
-    matcha: function()
+    matcha: function()                                      // The function that is matching student to exjobs.
     {
         let temp = {}
-        console.log("student");
         temp.student = students;
         temp.ex = [];
-        logga(students); 
-        logga(students.QUAL.length);
-        exjobs.forEach(exjob => {
-            let check = 0;
-            console.log("exjob");
-            if(students.QUAL.length > 0)
+        exjobs.forEach(exjob => {                           // Checking if the there is any exjobs that demanding 
+            if(students.QUAL.length > 0)                    // any of the student qualification.
             {
                 students.QUAL.forEach(qual => { 
-                    console.log("QUAL");
-                    logga(qual.QID);
-                    console.log(exjob.demanded)
                     exjob.demanded.forEach(demd => {
-                        console.log("demd");
-                        logga(demd);
                         if(qual.QID === demd)
                         {
                             temp.ex[temp.ex.length] = exjob;
@@ -102,12 +73,8 @@ module.exports = {
             }
             else{ console.error('No qualifications');}
         })
-        logga(line);
-        logga(line);
-        logga(temp);
-        logga(line);
-        logga(line);
+        console.log(temp);
 
-        return temp;            // kanske avändbar
+        return temp.ex;            // kanske avändbar
     }
 }

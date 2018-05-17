@@ -33,6 +33,21 @@ body {
 	position: fixed;
 	margin: auto;
 } */
+.matchbtn{
+	float:left;
+	margin-left: 32%;
+}
+.changebtn{
+	float:left;
+	margin-left: 1%;
+
+}
+.removebtn{
+	float:left;
+	margin-left: 1%;
+
+}
+
 
 #HomeH1 {
 	color: #FFF;

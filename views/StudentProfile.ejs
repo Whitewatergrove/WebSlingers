@@ -44,6 +44,9 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+	
+
+	
 
 </head>
 
@@ -279,12 +282,12 @@
 				<div class="modal-body">
 						<form action="/change_student_profile" method="POST">
 							<div class="container">
-								<input type="text" name="username" id="button2" disabled value = <%= results[0].UID %>>
-								<input type="text" name="pnum" id="button2" disabled value = <%= results[0].pnr %>>
-								<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
-								<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
-								<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
-								<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Enter Phonenumber...">
+								<input type="text" name="username" id="uname" disabled value = <%= results[0].UID %>>
+								<input type="text" name="pnum" id="pnum" disabled value = <%= results[0].pnr %>>
+								<input type="password" name="password" id="pass" maxlength="30" required placeholder="Enter Password...">
+								<input type="text" name="name" id="name" maxlength="45" required placeholder="Enter Name...">
+								<input type="text" name="address" id="adress" maxlength="45" required placeholder="Enter address...">
+								<input type="text" name="tel" id="tel" maxlength="45" required placeholder="Enter Phonenumber...">
 								<select name="gender">
 									<option value="Male">Male</option>
 									<option value="Female">Female</option>
@@ -309,10 +312,16 @@
 	</div>
 </div>
 <div class="main-content" id="likes" style="display:none">
-	<div class="main2">
+	<!-- <div class="main2">
 		<div class="font2">
-			<div class="StudentDiv2">
+			<div class="StudentDiv2"> -->
 				<h2>Chat</h2>
+					<!-- <form>
+						<ul id="messages"></ul>
+						  <input required class="input-field" id="messages" type="text" placeholder=" messages" autocomplete="off"/>
+						  <button type="button">Send</button>
+					  </form> -->
+
 				<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
 			</div>
 		</div>
@@ -326,6 +335,24 @@
 			<form action="/hejhopmanstest" method="POST">
 				<Button type="submit" id="buttondbtest">Update db</Button>
 			</form>
+
+			<% matchning.forEach(function(result) { %>		<!-- HÄR SKA DET KODAS SEN MOTHA FUCKA******************************************************************************************************************************************************************** -->					
+				<div class="w3-container">
+					<h5 class="w3-opacity">
+					<b><%= result.Name %></b>
+					</h5>
+					<h6 class="w3-text">
+					<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Mar 2012 - Dec 2014</h6>
+					<p><%= result.Info %></p>
+					<button class="changebtn"  style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Change</button>
+					<form action="delete_job" method="POST">
+						<input hidden name="job_id" value= <%= result.ID %>></input>
+						<button type="submit"style="width:auto;" class="removebtn">Remove</button>
+					</form>
+					<hr>
+				</div>				
+			<% }); %>
+
 			
 			<div class="Tinder">
 				<div id="user">

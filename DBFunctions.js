@@ -198,13 +198,17 @@ module.exports = {
     },
 
     /*************************************************************************************************************************************
-        PROMISE             */
+        PROMISE             
+        
+        These functions are promises functions. They return a promise of a value and not the value from the DB.
+
+        */
 
     
-    get_qualifications_catagories_promise: function(catagoriesqual){
+    get_qualifications_catagories_promise: function(){
         return new Promise ((resolve, reject) => {
-            let sql = "SELECT qualifications FROM catagories where class = ?; "
-            con.query(sql, catagoriesqual, function(err,results){
+            let sql = "SELECT * FROM catagories;"
+            con.query(sql, function(err,results){
                 if (err) {
                     console.error('get_exjobs_promise error in query');
                     let msg = "Promise error";
@@ -295,8 +299,27 @@ module.exports = {
         })
     },
 
+    get_studentqualifications_promise: function () {
+        return new Promise((resolve, reject) => {
+            let sql = "SELECT * FROM studentqualifications";
+            con.query(sql, function (err, results) {
+                if (err) {
+                    console.error('get_studentqualifications_promise error in query');
+                    con.onerror = function(){
+                        let msg = "Promise error";
+                        reject(new Error(msg));
+                    }
+                }
+                else {
+                    console.log('get_studentqualifications_promise query functional');
+                        resolve(results); 
+                }
+            })
+        })
+    },
 
-    get_students_promise: function (student) {
+
+    get_students_promise: function () {
         return new Promise((resolve, reject) => {
             let sql = "SELECT * FROM students";
             con.query(sql, function(err, results) {
@@ -307,8 +330,7 @@ module.exports = {
                 }
                 else {
                     console.log('get_students_promise query functional');
-                    student = results;
-                    resolve(student);
+                    resolve(results);
                 }
             })
 
@@ -334,6 +356,7 @@ module.exports = {
             })
         })
     },
+
     /*get_qual_categories_promise: function(username){
         return new Promise((resolve, reject) => {
             var sql = "SELECT class FROM catagories WHERE qualifications IN (SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = ? GROUP BY pnr)) GROUP BY class;";
@@ -507,10 +530,6 @@ module.exports = {
             }
         })
     },
-
-
-
-
 
 
 };

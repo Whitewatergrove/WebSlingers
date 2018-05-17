@@ -22,6 +22,11 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <script src="../scripts/profile.js"></script>
+    <!-- <script src="./scripts/profile.js"></script>  -->
+
+   
+</script>
+   
 </head>
 
 <body>
@@ -80,14 +85,14 @@
 
                                     <!-- Username input -->
                                     <div class="input-container">
-                                        <i id="icon" class="fas fa-user"></i>
-                                        <input required class="input-field" type="text" placeholder="Username" name="username">
+                                        <i id="icon" class="fas fa-user"></i>   
+                                        <input required class="input-field" type="username" required placeholder="Username" name="username" maxlength="16"autocomplete="on" >
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-key"></i>
-                                        <input required class="input-field" type="password" maxlength="30" placeholder="Password" name="password">
+                                        <input required class="input-field" type="password" maxlength="16" minlength="5" required placeholder="Password" name="password" autocomplete="on">
                                     </div>
 
                                     <!-- Remember me checkbox -->
@@ -121,20 +126,19 @@
                                     <!-- Username input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-user"></i>
-                                        <input required class="input-field" type="text" placeholder="Example@example.com..." name="username" data-toggle="tooltip"
-                                            data-html="true" title="<b>only <u>30</u> characters are allowed </b>">
+                                        <input required class="input-field" type="text" placeholder="Example@example.com..." name="username" maxlength="45" autocomplete="on">
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-key"></i>
-                                        <input required class="input-field" type="password" placeholder="Password" name="password">
+                                        <input required class="input-field" type="password" placeholder="Password" name="password" minlength="5" maxlength="16" autocomplete="on">
                                     </div>
 
                                     <!-- Personal id input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-calendar-plus"></i>
-                                        <input required class="input-field" type="text" placeholder="yymmddxxxx..." name="pnum" id="pnum">
+                                        <input required class="input-field" type="text" placeholder="yymmddxxxx..." name="pnum" id="pnum" minlength="10" maxlength="10"autocomplete="on">
                                     </div>
 
                                     <!-- Sign up button -->                                   
