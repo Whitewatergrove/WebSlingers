@@ -295,8 +295,27 @@ module.exports = {
         })
     },
 
+    get_studentqualifications_promise: function () {
+        return new Promise((resolve, reject) => {
+            let sql = "SELECT * FROM studentqualifications";
+            con.query(sql, function (err, results) {
+                if (err) {
+                    console.error('get_studentqualifications_promise error in query');
+                    con.onerror = function(){
+                        let msg = "Promise error";
+                        reject(new Error(msg));
+                    }
+                }
+                else {
+                    console.log('get_studentqualifications_promise query functional');
+                        resolve(results); 
+                }
+            })
+        })
+    },
 
-    get_students_promise: function (student) {
+
+    get_students_promise: function () {
         return new Promise((resolve, reject) => {
             let sql = "SELECT * FROM students";
             con.query(sql, function(err, results) {
@@ -307,8 +326,7 @@ module.exports = {
                 }
                 else {
                     console.log('get_students_promise query functional');
-                    student = results;
-                    resolve(student);
+                    resolve(results);
                 }
             })
 
@@ -334,6 +352,7 @@ module.exports = {
             })
         })
     },
+
     /*get_qual_categories_promise: function(username){
         return new Promise((resolve, reject) => {
             var sql = "SELECT class FROM catagories WHERE qualifications IN (SELECT QID FROM studentqualifications WHERE SID = (SELECT pnr FROM students, studentqualifications, qualifications, catagories WHERE UID = ? GROUP BY pnr)) GROUP BY class;";
