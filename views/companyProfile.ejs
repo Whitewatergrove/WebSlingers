@@ -200,34 +200,7 @@
 						</div>
 					</form>
 				</div>
-				<div id="id02" class="modal">
-						<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-						<form class="modal-content" action="update_job" method="POST">
-							<div class="container">
-								<div class="w3-container">
-									<h2>Update job</h2>
-								</div>
-								<hr>
-								<form class="w3-container">
-									<p>
-										<label><strong>Title</strong></label>
-										<input class="w3-input" type="text" name="name">
-									</p>
-									<p>
-										<label><strong>Job info</strong></label>
-										<input class="w3-input" type="text" name="info">
-									</p>
-
-									<input hidden name="job_id" value= >
-
-								</form>
-								<div class="clearfix">
-									<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-									<button type="submit" class="updatebtn">Save changes</button>
-								</div>
-							</div>
-						</form>
-					</div>
+				
 				<ul class="Job-list" id="job_list">
 					<% get_exjobs.forEach(function(result) { %>
 						<li> 
@@ -239,6 +212,33 @@
 								<button type="submit" class="removebtn">Remove</button>
 							</form>
 						</li>
+						<div id="id02" class="modal">
+								<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+								<form class="modal-content">
+									<div class="container">
+										<div class="w3-container">
+											<h2>Update job</h2>
+										</div>
+										<hr>
+										<form class="w3-container" action="update_job" method="POST">
+											<p>
+												<label><strong>Title</strong></label>
+												<input class="w3-input" type="text" name="name">
+											</p>
+											<p>
+												<label><strong>Job info</strong></label>
+												<input class="w3-input" type="text" name="info">
+											</p>
+		
+											<input hidden name="job_id" value= <%= result.ID %>>
+											<div class="clearfix">
+													<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+													<button type="submit" class="updatebtn">Save changes</button>
+											</div>
+										</form>
+									</div>
+								</form>
+							</div>
 					<% }); %>
 				</ul>
 			</div>

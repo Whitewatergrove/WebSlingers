@@ -255,50 +255,47 @@ router.post('/forgot', function (req, res) {
         }
         else {
             console.log(results);
-            console.log('found one user with email');
-            bcrypt.compare(results[0].Password, results[0].Password, function (err, match) {
-                if (err) throw err;
-                else if (match)
-                    bcrypt.hash('password', 10, function (err, hash) {
-                        if (err) throw err;
-                        db.update_user(req.body.email, hash, function (err, result) {
-                            if (err) {
-                                req.flash('danger', 'An error has occured while updating');
-                                res.redirect('/profile');
-                            }
-                            else if (!err) {
-                                var transporter = nodemailer.createTransport({
-                                    service: 'gmail',
-                                    auth: {
-                                        user: 'customerservice.webslingers@gmail.com',
-                                        pass: 'jocketest'
-                                    },
-                                    tls: {
-                                        rejectUnauthorized: false
-                                    }
-                                });
-                                const mailOptions = {
-                                    from: "Jocke Le 💩<customerservice.webslingers@hotmail.com>",
-                                    to: req.body.email,
-                                    subject: 'Password Reset - Webslingers',
-                                    html: output
-                                    // html: '<p>You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-                                    // 'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                                    // 'http://' + /*req.headers.host + */ '/reset/' /*+ token*/ + '\n\n' +
-                                    // 'If you did not request this, please ignore this email and your password will remain unchanged.\n</p>'// plain text body
 
-                                };
-                                transporter.sendMail(mailOptions, function (err, info) {
-                                    if (err) throw err;
-                                    else {
-                                        req.flash('success', 'An email has been sent to you. Please check your inbox.');
-                                        res.redirect('/');
-                                    }
-                                });
+            bcrypt.hash('password', 10, function (err, hash) {
+                if (err) throw err;
+                db.update_user(req.body.email, hash, function (err, result) {
+                    if (err) {
+                        req.flash('danger', 'An error has occured while updating');
+                        res.redirect('/profile');
+                    }
+                    else if (!err) {
+                        var transporter = nodemailer.createTransport({
+                            service: 'gmail',
+                            auth: {
+                                user: 'customerservice.webslingers@gmail.com',
+                                pass: 'jocketest'
+                            },
+                            tls: {
+                                rejectUnauthorized: false
                             }
-                        })
-                    })
+                        });
+                        const mailOptions = {
+                            from: "Jocke Le 💩<customerservice.webslingers@hotmail.com>",
+                            to: req.body.email,
+                            subject: 'Password Reset - Webslingers',
+                            html: output
+                            // html: '<p>You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                            // 'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                            // 'http://' + /*req.headers.host + */ '/reset/' /*+ token*/ + '\n\n' +
+                            // 'If you did not request this, please ignore this email and your password will remain unchanged.\n</p>'// plain text body
+
+                        };
+                        transporter.sendMail(mailOptions, function (err, info) {
+                            if (err) throw err;
+                            else {
+                                req.flash('success', 'An email has been sent to you. Please check your inbox.');
+                                res.redirect('/');
+                            }
+                        });
+                    }
+                })
             })
+
         }
     });
 });

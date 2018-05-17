@@ -62,13 +62,13 @@ module.exports = {
 
         var sql = "SELECT * FROM users WHERE ID = ? GROUP BY ID;";
         con.query(sql, username, function (err, results) {
+            callback(err, results);
             if (err) {
                 console.log('error in query');
             }
             else {
                 console.log('query functional');
             }
-            callback(err, results);
         })
     },
 
