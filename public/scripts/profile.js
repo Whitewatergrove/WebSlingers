@@ -49,9 +49,13 @@ function setIcon() {
         el.className += " fas fa-industry";
     }
 }
+
+// Select all elements with data-toggle="tooltips" in the document
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
+  
 })
+
 
 // function addJob() {
 //     var ListVar = document.createElement("LI");
@@ -85,3 +89,8 @@ window.onclick = function (event) {
 //         $('.changebtn').click(function (){ document.getElementById('id02').style.display='block'})
 //     });
 // });
+
+
+
+ 
+
