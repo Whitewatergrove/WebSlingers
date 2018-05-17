@@ -3,6 +3,7 @@ $(document).ready(function () {
         $('.side-nav').toggleClass('visible');
     });
 });
+<<<<<<< HEAD
 function openHelptab(tabName) {
     var i, x;
     x = document.getElementsByClassName("containerTab");
@@ -11,6 +12,11 @@ function openHelptab(tabName) {
     }
     document.getElementById(tabName).style.display = "block";
   } 
+=======
+
+let matching = require('../routes/match');
+
+>>>>>>> 8d725289f9ffb7715f60be5be01bd366134f75af
 function openTab(pageName, tab) {
     var i = 0,
         y = 0,
@@ -29,6 +35,12 @@ function openTab(pageName, tab) {
     }
     document.getElementById(tab).style.borderLeft = "5px solid #2e78ba";
     document.getElementById(pageName).style.display = "block";
+
+    if(pageName === 'Jobs')
+    {
+        matching.matcha();
+        //******************************************************************************************************************************************************************************************** */
+    }
 }
 
 function setIcon() {
@@ -48,30 +60,42 @@ function setIcon() {
         el.className += " fas fa-industry";
     }
 }
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
 
-function addJob(){
-    var ListVar = document.createElement("LI");
-    var ParaVar = document.createElement("P");
-    var h4Var = document.createElement("H4");
+// function addJob() {
+//     var ListVar = document.createElement("LI");
+//     var ParaVar = document.createElement("P");
+//     var h4Var = document.createElement("H4");
 
-    var JobList = document.getElementsByClassName("Job-list");
-    var JobTitle = document.getElementById("Job-title");
-    var JobInfo = document.getElementById("Job-info");
+//     var JobList = document.getElementsByClassName("Job-list");
+//     var JobTitle = document.getElementById("Job-title");
+//     var JobInfo = document.getElementById("Job-info");
 
-    h4Var.appendChild(JobTitle);
-    ParaVar.appendChild(JobInfo);
-    ListVar.appendChild(h4Var);
-    ListVar.appendChild(paraVar);
-    
-    JobList.appendChild(ListVar);
-}
+//     h4Var.appendChild(JobTitle);
+//     ParaVar.appendChild(JobInfo);
+//     ListVar.appendChild(h4Var);
+//     ListVar.appendChild(paraVar);
 
+<<<<<<< HEAD
+=======
+//     JobList.appendChild(ListVar);
+// }
+
+>>>>>>> 8d725289f9ffb7715f60be5be01bd366134f75af
 // Get the modal
 var modal = document.getElementById('id01');
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
+// $(document).ready(function(){
+//     $("#addjob").click(function(){
+//         $("#job_list").append("<li><h4>" + $('#Job-title').val() + "</h4><p>" +  $('#Job-info').val() + "<p><button class = 'changebtn' style= 'width: auto'>Change</button> <button class='deletebtn'>Delete</button></li>");
+//         $('.changebtn').click(function (){ document.getElementById('id02').style.display='block'})
+//     });
+// });

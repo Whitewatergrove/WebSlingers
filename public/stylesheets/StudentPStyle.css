@@ -19,7 +19,7 @@ body {
 	background-color: #2e78ba;
 	border-bottom: 3px solid #2e78ba;
 }
-
+/* 
 #HomeID {
 	background-image: url('../images/safe_image.jpg');
 	overflow: auto;
@@ -32,7 +32,22 @@ body {
 	bottom: 0;
 	position: fixed;
 	margin: auto;
+} */
+.matchbtn{
+	float:left;
+	margin-left: 32%;
 }
+.changebtn{
+	float:left;
+	margin-left: 1%;
+
+}
+.removebtn{
+	float:left;
+	margin-left: 1%;
+
+}
+
 
 #HomeH1 {
 	color: #FFF;
