@@ -33,11 +33,19 @@ body {
 	position: fixed;
 	margin: auto;
 } */
-removebtn{
+.matchbtn{
 	float:left;
+	margin-left: 32%;
 }
-changebtn{
+.changebtn{
 	float:left;
+	margin-left: 1%;
+
+}
+.removebtn{
+	float:left;
+	margin-left: 1%;
+
 }
 
 
