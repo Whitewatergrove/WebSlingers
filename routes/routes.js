@@ -210,11 +210,12 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
-router.post('/hejhopmanstest', function (req, res) {
+router.post('/hejhopmanstest', function (req, res) {            // Needs to find an other solution!!!!
     matchingStudent.matcha();
+    res.redirect('/profile')
 });
 
-router.get('/search', function (req, res) {
+router.get('/search', function (req, res) {                     // For testing, do not remove!!!!!!
     searchTest.testmatch();
 });
 
