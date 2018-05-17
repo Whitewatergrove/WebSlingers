@@ -73,7 +73,7 @@ module.exports = {
     },
 
     get_student_user_and_nr: function (username, callback) {
-        var sql = "select UID, pnr from students where UID = ?;";
+        var sql = "select Name, Adress, gender, Tel, UID, pnr from students where UID = ?;";
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log('error in query');
@@ -86,7 +86,7 @@ module.exports = {
     },
 
     get_company_user_and_nr: function (username, callback) {
-        var sql = "select Orgnr, UID from companies where UID = ?;";
+        var sql = "select Name, Tel, Orgnr, UID from companies where UID = ?;";
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log('error in query');

@@ -48,6 +48,7 @@
 </head>
 
 <body>
+	<!-- Image at the top -->
 	<div class="header">
 		<div class="logo">
 			<img src="images/oru-16x16.png">
@@ -57,12 +58,14 @@
 			<span></span>
 		</a>
 	</div>
+	<!-- Image at bottom -->
 	<div class="side-nav">
 		<div class="logo">
 			<img src="images/oru-16x16.png">
 			<span>Webslingers</span>
 		</div>
 		<nav>
+			<!-- All buttoms in the sidepanel -->
 			<ul class="tabs">
 				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
 					<a>
@@ -88,7 +91,7 @@
 						<span id="BlackT">Ex-Job</span>
 					</a>
 				</li>
-				<li>
+				<li  class="tabBorder" onclick="openTab('Help', 'Manual')" id="Manual">
 					<a>
 						<span>
 							<i class="fa fa-credit-card-alt" id="SideIcon"></i>
@@ -106,14 +109,11 @@
 				</li>
 				<img src="./images/oru.png" class="si">
 			</ul>
+			<!-- End buttoms sidepanel -->
 		</nav>
 	</div>
 	<div class="main-content" id="home">
 		<div class="main2" id="main2Profile">
-			<!-- <h2>Välkommen <%= results[0].UID %></h2>  ett försök har gjorts för att få bort den -->
-			<!-- <iframe src="profileStudentProfile.html" width="1200" height="700"> </iframe> -->
-
-
 			<body id="blueb">
 				<!-- Page Container -->
 				<div class="w3-content w3-margin-top" style="max-width:1400px;">
@@ -130,25 +130,32 @@
 									<div class="w3-display-bottomleft w3-container w3-text-black">
 
 									</div>
-									<h2> Steffe löfven</h2>
+									<h2> <%= results[0].Name %></h2>
 								</div>
+								<!-- Person information box -->
 								<div class="w3-container">
 									<p>
-										<i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>Designer</p>
+										<i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].pnr %>
+									</p>
 									<p>
-										<i class="fa fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>London, UK</p>
+										<i class="fa fa-user fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].gender %></p>
+									
 									<p>
 										<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].UID %>
 									</p>
 									<p>
-										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>1224435534</p>
+										<i class="fas fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].Adress %>
+									</p>
+									<p>
+										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].Tel %>
+									</p>
 									<hr>
 									<button type="button" class="Editbtn"data-toggle="modal" data-target="#ProfileModal">
 										<strong>Edit</strong>
 									</button>
 									<hr>
 								
-
+									<!-- Skills -->
 									<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b></p>
 
 									<div class="w3-light-grey w3-round-xlarge w3-small">
@@ -254,40 +261,6 @@
 
 					<!-- End Page Container -->
 				</div>
-
-<!-- <h1>Ändra Personuppgifter</h1>
-					<form action="/change_student_profile" method="POST">
-						<div class="container">
-							<input type="text" name="username" id="button2" disabled value = <%= results[0].UID %>>
-							<br />
-							<br/>
-							<input type="text" name="pnum" id="button2" disabled value = <%= results[0].pnr %>>
-							<br />
-							<br/>
-							<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
-							<br />
-							<br/>
-							<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
-							<br />
-							<br/>
-							<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
-							<br />
-							<br/>
-							<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Enter Phonenumber...">
-							<br />
-							<br/>
-							<select name="gender">
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-								<option value="Other">Other</option>
-							</select>
-							<br />
-							<br/>
-						</div>
-						<Button type="submit" id="butt" >Update changes</Button>
-					</form> -->
-<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
-
 <div class="container">
 	<div id="modalBG">
 	</div>
@@ -349,11 +322,31 @@
 	<div class="main">
 		<div class="widget" id="JobsWidget">
 			<div class="title">Available jobs</div>
+
 			<form action="/hejhopmanstest" method="POST">
 				<Button type="submit" id="buttondbtest">Update db</Button>
+			</form>
+			
+			<div class="Tinder">
+				<div id="user">
+					<p></p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
+<div class="main-content" id="Manual" style="display:none">
+		<div class="main">
+			<div class="widget">
+				<div class="title">Available jobs</div>
+				<div class="Tinder">
+					<div id="user">
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 <!-- <footer class="w3-container w3-center w3-margin-top" id="BlackT">
 	<p>Find me on social media.</p>
