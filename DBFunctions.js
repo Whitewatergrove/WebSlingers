@@ -62,13 +62,13 @@ module.exports = {
 
         var sql = "SELECT * FROM users WHERE ID = ? GROUP BY ID;";
         con.query(sql, username, function (err, results) {
+            callback(err, results);
             if (err) {
                 console.log('error in query');
             }
             else {
                 console.log('query functional');
             }
-            callback(err, results);
         })
     },
 
@@ -494,7 +494,7 @@ module.exports = {
 
     update_exjob: function (name, info, id, callback) {
         var sql = "UPDATE exjobs SET Name = ?, Info = ? WHERE ID = ?;";
-        con.query(sql, name, info, id, function (err, res) {
+        con.query(sql, [name, info, id], function (err, res) {
             callback(err, res);
             if (err) {
                 console.log("update exjob failed: " + err);
