@@ -13,27 +13,27 @@ let line = '---------------------------------------------';
 
 module.exports = {
 
-    prematching: function(thisStudent)
-    {
+    prematching: function(thisStudent)                     // The function that makes all the preworking to match exjobs
+    {                                                      // to the current student.
 
         let current = {};
         current.student = thisStudent;
 
-        Promise.all([
-            db.get_xjob_promise(exjobs),                            // Fetching all exjobs
-            db.get_class_catagories_promise(classes),               // Fetching all classes
-            db.get_student_qual_promise(current.student),           
-            db.get_demanded_promise(),
-        ]).then((lists) => {
-            
+        Promise.all([                                       // Creating an array of promises. 
+            db.get_xjob_promise(exjobs),                                // Fetching all exjobs.
+            db.get_class_catagories_promise(classes),                   // Fetching all classes.
+            db.get_student_qual_promise(current.student),               // Fetching the qualificatons of the student.
+            db.get_demanded_promise(),                                  // Fetching all demanded qualifications for all exjob.
+        ]).then((lists) => {                                // Starts working with the promises when all of them is resolved or rejected.
+
             exjobs = lists[0],
             classes = lists[1],
 
             current.QUAL = lists[2],
             students = current,
 
-            exjobs.forEach(exjob => {
-                exjob.demanded = [];
+            exjobs.forEach(exjob => {                                   // Looping through all exjobs and
+                exjob.demanded = [];                                    // sets their demandingqualifications.
                 lists[3].forEach(demand => {
                     if(exjob.ID === demand.EID)
                     {
@@ -54,7 +54,7 @@ module.exports = {
         });
     },
 
-    matcha: function()
+    matcha: function()                                      // The function that is matching student to exjobs
     {
         let temp = {}
         temp.student = students;
