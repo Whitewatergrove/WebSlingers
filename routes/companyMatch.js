@@ -10,24 +10,23 @@ let students;
 let exjob;
 let classes;
 let line = '---------------------------------------------';
-let matched = [];
 
 module.exports = {
 
-    companyPrematching: function(thisExjob)
-    {
+    companyPrematching: function(thisExjob)                     // The function that makes all the preworking 
+    {                                                           // to match students to the current exjob.
 
         let current = {};
         let tempqual;
         current.exjob = thisExjob;
 
-        Promise.all([
+        Promise.all([                                           // Creating an array of promises. 
             db.get_xjob_demanded_promise(exthisExjobjob.ID),
             db.get_students_promise(),
             db.get_studentqualifications_promise(),
             db.get_class_catagories_promise(classes),
-        ]).then((lists) => {
-            
+        ]).then((lists) => {                                    // Starts working with the promises when all
+                                                                // of them is resolved or rejected.
             current.demanded = lists[0],
             students = lists[1],
             classes = lists[3],
@@ -38,8 +37,8 @@ module.exports = {
 
 
 
-            students.forEach(student => {
-                students.QUAL = [];
+            students.forEach(student => {                       // Looping through all exjobs and
+                students.QUAL = [];                             // sets their demandingqualifications.
                 lists[2].forEach(qual => {
                     if(student.ID === qual.SID)
                     {
@@ -61,7 +60,7 @@ module.exports = {
         });
     },
 
-    companyMatcha: function()
+    companyMatcha: function()                                   // The function that is matching exjob to students.
     {
         let temp = {}
         console.log("exjob");
@@ -73,8 +72,8 @@ module.exports = {
             console.log("student");
             if(exjob.demanded.length > 0)
             {
-                exjob.demanded.forEach(demd => { 
-                    console.log("Demands");
+                exjob.demanded.forEach(demd => {                // Checking if the there is any exjobs that demanding 
+                    console.log("Demands");                     // any of the student qualification.
                     console.log(demd.QID);
                     console.log(exjob.demanded)
                     student.QUAL.forEach(qual => {

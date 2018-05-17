@@ -5,7 +5,7 @@ let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
 
-let searchTest = require('./search');
+let searchTest = require('./search');                   // Test for search function, do not remove!
 let matchingStudent = require('./match');
 let matchingCompany = require('./companyMatch');
 
@@ -211,7 +211,6 @@ router.post('/change_company_profile', function (req, res) {
 });
 
 router.post('/hejhopmanstest', function (req, res) {
-    //matchingStudent.prematching(req.session.user);
     matchingStudent.matcha();
 });
 

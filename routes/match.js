@@ -13,8 +13,8 @@ let line = '---------------------------------------------';
 
 module.exports = {
 
-    prematching: function(thisStudent)                     // The function that makes all the preworking to match exjobs
-    {                                                      // to the current student.
+    prematching: function(thisStudent)                     // The function that makes all the preworking 
+    {                                                      // to match exjobs to the current student.
 
         let current = {};
         current.student = thisStudent;
@@ -24,8 +24,8 @@ module.exports = {
             db.get_class_catagories_promise(classes),                   // Fetching all classes.
             db.get_student_qual_promise(current.student),               // Fetching the qualificatons of the student.
             db.get_demanded_promise(),                                  // Fetching all demanded qualifications for all exjob.
-        ]).then((lists) => {                                // Starts working with the promises when all of them is resolved or rejected.
-
+        ]).then((lists) => {                                // Starts working with the promises when all
+                                                            // of them is resolved or rejected.
             exjobs = lists[0],
             classes = lists[1],
 
@@ -54,13 +54,13 @@ module.exports = {
         });
     },
 
-    matcha: function()                                      // The function that is matching student to exjobs
+    matcha: function()                                      // The function that is matching student to exjobs.
     {
         let temp = {}
         temp.student = students;
         temp.ex = [];
-        exjobs.forEach(exjob => {                           // Checking if the student have 
-            if(students.QUAL.length > 0)
+        exjobs.forEach(exjob => {                           // Checking if the there is any exjobs that demanding 
+            if(students.QUAL.length > 0)                    // any of the student qualification.
             {
                 students.QUAL.forEach(qual => { 
                     exjob.demanded.forEach(demd => {

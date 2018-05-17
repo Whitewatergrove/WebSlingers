@@ -198,7 +198,11 @@ module.exports = {
     },
 
     /*************************************************************************************************************************************
-        PROMISE             */
+        PROMISE             
+        
+        These functions are promises functions. They return a promise of a value and not the value from the DB.
+
+        */
 
     
     get_qualifications_catagories_promise: function(catagoriesqual){
