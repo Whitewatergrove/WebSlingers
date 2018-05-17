@@ -4,6 +4,14 @@ let bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+let match = require('./search');
+let matching = require('./match');
+=======
+>>>>>>> 3436bf76c61d325a0074359d699e448c20c25aed
+>>>>>>> ac3b23d0bdc6573daee2b3ed4531dc5c029c84cf
 
 let bcrypt = require('bcrypt');
 let mysql = require('mysql');
@@ -103,6 +111,7 @@ router.post('/login', function (req, res) {
                     req.session.role = results[0].Role;
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
+                    matching.prematching(req.session.user);
                 }
                 else {
                     console.log('wtf');
@@ -214,9 +223,15 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
-//router.get('/search', function (req, res) {
-//    match.testmatch();
-//});
+router.post('/hejhopmanstest', function (req, res) {
+    //matching.prematching(req.session.user);
+    matching.matcha();
+});
+
+router.get('/search', function (req, res) {
+    //matching.prematching(req.session.user);
+    match.testmatch();
+});
 
 router.get('/dbtester', function (req, res) {
     db.get_students(function (err, result) {
@@ -321,6 +336,7 @@ router.post('/update_job', function (req, res) {
 });
 router.post('/delete_job', function (req, res) {
 
+<<<<<<< HEAD
     console.log('.asdad', req.body.job_id);
     db.delete_exjob(req.body.job_id, function (err, results) {
         if (err) {
@@ -336,6 +352,11 @@ router.post('/delete_job', function (req, res) {
 router.get('/profileStudentProfile', function (req, res) {
     res.render("pages/profileStudentProfile");
 });
+=======
+router.get('/profileStudentProfile',function(req, res){
+    res.render("profileStudentProfile");
+})
+>>>>>>> ac3b23d0bdc6573daee2b3ed4531dc5c029c84cf
 
 module.exports = router;
 
