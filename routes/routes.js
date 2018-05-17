@@ -5,7 +5,7 @@ let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
 let match = require('../search');
-
+//let fileup = require('express-fileupload');
 let bcrypt = require('bcrypt');
 let mysql = require('mysql');
 
@@ -207,7 +207,8 @@ router.post('/change_company_profile', function (req, res) {
 });
 
 router.post('/filetest', function (req, res){
-    db.update_user_cv(req.session.pnr, req.body.fileupload, function(err, result){
+    var selectedFile = document.getElementById('input').files[0];
+    db.update_user_cv(req.session.pnr, selectedFile, function(err, result){
     if (err) {
         console.log("1");
         req.flash('danger', 'An error has occured while updating');
@@ -229,8 +230,7 @@ router.get('/Certificate', function (req, res){
         }
         else if(!err)
         {
-            console.log("resultatet av skiten: "+result);
-            res.redirect('/profile');
+            console.log(result[0].file);
         }
     })
 })
