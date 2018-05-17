@@ -11,6 +11,8 @@ let mysql = require('mysql');
 
 const nodemailer = require('nodemailer');
 
+var sort_test;
+
 var con = mysql.createConnection({
     host: "83.255.197.121",
     user: "joakim",
@@ -154,6 +156,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.post('/change_student_profile', function (req, res) {
+    
     var uname = req.body.username,
         name = req.body.name,
         pnr = req.body.pnum,
@@ -214,8 +217,22 @@ router.post('/change_company_profile', function (req, res) {
         })
     })
 });
-router.get('/search', function (req, res) {
-    match.testmatch();
+
+//router.get('/search', function (req, res) {
+//    match.testmatch();
+//});
+
+router.get('/dbtester', function (req, res) {
+    db.get_students(function(err, result){
+        if(err) throw err;
+        req.session.res = result;
+        console.log("dbtest: "+req.session.res[0].UID);
+        res.render('StudentProfile', {
+            eh: result
+        })
+        
+    })
+    
 });
 router.post('/forgot', function (req, res) {
     const output = `
@@ -299,4 +316,9 @@ router.post('/add_job', function (req, res) {
 router.post('/update_job', function (req, res) {
 
 })
+router.get('/profileStudentProfile',function(req, res){
+    res.render("pages/profileStudentProfile");
+})
+
 module.exports = router;
+
