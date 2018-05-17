@@ -33,7 +33,12 @@ body {
 	position: fixed;
 	margin: auto;
 } */
-.testst
+removebtn{
+	float:left;
+}
+changebtn{
+	float:left;
+}
 
 
 #HomeH1 {
