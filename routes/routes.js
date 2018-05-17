@@ -5,8 +5,9 @@ let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
 
-let match = require('./search');
-let matching = require('./match');
+let searchTest = require('./search');
+let matchingStudent = require('./match');
+let matchingCompany = require('./companyMatch');
 
 let bcrypt = require('bcrypt');
 let mysql = require('mysql');
@@ -106,7 +107,7 @@ router.post('/login', function (req, res) {
                     req.session.role = results[0].Role;
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
-                    matching.prematching(req.session.user);
+                    matchingStudent.prematching(req.session.user);
                 }
                 else {
                     console.log('wtf');
@@ -219,13 +220,12 @@ router.post('/change_company_profile', function (req, res) {
 });
 
 router.post('/hejhopmanstest', function (req, res) {
-    //matching.prematching(req.session.user);
-    matching.matcha();
+    //matchingStudent.prematching(req.session.user);
+    matchingStudent.matcha();
 });
 
 router.get('/search', function (req, res) {
-    //matching.prematching(req.session.user);
-    match.testmatch();
+    searchTest.testmatch();
 });
 
 router.get('/dbtester', function (req, res) {
