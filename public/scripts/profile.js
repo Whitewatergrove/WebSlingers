@@ -100,7 +100,6 @@ window.onclick = function (event) {
 //     });
 // });
 
-<<<<<<< HEAD
 function openModal(k) {
 						
     $('.changebtn').click(function () {
@@ -111,9 +110,3 @@ function openModal(k) {
         document.getElementById(k).style.display = 'none'
     });
 }
-=======
-
-
- 
-
->>>>>>> e3a24e4f47b49dfe125334d1601278b8486bec69
