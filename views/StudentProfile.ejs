@@ -6,14 +6,14 @@
 	<title>Student profile</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
-	<title>Responsive vertical menu navigation</title>
+	<title>Profile</title>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
 	<link rel="stylesheet" type="text/css" href="./stylesheets/styleindex.css">
-	
+	<link rel="stylesheet" type="text/css" href="./stylesheets/HelpProfile.css">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
@@ -30,7 +30,7 @@
 			font-family: "Roboto", sans-serif
 		}
 	</style>
-	
+
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
 	    crossorigin="anonymous"></script>
 
@@ -40,14 +40,22 @@
 	<script src="./scripts/StudentPScript.js"></script>
 	<script src="../scripts/profile.js"></script>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	    crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	    crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	    crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+	    crossorigin="anonymous"></script>
+
+
+
 
 </head>
 
 <body>
+	<!-- Image at the top -->
 	<div class="header">
 		<div class="logo">
 			<img src="images/oru-16x16.png">
@@ -57,17 +65,19 @@
 			<span></span>
 		</a>
 	</div>
+	<!-- Image at bottom -->
 	<div class="side-nav">
 		<div class="logo">
 			<img src="images/oru-16x16.png">
 			<span>Webslingers</span>
 		</div>
 		<nav>
+			<!-- All buttoms in the sidepanel -->
 			<ul class="tabs">
 				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
 					<a>
 						<span>
-							<i class="fa fa-user"id="SideIcon"></i>
+							<i class="fa fa-user" id="SideIcon"></i>
 						</span>
 						<span id="BlackT">Profile</span>
 					</a>
@@ -75,7 +85,7 @@
 				<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
 					<a>
 						<span>
-							<i class="fa fa-envelope"id="SideIcon"></i>
+							<i class="fa fa-envelope" id="SideIcon"></i>
 						</span>
 						<span id="BlackT">Messages</span>
 					</a>
@@ -83,17 +93,17 @@
 				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
 					<a>
 						<span>
-							<i class="fas fa-folder"id="SideIcon"></i>
+							<i class="fas fa-folder" id="SideIcon"></i>
 						</span>
 						<span id="BlackT">Ex-Job</span>
 					</a>
 				</li>
-				<li>
+				<li class="tabBorder" onclick="openTab('Helps', 'Help')" id="Help">
 					<a>
 						<span>
 							<i class="fa fa-credit-card-alt" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Manual</span>
+						<span id="BlackT">Help</span>
 					</a>
 				</li>
 				<li>
@@ -106,13 +116,11 @@
 				</li>
 				<img src="./images/oru.png" class="si">
 			</ul>
+			<!-- End buttoms sidepanel -->
 		</nav>
 	</div>
 	<div class="main-content" id="home">
 		<div class="main2" id="main2Profile">
-			<!-- <h2>Välkommen <%= results[0].UID %></h2>  ett försök har gjorts för att få bort den -->
-			<!-- <iframe src="profileStudentProfile.html" width="1200" height="700"> </iframe> -->
-
 
 			<body id="blueb">
 				<!-- Page Container -->
@@ -130,43 +138,60 @@
 									<div class="w3-display-bottomleft w3-container w3-text-black">
 
 									</div>
-									<h2> Steffe löfven</h2>
+									<h2>
+										<%= results[0].Name %>
+									</h2>
 								</div>
+								<!-- Person information box -->
 								<div class="w3-container">
 									<p>
-										<i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>Designer</p>
-									<p>
-										<i class="fa fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>London, UK</p>
-									<p>
-										<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].UID %>
+										<i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+										<%= results[0].pnr %>
 									</p>
 									<p>
-										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>1224435534</p>
+										<i class="fa fa-user fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+										<%= results[0].gender %>
+									</p>
+
+									<p>
+										<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+										<%= results[0].UID %>
+									</p>
+									<p>
+										<i class="fas fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+										<%= results[0].Adress %>
+									</p>
+									<p>
+										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+										<%= results[0].Tel %>
+									</p>
 									<p>
 											<a href="Certificate">Certificate</a>
 									</p>
 									<hr>
-									<button type="button" class="Editbtn"data-toggle="modal" data-target="#ProfileModal">
+									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModal">
 										<strong>Edit</strong>
 									</button>
 									<hr>
-								
+									<!-- Skills -->
+									<p class="w3-large">
+										<b>
+											<i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b>
+									</p>
 
-									<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b></p>
+									<div class="w3-light-grey w3-round-xlarge w3-small">
+										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">C++/C#</div>
+									</div>
+									<br>
 
 									<div class="w3-light-grey w3-round-xlarge w3-small">
-									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">C++/C#</div>
+										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:60%">Java Script</div>
 									</div>
-								<br>
-									
+									<br>
 									<div class="w3-light-grey w3-round-xlarge w3-small">
-									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:60%">Java Script</div>
+										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:30%">Python</div>
 									</div>
-								<br>
-									<div class="w3-light-grey w3-round-xlarge w3-small">
-									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:30%">Python</div>
-									</div>
-								<br>
+									<br>
 									<hr>
 
 
@@ -176,20 +201,20 @@
 
 							<!-- End Left Column -->
 						</div>
-						
+
 
 						<!-- Right Column -->
 						<div class="w3-twothird">
 
 							<div class="w3-container w3-card w3-white w3-margin-bottom">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text "id="blueP"></i>Work Experience</h2>
+									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Work Experience</h2>
 								<div class="w3-container">
 									<h5 class="w3-opacity">
 										<b>Front End Developer / w3schools.com</b>
 									</h5>
 									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Jan 2015 -
+										<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Jan 2015 -
 										<span class="w3-tag w3-round">Current</span>
 									</h6>
 									<p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic.
@@ -201,7 +226,7 @@
 										<b>Web Developer / something.com</b>
 									</h5>
 									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Mar 2012 - Dec 2014</h6>
+										<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
 									<p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic.
 										Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
 									<hr>
@@ -211,7 +236,7 @@
 										<b>Graphic Designer / designsomething.com</b>
 									</h5>
 									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Jun 2010 - Mar 2012</h6>
+										<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Jun 2010 - Mar 2012</h6>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
 									<br>
 								</div>
@@ -225,7 +250,7 @@
 										<b>W3Schools.com</b>
 									</h5>
 									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Forever</h6>
+										<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Forever</h6>
 									<p>Web Development! All I need to know in one place</p>
 									<hr>
 								</div>
@@ -257,70 +282,46 @@
 
 					<!-- End Page Container -->
 				</div>
+				<div class="container">
+					<div id="modalBG">
+					</div>
+					<!-- The Modal -->
+					<div class="modal fade" id="ProfileModal">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
 
-<!-- <h1>Ändra Personuppgifter</h1>
-					<form action="/change_student_profile" method="POST">
-						<div class="container">
-							<input type="text" name="username" id="button2" disabled value = <%= results[0].UID %>>
-							<br />
-							<br/>
-							<input type="text" name="pnum" id="button2" disabled value = <%= results[0].pnr %>>
-							<br />
-							<br/>
-							<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
-							<br />
-							<br/>
-							<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
-							<br />
-							<br/>
-							<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
-							<br />
-							<br/>
-							<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Enter Phonenumber...">
-							<br />
-							<br/>
-							<select name="gender">
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-								<option value="Other">Other</option>
-							</select>
-							<br />
-							<br/>
-						</div>
-						<Button type="submit" id="butt" >Update changes</Button>
-					</form> -->
-<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<button type="button" class="button3" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Edit Profile</h4>
+								</div>
 
-<div class="container">
-	<div id="modalBG">
-	</div>
-	<!-- The Modal -->
-	<div class="modal fade" id="ProfileModal">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
+								<!-- Modal body -->
+								<div class="modal-body">
+									<form action="/change_student_profile" method="POST">
+										<div class="container">
+											<input type="text" name="username" id="uname" disabled value=< %=r esults[0].UID %>>
+											<input type="text" name="pnum" id="pnum" disabled value=< %=r esults[0].pnr %>>
+											<input type="password" name="password" id="pass" maxlength="30" required placeholder="Enter Password...">
+											<input type="text" name="name" id="name" maxlength="45" required placeholder="Enter Name...">
+											<input type="text" name="address" id="adress" maxlength="45" required placeholder="Enter address...">
+											<input type="text" name="tel" id="tel" maxlength="45" required placeholder="Enter Phonenumber...">
+											<select name="gender">
+												<option value="Male">Male</option>
+												<option value="Female">Female</option>
+												<option value="Other">Other</option>
+											</select>
+											<br/>
+										</div>
+										<button type="submit" id="butt">Update changes</button>
+									</form>
 
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<button type="button" class="button3" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Edit Profile</h4>
-				</div>
+								</div>
 
-				<!-- Modal body -->
-				<div class="modal-body">
-						<form action="/change_student_profile" method="POST">
-							<div class="container">
-								<input type="text" name="username" id="button2" disabled value = <%= results[0].UID %>>
-								<input type="text" name="pnum" id="button2" disabled value = <%= results[0].pnr %>>
-								<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
-								<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
-								<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
-								<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Enter Phonenumber...">
-								<select name="gender">
-									<option value="Male">Male</option>
-									<option value="Female">Female</option>
-									<option value="Other">Other</option>
-								</select>
-								<br/>
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									
+								</div>
 							</div>
 							<Button type="submit" id="butt" >Update changes</Button>
 						</form>
@@ -330,44 +331,144 @@
 						</form>
 				
 				</div>
-
-				<!-- Modal footer -->
-				<div class="modal-footer">
+			</body>
+		</div>
+	</div>
+	<div class="main-content" id="likes" style="display:none">
+		<div class="main2">
+			<div class="font2">
+				<div class="StudentDiv2">
+					<h2>Chat</h2>
+					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-		</body>
-	</div>
-</div>
-<div class="main-content" id="likes" style="display:none">
-	<div class="main2">
-		<div class="font2">
-			<div class="StudentDiv2">
-				<h2>Chat</h2>
-				<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
+	<div class="main-content" id="Jobs" style="display:none">
+		<div class="main">
+			<div class="widget" id="JobsWidget">
+				<div class="title">Available jobs</div>
+
+				<form action="/hejhopmanstest" method="POST">
+					<Button type="submit" id="buttondbtest">Update db</Button>
+				</form>
+				<% if(locals.matchning) {%>
+					<ul class="Job-list" id="job_list">
+
+						<% matchning.forEach(function(result) { %>
+							<hr>
+							<div class="w3-container">
+								<h4 class="w3-opacity">
+									<b>
+										<%= result.Name %>
+									</b>
+								</h4>
+								<h6 class="w3-text">
+									<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
+								<p>
+									<%= result.Info %>
+								</p>
+								<button class="matchbtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Match</button>
+								<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Change</button>
+								<form action="delete_job" method="POST">
+									<input hidden name="job_id" value=< %=r esult.ID %>></input>
+									<button type="submit" style="width:auto;" class="removebtn">Remove</button>
+								</form>
+
+							</div>
+
+							<hr>
+
+							<% }); %>
+					</ul>
+					<% } %>
+
+						<div class="Tinder">
+							<div id="user">
+								<p></p>
+							</div>
+						</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div class="main-content" id="Jobs" style="display:none">
-	<div class="main">
-		<div class="widget" id="JobsWidget">
-			<div class="title">Available jobs</div>
-			<form action="/dbtester" method="POST">
-				<!-- <div class="container">
-					<input type="text" name="dbtest" id="textdbtest" value = <%= results %>>
-				</div> -->
-				<!-- <ul> -->
-				
-				<!-- </ul> -->
-				<!-- <Button type="submit" id="buttondbtest">Update db</Button> -->
-			</form>
+
+	<div class="main-content" id="Helps" style="display:none">
+		<div class="main">
+			<div class="widget" id="JobsWidget">
+				<div class="title">Hjälp</div>
+				<div class="HelpBox">
+					<div class="helpRow">
+						<div class="column" onclick="openHelptab('b1');" style="background:#1f5686;">
+							Kom igång
+						</div>
+						<div class="column" onclick="openHelptab('b2');" style="background:#2e78ba;">
+							Stickers
+						</div>
+						<div class="column" onclick="openHelptab('b3');" style="background:#40a4fc;">
+							Chat
+						</div>
+						<div class="column" onclick="openHelptab('b4');" style="background:#65b5fc;">
+							Övrigt
+						</div>
+						<!-- Kom igång -->
+						<div id="b1" class="containerTab" style="display:none;background:#1f5686">
+							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<h2>Redigera din profil</h2>
+							<p>
+								Under taben "Profil" finner du till vänster knappen "Edit", där klickar du för att redigera informationen på din profil.
+								Du bör lägga till information i samtliga fält.
+							</p>
+							<hr>
+						</div>
+						<!-- Anonymitet -->
+						<div id="b2" class="containerTab" style="display:none;background:#2e78ba">
+							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<h2>Stickers</h2>
+							<p>
+								Under taben "Profil" finner du din profilinformation till vänster och "Arbetsstickers" till höger. Stickers är objekt av
+								olika examensarbeten som ni erbjuder studenter.
+							</p>
+							<hr>
+							<h2>Lägg till ett examensarbete</h2>
+							<p>
+								För att lägga till en ny sticker så klickar du på "Add job" och fyller i alla fält och klickar sedan "Add job" för att slutföra.
+								Ni kan när som helst både ta bort och redigera ett befintligt examensarbete.
+							</p>
+							<hr>
+							<h2>Ta bort ett examensarbete</h2>
+							<p>
+								Genom att klicka på knappen "Ta bort" på en befintlig sticker så kommer den att tas bort.
+							</p>
+							<hr>
+							<h2>Uppdatera ett examensarbete</h2>
+							<p>
+								Genom att klicka på knappen "Uppdatera" på en befintlig sticker så kommer ett fönster med redigerbara knappar att dyka upp.
+								Här fyller du i all information och klickar sedan på knappen "Uppdatera" för att uppdatera fälten i stickern.
+							</p>
+							<hr>
+						</div>
+						<!-- Chat -->
+						<div id="b3" class="containerTab" style="display:none;background:#40a4fc">
+							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<h2>Meddelanden</h2>
+							<p>Kontakt med en matchad student sker under taben "Chat".</p>
+							<hr>
+						</div>
+						<!-- Övrigt -->
+						<div id="b4" class="containerTab" style="display:none;background:#65b5fc">
+							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<h2>Övrigt</h2>
+							<p>ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf adf ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf
+								adf
+							</p>
+							<hr>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
 </body>
 <!-- <footer class="w3-container w3-center w3-margin-top" id="BlackT">
 	<p>Find me on social media.</p>
@@ -380,4 +481,5 @@
 	<p>Powered by Webbslingers</p>
 	<hr>
 </footer> -->
+
 </html>
