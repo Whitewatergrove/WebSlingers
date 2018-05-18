@@ -37,14 +37,14 @@
         <div class="w3-display-middle">
             <h1 class="w3-jumbo w3-animate-top">Skaffa ditt examensarbete idag!</h1>
 
-            <button type="button" class="loginbtn"data-toggle="modal" data-target="#myModal">
-                <strong>LOGGA IN</strong>
-            </button>
-        </div>
-        <div class="w3-display-bottomleft w3-padding-large">
-            Powered by
-            <strong>Webslingers</strong>
-        </div>
+                <button type="button" class="loginbtn" data-toggle="modal" data-target="#myModal">
+                    <strong>Logga in</strong>
+                </button>
+            </div>
+            <div class="w3-display-bottomleft w3-padding-large">
+                Drivs av 
+                <strong>Webslingers</strong>
+            </div>
     </div>
 
     <div class="container">
@@ -58,7 +58,7 @@
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Logga on</h4>
+                        <h4 class="modal-title">Logga in</h4>
                     </div>
 
                     <!-- Modal body -->
@@ -85,19 +85,21 @@
 
                                     <!-- Username input -->
                                     <div class="input-container">
-                                        <i id="icon" class="fas fa-user"></i>
-                                        <input required class="input-field" type="text" placeholder="Användarnamn" name="username">
+                                        <i id="icon" class="fas fa-user"></i>   
+                                        <input required class="input-field" type="username" required placeholder="Användarnamn" name="username" maxlength="16"autocomplete="on"
+                                        data-toggle="tooltip" title="Ditt användarnamn är även din email" > 
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-key"></i>
-                                        <input required class="input-field" type="password" maxlength="16" minlength="5" required placeholder="Password" name="password" autocomplete="on">
+                                        <input required class="input-field" type="password" maxlength="16" minlength="4" required placeholder="Password" name="password" autocomplete="on"
+                                        data-toggle="tooltip"  title="Fyll i ett lösenord 4-16 karaktärer " >
                                     </div>
 
                                     <!-- Remember me checkbox -->
                                     <div class="input-container">
-                                        <i>Remember me&ensp;</i>
+                                        <i>Kom ihåg mig&ensp;</i>
                                         <input id="checkBox" type="checkbox" name="remember">
                                         <br>
                                     </div>
@@ -105,7 +107,7 @@
                                     <button type="submit" class="btn" href="/profile">Logga in</button>
                                 </form>
                                 <form action="forgot" method="POST">
-                                    <input type="email" placeholder="Type your email here..." name="email">
+                                    <input type="email" placeholder="Fyll i din Email..." name="email" data-toggle="tooltip"  title="Fyll i din email om du glömt ditt lösenord">
                                     <button type="submit">test</button>
                                 </form>
                             </div>
@@ -126,19 +128,22 @@
                                     <!-- Username input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-user"></i>
-                                        <input required class="input-field" type="text" placeholder="Exempel@exempel.se..." name="username">
+                                        <input required class="input-field" type="text" placeholder="Exempel@exempel.com..." name="username" maxlength="45" autocomplete="on"
+                                        data-toggle="tooltip"  title="Ditt användarnamn">
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-key"></i>
-                                        <input required class="input-field" type="password" placeholder="Lösenord" name="password">
+                                        <input required class="input-field" type="password" placeholder="Lösenord" name="password" minlength="4" maxlength="16" autocomplete="on"
+                                        data-toggle="tooltip"  title="Fyll i ditt lösenord minst 4-16 karaktärer">
                                     </div>
 
                                     <!-- Personal id input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-calendar-plus"></i>
-                                        <input required class="input-field" type="text" placeholder="DDMMÅÅXXXX" name="pnum" id="pnum">
+                                        <input required class="input-field" type="text" placeholder="ddmmddxxxx..." name="pnum" id="pnum" minlength="10" maxlength="10"autocomplete="on"
+                                        data-toggle="tooltip"  title="Fyll i ditt personnummer 10 siffror" pattern="[0-9]">
                                     </div>
 
                                     <!-- Sign up button -->                                   
