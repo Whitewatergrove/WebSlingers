@@ -310,6 +310,14 @@
 											</select>
 											<br/>
 										</div>
+										<button type="submit" id="butt">Update changes</button>
+									</form>
+
+								</div>
+
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									
 								</div>
 							</div>
 						</div>
@@ -356,7 +364,7 @@
 								<button class="matchbtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Match</button>
 								<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Change</button>
 								<form action="delete_job" method="POST">
-									<input hidden name="job_id" value=< %= result.ID %>></input>
+									<input hidden name="job_id" value=< %=r esult.ID %>></input>
 									<button type="submit" style="width:auto;" class="removebtn">Remove</button>
 								</form>
 
