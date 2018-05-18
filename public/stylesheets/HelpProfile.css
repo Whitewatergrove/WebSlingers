@@ -36,7 +36,7 @@ span.closebtn{
     height: 80vh;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 800px) {
     .column {
         padding: 10px;
         border-bottom-color: white;

@@ -91,23 +91,23 @@
 	</div>
 	<!-- Messages/chat -->
 	<div class="main-content" id="likes" style="display:none">
-			<h2>Chat</h2>
-			<section>
-				<div id="change_username">
-					<input id="username" type="text" />
-					<button id="send_username" type="button">Change username</button>
-				</div>
-			</section>
+		<h2>Chat</h2>
+		<section>
+			<div id="change_username">
+				<input id="username" type="text" />
+				<button id="send_username" type="button">Change username</button>
+			</div>
+		</section>
 
-			<section id="chatroom">
-				<section id="feedback"></section>
-			</section>
+		<section id="chatroom">
+			<section id="feedback"></section>
+		</section>
 
-			<section id="input_zone">
-				<input id="message" class="vertical-align" type="text" />
-				<button id="send_message" class="vertical-align" type="button">Send</button>
-			</section>
-		</div>
+		<section id="input_zone">
+			<input id="message" class="vertical-align" type="text" />
+			<button id="send_message" class="vertical-align" type="button">Send</button>
+		</section>
+	</div>
 	<!-- Profile -->
 	<div class="main-content" id="profile">
 		<div class="main2" id="main2Profile" style="margin-right: 60%;">
@@ -117,7 +117,7 @@
 				<div class="w3-content w3-margin-top" style="max-width: 1400px;">
 
 					<!-- The Grid -->
-					<div class="w3-row-padding" style="width: 240%;" >
+					<div class="w3-row-padding" style="width: 240%;">
 
 						<!-- Left Column -->
 						<div class="w3-third">
@@ -134,23 +134,26 @@
 								</div>
 								<!-- Person information box -->
 								<div class="w3-container">
-										<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= get_company_user_and_nr[0].UID %>
-									</p>
-									<p>
-										<i class="fas fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= get_company_user_and_nr[0].Adress %>
-									</p>
-									<p>
-										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= get_company_user_and_nr[0].Tel %>
-									</p>
-									<p>
-										<i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
-										<%= get_company_user_and_nr[0].Orgnr %>
-									</p>
-									<hr>
-									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModal">
-										<strong>Edit</strong>
-									</button>
-									<hr>
+									<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+									<%= get_company_user_and_nr[0].UID %>
+										</p>
+										<p>
+											<i class="fas fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+											<%= get_company_user_and_nr[0].Adress %>
+										</p>
+										<p>
+											<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+											<%= get_company_user_and_nr[0].Tel %>
+										</p>
+										<p>
+											<i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+											<%= get_company_user_and_nr[0].Orgnr %>
+										</p>
+										<hr>
+										<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModal">
+											<strong>Edit</strong>
+										</button>
+										<hr>
 								</div>
 							</div>
 							<br>
@@ -228,7 +231,7 @@
 										</form>
 									</div>
 									<ul class="Job-list" id="job_list">
-										
+
 										<% get_exjobs.forEach(function(result) { %>
 											<hr>
 											<div class="w3-container">
@@ -245,10 +248,10 @@
 												<button class="matchbtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Match</button>
 												<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Change</button>
 												<form action="delete_job" method="POST">
-													<input hidden name="job_id" value= <%= result.ID %>></input>
+													<input hidden name="job_id" value=< %=r esult.ID %>></input>
 													<button type="submit" style="width:auto;" class="removebtn">Remove</button>
 												</form>
-											
+
 											</div>
 
 
@@ -256,18 +259,20 @@
 									</ul>
 									<hr>
 									<!-- End Ex-jobs -->
-								</br>
-							<!-- End Right Column -->
+									</br>
+									<!-- End Right Column -->
+								</div>
+
+								<!-- End Grid -->
+							</div>
+
+							<!-- End Page Container -->
 						</div>
-
-						<!-- End Grid -->
 					</div>
-
-					<!-- End Page Container -->
 				</div>
-			</div>
 		</div>
 	</div>
+	<!-- Help -->
 	<div class="main-content" id="Helps" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
@@ -275,7 +280,7 @@
 				<div class="HelpBox">
 					<div class="helpRow">
 						<div class="column" onclick="openHelptab('b1');" style="background:#1f5686;">
-							Kom igång
+							Börja
 						</div>
 						<div class="column" onclick="openHelptab('b2');" style="background:#2e78ba;">
 							Stickers
@@ -344,7 +349,6 @@
 			</div>
 		</div>
 	</div>
-</div>
 </body>
 
 </html>
