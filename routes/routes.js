@@ -220,6 +220,7 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
+
 router.post('/hejhopmanstest', function (req, res) {            // Needs to find an other solution!!!!
     
     res.render('StudentProfile', {
