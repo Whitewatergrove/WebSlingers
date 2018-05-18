@@ -99,9 +99,9 @@
 				</div>
 			</section>
 
-			<section id="chatroom">
-				<section id="feedback"></section>
-			</section>
+		<section id="chatroom">
+			<section id="feedback"></section>
+		</section>
 
 			<section id="input_zone">
 				<input id="message" class="vertical-align" type="text" />
@@ -117,7 +117,7 @@
 				<div class="w3-content w3-margin-top" style="max-width: 1400px;">
 
 					<!-- The Grid -->
-					<div class="w3-row-padding" style="width: 240%;" >
+					<div class="w3-row-padding" style="width: 240%;">
 
 						<!-- Left Column -->
 						<div class="w3-third">
@@ -133,7 +133,7 @@
 									</h2>
 								</div>
 								<!-- Person information box -->
-								<div class="w3-container">
+								<div class="w3-container" style="text-align: left;">
 										<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= get_company_user_and_nr[0].UID %>
 									</p>
 									<p>
@@ -163,27 +163,27 @@
 								<h2 class="w3-text-grey w3-padding-16">
 									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Dina job</h2>
 								<div class="w3-container">
-									<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin="auto">Lägg till jobb</button>
+									<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
 									<div id="id01" class="modal">
 
 										<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-										<form class="modal-content" method="POST" action="add_job">
+										<form class="modal-content" method="POST" action="add_job" style="width:90%; margin:auto;">
 											<div class="container">
 												<div class="w3-container">
-													<h2>Lägg till jobb</h2>
+													<h2>Lägg till</h2>
 
 												</div>
 												<hr>
 												<form class="w3-container">
 													<p>
 														<label>
-															<strong>Title</strong>
+															<strong>Titel</strong>
 														</label>
 														<input id="Job-title" class="w3-input" type="text" name="title" required>
 													</p>
 													<p>
 														<label>
-															<strong>Jobb info</strong>
+															<strong>Jobbinformation</strong>
 														</label>
 														<input id="Job-info" class="w3-input" type="text" name="info" required>
 													</p>
@@ -197,7 +197,7 @@
 									</div>
 									<div id="id02" class="modal">
 										<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-										<form class="modal-content" action="update_job" method="POST">
+										<form class="modal-content" style="width:90%; margin:auto;" action="update_job" method="POST">
 											<div class="container">
 												<div class="w3-container">
 													<h2>Uppdatera jobb</h2>
@@ -206,7 +206,7 @@
 												<form class="w3-container">
 													<p>
 														<label>
-															<strong>Title</strong>
+															<strong>Titel</strong>
 														</label>
 														<input class="w3-input" type="text" name="name">
 													</p>
@@ -228,7 +228,7 @@
 										</form>
 									</div>
 									<ul class="Job-list" id="job_list">
-										
+
 										<% get_exjobs.forEach(function(result) { %>
 											<hr>
 											<div class="w3-container">
@@ -243,12 +243,12 @@
 													<%= result.Info %>
 												</p>
 												<button class="matchbtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Match</button>
-												<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Avbryt</button>
+												<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Ändra</button>
 												<form action="delete_job" method="POST">
 													<input hidden name="job_id" value= <%= result.ID %>></input>
 													<button type="submit" style="width:auto;" class="removebtn">Ta bort</button>
 												</form>
-											
+
 											</div>
 
 
@@ -256,14 +256,16 @@
 									</ul>
 									<hr>
 									<!-- End Ex-jobs -->
-								</br>
-							<!-- End Right Column -->
+									</br>
+									<!-- End Right Column -->
+								</div>
+
+								<!-- End Grid -->
+							</div>
+
+							<!-- End Page Container -->
 						</div>
-
-						<!-- End Grid -->
 					</div>
-
-					<!-- End Page Container -->
 				</div>
 				<div class="container">
 					<div id="modalBG">
@@ -276,7 +278,7 @@
 								<!-- Modal Header -->
 								<div class="modal-header">
 									<button type="button" class="button3" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Redigera profil</h4>
+									<h4 class="modal-title" style="margin: auto">Redigera profil</h4>
 								</div>
 
 								<!-- Modal body -->
@@ -347,7 +349,7 @@
 				<div class="HelpBox">
 					<div class="helpRow">
 						<div class="column" onclick="openHelptab('b1');" style="background:#1f5686;">
-							Kom igång
+							Börja
 						</div>
 						<div class="column" onclick="openHelptab('b2');" style="background:#2e78ba;">
 							Stickers
@@ -416,6 +418,5 @@
 			</div>
 		</div>
 	</div>
-</div>
 </body>
 
