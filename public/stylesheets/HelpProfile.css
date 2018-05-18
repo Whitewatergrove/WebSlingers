@@ -5,8 +5,7 @@
     padding: 10px;
     border-bottom-color: white;
     text-align: center;
-    font-size: 2vw;
-    font-size: 15px;
+    font-size: 16px;
     cursor: pointer;
     color: white;
 }
@@ -35,4 +34,15 @@ span.closebtn{
 .helpRow{
     margin-top: 5px;
     height: 80vh;
+}
+
+@media screen and (min-width: 800px) {
+    .column {
+        padding: 10px;
+        border-bottom-color: white;
+        text-align: center;
+        font-size: 2vw;
+        cursor: pointer;
+        color: white;
+    }
 }
