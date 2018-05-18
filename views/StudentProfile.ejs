@@ -170,7 +170,7 @@
 											<i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b>
 									</p>
 
-									<div class="w3-light-grey w3-round-xlarge w3-small">
+									<!-- <div class="w3-light-grey w3-round-xlarge w3-small">
 										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">C++/C#</div>
 									</div>
 									<br>
@@ -182,23 +182,17 @@
 									<div class="w3-light-grey w3-round-xlarge w3-small">
 										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:30%">Python</div>
 									</div>
-									<br>
+									<br> -->
 									<hr>
-									<button type="button" class="Editbtn" data-toggle="modalSkill" data-target="#ProfileModal">
+									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModalSkill">
 										<strong>Add Skill</strong>
 									</button>
-
 									<hr>
-
-
 								</div>
 							</div>
 							<br>
-
 							<!-- End Left Column -->
 						</div>
-
-
 						<!-- Right Column -->
 						<div class="w3-twothird">
 
@@ -315,7 +309,6 @@
 							</div>
 							<Button type="submit" id="butt" >Uppdatera ändringar</Button>
 						</form>
-				
 				</div>
 
 								<!-- Modal footer -->
@@ -326,38 +319,30 @@
 						</div>
 					</div>
 				</div>
-				<div class="container">
+<div class="container">
 					<div id="modalBG">
 					</div>
 					<!-- The Modal -->
-					<div class="modal fade" id="ProfileModal">
+					<div class="modal fade" id="ProfileModalSkill">
 						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content">
 
 								<!-- Modal Header -->
-								<div class="modalSkill-header">
-									<button type="button" class="button3" data-dismiss="modalSkill">&times;</button>
-									<h4 class="modalSkill-title">Edit Profile</h4>
+								<div class="modal-header">
+									<button type="button" class="button3" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Add skill</h4>
 								</div>
 
 								<!-- Modal body -->
-								<div class="modalSkill-body">
+								<div class="modal-body">
 									<form action="/change_student_profile" method="POST">
 										<div class="container">
-											<input type="text" name="username" id="uname" disabled value= <%= results[0].UID %>>
-											<input type="text" name="pnum" id="pnum" disabled value= <%= results[0].pnr %>>
-											<input type="password" name="password" id="pass" maxlength="30" required placeholder="Enter Password...">
-											<input type="text" name="name" id="name" maxlength="45" required placeholder="Enter Name...">
-											<input type="text" name="address" id="adress" maxlength="45" required placeholder="Enter address...">
-											<input type="text" name="tel" id="tel" maxlength="45" required placeholder="Enter Phonenumber...">
-											<select name="gender">
-												<option value="Male">Male</option>
-												<option value="Female">Female</option>
-												<option value="Other">Other</option>
-											</select>
+											
+											<input type="password" name="password" id="pass" maxlength="30" required placeholder="Enter Skill...">
+				<!-- Här björn           -->
 											<br/>
 										</div>
-										<button type="submit" id="butt">Update changes</button>
+										<button type="submit" id="butt">Update Skill</button>
 									</form>
 
 								</div>
@@ -417,20 +402,16 @@
 									<input hidden name="job_id" value=< %= result.ID %>></input>
 									<button type="submit" style="width:auto;" class="removebtn">Ta bort</button>
 								</form>
-
 							</div>
-
 							<hr>
-
 							<% }); %>
 					</ul>
 					<% } %>
-
-						<div class="Tinder">
-							<div id="user">
-								<p></p>
-							</div>
+					<div class="Tinder">
+						<div id="user">
+							<p></p>
 						</div>
+					</div>
 			</div>
 		</div>
 	</div>
