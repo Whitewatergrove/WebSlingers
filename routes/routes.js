@@ -222,9 +222,12 @@ router.post('/change_company_profile', function (req, res) {
 
 
 router.post('/hejhopmanstest', function (req, res) {            // Needs to find an other solution!!!!
-    
-    res.render('StudentProfile', {
-        matchning: matchingStudent.matcha()
+    db.get_student_user_and_nr(req.session.user, function (err, result) {
+        if (err) throw err;
+        res.render('StudentProfile', {
+            results: result,
+            matchning: matchingStudent.matcha()
+        });
     });
 });
 
@@ -321,7 +324,11 @@ router.post('/add_job', function (req, res) {
         }
     })
 });
-router.post('/update_job', function (req, res) {
+router.post('/update_jobs', function (req, res) {
+    console.log('req.body.name', req.body.name);
+    console.log('req.body.info', req.body.info);
+    console.log('req.body.job_id', req.body.job_id)
+
     db.update_exjob(req.body.name, req.body.info, req.body.job_id, function (req, res) {
         if (err) {
             req.flash('danger', 'An error has occured while updating your profile');
