@@ -210,64 +210,54 @@ router.post('/filetest', function (req, res){
     
     if(req.files){
         console.log(req.files);
-        var file = req.files.filename,
-            filename = file.name;
-        file.mv("./upload"+filename, function(err){
-            if(err){
-                console.log(err);
-                req.flash('danger', 'error occured');
+        console.log(req.files.filename.data);
+        //var file = req.files.filename,
+        //    filename = file.name;
+        //    console.log("filnamnet: "+ filename);
+        //file.mv("../public/upload/"+filename, function(err){
+        //    if(err){
+        //        console.log('error occured'+err);
+        //        req.flash('danger', 'error occured');
+        //    }
+        //    else{
+        //        req.flash('success', 'Done!');
+        //        res.redirect("/profile");
+        //    }
+        //})
+        db.update_user_cv(req.session.pnr, req.files.filename.data, function(err, result){
+            if (err) {
+                req.flash('danger', 'An error has occured while updating');
+                res.redirect('/profile');
             }
-            else{
-                req.flash('success', 'Done!');
+            else if (!err) {
+                req.flash('success', 'You have succcessfully updated your profile');
+                res.redirect('/profile');
             }
         })
     }
-    
-
-    //db.update_user_cv(req.session.pnr, cvfile, function(err, result){
-    //if (err) {
-    //    console.log("1");
-    //    req.flash('danger', 'An error has occured while updating');
-    //    res.redirect('/profile');
-    //}
-    //else if (!err) {
-    //    console.log("2");
-    //    req.flash('success', 'You have succcessfully updated your profile');
-    //    res.redirect('/profile');
-    //}
-    //})
 });
 
-//router.get('/Certificate', function (req, res){
-//    db.get_cv(req.session.pnr, function(err, result){
-//        if(err){
-//            req.flash('danger', 'An error has occured while loading');
-//            res.redirect('/profile');
-//        }
-//        else if(!err)
-//        {
-//            console.log(result[0].file);
-//        }
-//    })
-//})
+router.get('/Certificate', function (req, res){
+    db.get_cv(req.session.pnr, function(err, result){
+        if(err){
+            req.flash('danger', 'An error has occured while loading');
+            res.redirect('/profile');
+        }
+        else if(!err)
+        {
+            console.log("jag funkar");
+            console.log("result: ",result)
+            res.render('Certificate', {
+                results: result
+            });
+        }
+    })
+})
 
 
 router.get('/search', function (req, res) {
     match.testmatch();
 });
-
-//router.post('/dbtester', function (req, res) {
-//    db.get_students(function(err, result){
-//        if(err) throw err;
-//        req.session.res = result;
-//        console.log("dbtest: "+req.session.res[0].UID9);
-//        res.render('StudentProfile', {
-//            students: result
-//        })
-//        
-//    })
-//    
-//});
 
 router.get('/profileStudentProfile',function(req, res){
     res.render("pages/profileStudentProfile");

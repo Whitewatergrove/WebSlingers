@@ -441,7 +441,7 @@ module.exports = {
         con.query(sql, [file, id], function(err, res){
             callback(err, res);
             if(err){
-                console.log("insert cv query very baaad");
+                console.log("insert cv query very baaad: "+ err);
             }
             else{
                 console.log("insert cv working");
