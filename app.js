@@ -18,6 +18,7 @@ let flash = require('connect-flash');
 app.use(cookieParser());
 app.use(flash());
 
+// encryption for the passwords
 app.use(session({
     secret: 'ufcQC`m~^8TQ-FdCRv2*YdquF3E]T`48hBA2`k%dF#dcn*&d?jbFWE*>u5zUg+cjXB.+"R$dgV]t55wS,eh+_',
     resave: false,
