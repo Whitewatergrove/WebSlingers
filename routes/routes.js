@@ -5,8 +5,7 @@ let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
 
-
-let searchTest = require('./search');
+let searchTest = require('./search');                   // Test for search function, do not remove!
 let matchingStudent = require('./match');
 let matchingCompany = require('./companyMatch');
 
@@ -221,12 +220,17 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
-router.post('/hejhopmanstest', function (req, res) {
-    //matchingStudent.prematching(req.session.user);
-    matchingStudent.matcha();
+router.post('/hejhopmanstest', function (req, res) {            // Needs to find an other solution!!!!
+    db.get_student_user_and_nr(req.session.user, function (err, result) {
+        if (err) throw err;
+        res.render('StudentProfile', {
+            results: result,
+            matchning: matchingStudent.matcha()
+        });
+    });
 });
 
-router.get('/search', function (req, res) {
+router.get('/search', function (req, res) {                     // For testing, do not remove!!!!!!
     searchTest.testmatch();
 });
 
@@ -319,7 +323,11 @@ router.post('/add_job', function (req, res) {
         }
     })
 });
-router.post('/update_job', function (req, res) {
+router.post('/update_jobs', function (req, res) {
+    console.log('req.body.name', req.body.name);
+    console.log('req.body.info', req.body.info);
+    console.log('req.body.job_id', req.body.job_id)
+
     db.update_exjob(req.body.name, req.body.info, req.body.job_id, function (req, res) {
         if (err) {
             req.flash('danger', 'An error has occured while updating your profile');

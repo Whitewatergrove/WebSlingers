@@ -62,13 +62,13 @@ module.exports = {
 
         var sql = "SELECT * FROM users WHERE ID = ? GROUP BY ID;";
         con.query(sql, username, function (err, results) {
+            callback(err, results);
             if (err) {
                 console.log('error in query');
             }
             else {
                 console.log('query functional');
             }
-            callback(err, results);
         })
     },
 
@@ -198,13 +198,17 @@ module.exports = {
     },
 
     /*************************************************************************************************************************************
-        PROMISE             */
+        PROMISE             
+        
+        These functions are promises functions. They return a promise of a value and not the value from the DB.
+
+        */
 
     
-    get_qualifications_catagories_promise: function(catagoriesqual){
+    get_qualifications_catagories_promise: function(){
         return new Promise ((resolve, reject) => {
-            let sql = "SELECT qualifications FROM catagories where class = ?; "
-            con.query(sql, catagoriesqual, function(err,results){
+            let sql = "SELECT * FROM catagories;"
+            con.query(sql, function(err,results){
                 if (err) {
                     console.error('get_exjobs_promise error in query');
                     let msg = "Promise error";
@@ -490,7 +494,7 @@ module.exports = {
 
     update_exjob: function (name, info, id, callback) {
         var sql = "UPDATE exjobs SET Name = ?, Info = ? WHERE ID = ?;";
-        con.query(sql, name, info, id, function (err, res) {
+        con.query(sql, [name, info, id], function (err, res) {
             callback(err, res);
             if (err) {
                 console.log("update exjob failed: " + err);
