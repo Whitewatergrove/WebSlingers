@@ -30,16 +30,13 @@
 			font-family: "Roboto", sans-serif
 		}
 	</style>
-
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
 	    crossorigin="anonymous"></script>
-
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/data.js"></script>
 	<script src="./scripts/StudentPScript.js"></script>
 	<script src="../scripts/profile.js"></script>
-
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	    crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -48,10 +45,6 @@
 	    crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	    crossorigin="anonymous"></script>
-
-
-
-
 </head>
 
 <body>
@@ -79,7 +72,7 @@
 						<span>
 							<i class="fa fa-user" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Profile</span>
+						<span id="BlackT">Profil</span>
 					</a>
 				</li>
 				<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
@@ -87,7 +80,7 @@
 						<span>
 							<i class="fa fa-envelope" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Messages</span>
+						<span id="BlackT">Meddelanden</span>
 					</a>
 				</li>
 				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
@@ -95,7 +88,7 @@
 						<span>
 							<i class="fas fa-folder" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Ex-Job</span>
+						<span id="BlackT">Ex-Jobb</span>
 					</a>
 				</li>
 				<li class="tabBorder" onclick="openTab('Helps', 'Help')" id="Help">
@@ -111,7 +104,7 @@
 						<span>
 							<i class="fas fa-sign-out-alt" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Sign out</span>
+						<span id="BlackT">Logga ut</span>
 					</a>
 				</li>
 				<img src="./images/oru.png" class="si">
@@ -119,7 +112,7 @@
 			<!-- End buttoms sidepanel -->
 		</nav>
 	</div>
-<!-- Home -->
+<!-- Profile -->
 <div class="main-content" id="home">
 		<div class="main2" id="main2Profile">
 
@@ -167,8 +160,8 @@
 										<%= results[0].Tel %>
 									</p>
 									<hr>
-									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModal">
-										<strong>Edit</strong>
+									<button type="button" class="Editbtn"data-toggle="modal" data-target="#ProfileModal">
+										<strong>Redigera</strong>
 									</button>
 									<hr>
 									<!-- Skills -->
@@ -190,6 +183,11 @@
 										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:30%">Python</div>
 									</div>
 									<br>
+									<hr>
+									<button type="button" class="Editbtn" data-toggle="modalSkill" data-target="#ProfileModal">
+										<strong>Add Skill</strong>
+									</button>
+
 									<hr>
 
 
@@ -280,6 +278,54 @@
 
 					<!-- End Page Container -->
 				</div>
+<div class="container">
+	<div id="modalBG">
+	</div>
+	<!-- The Modal -->
+	<div class="modal fade" id="ProfileModal">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<button type="button" class="button3" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Redigera profil</h4>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+						<form action="/change_student_profile" method="POST">
+							<div class="container">
+								<input type="text" name="username" id="uname" disabled value = <%= results[0].UID %>>
+								<input type="text" name="pnum" id="pnum" disabled value = <%= results[0].pnr %>>
+								<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..."
+								data-toggle="tooltip"  title="Fyll i ett nytt lösenord  4-16 karaktärer">
+								<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..."
+								data-toggle="tooltip"  title="Fyll i ditt fullständiga namn ">
+								<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress..."
+								data-toggle="tooltip"  title="Fyll i din postadress">
+								<input type="text" name="tel" id="tel" maxlength="20" required placeholder="Telefonnummer..."
+								data-toggle="tooltip"  title="Fyll i ditt nummer 12 siffror" patter="[0-9]">
+								<select name="gender">
+									<option value="Male">Man</option>
+									<option value="Female">Kvinna</option>
+									<option value="Other">Andra</option>
+								</select>
+								<br/>
+							</div>
+							<Button type="submit" id="butt" >Uppdatera ändringar</Button>
+						</form>
+				
+				</div>
+
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="container">
 					<div id="modalBG">
 					</div>
@@ -289,13 +335,13 @@
 							<div class="modal-content">
 
 								<!-- Modal Header -->
-								<div class="modal-header">
-									<button type="button" class="button3" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Edit Profile</h4>
+								<div class="modalSkill-header">
+									<button type="button" class="button3" data-dismiss="modalSkill">&times;</button>
+									<h4 class="modalSkill-title">Edit Profile</h4>
 								</div>
 
 								<!-- Modal body -->
-								<div class="modal-body">
+								<div class="modalSkill-body">
 									<form action="/change_student_profile" method="POST">
 										<div class="container">
 											<input type="text" name="username" id="uname" disabled value= <%= results[0].UID %>>
@@ -327,7 +373,9 @@
 			</body>
 		</div>
 	</div>
-	<div class="main-content" id="likes" style="display:none">
+
+<!-- Chat -->
+<div class="main-content" id="likes" style="display:none">
 		<div class="main2">
 			<div class="font2">
 				<div class="StudentDiv2">
@@ -338,13 +386,14 @@
 		</div>
 	</div>
 
-	<div class="main-content" id="Jobs" style="display:none">
+<!-- Ex-jobs -->
+<div class="main-content" id="Jobs" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
-				<div class="title">Available jobs</div>
+				<div class="title">Tillgänliga jobb</div>
 
 				<form action="/hejhopmanstest" method="POST">
-					<Button type="submit" id="buttondbtest">Update db</Button>
+					<Button type="submit" id="buttondbtest">Uppdatera db</Button>
 				</form>
 				<% if(locals.matchning) {%>
 					<ul class="Job-list" id="job_list">
@@ -362,11 +411,11 @@
 								<p>
 									<%= result.Info %>
 								</p>
-								<button class="matchbtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Match</button>
-								<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Change</button>
+								<button class="matchbtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Matcha</button>
+								<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Ändra</button>
 								<form action="delete_job" method="POST">
-									<input hidden name="job_id" value=< %=r esult.ID %>></input>
-									<button type="submit" style="width:auto;" class="removebtn">Remove</button>
+									<input hidden name="job_id" value=< %= result.ID %>></input>
+									<button type="submit" style="width:auto;" class="removebtn">Ta bort</button>
 								</form>
 
 							</div>
@@ -386,7 +435,8 @@
 		</div>
 	</div>
 
-	<div class="main-content" id="Helps" style="display:none">
+<!-- Help -->
+<div class="main-content" id="Helps" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
 				<div class="title">Hjälp</div>
@@ -453,7 +503,7 @@
 							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
 							<h2>Övrigt</h2>
 							<p>ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf adf ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf
-								adf
+								adf dsfsdf
 							</p>
 							<hr>
 						</div>
@@ -462,6 +512,5 @@
 			</div>
 		</div>
 	</div>
-<!-- End Manual -->
 </body>
 </html>
