@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>Logga in</title>
+
+    <title>Förstasida</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
@@ -34,8 +35,8 @@
     <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
         <%- messages('message', locals) %>
 
-            <div class="w3-display-middle">
-                <h1 class="w3-jumbo w3-animate-top">LET'S MAKE SOME MAGIC</h1>
+        <div class="w3-display-middle">
+            <h1 class="w3-jumbo w3-animate-top">Skaffa ditt examensarbete idag!</h1>
 
                 <button type="button" class="loginbtn" data-toggle="modal" data-target="#myModal">
                     <strong>Logga in</strong>
@@ -142,12 +143,12 @@
                                     <!-- Personal id input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-calendar-plus"></i>
-                                        <input required class="input-field" type="text" placeholder="yymmddxxxx..." name="pnum" id="pnum" minlength="10" maxlength="10"autocomplete="on"
+                                        <input required class="input-field" type="text" placeholder="ddmmddxxxx..." name="pnum" id="pnum" minlength="10" maxlength="10"autocomplete="on"
                                         data-toggle="tooltip"  title="Fyll i ditt personnummer 10 siffror" pattern="[0-9]">
                                     </div>
 
                                     <!-- Sign up button -->                                   
-                                    <button type="submit" class="btn" href="/register" value="Submit">Logga in</button>
+                                    <button type="submit" class="btn" href="/register" value="Submit">Registrera</button>
                                 </form>
                             </div>
                         </div>
