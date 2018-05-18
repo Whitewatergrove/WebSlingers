@@ -14,16 +14,13 @@
 	<link rel="stylesheet" href="./stylesheets/HelpProfile.css">
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
 	    crossorigin="anonymous"></script>
-
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/data.js"></script>
 	<script src="./scripts/profile.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	    crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -32,9 +29,6 @@
 	    crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	    crossorigin="anonymous"></script>
-
-
-
 	<link rel="stylesheet" type="text/css" href="./stylesheets/chat.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -57,15 +51,8 @@
 			<span>Webslingers</span>
 		</div>
 		<nav>
+			<!-- The tab menu -->
 			<ul class="tabs">
-				<!-- <li class="tabBorder" onclick="openTab('Frontpage', 'Home')" id="Home" style="border-Left: 5px solid #2e78ba" ;>
-					<a>
-						<span>
-							<i class="fas fa-home"></i>
-						</span>
-						<span>Hem</span>
-					</a>
-				</li> -->
 				<li class="tabBorder" onclick="openTab('profile', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
 					<a>
 						<span>
@@ -80,14 +67,6 @@
 							<i class="fa fa-envelope" id="SideIcon"></i>
 						</span>
 						<span>Meddelanden</span>
-					</a>
-				</li>
-				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
-					<a>
-						<span>
-							<i class="fas fa-folder"></i>
-						</span>
-						<span>Examensarbeten</span>
 					</a>
 				</li>
 				<li class="tabBorder" onclick="openTab('Helps', 'Help')" id="Help">
@@ -110,22 +89,7 @@
 			</ul>
 		</nav>
 	</div>
-	<!-- <div class="main-content" id="Frontpage">
-			<%- messages('message', locals) %>
-		<div class="main2" id="HomeID">
-			<div class="font2">
-				<div class="StudentDiv2">
-					<h1 id="HomeH1">Välkommen
-						<em>
-							<%= get_company_user_and_nr[0].UID %>
-						</em>!
-						<br/> Till din företagsida </h1>
-				</div>
-				aasdasdasd
-			</div>
-		</div>
-
-	</div> -->
+	<!-- Messages/chat -->
 	<div class="main-content" id="likes" style="display:none">
 			<h2>Chat</h2>
 			<section>
@@ -144,68 +108,58 @@
 				<button id="send_message" class="vertical-align" type="button">Skicka</button>
 			</section>
 		</div>
+	<!-- Profile -->
 	<div class="main-content" id="profile">
-		<div class="main2" id="main2Profile">
+		<div class="main2" id="main2Profile" style="margin-right: 60%;">
 
 			<body id="blueb">
 				<!-- Page Container -->
-				<div class="w3-content w3-margin-top" style="max-width:1400px;">
+				<div class="w3-content w3-margin-top" style="max-width: 1400px;">
 
 					<!-- The Grid -->
-					<div class="w3-row-padding">
+					<div class="w3-row-padding" style="width: 240%;" >
 
 						<!-- Left Column -->
 						<div class="w3-third">
 
 							<div class="w3-white w3-text-grey w3-card-4">
 								<div class="w3-display-container">
-									<img src="./images/logo.png" style="width:50%" alt="Avatar">
+									<img src="./images/logo.png" style="width:50%;" alt="Avatar">
 									<div class="w3-display-bottomleft w3-container w3-text-black">
 
 									</div>
 									<h2>
-										<%= get_company_user_and_nr[0].UID %>
+										<%= get_company_user_and_nr[0].Name %>
 									</h2>
 								</div>
 								<!-- Person information box -->
 								<div class="w3-container">
+										<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= get_company_user_and_nr[0].UID %>
+									</p>
+									<p>
+										<i class="fas fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= get_company_user_and_nr[0].Adress %>
+									</p>
+									<p>
+										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= get_company_user_and_nr[0].Tel %>
+									</p>
 									<p>
 										<i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
 										<%= get_company_user_and_nr[0].Orgnr %>
-									</p>
-									<p>
-										<i class="fa fa-user fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>0</p>
-
-									<p>
-										<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>0
-									</p>
-									<p>
-										<i class="fas fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>0
-									</p>
-									<p>
-										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>0
 									</p>
 									<hr>
 									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModal">
 										<strong>Redigera</strong>
 									</button>
 									<hr>
-
-									
-
-
 								</div>
 							</div>
 							<br>
-
 							<!-- End Left Column -->
 						</div>
-
-
 						<!-- Right Column -->
 						<div class="w3-twothird">
-
-							<div class="w3-container w3-card w3-white w3-margin-bottom">
+							<!-- Ex-jobs -->
+							<div class="w3-container w3-card w3-white w3-margin-bottom" style="size:fixed">
 								<h2 class="w3-text-grey w3-padding-16">
 									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Dina job</h2>
 								<div class="w3-container">
@@ -301,61 +255,8 @@
 											<% }); %>
 									</ul>
 									<hr>
+									<!-- End Ex-jobs -->
 								</br>
-								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>Web Developer / something.com</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
-									<p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic.
-										Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
-									<hr>
-								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>Graphic Designer / designsomething.com</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Jun 2010 - Mar 2012</h6>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-									<br>
-								</div>
-							</div>
-
-							<div class="w3-container w3-card w3-white">
-								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Education</h2>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>W3Schools.com</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Forever</h6>
-									<p>Web Development! All I need to know in one place</p>
-									<hr>
-								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>London Business School</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right" id="blueP"></i>2013 - 2015</h6>
-									<p>Master Degree</p>
-									<hr>
-								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>School of Coding</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right" id="blueP"></i>2010 - 2013</h6>
-									<p>Bachelor Degree</p>
-									<br>
-								</div>
-							</div>
-
 							<!-- End Right Column -->
 						</div>
 
@@ -481,8 +382,6 @@
 			</div>
 		</div>
 	</div>
+</div>
 </body>
-
-</html>
-
 
