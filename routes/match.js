@@ -58,15 +58,40 @@ module.exports = {
     {
         let temp = {}
         temp.student = students;
-        temp.ex = [];
+        temp.exjobs = [];
         exjobs.forEach(exjob => {                           // Checking if the there is any exjobs that demanding 
             if(students.QUAL.length > 0)                    // any of the student qualification.
             {
+                exjob.weight = 0;
                 students.QUAL.forEach(qual => { 
                     exjob.demanded.forEach(demd => {
                         if(qual.QID === demd)
                         {
-                            temp.ex[temp.ex.length] = exjob;
+                            exjob.weight = exjob.weight +1;
+                            if(temp.exjobs[temp.exjobs.length - 1] != exjob)
+                            {
+                                temp.exjobs[temp.exjobs.length] = exjob;
+                            }
+                        }
+                        else
+                        {
+                            let tempSQ = 'tempSQ';
+                            let tempED = 'tempED';
+                            classes.forEach(element => {
+                                if(element.qual === demd)
+                                    tempED = element.class;
+                                if(element.qual === qual.QID)
+                                    tempSQ = element.class;
+                                //console.log(element.class)
+                            })
+                            if(tempED === tempSQ)
+                            {
+                                console.log('Student')
+                                console.log(tempSQ);
+                                console.log('Exjob')
+                                console.log(tempED);
+                                exjob.weight = exjob.weight + 0.4;
+                            }
                         }
                     })
                 })
@@ -75,6 +100,6 @@ module.exports = {
         })
         console.log(temp);
 
-        return temp.ex;            // kanske avändbar
+        return temp.exjobs;            // kanske avändbar
     }
 }

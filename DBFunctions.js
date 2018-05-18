@@ -264,7 +264,7 @@ module.exports = {
 
     get_xjob_promise: function (exjobs) {
         return new Promise((resolve, reject) => {
-            let sql = "SELECT ID, Name, ExOID FROM exjobs;"
+            let sql = "SELECT * FROM exjobs;"
             con.query(sql,function(err,results){
                 if (err) {
                     console.error('get_exjobs_promise error in query');
