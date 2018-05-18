@@ -155,6 +155,7 @@ router.get('/test', function (req, res) {
     console.log('asdhaiosdha', req.session.exid);
 })
 router.get('/logout', (req, res) => {
+    console.log("qual_list: ", req.session.qual_list);
     req.session.destroy();
     res.redirect('/');
 });
@@ -221,7 +222,7 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
-
+// filhantering cv
 router.post('/filetest', function (req, res){
     
     if(req.files){
@@ -252,7 +253,7 @@ router.post('/filetest', function (req, res){
         })
     }
 });
-
+// skriva ut cv på sidan
 router.get('/Certificate', function (req, res){
     db.get_cv(req.session.pnr, function(err, result){
         if(err){
@@ -261,7 +262,6 @@ router.get('/Certificate', function (req, res){
         }
         else if(!err)
         {
-            console.log("jag funkar");
             console.log("result: ",result)
             res.render('Certificate', {
                 results: result
@@ -289,10 +289,8 @@ router.get('/dbtester', function (req, res) {
         if (err) throw err;
         req.session.res = result;
         console.log("dbtest: " + req.session.res[0].UID);
-        res.render('StudentProfile', {
-            eh: result
+        console.log("hejhej:", req.session.qual_list);
         })
-    })
 });
 
 router.post('/forgot', function (req, res) {
@@ -408,5 +406,18 @@ router.post('/delete_job', function (req, res) {
 router.get('/profileStudentProfile', function (req, res) {
     res.render("pages/profileStudentProfile");
 });
+
+router.post('/', function(req, res){
+    db.get_qualifications(function(err, results){
+        if(err){
+            console.log("err: "+ err)
+        }
+        else{
+            console.log("hepp: ", results);
+            req.session.qual_list = results;
+        }
+    })
+});
+
 module.exports = router;
 

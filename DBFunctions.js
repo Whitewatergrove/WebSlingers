@@ -210,6 +210,21 @@ module.exports = {
 
     },
 
+    get_qualifications: function(callback) {
+        var sql = "SELECT * FROM qualifications;";
+        con.query(sql, function(err, results){
+            
+            if (err) {
+                
+                console.log("get qual query error");
+            }
+            else {
+                console.log("get qual query ok");
+                callback(null, results);
+            }
+        })
+    },
+
     /*************************************************************************************************************************************
         PROMISE             
         
@@ -411,6 +426,19 @@ module.exports = {
                 console.log("insert user query not working: " + err);
             } else {
                 console.log("insert user query ok");
+            }
+        })
+    },
+
+    insert_studentqual: function(pnr, qual, callback){
+        var sql = "INSERT INTO studentqualifications (SID, QID) VALUES (?, ?);";
+        con.query(sql, pnr, qual, function(err, res){
+            callback(err, res);
+            if(err){
+                console.log("insert studentqual query not working"+ err);
+            }
+            else{
+                console.log("insert studentqual query working");
             }
         })
     },
