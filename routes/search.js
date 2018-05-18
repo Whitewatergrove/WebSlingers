@@ -373,7 +373,7 @@ module.exports = {
             db.get_students_promise(students),                      // Fetching all students
             db.get_xjob_promise(exjobs),                            // Fetching all exjobs
             db.get_demanded_promise(),
-            db.get_class_catagories_promise(classes),               // Fetching all classes
+            db.get_class_catagories_promise(),                      // Fetching all classes
             db.get_qualifications_catagories_promise(),
         ]).then((lists) => {
 

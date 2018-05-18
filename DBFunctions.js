@@ -222,10 +222,10 @@ module.exports = {
         })
     },
 
-    get_class_catagories_promise: function(catagoriesclass){
+    get_class_catagories_promise: function(){
         return new Promise ((resolve,reject) => {
             let sql = "SELECT class FROM catagories GROUP BY class;"
-            con.query(sql, catagoriesclass, function(err,results){
+            con.query(sql, function(err,results){
                 if (err) {
                     console.error('get_exjobs_promise error in query');
                     con.onerror = function(){
