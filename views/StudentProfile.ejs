@@ -30,16 +30,13 @@
 			font-family: "Roboto", sans-serif
 		}
 	</style>
-
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
 	    crossorigin="anonymous"></script>
-
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/data.js"></script>
 	<script src="./scripts/StudentPScript.js"></script>
 	<script src="../scripts/profile.js"></script>
-
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	    crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -48,10 +45,6 @@
 	    crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	    crossorigin="anonymous"></script>
-
-
-
-
 </head>
 
 <body>
@@ -119,7 +112,7 @@
 			<!-- End buttoms sidepanel -->
 		</nav>
 	</div>
-<!-- Home -->
+<!-- Profile -->
 <div class="main-content" id="home">
 		<div class="main2" id="main2Profile">
 
@@ -190,6 +183,11 @@
 										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:30%">Python</div>
 									</div>
 									<br>
+									<hr>
+									<button type="button" class="Editbtn" data-toggle="modalSkill" data-target="#ProfileModal">
+										<strong>Add Skill</strong>
+									</button>
+
 									<hr>
 
 
@@ -324,10 +322,56 @@
 						</div>
 					</div>
 				</div>
+				<div class="container">
+					<div id="modalBG">
+					</div>
+					<!-- The Modal -->
+					<div class="modal fade" id="ProfileModal">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+
+								<!-- Modal Header -->
+								<div class="modalSkill-header">
+									<button type="button" class="button3" data-dismiss="modalSkill">&times;</button>
+									<h4 class="modalSkill-title">Edit Profile</h4>
+								</div>
+
+								<!-- Modal body -->
+								<div class="modalSkill-body">
+									<form action="/change_student_profile" method="POST">
+										<div class="container">
+											<input type="text" name="username" id="uname" disabled value= <%= results[0].UID %>>
+											<input type="text" name="pnum" id="pnum" disabled value= <%= results[0].pnr %>>
+											<input type="password" name="password" id="pass" maxlength="30" required placeholder="Enter Password...">
+											<input type="text" name="name" id="name" maxlength="45" required placeholder="Enter Name...">
+											<input type="text" name="address" id="adress" maxlength="45" required placeholder="Enter address...">
+											<input type="text" name="tel" id="tel" maxlength="45" required placeholder="Enter Phonenumber...">
+											<select name="gender">
+												<option value="Male">Male</option>
+												<option value="Female">Female</option>
+												<option value="Other">Other</option>
+											</select>
+											<br/>
+										</div>
+										<button type="submit" id="butt">Update changes</button>
+									</form>
+
+								</div>
+
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</body>
 		</div>
 	</div>
-	<div class="main-content" id="likes" style="display:none">
+
+<!-- Chat -->
+<div class="main-content" id="likes" style="display:none">
 		<div class="main2">
 			<div class="font2">
 				<div class="StudentDiv2">
@@ -338,7 +382,8 @@
 		</div>
 	</div>
 
-	<div class="main-content" id="Jobs" style="display:none">
+<!-- Ex-jobs -->
+<div class="main-content" id="Jobs" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
 				<div class="title">Available jobs</div>
@@ -386,7 +431,8 @@
 		</div>
 	</div>
 
-	<div class="main-content" id="Helps" style="display:none">
+<!-- Help -->
+<div class="main-content" id="Helps" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
 				<div class="title">Hjälp</div>
@@ -462,6 +508,5 @@
 			</div>
 		</div>
 	</div>
-<!-- End Manual -->
 </body>
 </html>
