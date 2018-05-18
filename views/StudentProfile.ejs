@@ -335,8 +335,7 @@
 				<Button type="submit" id="buttondbtest">Update db</Button>
 			</form>
 			<% if(locals.matchning) {%>
-				<ul class="Job-list" id="job_list">
-										
+				<ul class="Job-list" id="job_list">					
 					<% matchning.forEach(function(result) { %>
 						<hr>
 						<div class="w3-container">
@@ -351,16 +350,8 @@
 								<%= result.Info %>
 							</p>
 							<button class="matchbtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Match</button>
-							<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Change</button>
-							<form action="delete_job" method="POST">
-								<input hidden name="job_id" value= <%= result.ID %>></input>
-								<button type="submit" style="width:auto;" class="removebtn">Remove</button>
-							</form>
-						
 						</div>
-
 						<hr>
-
 						<% }); %>
 				</ul>
 			<% } %>
