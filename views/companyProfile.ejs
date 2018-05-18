@@ -305,7 +305,41 @@
 							</div>
 			</div>
 		</div>
-	</div>
+		<div class="container">
+			<div id="modalBG">
+			</div>
+		<!-- The Modal -->
+			<div class="modal fade" id="ProfileModal">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+					<!-- Modal Header -->
+						<div class="modal-header">
+							<button type="button" class="button3" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Edit Profile</h4>
+						</div>
+						<!-- Modal body -->
+						<div class="modal-body">
+							<form action="/change_company_profile" method="POST">
+								<div class="container">
+									<input type="text" name="username" id="button2" disabled value= <%= get_company_user_and_nr[0].UID %>>
+									<input type="text" name="pnum" id="button2" disabled value= <%= get_company_user_and_nr[0].Orgnr %>>
+									<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
+									<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
+									<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
+									<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Enter Phonenumber...">
+								</div>
+								<Button type="submit" id="butt">Update changes</Button>
+							</form>
+						</div>
+			
+					<!-- Modal footer -->
+					<div class="modal-footer">
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		
 	<div class="main-content" id="Helps" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
