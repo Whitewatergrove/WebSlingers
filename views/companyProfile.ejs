@@ -70,7 +70,7 @@
 						<span>
 							<i class="fa fa-user" id="SideIcon"></i>
 						</span>
-						<span>Profile</span>
+						<span>Profil</span>
 					</a>
 				</li>
 				<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
@@ -78,7 +78,7 @@
 						<span>
 							<i class="fa fa-envelope" id="SideIcon"></i>
 						</span>
-						<span>Messages</span>
+						<span>Meddelanden</span>
 					</a>
 				</li>
 				<!-- <li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
@@ -102,7 +102,7 @@
 						<span>
 							<i class="fas fa-sign-out-alt" id="SideIcon"></i>
 						</span>
-						<span>Sign out</span>
+						<span>Logga ut</span>
 					</a>
 				</li>
 				<img src="./images/oru.png" class="si">
@@ -130,7 +130,7 @@
 			<section>
 				<div id="change_username">
 					<input id="username" type="text" />
-					<button id="send_username" type="button">Change username</button>
+					<button id="send_username" type="button">Ändra användarnamn</button>
 				</div>
 			</section>
 
@@ -140,7 +140,7 @@
 
 			<section id="input_zone">
 				<input id="message" class="vertical-align" type="text" />
-				<button id="send_message" class="vertical-align" type="button">Send</button>
+				<button id="send_message" class="vertical-align" type="button">Skicka</button>
 			</section>
 		</div>
 	<div class="main-content" id="profile">
@@ -186,7 +186,7 @@
 									</p>
 									<hr>
 									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModal">
-										<strong>Edit</strong>
+										<strong>Redigera</strong>
 									</button>
 									<hr>
 
@@ -206,16 +206,16 @@
 
 							<div class="w3-container w3-card w3-white w3-margin-bottom">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Your jobs</h2>
+									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Dina job</h2>
 								<div class="w3-container">
-									<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin="auto">Add job</button>
+									<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin="auto">Lägg till jobb</button>
 									<div id="id01" class="modal">
 
 										<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 										<form class="modal-content" method="POST" action="add_job">
 											<div class="container">
 												<div class="w3-container">
-													<h2>Add job</h2>
+													<h2>Lägg till jobb</h2>
 
 												</div>
 												<hr>
@@ -228,14 +228,14 @@
 													</p>
 													<p>
 														<label>
-															<strong>Job info</strong>
+															<strong>Jobb info</strong>
 														</label>
 														<input id="Job-info" class="w3-input" type="text" name="info" required>
 													</p>
 												</form>
 												<div class="clearfix">
-													<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-													<button class="updatebtn" id="addjob" type="submit">Add Job</button>
+													<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Avbryt</button>
+													<button class="updatebtn" id="addjob" type="submit">Lägg till Jobb</button>
 												</div>
 											</div>
 										</form>
@@ -245,7 +245,7 @@
 										<form class="modal-content" action="update_job" method="POST">
 											<div class="container">
 												<div class="w3-container">
-													<h2>Update job</h2>
+													<h2>Uppdatera jobb</h2>
 												</div>
 												<hr>
 												<form class="w3-container">
@@ -257,7 +257,7 @@
 													</p>
 													<p>
 														<label>
-															<strong>Job info</strong>
+															<strong>Jobb info</strong>
 														</label>
 														<input class="w3-input" type="text" name="info">
 													</p>
@@ -266,8 +266,8 @@
 
 												</form>
 												<div class="clearfix">
-													<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-													<button type="submit" class="updatebtn">Save changes</button>
+													<button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Avbryt</button>
+													<button type="submit" class="updatebtn">Spara ändringar</button>
 												</div>
 											</div>
 										</form>
@@ -288,10 +288,10 @@
 													<%= result.Info %>
 												</p>
 												<button class="matchbtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Match</button>
-												<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Change</button>
+												<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Avbryt</button>
 												<form action="delete_job" method="POST">
 													<input hidden name="job_id" value= <%= result.ID %>></input>
-													<button type="submit" style="width:auto;" class="removebtn">Remove</button>
+													<button type="submit" style="width:auto;" class="removebtn">Ta bort</button>
 												</form>
 											
 											</div>
@@ -374,7 +374,7 @@
 								<!-- Modal Header -->
 								<div class="modal-header">
 									<button type="button" class="button3" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Edit Profile</h4>
+									<h4 class="modal-title">Redigera profil</h4>
 								</div>
 
 								<!-- Modal body -->
@@ -388,11 +388,11 @@
 											<input type="text" name="name" id="button2" maxlength="45" required placeholder="Företagsnamn..."
 											data-toggle="tooltip"  title="Fyll i företagsnamn">
 											<input type="text" name="address" id="button2" maxlength="45" required placeholder="Adress..."
-											data-toggle="tooltip"  title="Fyll i postadress">
+											data-toggle="tooltip"  title="Fyll i postadress" >
 											<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Telefonnummer..."
-											data-toggle="tooltip"  title="Fyll i företagstelefonnummer" patterrn = "[0-9]" >
+											data-toggle="tooltip"  title="Fyll i företagstelefonnummer" pattern = "[0-9]" >
 										</div>
-										<Button type="submit" id="butt">Update changes</Button>
+										<Button type="submit" id="butt">Uppdatera ändringar</Button>
 									</form>
 
 								</div>
