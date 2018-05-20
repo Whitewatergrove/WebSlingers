@@ -108,7 +108,10 @@ router.post('/login', function (req, res) {
                     req.session.role = results[0].Role;
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
-                    matchingStudent.prematching(req.session.user);
+                    if(req.session.role === 'student')
+                        matchingStudent.prematching(req.session.user);
+                    else if(req.session.role === 'company')
+                        matchingCompany.companyPrematching(req.session.user);
                 }
                 else {
                     console.log('wtf');
@@ -231,8 +234,18 @@ router.post('/hejhopmanstest', function (req, res) {            // Needs to find
     });
 });
 
+router.post('/companyMatchTest', function (req, res) {            // Needs to find an other solution!!!!
+    db.get_student_user_and_nr(req.session.user, function (err, result) {
+        if (err) throw err;
+        res.render('companyProfile', {
+            results: result,
+            matchning: matchingCompany.companyMatcha()
+        });
+    });
+});
+
 router.get('/search', function (req, res) {                     // For testing, do not remove!!!!!!
-    searchTest.testmatch();
+    //searchTest.testmatch();
 });
 
 router.get('/dbtester', function (req, res) {
@@ -357,5 +370,11 @@ router.post('/delete_job', function (req, res) {
 router.get('/profileStudentProfile', function (req, res) {
     res.render("pages/profileStudentProfile");
 });
+router.post('/testmatch', function(req,res){
+    req.body.job_id 
+    res.render('testmatch', {
+        matchning: matchingCompany.companyMatcha(req.body.job_id)
+    });
+})
 module.exports = router;
 

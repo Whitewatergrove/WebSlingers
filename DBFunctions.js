@@ -262,7 +262,7 @@ module.exports = {
         })
     },
 
-    get_xjob_promise: function (exjobs) {
+    get_xjob_promise: function () {
         return new Promise((resolve, reject) => {
             let sql = "SELECT * FROM exjobs;"
             con.query(sql,function(err,results){
@@ -273,8 +273,7 @@ module.exports = {
                 }
                 else {
                     console.log('get_exjobs_promise query functional');
-                    exjobs = results;
-                    resolve(exjobs);
+                    resolve(results);
                 }
             })
         })
@@ -351,6 +350,25 @@ module.exports = {
                 }
                 else {
                     console.log("get_student_qual_promise query functional");
+                    resolve(results);
+                }
+            })
+        })
+    },
+
+    get_company_promise: function (username) {
+        return new Promise((resolve, reject) => {
+            var sql = "SELECT * FROM companies WHERE UID = ?;";
+            con.query(sql, username, function (err, results) {
+                if (err) {
+                    console.log("get_company_promise query error");
+                    con.onerror = function () {
+                        let msg = "Promise error";
+                        reject(new Error(msg));
+                    }
+                }
+                else {
+                    console.log("get_company_promise query functional");
                     resolve(results);
                 }
             })
