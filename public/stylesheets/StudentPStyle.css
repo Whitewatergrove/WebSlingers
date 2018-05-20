@@ -33,7 +33,7 @@ body {
 	position: fixed;
 	margin: auto;
 } */
-.matchbtn{
+/* .matchbtn{
 	float:left;
 	margin-left: 27%;
 }
@@ -46,8 +46,18 @@ body {
 	float:left;
 	margin-left: 1%;
 
+} */
+
+.matchbtn, .changebtn, .removebtn, .collapsible{
+	float: left;
+	width: 23.5%;
+	justify-content: center;
 }
 
+.changebtn, .removebtn, .collapsible{
+	margin-left: 2%;
+	margin-bottom: 2%;
+}
 
 #HomeH1 {
 	color: #FFF;
@@ -478,11 +488,11 @@ button {
     background-color: #f44336;
 }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .updatebtn {
-
+/* Float cancel and signup buttons and add an equal width
+.cancelbtn, .updatebtn, .matchbtn, .changebtn {
   width: 25%;
-}
+  margin-right: 2%;
+} */
 
 /* Add padding to container elements */
 .container {
@@ -556,3 +566,24 @@ hr {
 	margin-bottom: 10px;
 }
 
+
+
+.collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.collapseContent {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+}

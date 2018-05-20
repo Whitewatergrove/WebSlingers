@@ -136,8 +136,6 @@ router.get('/profile', (req, res) => {
             if (err) {
                 console.log("err: " + err)
             }
-            console.log("hepp: ", results);
-            console.log('testetestestestsetstset', req.session.get_student_qual);
             req.session.qual_list = results;
             res.render('StudentProfile', {
                 results: results,
@@ -395,8 +393,13 @@ router.post('/add_job', function (req, res) {
     console.log(req.body.info);
     console.log(req.session.orgnr);
     console.log(req.body.date);
+<<<<<<< HEAD
 
     db.insert_exjobs(req.session.orgnr, req.body.title, req.body.info, req.body.date, function (err, results) {
+=======
+    
+    db.insert_exjobs(req.session.orgnr, req.body.title, req.body.info, req.body.date, req.body.teaser, function (err, results) {
+>>>>>>> a06521e9b897e80443c1c48a99987d639a84231e
         if (err) {
             req.flash('danger', 'An error has occured');
             res.redirect('/profile');
@@ -413,7 +416,7 @@ router.post('/update_job', function (req, res) {
     console.log('req.body.job_id', req.body.job_id);
     console.log('req.body.date', req.body.date);
 
-    db.update_exjob(req.body.name, req.body.info, req.body.date, req.body.job_id, function (err, result) {
+    db.update_exjob(req.body.name, req.body.info, req.body.date, req.body.teaser, req.body.job_id, function (err, result) {
         if (err) {
             req.flash('danger', 'An error has occured while updating your profile');
             res.redirect('/profile');
