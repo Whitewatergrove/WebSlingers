@@ -164,7 +164,7 @@ module.exports = {
     },
 
     get_exjobs: function (username, callback) {
-        var sql = "SELECT ID,Name,Info FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
+        var sql = "SELECT * FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
         con.query(sql, username, function (err, results) {
             callback(err, results);
             if (err) {
