@@ -300,10 +300,11 @@ router.post('/hejhopmanstest', function (req, res) {            // Needs to find
     db.get_student_user_and_nr(req.session.user, function (err, result) {
         if (err) throw err;
         res.render('StudentProfile', {
-            results: result,
+            student_user_and_nr: result,
             matchning: matchingStudent.matcha()
         });
     });
+    
 });
 
 router.get('/search', function (req, res) {                     // For testing, do not remove!!!!!!
@@ -440,6 +441,7 @@ router.post('/change_skill_student', function(req, res){
     db.insert_studentqual(req.session.pnr, req.body.student_qual, function(err, results){
         if(err){
             req.flash('danger', 'The qualification already exists on this user');
+            res.redirect('/profile');
         }
         else{
             req.flash('success', 'You have successfully added a qualification');
