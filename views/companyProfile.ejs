@@ -228,7 +228,6 @@
 													<p>
 														<%= result.teaser %>
 													</p>
-<<<<<<< HEAD
 													<p>
 														<% if(locals.quals) { %>
 															<% quals.forEach(function(results) { %>
@@ -242,12 +241,7 @@
 														<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
 														<button type="submit" class="matchbtn" style="width:auto;">Match</button>
 													</form>
-													<button class="changebtn" style="width:auto;" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
-=======
-
-													<button class="matchbtn">Match</button>
 													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
->>>>>>> ce91a207dba206a2e4977968d21b030fe4144540
 													<form action="delete_job" method="POST">
 														<input hidden name="job_id" value="<%= result.ID %>"></input>
 														<button type="submit" class="removebtn">Remove</button>
