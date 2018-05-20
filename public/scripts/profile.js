@@ -114,4 +114,19 @@ window.onclick = function (event) {
 //         $("#job_list").append("<li><h4>" + $('#Job-title').val() + "</h4><p>" +  $('#Job-info').val() + "<p><button class = 'changebtn' style= 'width: auto'>Change</button> <button class='deletebtn'>Delete</button></li>");
 //         $('.changebtn').click(function (){ document.getElementById('id02').style.display='block'})
 //     });
+<<<<<<< HEAD
 // });
+=======
+// });
+
+function openModal(k) {
+						
+    $('.changebtn').click(function () {
+        document.getElementById(k).style.display = 'block'
+    });
+
+    $('.cancelbtn').click(function () {
+        document.getElementById(k).style.display = 'none'
+    });
+}
+>>>>>>> 159c2ef0a7c065369d1d3087e6984de8e87fdc7a

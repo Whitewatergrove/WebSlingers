@@ -222,10 +222,10 @@ module.exports = {
         })
     },
 
-    get_class_catagories_promise: function(catagoriesclass){
+    get_class_catagories_promise: function(){
         return new Promise ((resolve,reject) => {
             let sql = "SELECT class FROM catagories GROUP BY class;"
-            con.query(sql, catagoriesclass, function(err,results){
+            con.query(sql, function(err,results){
                 if (err) {
                     console.error('get_exjobs_promise error in query');
                     con.onerror = function(){
@@ -264,7 +264,7 @@ module.exports = {
 
     get_xjob_promise: function (exjobs) {
         return new Promise((resolve, reject) => {
-            let sql = "SELECT ID, Name, ExOID FROM exjobs;"
+            let sql = "SELECT * FROM exjobs;"
             con.query(sql,function(err,results){
                 if (err) {
                     console.error('get_exjobs_promise error in query');
@@ -390,9 +390,9 @@ module.exports = {
         })
     },
 
-    insert_exjobs: function (ExOID, Name, Info, callback) {
-        var sql = "INSERT INTO exjobs (ExOID, Name, Info) VALUES (?, ?, ?);";
-        con.query(sql, [ExOID, Name, Info], function (err, res) {
+    insert_exjobs: function (ExOID, Name, Info, date, callback) {
+        var sql = "INSERT INTO exjobs (ExOID, Name, Info, date) VALUES (?, ?, ?, ?);";
+        con.query(sql, [ExOID, Name, Info, date], function (err, res) {
             callback(err, res);
             if (err) {
                 console.log("insert user query not working: " + err);
@@ -492,9 +492,9 @@ module.exports = {
         })
     },
 
-    update_exjob: function (name, info, id, callback) {
-        var sql = "UPDATE exjobs SET Name = ?, Info = ? WHERE ID = ?;";
-        con.query(sql, [name, info, id], function (err, res) {
+    update_exjob: function (name, info, date, id, callback) {
+        var sql = "UPDATE exjobs SET Name = ?, Info = ?, date = ? WHERE ID = ?;";
+        con.query(sql, [name, info, date, id], function (err, res) {
             callback(err, res);
             if (err) {
                 console.log("update exjob failed: " + err);

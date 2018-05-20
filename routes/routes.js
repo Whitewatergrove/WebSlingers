@@ -220,6 +220,7 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
+
 router.post('/hejhopmanstest', function (req, res) {            // Needs to find an other solution!!!!
     db.get_student_user_and_nr(req.session.user, function (err, result) {
         if (err) throw err;
@@ -312,7 +313,9 @@ router.post('/add_job', function (req, res) {
     console.log(req.body.title);
     console.log(req.body.info);
     console.log(req.session.orgnr);
-    db.insert_exjobs(req.session.orgnr, req.body.title, req.body.info, function (err, results) {
+    console.log(req.body.date);
+    
+    db.insert_exjobs(req.session.orgnr, req.body.title, req.body.info, req.body.date, function (err, results) {
         if (err) {
             req.flash('danger', 'An error has occured');
             res.redirect('/profile');
@@ -323,12 +326,13 @@ router.post('/add_job', function (req, res) {
         }
     })
 });
-router.post('/update_jobs', function (req, res) {
+router.post('/update_job', function (req, res) {
     console.log('req.body.name', req.body.name);
     console.log('req.body.info', req.body.info);
-    console.log('req.body.job_id', req.body.job_id)
+    console.log('req.body.job_id', req.body.job_id);
+    console.log('req.body.date', req.body.date);
 
-    db.update_exjob(req.body.name, req.body.info, req.body.job_id, function (req, res) {
+    db.update_exjob(req.body.name, req.body.info, req.body.date, req.body.job_id, function (err, result) {
         if (err) {
             req.flash('danger', 'An error has occured while updating your profile');
             res.redirect('/profile');
