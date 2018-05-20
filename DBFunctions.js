@@ -443,6 +443,19 @@ module.exports = {
         })
     },
 
+    insert_xjob_qual: function(exid, qual, callback){
+        var sql = "";
+        con.query(sql, [exid, qual], function(err, res){
+            callback(err, res);
+            if(err){
+                console.log("insert xjobqual query not working"+ err);
+            }
+            else{
+                console.log("insert xjobqual query working");
+            }
+        })
+    },
+
 
     insert_user: function (username, password, role, callback) {
         var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";

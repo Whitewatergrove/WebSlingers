@@ -202,6 +202,20 @@
 												<div class="w3-container">
 													<h2>Uppdatera jobb</h2>
 												</div>
+												<div class="modal-body">
+													<form action="/change_skill_xjob" method="POST">
+														<div class="container">
+															<select name="xjob_qual">
+																<% qual_list.forEach(function(result) { %>
+																	<option value="<%= result.Qualification %>"><%= result.Qualification %></option>
+																<% }); %>
+															</select>
+															<br/>
+														</div>
+														<button type="submit" id="butt">Update Skill</button>
+													</form>
+
+												</div>
 												<hr>
 												<form class="w3-container">
 													<p>

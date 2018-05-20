@@ -340,19 +340,15 @@
 									<h4 class="modal-title">Add skill</h4>
 								</div>
 
-								<!-- Modal body -->
+								<!-- Modal body add student qual-->
 								<div class="modal-body">
-									<form action="/change_skill" method="POST">
+									<form action="/change_skill_student" method="POST">
 										<div class="container">
-											
 											<select name="student_qual">
 												<% results.forEach(function(result) { %>
 													<option value="<%= result.Qualification %>"><%= result.Qualification %></option>
 												<% }); %>
 											</select>
-											<br/>
-											<p><%= results %></p>
-				<!-- Här björn           -->
 											<br/>
 										</div>
 										<button type="submit" id="butt">Update Skill</button>

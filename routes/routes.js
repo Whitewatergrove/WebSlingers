@@ -148,15 +148,24 @@ router.get('/profile', (req, res) => {
                 req.session.company = result;
             }
         });
+        db.get_qualifications(function(err, results){
+            if(err){
+                console.log("err: "+ err)
+            }          
+            console.log("hepp: ", results);
+            req.session.qual_list = results;
+        }); 
         db.get_exjobs(req.session.user, function (err, results) {
             if (err) throw err
-
-            req.session.exid = results;
-            res.render('companyProfile', {
-                get_exjobs: results,
-                get_company_user_and_nr: req.session.company
-            });
-        })
+            else{
+                req.session.exid = results;
+                res.render('companyProfile', {
+                    get_exjobs: results,
+                    get_company_user_and_nr: req.session.company,
+                    qual_list: req.session.qual_list
+                })
+            }
+        });
     }
     else
         res.redirect('/')
@@ -417,7 +426,7 @@ router.get('/profileStudentProfile', function (req, res) {
     res.render("pages/profileStudentProfile");
 });
 
-router.post('/change_skill', function(req, res){
+router.post('/change_skill_student', function(req, res){
     db.insert_studentqual(req.session.pnr, req.body.student_qual, function(err, results){
         if(err){
             req.flash('danger', 'The qualification already exists on this user');
@@ -425,6 +434,16 @@ router.post('/change_skill', function(req, res){
         else{
             req.flash('success', 'You have successfully added a qualification');
             res.redirect('/profile');
+        }
+    })
+});
+router.post('/change_skill_xjob', function(req, res){
+    db.insert_xjob_qual(req.session.pnr, req.body.xjobqual, function(err, results){
+        if(err){
+            req.flash('danger', 'The qualification already exists on this user');
+        }
+        else{
+            req.flash('success', 'You have successfully added a qualification');
         }
     })
 });
