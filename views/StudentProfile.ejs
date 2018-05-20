@@ -190,6 +190,16 @@
 									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModalSkill">
 										<strong>Add Skill</strong>
 									</button>
+								</br>
+									<ul>
+										<% if(locals.get_student_qual) { %>
+											<% get_student_qual.forEach(function(result){ %>
+												<li>
+												<%= result.QID %>
+												</li>
+											<% }) %>
+										<% } %>
+										</ul>
 									<hr>
 								</div>
 							</div>
@@ -337,7 +347,6 @@
 									<button type="button" class="button3" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title">Add skill</h4>
 								</div>
-
 								<!-- Modal body add student qual-->
 								<div class="modal-body">
 									<form action="/change_skill_student" method="POST">
@@ -391,7 +400,7 @@
 					<Button type="submit" id="buttondbtest">Uppdatera db</Button>
 				</form>
 				<% if(locals.matchning) {%>
-					<ul class="Job-list" id="job_list">
+					<ul class="Job-list" id="job_list" style="background-color: #fff">
 
 						<% matchning.forEach(function(result) { %>
 							<hr>
@@ -406,21 +415,11 @@
 								<p>
 									<%= result.Info %>
 								</p>
-								<button class="matchbtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Matcha</button>
-								<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Ändra</button>
-								<form action="delete_job" method="POST">
-									<input hidden name="job_id" value=< %=r esult.ID %>></input>
-									<button type="submit" style="width:auto;" class="removebtn">Ta bort</button>
-								</form>
+								<button class="matchbtn">Ansök</button>
 							</div>
 							<% }); %>
 					</ul>
 					<% } %>
-						<div class="Tinder">
-							<div id="user">
-								<p></p>
-							</div>
-						</div>
 			</div>
 		</div>
 	</div>
