@@ -393,13 +393,8 @@ router.post('/add_job', function (req, res) {
     console.log(req.body.info);
     console.log(req.session.orgnr);
     console.log(req.body.date);
-<<<<<<< HEAD
-
-    db.insert_exjobs(req.session.orgnr, req.body.title, req.body.info, req.body.date, function (err, results) {
-=======
     
     db.insert_exjobs(req.session.orgnr, req.body.title, req.body.info, req.body.date, req.body.teaser, function (err, results) {
->>>>>>> a06521e9b897e80443c1c48a99987d639a84231e
         if (err) {
             req.flash('danger', 'An error has occured');
             res.redirect('/profile');
