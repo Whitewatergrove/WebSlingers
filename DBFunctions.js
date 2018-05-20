@@ -224,6 +224,20 @@ module.exports = {
             }
         })
     },
+    get_student_qualifications: function(UID, callback) {
+        var sql = "select QID from students, studentqualifications where UID = ? group by QID;;";
+        con.query(sql, UID, function(err, results){
+            if (err) {
+                
+                console.log("get qual query error");
+            }
+            else {
+                console.log("get studentqual query ok");
+                callback(null, results);
+            }
+        })
+    },
+
 
     get_demanded_qual: function(EID, callback) {
         var sql = "select * from demanded;";

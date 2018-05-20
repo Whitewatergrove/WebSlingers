@@ -125,18 +125,23 @@ router.get('/profile', (req, res) => {
     if (req.session.user && req.session.role == 'student') {
         db.get_student_user_and_nr(req.session.user, function (err, result) {
             if (err) throw err;
-            req.session.pnr = result[0].pnr;
-            req.session.student = result;
+                req.session.pnr = result[0].pnr;
+                req.session.student = result;
         });
-        db.get_qualifications(function(err, results){
-            if(err){
-                console.log("err: "+ err)
-            }          
+        db.get_student_qualifications(req.session.user, function (err, results) {
+            if (err) throw err;
+            req.session.get_student_qual = results
+        });
+        db.get_qualifications(function (err, results) {
+            if (err) {
+                console.log("err: " + err)
+            }
             req.session.qual_list = results;
             res.render('StudentProfile', {
                 results: results,
-                student_user_and_nr: req.session.student
-            }); 
+                student_user_and_nr: req.session.student,
+                get_student_qual: req.session.get_student_qual
+            });
         })
     }
     else if (req.session.user && req.session.role == 'company') {
@@ -147,23 +152,23 @@ router.get('/profile', (req, res) => {
                 req.session.company = result;
             }
         });
-        db.get_qualifications(function(err, results){
-            if(err){
-                console.log("err: "+ err)
-            }          
+        db.get_qualifications(function (err, results) {
+            if (err) {
+                console.log("err: " + err)
+            }
             req.session.qual_list = results;
         });
         db.get_exjobs(req.session.user, function (err, results) {
             if (err) throw err
-            else{
+            else {
                 req.session.exid = results;
-                
+
             }
         });
-        db.get_demanded_qual(req.body.job_id, function(err, results){
-            if(err){
-                console.log("err: "+ err)
-            }          
+        db.get_demanded_qual(req.body.job_id, function (err, results) {
+            if (err) {
+                console.log("err: " + err)
+            }
             req.session.quals = results;
             res.render('companyProfile', {
                 get_exjobs: req.session.exid,
@@ -171,7 +176,7 @@ router.get('/profile', (req, res) => {
                 qual_list: req.session.qual_list,
                 quals: req.session.quals
             })
-        }); 
+        });
     }
     else
         res.redirect('/')
@@ -248,9 +253,9 @@ router.post('/change_company_profile', function (req, res) {
 });
 
 // filhantering cv
-router.post('/filetest', function (req, res){
-    
-    if(req.files){
+router.post('/filetest', function (req, res) {
+
+    if (req.files) {
         console.log(req.files);
         console.log(req.files.filename.data);
         //var file = req.files.filename,
@@ -266,7 +271,7 @@ router.post('/filetest', function (req, res){
         //        res.redirect("/profile");
         //    }
         //})
-        db.update_user_cv(req.session.pnr, req.files.filename.data, function(err, result){
+        db.update_user_cv(req.session.pnr, req.files.filename.data, function (err, result) {
             if (err) {
                 req.flash('danger', 'An error has occured while updating');
                 res.redirect('/profile');
@@ -279,15 +284,14 @@ router.post('/filetest', function (req, res){
     }
 });
 // skriva ut cv på sidan
-router.get('/Certificate', function (req, res){
-    db.get_cv(req.session.pnr, function(err, result){
-        if(err){
+router.get('/Certificate', function (req, res) {
+    db.get_cv(req.session.pnr, function (err, result) {
+        if (err) {
             req.flash('danger', 'An error has occured while loading');
             res.redirect('/profile');
         }
-        else if(!err)
-        {
-            console.log("result: ",result)
+        else if (!err) {
+            console.log("result: ", result)
             res.render('Certificate', {
                 results: result
             });
@@ -303,7 +307,7 @@ router.post('/hejhopmanstest', function (req, res) {            // Needs to find
             matchning: matchingStudent.matcha()
         });
     });
-    
+
 });
 
 router.get('/search', function (req, res) {                     // For testing, do not remove!!!!!!
@@ -316,7 +320,7 @@ router.get('/dbtester', function (req, res) {
         req.session.res = result;
         console.log("dbtest: " + req.session.res[0].UID);
         console.log("hejhej:", req.session.qual_list);
-        })
+    })
 });
 
 router.post('/forgot', function (req, res) {
@@ -436,24 +440,24 @@ router.get('/profileStudentProfile', function (req, res) {
     res.render("pages/profileStudentProfile");
 });
 
-router.post('/change_skill_student', function(req, res){
-    db.insert_studentqual(req.session.pnr, req.body.student_qual, function(err, results){
-        if(err){
+router.post('/change_skill_student', function (req, res) {
+    db.insert_studentqual(req.session.pnr, req.body.student_qual, function (err, results) {
+        if (err) {
             req.flash('danger', 'The qualification already exists on this user');
             res.redirect('/profile');
         }
-        else{
+        else {
             req.flash('success', 'You have successfully added a qualification');
             res.redirect('/profile');
         }
     })
 });
-router.post('/change_skill_xjob', function(req, res){
-    db.insert_xjob_qual(req.body.job_id, req.body.xjob_qual, function(err, results){
-        if(err){
+router.post('/change_skill_xjob', function (req, res) {
+    db.insert_xjob_qual(req.body.job_id, req.body.xjob_qual, function (err, results) {
+        if (err) {
             req.flash('danger', 'The qualification already exists on this user');
         }
-        else{
+        else {
             req.flash('success', 'You have successfully added a qualification');
             res.redirect('/profile');
         }
