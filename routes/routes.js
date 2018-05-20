@@ -220,6 +220,7 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
+
 router.post('/hejhopmanstest', function (req, res) {            // Needs to find an other solution!!!!
     db.get_student_user_and_nr(req.session.user, function (err, result) {
         if (err) throw err;
