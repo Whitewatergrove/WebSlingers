@@ -343,11 +343,13 @@
 									<form action="/change_skill_student" method="POST">
 										<div class="container">
 											<select name="student_qual">
+												<% if(locals.results) { %>
 												<% results.forEach(function(result) { %>
 													<option value="<%= result.Qualification %>">
 														<%= result.Qualification %>
 													</option>
 													<% }); %>
+													<% } %>
 											</select>
 											<br/>
 										</div>
@@ -411,7 +413,6 @@
 									<button type="submit" style="width:auto;" class="removebtn">Ta bort</button>
 								</form>
 							</div>
-							<hr>
 							<% }); %>
 					</ul>
 					<% } %>
