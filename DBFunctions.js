@@ -4,7 +4,7 @@ let mysql = require('mysql');
 let app = express();
 let bodyParser = require('body-parser')
 
-
+//database connection
 var con = mysql.createConnection({
     host: "83.255.197.121",
     user: "joakim",
@@ -35,6 +35,19 @@ module.exports = {
     get_users: function (username, pass, callback) {
         var sql = "SELECT * FROM users";
         con.query(sql, function (err, results) {
+            if (err) {
+                console.log('error in query');
+            }
+            else {
+                console.log('query functional');
+            }
+            callback(null, results);
+        })
+    },
+
+    get_cv: function (id, callback) {
+        var sql = "select file from students where pnr = ?;";
+        con.query(sql, id, function (err, results) {
             if (err) {
                 console.log('error in query');
             }
@@ -164,7 +177,7 @@ module.exports = {
     },
 
     get_exjobs: function (username, callback) {
-        var sql = "SELECT ID,Name,Info FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
+        var sql = "SELECT * FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
         con.query(sql, username, function (err, results) {
             callback(err, results);
             if (err) {
@@ -195,6 +208,34 @@ module.exports = {
             }
         })
 
+    },
+
+    get_qualifications: function(callback) {
+        var sql = "SELECT * FROM qualifications;";
+        con.query(sql, function(err, results){
+            
+            if (err) {
+                
+                console.log("get qual query error");
+            }
+            else {
+                console.log("get qual query ok");
+                callback(null, results);
+            }
+        })
+    },
+
+    get_demanded_qual: function(EID, callback) {
+        var sql = "select * from demanded;";
+        con.query(sql, EID, function(err, results){
+            if(err){
+                console.log("get demanded qual query not working: "+ err)
+            }
+            else{
+                console.log("get demanded qual query working")
+                callback(null, results);
+            }
+        })
     },
 
     /*************************************************************************************************************************************
@@ -402,6 +443,32 @@ module.exports = {
         })
     },
 
+    insert_studentqual: function(pnr, qual, callback){
+        var sql = "INSERT INTO studentqualifications (SID, QID) VALUES (?, ?);";
+        con.query(sql, [pnr, qual], function(err, res){
+            callback(err, res);
+            if(err){
+                console.log("insert studentqual query not working"+ err);
+            }
+            else{
+                console.log("insert studentqual query working");
+            }
+        })
+    },
+
+    insert_xjob_qual: function(exid, qual, callback){
+        var sql = "INSERT INTO demanded (EID, QID) VALUES (?, ?);";
+        con.query(sql, [exid, qual], function(err, res){
+            callback(err, res);
+            if(err){
+                console.log("insert xjobqual query not working"+ err);
+            }
+            else{
+                console.log("insert xjobqual query working");
+            }
+        })
+    },
+
 
     insert_user: function (username, password, role, callback) {
         var sql = "INSERT INTO users (ID, Password, Role) VALUES (?, ? ,?);";
@@ -467,6 +534,19 @@ module.exports = {
         })
     },
 
+    update_user_cv: function(id, file, callback){
+        var sql = "UPDATE students SET File = ? WHERE pnr = ?;";
+        con.query(sql, [file, id], function(err, res){
+            callback(err, res);
+            if(err){
+                console.log("insert cv query very baaad: "+ err);
+            }
+            else{
+                console.log("insert cv working");
+            }
+        })
+    },
+
     update_companyprofile: function (orgnr, uname, name, adress, tel, callback) {
         var sql = "UPDATE companies SET Name = ?, Adress = ?, Tel = ? WHERE Orgnr = ?;";
         con.query(sql, [name, adress, tel, orgnr], function (err, res) {
@@ -508,7 +588,7 @@ module.exports = {
 
     //**************************************************************************************************/
     //Deletes
-    delete_exjob: function (id, callback) {
+    delete_exjob: function (id, callback) { 
         var sql = "DELETE FROM exjobs WHERE ID = ?";
         con.query(sql, [id], function (err, res) {
             callback(err, res);

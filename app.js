@@ -1,7 +1,9 @@
 'use strict'
 let express = require('express');
 let app = express();
+let upload = require("express-fileupload");
 
+app.use(upload());
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 const routes = require('./routes/routes');

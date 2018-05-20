@@ -12,6 +12,7 @@ let matchingCompany = require('./companyMatch');
 
 let bcrypt = require('bcrypt');
 let mysql = require('mysql');
+let fs = require("fs");
 
 const nodemailer = require('nodemailer');
 
@@ -109,6 +110,7 @@ router.post('/login', function (req, res) {
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
                     matchingStudent.prematching(req.session.user);
+
                 }
                 else {
                     console.log('wtf');
@@ -124,10 +126,19 @@ router.get('/profile', (req, res) => {
         db.get_student_user_and_nr(req.session.user, function (err, result) {
             if (err) throw err;
             req.session.pnr = result[0].pnr;
-            res.render('StudentProfile', {
-                results: result
-            });
+            req.session.student = result;
         });
+        db.get_qualifications(function(err, results){
+            if(err){
+                console.log("err: "+ err)
+            }          
+            console.log("hepp: ", results);
+            req.session.qual_list = results;
+            res.render('StudentProfile', {
+                results: results,
+                student_user_and_nr: req.session.student
+            }); 
+        })
     }
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function (err, result) {
@@ -137,15 +148,31 @@ router.get('/profile', (req, res) => {
                 req.session.company = result;
             }
         });
+        db.get_qualifications(function(err, results){
+            if(err){
+                console.log("err: "+ err)
+            }          
+            req.session.qual_list = results;
+        });
         db.get_exjobs(req.session.user, function (err, results) {
             if (err) throw err
-
-            req.session.exid = results;
+            else{
+                req.session.exid = results;
+                
+            }
+        });
+        db.get_demanded_qual(req.body.job_id, function(err, results){
+            if(err){
+                console.log("err: "+ err)
+            }          
+            req.session.quals = results;
             res.render('companyProfile', {
-                get_exjobs: results,
-                get_company_user_and_nr: req.session.company
-            });
-        })
+                get_exjobs: req.session.exid,
+                get_company_user_and_nr: req.session.company,
+                qual_list: req.session.qual_list,
+                quals: req.session.quals
+            })
+        }); 
     }
     else
         res.redirect('/')
@@ -154,6 +181,7 @@ router.get('/test', function (req, res) {
     console.log('asdhaiosdha', req.session.exid);
 })
 router.get('/logout', (req, res) => {
+    console.log("qual_list: ", req.session.qual_list);
     req.session.destroy();
     res.redirect('/');
 });
@@ -220,15 +248,63 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
+// filhantering cv
+router.post('/filetest', function (req, res){
+    
+    if(req.files){
+        console.log(req.files);
+        console.log(req.files.filename.data);
+        //var file = req.files.filename,
+        //    filename = file.name;
+        //    console.log("filnamnet: "+ filename);
+        //file.mv("../public/upload/"+filename, function(err){
+        //    if(err){
+        //        console.log('error occured'+err);
+        //        req.flash('danger', 'error occured');
+        //    }
+        //    else{
+        //        req.flash('success', 'Done!');
+        //        res.redirect("/profile");
+        //    }
+        //})
+        db.update_user_cv(req.session.pnr, req.files.filename.data, function(err, result){
+            if (err) {
+                req.flash('danger', 'An error has occured while updating');
+                res.redirect('/profile');
+            }
+            else if (!err) {
+                req.flash('success', 'You have succcessfully updated your profile');
+                res.redirect('/profile');
+            }
+        })
+    }
+});
+// skriva ut cv på sidan
+router.get('/Certificate', function (req, res){
+    db.get_cv(req.session.pnr, function(err, result){
+        if(err){
+            req.flash('danger', 'An error has occured while loading');
+            res.redirect('/profile');
+        }
+        else if(!err)
+        {
+            console.log("result: ",result)
+            res.render('Certificate', {
+                results: result
+            });
+        }
+    })
+})
 
 router.post('/hejhopmanstest', function (req, res) {            // Needs to find an other solution!!!!
     db.get_student_user_and_nr(req.session.user, function (err, result) {
         if (err) throw err;
         res.render('StudentProfile', {
-            results: result,
+            student_user_and_nr: result,
             matchning: matchingStudent.matcha()
         });
     });
+    
 });
 
 router.get('/search', function (req, res) {                     // For testing, do not remove!!!!!!
@@ -240,11 +316,10 @@ router.get('/dbtester', function (req, res) {
         if (err) throw err;
         req.session.res = result;
         console.log("dbtest: " + req.session.res[0].UID);
-        res.render('StudentProfile', {
-            eh: result
+        console.log("hejhej:", req.session.qual_list);
         })
-    })
 });
+
 router.post('/forgot', function (req, res) {
     const output = `
     <h3>Your account information</h3>
@@ -309,6 +384,7 @@ router.post('/forgot', function (req, res) {
         }
     });
 });
+
 router.post('/add_job', function (req, res) {
     console.log(req.body.title);
     console.log(req.body.info);
@@ -360,5 +436,30 @@ router.post('/delete_job', function (req, res) {
 router.get('/profileStudentProfile', function (req, res) {
     res.render("pages/profileStudentProfile");
 });
+
+router.post('/change_skill_student', function(req, res){
+    db.insert_studentqual(req.session.pnr, req.body.student_qual, function(err, results){
+        if(err){
+            req.flash('danger', 'The qualification already exists on this user');
+            res.redirect('/profile');
+        }
+        else{
+            req.flash('success', 'You have successfully added a qualification');
+            res.redirect('/profile');
+        }
+    })
+});
+router.post('/change_skill_xjob', function(req, res){
+    db.insert_xjob_qual(req.body.job_id, req.body.xjob_qual, function(err, results){
+        if(err){
+            req.flash('danger', 'The qualification already exists on this user');
+        }
+        else{
+            req.flash('success', 'You have successfully added a qualification');
+            res.redirect('/profile');
+        }
+    })
+});
+
 module.exports = router;
 

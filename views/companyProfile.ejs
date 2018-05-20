@@ -213,9 +213,17 @@
 													</b>
 												</h4>
 												<h6 class="w3-text">
-													<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
+													<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i><%= result.date %></h6>
 												<p>
 													<%= result.Info %>
+												</p>
+												<p><% if(locals.quals) { %>
+													<% quals.forEach(function(results) { %>
+														<% if(results.EID === result.ID) { %>
+														<%= results.QID %> 
+														<% }; %>
+													<% }); %>
+													<% }; %> 
 												</p>
 												<button class="matchbtn" style="width:auto;">Match</button>
 												<button class="changebtn" style="width:auto;" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
@@ -227,11 +235,26 @@
 											</div>
 											<div id="id02" class="modal test">
 												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+												<div class="modal-body">
+													<form action="/change_skill_xjob" method="POST">
+														<div class="container">
+															<select name="xjob_qual">
+																<% qual_list.forEach(function(result) { %>
+																	<option value="<%= result.Qualification %>"><%= result.Qualification %></option>
+																<% }); %>
+															</select>
+															<br/>
+															<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
+														</div>
+														<button type="submit" id="butt">Update Skill</button>
+													</form>
+												</div>
 												<form class="modal-content" action="update_job" method="POST">
 													<div class="container">
 														<div class="w3-container">
 															<h2>Update job</h2>
 														</div>
+														
 														<hr>
 														<form class="w3-container">
 															<p>
