@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Mizikaze/WebSlingers/issues"
   },
-  "homepage": "https://github.com/Mizikaze/WebSlingers#readme"
+  "homepage": "https://github.com/Mizikaze/WebSlingers#readme",
+  "dependencies": {
+    "express-fileupload": "^0.4.0"
+  }
 }
