@@ -132,7 +132,6 @@ router.get('/profile', (req, res) => {
             if(err){
                 console.log("err: "+ err)
             }          
-            console.log("hepp: ", results);
             req.session.qual_list = results;
             res.render('StudentProfile', {
                 results: results,
@@ -300,7 +299,7 @@ router.post('/hejhopmanstest', function (req, res) {            // Needs to find
     db.get_student_user_and_nr(req.session.user, function (err, result) {
         if (err) throw err;
         res.render('StudentProfile', {
-            results: result,
+            student_user_and_nr: result,
             matchning: matchingStudent.matcha()
         });
     });
