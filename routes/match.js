@@ -53,8 +53,8 @@ module.exports = {
                 })
             }),
 
-            //console.log(classes),
             console.log(line);
+
         }).catch((error) => {
             // handle error here,
             console.error("Student Prematching Promise Error");
@@ -90,9 +90,7 @@ module.exports = {
                                 })
                             })
                             if(tempED === tempSQ)
-                            {
                                 exjob.weight = exjob.weight + 0.4;
-                            }
                         }
                     })
                 })
@@ -107,6 +105,6 @@ module.exports = {
         temp.exjobs = temp.exjobs.filter(exjob => exjob.weight > 0);
         console.log(temp.exjobs);
 
-        return temp.exjobs;            // kanske avändbar
+        return temp.exjobs;
     }
 }

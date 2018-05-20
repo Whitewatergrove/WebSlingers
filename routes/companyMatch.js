@@ -24,18 +24,14 @@ module.exports = {
             db.get_xjob_demanded_promise(exthisExjobjob.ID),
             db.get_students_promise(),
             db.get_studentqualifications_promise(),
-            db.get_class_catagories_promise(classes),
+            db.get_class_catagories_promise(),
+            db.get_qualifications_catagories_promise(),
         ]).then((lists) => {                                    // Starts working with the promises when all
                                                                 // of them is resolved or rejected.
             current.demanded = lists[0],
             students = lists[1],
             classes = lists[3],
             exjob = current,
-
-            console.log(current),
-            console.log(line),
-
-
 
             students.forEach(student => {                       // Looping through all exjobs and
                 students.QUAL = [];                             // sets their demandingqualifications.
@@ -47,13 +43,18 @@ module.exports = {
                 })
             }),
 
-            console.log(students),
-            console.log(line),
+            classes.forEach(klass => {
+                klass.qual = [];
+                lists[4].forEach(qual => {
+                    if(klass.class === qual.class)
+                    {
+                        klass.qual[klass.qual.length] = qual.qualifications;
+                    }
+                })
+            }),
 
-            /*classes.forEach(klass => {
-                klass.qualification = db.get_qualifications_catagories_promise(klass.class);
-            }),*/
             console.log(line);
+
         }).catch((error) => {
             // handle error here,
             console.error("Company Prematching Promise Error");
@@ -74,14 +75,29 @@ module.exports = {
             {
                 exjob.demanded.forEach(demd => {                // Checking if the there is any exjobs that demanding 
                     console.log("Demands");                     // any of the student qualification.
-                    console.log(demd.QID);
+                    console.log(demd);
                     console.log(exjob.demanded)
                     student.QUAL.forEach(qual => {
+                        if(temp.students[temp.students.length - 1] != student)
+                                temp.students[temp.students.length] = student;
                         console.log("qual");
-                        console.log(qual);
+                        console.log(qual.QID);
                         if(qual.QID === demd)
+                            student.weight = student.weight +1;
+                        else
                         {
-                            temp.students[temp.students.length] = student;
+                            let tempSQ = 'tempSQ';
+                            let tempED = 'tempED';
+                            classes.forEach(obj => {
+                                obj.qual.forEach(element =>{
+                                    if(element === demd)
+                                    tempED = obj.class;
+                                    if(element === qual.QID)
+                                    tempSQ = obj.class;
+                                })
+                            })
+                            if(tempED === tempSQ)
+                                student.weight = student.weight + 0.4;
                         }
                     })
                 })
@@ -94,6 +110,12 @@ module.exports = {
         console.log(line);
         console.log(line);
 
-        return temp;            // kanske avändbar
+        temp.exjobs.sort(function(a, b){
+            return b.weight - a.weight;
+        });
+        temp.exjobs = temp.exjobs.filter(exjob => exjob.weight > 0);
+        console.log(temp.exjobs);
+
+        return temp.students;
     }
 }
