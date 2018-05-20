@@ -110,6 +110,7 @@ router.post('/login', function (req, res) {
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
                     matchingStudent.prematching(req.session.user);
+
                 }
                 else {
                     console.log('wtf');
@@ -125,10 +126,19 @@ router.get('/profile', (req, res) => {
         db.get_student_user_and_nr(req.session.user, function (err, result) {
             if (err) throw err;
             req.session.pnr = result[0].pnr;
-            res.render('StudentProfile', {
-                results: result
-            });
+            req.session.student = result;
         });
+        db.get_qualifications(function(err, results){
+            if(err){
+                console.log("err: "+ err)
+            }          
+            console.log("hepp: ", results);
+            req.session.qual_list = results;
+            res.render('StudentProfile', {
+                results: results,
+                student_user_and_nr: req.session.student
+            }); 
+        })
     }
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function (err, result) {
@@ -407,14 +417,14 @@ router.get('/profileStudentProfile', function (req, res) {
     res.render("pages/profileStudentProfile");
 });
 
-router.post('/', function(req, res){
-    db.get_qualifications(function(err, results){
+router.post('/change_skill', function(req, res){
+    db.insert_studentqual(req.session.pnr, req.body.student_qual, function(err, results){
         if(err){
-            console.log("err: "+ err)
+            console.log(err);
         }
         else{
-            console.log("hepp: ", results);
-            req.session.qual_list = results;
+            req.flash('success', 'You have successfully added a qualification');
+            res.redirect('/profile');
         }
     })
 });

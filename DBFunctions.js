@@ -432,7 +432,7 @@ module.exports = {
 
     insert_studentqual: function(pnr, qual, callback){
         var sql = "INSERT INTO studentqualifications (SID, QID) VALUES (?, ?);";
-        con.query(sql, pnr, qual, function(err, res){
+        con.query(sql, [pnr, qual], function(err, res){
             callback(err, res);
             if(err){
                 console.log("insert studentqual query not working"+ err);

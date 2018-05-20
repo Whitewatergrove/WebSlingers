@@ -133,31 +133,31 @@
 
 									</div>
 									<h2>
-										<%= results[0].Name %>
+										<%= student_user_and_nr[0].Name %>
 									</h2>
 								</div>
 								<!-- Person information box -->
 								<div class="w3-container">
 									<p>
 										<i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
-										<%= results[0].pnr %>
+										<%= student_user_and_nr[0].pnr %>
 									</p>
 									<p>
 										<i class="fa fa-user fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
-										<%= results[0].gender %>
+										<%= student_user_and_nr[0].gender %>
 									</p>
 
 									<p>
 										<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
-										<%= results[0].UID %>
+										<%= student_user_and_nr[0].UID %>
 									</p>
 									<p>
 										<i class="fas fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
-										<%= results[0].Adress %>
+										<%= student_user_and_nr[0].Adress %>
 									</p>
 									<p>
 										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
-										<%= results[0].Tel %>
+										<%= student_user_and_nr[0].Tel %>
 									</p>
 									<p>
 											<a href="Certificate">Certificate</a>
@@ -293,8 +293,8 @@
 				<div class="modal-body">
 						<form action="/change_student_profile" method="POST">
 							<div class="container">
-								<input type="text" name="username" id="uname" disabled value = <%= results[0].UID %>>
-								<input type="text" name="pnum" id="pnum" disabled value = <%= results[0].pnr %>>
+								<input type="text" name="username" id="uname" disabled value = <%= student_user_and_nr[0].UID %>>
+								<input type="text" name="pnum" id="pnum" disabled value = <%= student_user_and_nr[0].pnr %>>
 								<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..."
 								data-toggle="tooltip"  title="Fyll i ett nytt lösenord  4-16 karaktärer">
 								<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..."
@@ -311,6 +311,10 @@
 								<br/>
 							</div>
 							<Button type="submit" id="butt" >Uppdatera ändringar</Button>
+						</form>
+						<form action="/filetest" method="POST" enctype="multipart/form-data"> 
+							<input type="file" name="filename"> 
+							<input type="submit" value="Ladda upp"> 
 						</form>
 				</div>
 
@@ -338,10 +342,16 @@
 
 								<!-- Modal body -->
 								<div class="modal-body">
-									<form action="/change_student_profile" method="POST">
+									<form action="/change_skill" method="POST">
 										<div class="container">
 											
-											<input type="password" name="password" id="pass" maxlength="30" required placeholder="Enter Skill...">
+											<select name="student_qual">
+												<% results.forEach(function(result) { %>
+													<option value="<%= result.Qualification %>"><%= result.Qualification %></option>
+												<% }); %>
+											</select>
+											<br/>
+											<p><%= results %></p>
 				<!-- Här björn           -->
 											<br/>
 										</div>
@@ -355,14 +365,8 @@
 									
 								</div>
 							</div>
-							<Button type="submit" id="butt" >Update changes</Button>
-						</form>
-						<form action="/filetest" method="POST" enctype="multipart/form-data"> 
-							<input type="file" name="filename"> 
-							<input type="submit" value="Ladda upp"> 
-						</form>
-				
-				</div>
+						</div>	
+					</div>
 			</body>
 		</div>
 	</div>
