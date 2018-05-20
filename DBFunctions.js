@@ -86,7 +86,7 @@ module.exports = {
     },
 
     get_company_user_and_nr: function (username, callback) {
-        var sql = "select Name, Tel, Orgnr, UID from companies where UID = ?;";
+        var sql = "select Name, Tel, Orgnr, Adress, UID from companies where UID = ?;";
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log('error in query');

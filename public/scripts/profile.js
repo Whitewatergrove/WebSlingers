@@ -6,6 +6,15 @@ $(document).ready(function () {
 
 let matching = require('../routes/match');
 
+function openHelptab(tabName) {
+    var i, x;
+    x = document.getElementsByClassName("containerTab");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+  }
+
 function openTab(pageName, tab) {
     var i = 0,
         y = 0,
@@ -40,18 +49,24 @@ function setIcon() {
     console.log(el.className);
     if (selectedRole == "student") {
         ph.placeholder = 'yymmddxxxx...';
+        ph.title = "Fyll i ditt personnummer 10 siffror"
         el.className -= " fas fa-industry";
         el.className += ' fas fa-graduation-cap';
 
     } else if (selectedRole == 'company') {
         ph.placeholder = 'Organization number...';
+        ph.title = "Fyll i ditt Org.nummer 10 siffror"
         el.className -= " fas fa-graduation-cap";
         el.className += " fas fa-industry";
     }
 }
+
+// Select all elements with data-toggle="tooltips" in the document
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
+  
 })
+
 
 // function addJob() {
 //     var ListVar = document.createElement("LI");
@@ -85,3 +100,8 @@ window.onclick = function (event) {
 //         $('.changebtn').click(function (){ document.getElementById('id02').style.display='block'})
 //     });
 // });
+
+
+
+ 
+
