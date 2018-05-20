@@ -420,7 +420,7 @@ router.get('/profileStudentProfile', function (req, res) {
 router.post('/change_skill', function(req, res){
     db.insert_studentqual(req.session.pnr, req.body.student_qual, function(err, results){
         if(err){
-            console.log(err);
+            req.flash('danger', 'The qualification already exists on this user');
         }
         else{
             req.flash('success', 'You have successfully added a qualification');
