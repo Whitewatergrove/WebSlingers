@@ -431,9 +431,9 @@ module.exports = {
         })
     },
 
-    insert_exjobs: function (ExOID, Name, Info, date, callback) {
-        var sql = "INSERT INTO exjobs (ExOID, Name, Info, date) VALUES (?, ?, ?, ?);";
-        con.query(sql, [ExOID, Name, Info, date], function (err, res) {
+    insert_exjobs: function (ExOID, Name, Info, date, teaser, callback) {
+        var sql = "INSERT INTO exjobs (ExOID, Name, Info, date, teaser) VALUES (?, ?, ?, ?, ?);";
+        con.query(sql, [ExOID, Name, Info, date, teaser], function (err, res) {
             callback(err, res);
             if (err) {
                 console.log("insert user query not working: " + err);
@@ -572,9 +572,9 @@ module.exports = {
         })
     },
 
-    update_exjob: function (name, info, date, id, callback) {
-        var sql = "UPDATE exjobs SET Name = ?, Info = ?, date = ? WHERE ID = ?;";
-        con.query(sql, [name, info, date, id], function (err, res) {
+    update_exjob: function (name, info, date, teaser, id, callback) {
+        var sql = "UPDATE exjobs SET Name = ?, Info = ?, date = ?, teaser = ? WHERE ID = ?;";
+        con.query(sql, [name, info, date, teaser, id], function (err, res) {
             callback(err, res);
             if (err) {
                 console.log("update exjob failed: " + err);
