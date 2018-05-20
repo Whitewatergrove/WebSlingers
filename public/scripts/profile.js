@@ -34,8 +34,7 @@ function openTab(pageName, tab) {
     document.getElementById(tab).style.borderLeft = "5px solid #2e78ba";
     document.getElementById(pageName).style.display = "block";
 
-    if(pageName === 'Jobs')
-    {
+    if (pageName === 'Jobs') {
         matching.matcha();
         //******************************************************************************************************************************************************************************************** */
     }
@@ -101,7 +100,13 @@ window.onclick = function (event) {
 //     });
 // });
 
+function openModal(k) {
+						
+    $('.changebtn').click(function () {
+        document.getElementById(k).style.display = 'block'
+    });
 
-
- 
-
+    $('.cancelbtn').click(function () {
+        document.getElementById(k).style.display = 'none'
+    });
+}

@@ -152,20 +152,27 @@ router.get('/profile', (req, res) => {
             if(err){
                 console.log("err: "+ err)
             }          
-            console.log("hepp: ", results);
             req.session.qual_list = results;
-        }); 
+        });
         db.get_exjobs(req.session.user, function (err, results) {
             if (err) throw err
             else{
                 req.session.exid = results;
-                res.render('companyProfile', {
-                    get_exjobs: results,
-                    get_company_user_and_nr: req.session.company,
-                    qual_list: req.session.qual_list
-                })
+                
             }
         });
+        db.get_demanded_qual(req.body.job_id, function(err, results){
+            if(err){
+                console.log("err: "+ err)
+            }          
+            req.session.quals = results;
+            res.render('companyProfile', {
+                get_exjobs: req.session.exid,
+                get_company_user_and_nr: req.session.company,
+                qual_list: req.session.qual_list,
+                quals: req.session.quals
+            })
+        }); 
     }
     else
         res.redirect('/')
@@ -392,12 +399,12 @@ router.post('/add_job', function (req, res) {
         }
     })
 });
-router.post('/update_jobs', function (req, res) {
+router.post('/update_job', function (req, res) {
     console.log('req.body.name', req.body.name);
     console.log('req.body.info', req.body.info);
     console.log('req.body.job_id', req.body.job_id)
 
-    db.update_exjob(req.body.name, req.body.info, req.body.job_id, function (req, res) {
+    db.update_exjob(req.body.name, req.body.info, req.body.job_id, function (err, result) {
         if (err) {
             req.flash('danger', 'An error has occured while updating your profile');
             res.redirect('/profile');
@@ -438,12 +445,13 @@ router.post('/change_skill_student', function(req, res){
     })
 });
 router.post('/change_skill_xjob', function(req, res){
-    db.insert_xjob_qual(req.session.pnr, req.body.xjobqual, function(err, results){
+    db.insert_xjob_qual(req.body.job_id, req.body.xjob_qual, function(err, results){
         if(err){
             req.flash('danger', 'The qualification already exists on this user');
         }
         else{
             req.flash('success', 'You have successfully added a qualification');
+            res.redirect('/profile');
         }
     })
 });

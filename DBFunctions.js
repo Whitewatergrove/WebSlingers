@@ -177,7 +177,7 @@ module.exports = {
     },
 
     get_exjobs: function (username, callback) {
-        var sql = "SELECT ID,Name,Info FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
+        var sql = "SELECT * FROM exjobs WHERE ExOID = (SELECT orgnr FROM companies WHERE UID = ?);";
         con.query(sql, username, function (err, results) {
             callback(err, results);
             if (err) {
@@ -220,6 +220,19 @@ module.exports = {
             }
             else {
                 console.log("get qual query ok");
+                callback(null, results);
+            }
+        })
+    },
+
+    get_demanded_qual: function(EID, callback) {
+        var sql = "select * from demanded;";
+        con.query(sql, EID, function(err, results){
+            if(err){
+                console.log("get demanded qual query not working: "+ err)
+            }
+            else{
+                console.log("get demanded qual query working")
                 callback(null, results);
             }
         })
@@ -444,7 +457,7 @@ module.exports = {
     },
 
     insert_xjob_qual: function(exid, qual, callback){
-        var sql = "";
+        var sql = "INSERT INTO demanded (EID, QID) VALUES (?, ?);";
         con.query(sql, [exid, qual], function(err, res){
             callback(err, res);
             if(err){
