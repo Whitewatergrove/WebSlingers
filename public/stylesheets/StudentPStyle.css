@@ -488,11 +488,11 @@ button {
     background-color: #f44336;
 }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .updatebtn {
+/* Float cancel and signup buttons and add an equal width
+.cancelbtn, .updatebtn, .matchbtn, .changebtn {
   width: 25%;
   margin-right: 2%;
-}
+} */
 
 /* Add padding to container elements */
 .container {
