@@ -6,14 +6,30 @@ $(document).ready(function () {
 
 let matching = require('../routes/match');
 
+function openCollapse() {
+    var coll = document.getElementsByClassName("collapsible");
+
+    for (var i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+}
+
 function openHelptab(tabName) {
     var i, x;
     x = document.getElementsByClassName("containerTab");
     for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
+        x[i].style.display = "none";
     }
     document.getElementById(tabName).style.display = "block";
-  }
+}
 
 function openTab(pageName, tab) {
     var i = 0,
@@ -34,8 +50,7 @@ function openTab(pageName, tab) {
     document.getElementById(tab).style.borderLeft = "5px solid #2e78ba";
     document.getElementById(pageName).style.display = "block";
 
-    if(pageName === 'Jobs')
-    {
+    if (pageName === 'Jobs') {
         matching.matcha();
         //******************************************************************************************************************************************************************************************** */
     }
@@ -64,7 +79,7 @@ function setIcon() {
 // Select all elements with data-toggle="tooltips" in the document
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
-  
+
 })
 
 
@@ -100,8 +115,3 @@ window.onclick = function (event) {
 //         $('.changebtn').click(function (){ document.getElementById('id02').style.display='block'})
 //     });
 // });
-
-
-
- 
-
