@@ -35,7 +35,7 @@ body {
 } */
 .matchbtn{
 	float:left;
-	margin-left: 32%;
+	margin-left: 27%;
 }
 .changebtn{
 	float:left;
@@ -480,8 +480,8 @@ button {
 
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .updatebtn {
-  float: left;
-  width: 50%;
+
+  width: 25%;
 }
 
 /* Add padding to container elements */
@@ -503,14 +503,6 @@ button {
     padding-top: 50px;
 }
 
-/* Modal Content/Box */
-.modal-content {
-	background-color: #fefefe;
-    margin: auto; /* 5% from the top, 15% from the bottom and centered */
-	border: 1px solid #888;
-
-    width: 50%; /* Could be more or less, depending on screen size */
-}
 
 /* Style the horizontal ruler */
 hr {
@@ -535,6 +527,9 @@ hr {
 }
 
 /* Clear floats */
+.clearfix{
+	margin: auto;
+}
 .clearfix::after {
     content: "";
     clear: both;

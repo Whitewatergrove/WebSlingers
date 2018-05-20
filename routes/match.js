@@ -21,9 +21,10 @@ module.exports = {
 
         Promise.all([                                       // Creating an array of promises. 
             db.get_xjob_promise(exjobs),                                // Fetching all exjobs.
-            db.get_class_catagories_promise(classes),                   // Fetching all classes.
+            db.get_class_catagories_promise(),                          // Fetching all classes.
             db.get_student_qual_promise(current.student),               // Fetching the qualificatons of the student.
             db.get_demanded_promise(),                                  // Fetching all demanded qualifications for all exjob.
+            db.get_qualifications_catagories_promise(),
         ]).then((lists) => {                                // Starts working with the promises when all
                                                             // of them is resolved or rejected.
             exjobs = lists[0],
@@ -42,12 +43,18 @@ module.exports = {
                 })
             }),
 
-            /*classes.forEach(klass => {
-                klass.qualification = db.get_qualifications_catagories_promise(klass.class);
-            }),*/
+            classes.forEach(klass => {
+                klass.qual = [];
+                lists[4].forEach(qual => {
+                    if(klass.class === qual.class)
+                    {
+                        klass.qual[klass.qual.length] = qual.qualifications;
+                    }
+                })
+            }),
 
-            //console.log(classes),
             console.log(line);
+
         }).catch((error) => {
             // handle error here,
             console.error("Student Prematching Promise Error");
@@ -58,23 +65,46 @@ module.exports = {
     {
         let temp = {}
         temp.student = students;
-        temp.ex = [];
+        temp.exjobs = [];
         exjobs.forEach(exjob => {                           // Checking if the there is any exjobs that demanding 
             if(students.QUAL.length > 0)                    // any of the student qualification.
             {
+                exjob.weight = 0;
                 students.QUAL.forEach(qual => { 
                     exjob.demanded.forEach(demd => {
+                        if(temp.exjobs[temp.exjobs.length - 1] != exjob)
+                                temp.exjobs[temp.exjobs.length] = exjob;
+
                         if(qual.QID === demd)
+                            exjob.weight = exjob.weight +1;
+                        else
                         {
-                            temp.ex[temp.ex.length] = exjob;
+                            let tempSQ = 'tempSQ';
+                            let tempED = 'tempED';
+                            classes.forEach(obj => {
+                                obj.qual.forEach(element =>{
+                                    if(element === demd)
+                                    tempED = obj.class;
+                                    if(element === qual.QID)
+                                    tempSQ = obj.class;
+                                })
+                            })
+                            if(tempED === tempSQ)
+                                exjob.weight = exjob.weight + 0.4;
                         }
                     })
                 })
             }
-            else{ console.error('No qualifications');}
+            else
+                console.error('No qualifications');
         })
-        console.log(temp);
 
-        return temp.ex;            // kanske avändbar
+        temp.exjobs.sort(function(a, b){
+                return b.weight - a.weight;
+        });
+        temp.exjobs = temp.exjobs.filter(exjob => exjob.weight > 0);
+        console.log(temp.exjobs);
+
+        return temp.exjobs;
     }
 }
