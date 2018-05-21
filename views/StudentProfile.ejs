@@ -88,6 +88,7 @@
 					<a>
 						<span>
 							<i class="fas fa-folder" id="SideIcon"></i>
+							
 						</span>
 						<span id="BlackT">Ex-Jobb</span>
 					</a>
@@ -313,9 +314,9 @@
 											<input type="text" name="tel" id="tel" maxlength="20" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i ditt nummer 12 siffror"
 											 patter="[0-9]">
 											<select name="gender">
-												<option value="Male">Man</option>
-												<option value="Female">Kvinna</option>
-												<option value="Other">Andra</option>
+												<option value="Man">Man</option>
+												<option value="Kvinna">Kvinna</option>
+												<option value="Annat">Andra</option>
 											</select>
 											<br/>
 										</div>
@@ -396,9 +397,11 @@
 		<div class="main">
 			<div class="widget" id="JobsWidget">
 				<div class="title">Tillgängliga jobb</div>
-
+				
 				<form action="/hejhopmanstest" method="POST">
-					<Button type="submit" id="buttondbtest">Uppdatera db</Button>
+				
+					<Button type="submit" id="buttondbtest"  >Uppdatera db</Button>
+					
 				</form>
 				<% if(locals.matchning) {%>
 					<ul class="Job-list" id="job_list" style="background-color: #fff">
