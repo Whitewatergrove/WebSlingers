@@ -293,8 +293,8 @@
 								<div class="modal-body">
 									<form action="/change_student_profile" method="POST">
 										<div class="container">
-											<input type="text" name="username" id="uname" disabled value=< %=s tudent_user_and_nr[0].UID %>>
-											<input type="text" name="pnum" id="pnum" disabled value=< %=s tudent_user_and_nr[0].pnr %>>
+											<input type="text" name="username" id="uname" disabled value="<%= student_user_and_nr[0].UID %>">
+											<input type="text" name="pnum" id="pnum" disabled value="<%= student_user_and_nr[0].pnr %>">
 											<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
 											 title="Fyll i ett nytt lösenord  4-16 karaktärer">
 											<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..." data-toggle="tooltip" title="Fyll i ditt fullständiga namn ">
@@ -388,7 +388,8 @@
 				<div class="title">Tillgängliga jobb</div>
 
 				<form action="/hejhopmanstest" method="POST">
-					<Button type="submit" id="buttondbtest">Uppdatera db</Button>
+					<hr>
+					<Button type="submit" id="buttondbtest">Uppdatera</Button>
 				</form>
 				<% if(locals.matchning) {%>
 					<ul class="Job-list" id="job_list">
@@ -406,11 +407,11 @@
 								<p>
 									<%= result.Info %>
 								</p>
-								<button class="matchbtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Matcha</button>
-								<button class="changebtn" style="width:auto;" onclick="document.getElementById('id02').style.display='block'">Ändra</button>
+								<button class="matchbtn" onclick="document.getElementById('id02').style.display='block'"style="margin-left: 12.75%;">Matcha</button>
+								<button class="changebtn"  onclick="document.getElementById('id02').style.display='block'">Ändra</button>
 								<form action="delete_job" method="POST">
 									<input hidden name="job_id" value=< %=r esult.ID %>></input>
-									<button type="submit" style="width:auto;" class="removebtn">Ta bort</button>
+									<button type="submit" class="removebtn">Ta bort</button>
 								</form>
 							</div>
 							<% }); %>

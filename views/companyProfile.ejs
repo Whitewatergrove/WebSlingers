@@ -110,14 +110,14 @@
 	</div>
 	<!-- Profile -->
 	<div class="main-content" id="profile">
-		<div class="main2" id="main2Profile" style="margin-right: 60%;">
+		<div class="main2" id="main2Profile" style="margin-right:0;">
 
 			<body id="blueb">
 				<!-- Page Container -->
 				<div class="w3-content w3-margin-top" style="max-width: 1400px;">
 
 					<!-- The Grid -->
-					<div class="w3-row-padding" style="width: 240%;">
+					<div class="w3-row-padding" style="width: 100%;">
 
 						<!-- Left Column -->
 						<div class="w3-third">
@@ -216,6 +216,18 @@
 											<% get_exjobs.forEach(function(result) { %>
 												<hr>
 												<div class="w3-container">
+														<div class="dropdown">
+																<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+																style="color: gray; background-color: #ffff; border: 0;"></button>
+																<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+																		<button class="matchbtn">Match</button>
+																		<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
+																		<form action="delete_job" method="POST">
+																			<input hidden name="job_id" value="<%= result.ID %>"></input>
+																			<button type="submit" class="removebtn">Remove</button>
+																		</form>
+																</div>
+															</div>
 													<h4 class="w3-opacity">
 														<b>
 															<%= result.Name %>
@@ -228,14 +240,7 @@
 													<p>
 														<%= result.teaser %>
 													</p>
-
-													<button class="matchbtn">Match</button>
-													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
-													<form action="delete_job" method="POST">
-														<input hidden name="job_id" value="<%= result.ID %>"></input>
-														<button type="submit" class="removebtn">Remove</button>
-													</form>
-													<button class="collapsible" onclick="openCollapse()">Mer info</button>
+													<button class="collapsible" onclick="openCollapse()">Info</button>
 													<div class="collapseContent">
 														<h3>Jobbeskrivning</h3>
 														<p>
@@ -261,8 +266,8 @@
 
 												<div id="id02" class="modal test">
 													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-													<!-- Update Skill -->
-													<form action="/change_skill_xjob" method="POST">
+													<!-- Update skill-->
+													<form action="/change_skill_xjob" method="POST" class="modal-content" style="width:90%; margin:auto;">
 														<div class="container">
 															<select name="xjob_qual">
 																<% qual_list.forEach(function(result) { %>
@@ -274,10 +279,9 @@
 															<br/>
 															<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
 														</div>
-														<button type="submit" id="butt">Update Skill</button>
+														<button type="submit">Update Skill</button>
 													</form>
-													<!-- Update Job -->
-													<form class="modal-content" action="update_job" method="POST">
+													<form class="modal-content" action="update_job" method="POST" style="width:90%; margin:auto;">
 														<div class="container">
 															<div class="w3-container">
 																<h2>Update job</h2>
@@ -319,6 +323,7 @@
 															</form>
 														</div>
 													</form>
+
 												</div>
 												<% }); %>
 									</ul>
@@ -339,7 +344,7 @@
 				<div class="container">
 					<div id="modalBG"></div>
 					<!-- The Modal -->
-					<div class="modal fade" id="ProfileModal">
+					<div class="modal fade" id="ProfileModal" style="padding: 0;">
 						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content">
 
@@ -417,7 +422,7 @@
 				<div class="HelpBox">
 					<div class="helpRow">
 						<div class="column" onclick="openHelptab('b1');" style="background:#1f5686;">
-							Kom igång
+							Börja
 						</div>
 						<div class="column" onclick="openHelptab('b2');" style="background:#2e78ba;">
 							Stickers
