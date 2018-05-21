@@ -68,7 +68,7 @@
 		<nav>
 			<!-- All buttoms in the sidepanel -->
 			<ul class="tabs">
-				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
+				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 10px solid #2e78ba" ;>
 					<a>
 						<span>
 							<i class="fa fa-user" id="SideIcon"></i>
@@ -399,9 +399,7 @@
 				<div class="title">Tillgängliga jobb</div>
 				
 				<form action="/hejhopmanstest" method="POST">
-				
-					<Button type="submit" id="buttondbtest"  >Uppdatera db</Button>
-					
+					<Button type="submit" id="buttondbtest"  >Uppdatera db</Button
 				</form>
 				<% if(locals.matchning) {%>
 					<ul class="Job-list" id="job_list" style="background-color: #fff">
