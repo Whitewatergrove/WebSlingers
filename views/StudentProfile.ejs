@@ -6,6 +6,7 @@
 	<title>Student profile</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
 	<title>Profile</title>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -67,7 +68,7 @@
 		<nav>
 			<!-- All buttoms in the sidepanel -->
 			<ul class="tabs">
-				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
+				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 10px solid #2e78ba" ;>
 					<a>
 						<span>
 							<i class="fa fa-user" id="SideIcon"></i>
@@ -75,18 +76,12 @@
 						<span id="BlackT">Profil</span>
 					</a>
 				</li>
-				<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
-					<a>
-						<span>
-							<i class="fa fa-envelope" id="SideIcon"></i>
-						</span>
-						<span id="BlackT">Meddelanden</span>
-					</a>
-				</li>
+				
 				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
 					<a>
 						<span>
 							<i class="fas fa-folder" id="SideIcon"></i>
+							
 						</span>
 						<span id="BlackT">Ex-Jobb</span>
 					</a>
@@ -96,7 +91,7 @@
 						<span>
 							<i class="fa fa-credit-card-alt" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Help</span>
+						<span id="BlackT">Hjälp</span>
 					</a>
 				</li>
 				<li>
@@ -128,7 +123,7 @@
 
 							<div class="w3-white w3-text-grey w3-card-4">
 								<div class="w3-display-container">
-									<img src="./images/Stefan-beskuren.jpg" style="width:100%" alt="Avatar">
+									<img src="./images/login.png" style="width:50%" alt="Avatar">
 									<div class="w3-display-bottomleft w3-container w3-text-black">
 
 									</div>
@@ -516,27 +511,16 @@
 			</body>
 		</div>
 	</div>
-	</div>
-	<!-- Chat -->
-	<div class="main-content" id="likes" style="display:none">
-		<div class="main2">
-			<div class="font2">
-				<div class="StudentDiv2">
-					<h2>Chat</h2>
-					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 	<!-- Ex-jobs -->
 	<div class="main-content" id="Jobs" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
 				<div class="title">Tillgängliga jobb</div>
-
+				
 				<form action="/hejhopmanstest" method="POST">
-					<Button type="submit" id="buttondbtest">Uppdatera db</Button>
+					<Button type="submit" id="buttondbtest"  >Uppdatera db</Button
 				</form>
 				<% if(locals.matchning) {%>
 					<ul class="Job-list" id="job_list" style="background-color: #fff">

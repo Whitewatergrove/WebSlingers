@@ -61,20 +61,13 @@
 						<span>Profil</span>
 					</a>
 				</li>
-				<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
-					<a>
-						<span>
-							<i class="fa fa-envelope" id="SideIcon"></i>
-						</span>
-						<span>Meddelanden</span>
-					</a>
-				</li>
+				
 				<li class="tabBorder" onclick="openTab('Helps', 'Help')" id="Help">
 					<a>
 						<span>
 							<i class="fa fa-credit-card-alt" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Help</span>
+						<span id="BlackT">Hjälp</span>
 					</a>
 				</li>
 				<li>
@@ -89,25 +82,7 @@
 			</ul>
 		</nav>
 	</div>
-	<!-- Messages/chat -->
-	<div class="main-content" id="likes" style="display:none">
-		<h2>Chat</h2>
-		<section>
-			<div id="change_username">
-				<input id="username" type="text" />
-				<button id="send_username" type="button">Ändra användarnamn</button>
-			</div>
-		</section>
-
-		<section id="chatroom">
-			<section id="feedback"></section>
-		</section>
-
-		<section id="input_zone">
-			<input id="message" class="vertical-align" type="text" />
-			<button id="send_message" class="vertical-align" type="button">Skicka</button>
-		</section>
-	</div>
+	
 	<!-- Profile -->
 	<div class="main-content" id="profile">
 		<div class="main2" id="main2Profile" style="margin-right: 60%;">
@@ -227,12 +202,15 @@
 													<p>
 														<%= result.teaser %>
 													</p>
-
-													<button class="matchbtn">Match</button>
+													
+													<form action="/testmatch" method="POST">
+														<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
+														<button class="matchbtn">Match</button>
+													</form>
 													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
 													<form action="delete_job" method="POST">
 														<input hidden name="job_id" value="<%= result.ID %>"></input>
-														<button type="submit" class="removebtn">Remove</button>
+														<button type="submit" class="removebtn">Ta bort</button>
 													</form>
 													<button class="collapsible" onclick="openCollapse()">Mer info</button>
 													<div class="collapseContent">
@@ -254,31 +232,60 @@
 																				<% }; %>
 														</ul>
 														<hr>
+														<button type="button" class="butt" style="background-size: 10%" data-toggle="modal" data-target="#CompanyModalSkill">
+																<strong>+</strong>
+														</button>
+														<div class="container">
+																<div id="modalBG1">
+																</div>
+																<!-- The Modal -->
+																<div class="modal fade" id="CompanyModalSkill">
+																	<div class="modal-dialog modal-dialog-centered">
+																		<div class="modal-content">
+																				<button type="button" class="close" data-dismiss="modal">&times;</button>
+																			<!-- Modal Header -->
+																			<div class="modal-header">
+																				
+																				<h4 class="modal-title" style="margin: auto">Lägg till Kvalifikation</h4>
+																			</div>
+																			<!-- Modal body add student qual-->
+																			<div class="modal-body">
+																					<form action="/change_skill_xjob" method="POST">
+																						<div class="container">
+																							<select name="xjob_qual">
+																								<% qual_list.forEach(function(result) { %>
+																									<option value="<%= result.Qualification %>">
+																										<%= result.Qualification %>
+																									</option>
+																									<% }); %>
+																							</select>
+																							<br/>
+																							<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
+																						</div>
+																						<button type="submit" id="butt">Lägg till</button>
+																					</form>
+																				
+																			</div>
+											
+																			<!-- Modal footer -->
+																			<div class="modal-footer">
+											
+																			</div>
+																		</div>
+																	</div>
+																</div>
+	
 													</div>
-
 												</div>
 												<div id="id02" class="modal test">
 													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 													<div class="modal-body">
-														<form action="/change_skill_xjob" method="POST">
-															<div class="container">
-																<select name="xjob_qual">
-																	<% qual_list.forEach(function(result) { %>
-																		<option value="<%= result.Qualification %>">
-																			<%= result.Qualification %>
-																		</option>
-																		<% }); %>
-																</select>
-																<br/>
-																<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
-															</div>
-															<button type="submit" id="butt">Update Skill</button>
-														</form>
+														
 													</div>
 													<form class="modal-content" action="update_job" method="POST">
 														<div class="container">
 															<div class="w3-container">
-																<h2>Update job</h2>
+																<h2>Uppdatera job</h2>
 															</div>
 
 															<hr>
@@ -287,31 +294,32 @@
 																	<label>
 																		<strong>Datum</strong>
 																	</label>
-																	<input class="w3-input" type="text" placeholder="" name="date">
+																	<input class="w3-input" type="text" placeholder="Fyll i Datum" name="date" data-toggle="tooltip" title="ååmmdd" value="<%= exjobs[0].date %>">
 																</p>
 																<p>
 																	<label>
 																		<strong>Title</strong>
 																	</label>
-																	<input class="w3-input" type="text" name="name">
+																	<input class="w3-input" type="text" name="name"   placeholder="Fyll i namn" data-toogle="tooltip" title ="Jobb titel" value="<%= exjobs[0].Name %>">
 																</p>
 																<p>
 																	<label>
 																		<strong>Teaser</strong>
 																	</label>
-																	<input class="w3-input" type="text" name="teaser">
+																	<input class="w3-input" type="text" placeholder="Teaser" data-toogle title ="Något intressant" name="teaser"value="<%= exjobs[0].teaser %>">
 																</p>
 																<p>
 																	<label>
-																		<strong>Job info</strong>
+																		<strong>Jobb info</strong>
 																	</label>
-																	<input class="w3-input" type="text" name="info">
+																	<input class="w3-input" placeholder="Info" type="text" name = "info" data-toogle="Jobb beskrivning" title="Fyll i jobb beskrivning" value="<%= exjobs[0].Info %>">
 																</p>
 
 																<div class="clearfix">
 																	<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
-																	<button type="button" class="cancelbtn">Cancel</button>
-																	<button type="submit" class="updatebtn">Save changes</button>
+
+																	<button type="button" class="cancelbtn">Avbryt</button>
+																	<button type="submit" class="updatebtn">Spara</button>
 																</div>
 															</form>
 														</div>
@@ -339,10 +347,10 @@
 					<div class="modal fade" id="ProfileModal">
 						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 								<!-- Modal Header -->
 								<div class="modal-header">
-									<button type="button" class="button3" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title" style="margin: auto">Redigera profil</h4>
 								</div>
 
@@ -384,8 +392,8 @@
 									<div class="modal-body">
 										<form action="/change_company_profile" method="POST">
 											<div class="container">
-												<input type="text" name="username" id="button2" disabled value=< %=g et_company_user_and_nr[0].UID %>>
-												<input type="text" name="pnum" id="button2" disabled value=< %=g et_company_user_and_nr[0].Orgnr %>>
+												<input type="text" name="username" id="button2" disabled value=<"%= get_company_user_and_nr[0].UID %>">
+												<input type="text" name="pnum" id="button2" disabled value="<%= get_company_user_and_nr[0].Orgnr %>">
 												<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
 												<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
 												<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
@@ -406,10 +414,11 @@
 			</body>
 		</div>
 	</div>
+	<!-- Help -->
 	<div class="main-content" id="Helps" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
-				<div class="title">Hjälp</div>
+				<div class="title">Help</div>
 				<div class="HelpBox">
 					<div class="helpRow">
 						<div class="column" onclick="openHelptab('b1');" style="background:#1f5686;">

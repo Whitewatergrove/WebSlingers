@@ -109,8 +109,10 @@ router.post('/login', function (req, res) {
                     req.session.role = results[0].Role;
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
-                    matchingStudent.prematching(req.session.user);
-
+                    if(req.session.role === 'student')
+                        matchingStudent.prematching(req.session.user);
+                    else if(req.session.role === 'company')
+                        matchingCompany.companyPrematching(req.session.user);
                 }
                 else {
                     console.log('wtf');
@@ -171,6 +173,7 @@ router.get('/profile', (req, res) => {
         db.get_exjobs(req.session.user, function (err, results) {
             if (err) throw err
             else {
+                req.session.getData = results;
                 req.session.exid = results;
 
             }
@@ -182,6 +185,7 @@ router.get('/profile', (req, res) => {
             req.session.quals = results;
             res.render('companyProfile', {
                 get_exjobs: req.session.exid,
+                exjobs: req.session.getData,
                 get_company_user_and_nr: req.session.company,
                 qual_list: req.session.qual_list,
                 quals: req.session.quals
@@ -320,8 +324,18 @@ router.post('/hejhopmanstest', function (req, res) {            // Needs to find
 
 });
 
+router.post('/companyMatchTest', function (req, res) {            // Needs to find an other solution!!!!
+    db.get_student_user_and_nr(req.session.user, function (err, result) {
+        if (err) throw err;
+        res.render('companyProfile', {
+            results: result,
+            matchning: matchingCompany.companyMatcha()
+        });
+    });
+});
+
 router.get('/search', function (req, res) {                     // For testing, do not remove!!!!!!
-    searchTest.testmatch();
+    //searchTest.testmatch();
 });
 
 router.get('/dbtester', function (req, res) {
@@ -449,6 +463,12 @@ router.post('/delete_job', function (req, res) {
 router.get('/profileStudentProfile', function (req, res) {
     res.render("pages/profileStudentProfile");
 });
+router.post('/testmatch', function(req,res){
+    req.body.job_id 
+    res.render('testmatch', {
+        matchning: matchingCompany.companyMatcha(req.body.job_id)
+    });
+})
 
 router.post('/change_skill_student', function (req, res) {
     db.insert_studentqual(req.session.pnr, req.body.student_qual, function (err, results) {
