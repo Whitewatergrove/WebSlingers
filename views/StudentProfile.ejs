@@ -6,6 +6,7 @@
 	<title>Student profile</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
 	<title>Profile</title>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -67,7 +68,7 @@
 		<nav>
 			<!-- All buttoms in the sidepanel -->
 			<ul class="tabs">
-				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
+				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 10px solid #2e78ba" ;>
 					<a>
 						<span>
 							<i class="fa fa-user" id="SideIcon"></i>
@@ -87,6 +88,7 @@
 					<a>
 						<span>
 							<i class="fas fa-folder" id="SideIcon"></i>
+							
 						</span>
 						<span id="BlackT">Ex-Jobb</span>
 					</a>
@@ -128,7 +130,7 @@
 
 							<div class="w3-white w3-text-grey w3-card-4">
 								<div class="w3-display-container">
-									<img src="./images/Stefan-beskuren.jpg" style="width:100%" alt="Avatar">
+									<img src="./images/login.png" style="width:50%" alt="Avatar">
 									<div class="w3-display-bottomleft w3-container w3-text-black">
 
 									</div>
@@ -303,8 +305,8 @@
 								<div class="modal-body">
 									<form action="/change_student_profile" method="POST">
 										<div class="container">
-											<input type="text" name="username" id="uname" disabled value=< %= student_user_and_nr[0].UID %>>
-											<input type="text" name="pnum" id="pnum" disabled value=< %= student_user_and_nr[0].pnr %>>
+											<input type="text" name="username" id="uname" disabled value=<%= student_user_and_nr[0].UID %>>
+											<input type="text" name="pnum" id="pnum" disabled value=<%= student_user_and_nr[0].pnr %>>
 											<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
 											 title="Fyll i ett nytt lösenord  4-16 karaktärer">
 											<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..." data-toggle="tooltip" title="Fyll i ditt fullständiga namn ">
@@ -312,9 +314,9 @@
 											<input type="text" name="tel" id="tel" maxlength="20" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i ditt nummer 12 siffror"
 											 patter="[0-9]">
 											<select name="gender">
-												<option value="Male">Man</option>
-												<option value="Female">Kvinna</option>
-												<option value="Other">Andra</option>
+												<option value="Man">Man</option>
+												<option value="Kvinna">Kvinna</option>
+												<option value="Annat">Andra</option>
 											</select>
 											<br/>
 										</div>
@@ -395,9 +397,9 @@
 		<div class="main">
 			<div class="widget" id="JobsWidget">
 				<div class="title">Tillgängliga jobb</div>
-
+				
 				<form action="/hejhopmanstest" method="POST">
-					<Button type="submit" id="buttondbtest">Uppdatera db</Button>
+					<Button type="submit" id="buttondbtest"  >Uppdatera db</Button
 				</form>
 				<% if(locals.matchning) {%>
 					<ul class="Job-list" id="job_list" style="background-color: #fff">

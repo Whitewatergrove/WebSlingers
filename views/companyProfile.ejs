@@ -15,20 +15,20 @@
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
-	 crossorigin="anonymous"></script>
+	    crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/data.js"></script>
 	<script src="./scripts/profile.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	 crossorigin="anonymous">
+	    crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	 crossorigin="anonymous"></script>
+	    crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	 crossorigin="anonymous"></script>
+	    crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-	 crossorigin="anonymous"></script>
+	    crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="./stylesheets/chat.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -228,6 +228,7 @@
 													<p>
 														<%= result.teaser %>
 													</p>
+													
 													<p>
 														<% if(locals.quals) { %>
 															<% quals.forEach(function(results) { %>
@@ -239,7 +240,7 @@
 													</p>
 													<form action="/testmatch" method="POST">
 														<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
-														<button type="submit" class="matchbtn" style="width:auto;">Match</button>
+														<button class="matchbtn">Match</button>
 													</form>
 													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
 													<form action="delete_job" method="POST">
@@ -266,26 +267,55 @@
 																				<% }; %>
 														</ul>
 														<hr>
+														<button type="button" class="butt" style="background-size: 10%" data-toggle="modal" data-target="#CompanyModalSkill">
+																<strong>+</strong>
+														</button>
+														<div class="container">
+																<div id="modalBG1">
+																</div>
+																<!-- The Modal -->
+																<div class="modal fade" id="CompanyModalSkill">
+																	<div class="modal-dialog modal-dialog-centered">
+																		<div class="modal-content">
+																				<button type="button" class="close" data-dismiss="modal">&times;</button>
+																			<!-- Modal Header -->
+																			<div class="modal-header">
+																				
+																				<h4 class="modal-title" style="margin: auto">Lägg till Kvalifikation</h4>
+																			</div>
+																			<!-- Modal body add student qual-->
+																			<div class="modal-body">
+																					<form action="/change_skill_xjob" method="POST">
+																						<div class="container">
+																							<select name="xjob_qual">
+																								<% qual_list.forEach(function(result) { %>
+																									<option value="<%= result.Qualification %>">
+																										<%= result.Qualification %>
+																									</option>
+																									<% }); %>
+																							</select>
+																							<br/>
+																							<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
+																						</div>
+																						<button type="submit" id="butt">Lägg till</button>
+																					</form>
+																				
+																			</div>
+											
+																			<!-- Modal footer -->
+																			<div class="modal-footer">
+											
+																			</div>
+																		</div>
+																	</div>
+																</div>
+	
 													</div>
-
 												</div>
 												<div id="id02" class="modal test">
 													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 													<div class="modal-body">
-														<form action="/change_skill_xjob" method="POST">
-															<div class="container">
-																<select name="xjob_qual">
-																	<% qual_list.forEach(function(result) { %>
-																		<option value="<%= result.Qualification %>">
-																			<%= result.Qualification %>
-																		</option>
-																		<% }); %>
-																</select>
-																<br/>
-																<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
-															</div>
-															<button type="submit" id="butt">Update Skill</button>
-														</form>
+														
 													</div>
 													<form class="modal-content" action="update_job" method="POST">
 														<div class="container">
@@ -352,10 +382,10 @@
 					<div class="modal fade" id="ProfileModal">
 						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 								<!-- Modal Header -->
 								<div class="modal-header">
-									<button type="button" class="button3" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title" style="margin: auto">Redigera profil</h4>
 								</div>
 
@@ -363,10 +393,10 @@
 								<div class="modal-body">
 									<form action="/change_company_profile" method="POST">
 										<div class="container">
-											<input type="text" name="username" id="button2" disabled value=< %=g et_company_user_and_nr[0].UID %>>
-											<input type="text" name="pnum" id="button2" disabled value=< %=g et_company_user_and_nr[0].Orgnr %>>
+											<input type="text" name="username" id="button2" disabled value="<%= get_company_user_and_nr[0].UID %>">
+											<input type="text" name="pnum" id="button2" disabled value= "<%= get_company_user_and_nr[0].Orgnr %>">
 											<input type="password" name="password" id="button2" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
-											 title="Fyll i ditt lösenord 4-16 karaktärer">
+											    title="Fyll i ditt lösenord 4-16 karaktärer">
 											<input type="text" name="name" id="button2" maxlength="45" required placeholder="Företagsnamn..." data-toggle="tooltip" title="Fyll i företagsnamn">
 											<input type="text" name="address" id="button2" maxlength="45" required placeholder="Adress..." data-toggle="tooltip" title="Fyll i postadress">
 											<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i företagstelefonnummer">
@@ -398,8 +428,8 @@
 									<div class="modal-body">
 										<form action="/change_company_profile" method="POST">
 											<div class="container">
-												<input type="text" name="username" id="button2" disabled value=< %=g et_company_user_and_nr[0].UID %>>
-												<input type="text" name="pnum" id="button2" disabled value=< %=g et_company_user_and_nr[0].Orgnr %>>
+												<input type="text" name="username" id="button2" disabled value=<"%= get_company_user_and_nr[0].UID %>">
+												<input type="text" name="pnum" id="button2" disabled value="<%= get_company_user_and_nr[0].Orgnr %>">
 												<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
 												<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
 												<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
@@ -420,6 +450,7 @@
 			</body>
 		</div>
 	</div>
+	<!-- Help -->
 	<div class="main-content" id="Helps" style="display:none">
 		<div class="main">
 			<div class="widget" id="JobsWidget">
