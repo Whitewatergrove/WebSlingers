@@ -1,7 +1,7 @@
 .bgimg{
-    background-image: url('../images/StartPicture.png');
+    background-image: url('../images/Startpicture2.png');
     min-height: 100%;
-    background-position: center;
+    background-position: 50% 25%;
     background-size: cover;
 }
 body, h1 {
