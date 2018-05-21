@@ -6,6 +6,7 @@
 	<title>Student profile</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
 	<title>Profile</title>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -128,7 +129,7 @@
 
 							<div class="w3-white w3-text-grey w3-card-4">
 								<div class="w3-display-container">
-									<img src="./images/Stefan-beskuren.jpg" style="width:100%" alt="Avatar">
+									<img src="./images/login.png" style="width:50%" alt="Avatar">
 									<div class="w3-display-bottomleft w3-container w3-text-black">
 
 									</div>
@@ -303,8 +304,8 @@
 								<div class="modal-body">
 									<form action="/change_student_profile" method="POST">
 										<div class="container">
-											<input type="text" name="username" id="uname" disabled value=< %= student_user_and_nr[0].UID %>>
-											<input type="text" name="pnum" id="pnum" disabled value=< %= student_user_and_nr[0].pnr %>>
+											<input type="text" name="username" id="uname" disabled value=<%= student_user_and_nr[0].UID %>>
+											<input type="text" name="pnum" id="pnum" disabled value=<%= student_user_and_nr[0].pnr %>>
 											<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
 											 title="Fyll i ett nytt lösenord  4-16 karaktärer">
 											<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..." data-toggle="tooltip" title="Fyll i ditt fullständiga namn ">
