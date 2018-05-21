@@ -212,7 +212,6 @@
 								<h2 class="w3-text-grey w3-padding-16">
 									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Work Experience</h2>
 								<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
-
 								<div id="id01" class="modal">
 									<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 									<form class="modal-content" method="POST" action="add_workexp" style="width:90%; margin:auto;">
@@ -368,6 +367,7 @@
 												<p>
 													<%= result.info %>
 												</p>
+
 												<button class="changebtn" onclick="openModal('<%= temp1 = temp1 + 1 %>')">Change</button>
 												<form action="delete_education" method="POST">
 													<input hidden name="education_id" value="<%= result.ID %>"></input>
@@ -642,14 +642,14 @@
 	</div>
 	<script type="text/javascript">
 		let el = document.getElementsByClassName('test');
-		let el2 = document.getElementsByClassName('test2');		
+		let el2 = document.getElementsByClassName('test2');
 		let j = 0;
 		let temporary = 1000;
 		for (let i = 0; i < el.length; i++) {
 			j++
 			el[i].id = j;
 		}
-		for(let inc = 0; inc < el2.length; inc++){
+		for (let inc = 0; inc < el2.length; inc++) {
 			temporary++
 			el2[inc].id = temporary;
 		}
