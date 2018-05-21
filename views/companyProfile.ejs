@@ -258,24 +258,25 @@
 													</div>
 
 												</div>
+
 												<div id="id02" class="modal test">
 													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-													<div class="modal-body">
-														<form action="/change_skill_xjob" method="POST">
-															<div class="container">
-																<select name="xjob_qual">
-																	<% qual_list.forEach(function(result) { %>
-																		<option value="<%= result.Qualification %>">
-																			<%= result.Qualification %>
-																		</option>
-																		<% }); %>
-																</select>
-																<br/>
-																<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
-															</div>
-															<button type="submit" id="butt">Update Skill</button>
-														</form>
-													</div>
+													<!-- Update Skill -->
+													<form action="/change_skill_xjob" method="POST">
+														<div class="container">
+															<select name="xjob_qual">
+																<% qual_list.forEach(function(result) { %>
+																	<option value="<%= result.Qualification %>">
+																		<%= result.Qualification %>
+																	</option>
+																	<% }); %>
+															</select>
+															<br/>
+															<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
+														</div>
+														<button type="submit" id="butt">Update Skill</button>
+													</form>
+													<!-- Update Job -->
 													<form class="modal-content" action="update_job" method="POST">
 														<div class="container">
 															<div class="w3-container">
@@ -352,8 +353,8 @@
 								<div class="modal-body">
 									<form action="/change_company_profile" method="POST">
 										<div class="container">
-											<input type="text" name="username" id="button2" disabled value=< %=g et_company_user_and_nr[0].UID %>>
-											<input type="text" name="pnum" id="button2" disabled value=< %=g et_company_user_and_nr[0].Orgnr %>>
+											<input type="text" name="username" id="button2" disabled value=<%= get_company_user_and_nr[0].UID %>>
+											<input type="text" name="pnum" id="button2" disabled value=<%= get_company_user_and_nr[0].Orgnr %>>
 											<input type="password" name="password" id="button2" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
 											    title="Fyll i ditt lösenord 4-16 karaktärer">
 											<input type="text" name="name" id="button2" maxlength="45" required placeholder="Företagsnamn..." data-toggle="tooltip" title="Fyll i företagsnamn">
