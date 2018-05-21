@@ -75,14 +75,7 @@
 						<span id="BlackT">Profil</span>
 					</a>
 				</li>
-				<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
-					<a>
-						<span>
-							<i class="fa fa-envelope" id="SideIcon"></i>
-						</span>
-						<span id="BlackT">Meddelanden</span>
-					</a>
-				</li>
+				
 				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
 					<a>
 						<span>
@@ -96,7 +89,7 @@
 						<span>
 							<i class="fa fa-credit-card-alt" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Help</span>
+						<span id="BlackT">Hjälp</span>
 					</a>
 				</li>
 				<li>
@@ -303,8 +296,8 @@
 								<div class="modal-body">
 									<form action="/change_student_profile" method="POST">
 										<div class="container">
-											<input type="text" name="username" id="uname" disabled value=< %=s tudent_user_and_nr[0].UID %>>
-											<input type="text" name="pnum" id="pnum" disabled value=< %=s tudent_user_and_nr[0].pnr %>>
+											<input type="text" name="username" id="uname" disabled value= "<%= student_user_and_nr[0].UID %>">
+											<input type="text" name="pnum" id="pnum" disabled value="<%= student_user_and_nr[0].pnr %>">
 											<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
 											 title="Fyll i ett nytt lösenord  4-16 karaktärer">
 											<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..." data-toggle="tooltip" title="Fyll i ditt fullständiga namn ">
@@ -378,17 +371,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- Chat -->
-	<div class="main-content" id="likes" style="display:none">
-		<div class="main2">
-			<div class="font2">
-				<div class="StudentDiv2">
-					<h2>Chat</h2>
-					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 	<!-- Ex-jobs -->
 	<div class="main-content" id="Jobs" style="display:none">
