@@ -194,7 +194,7 @@ span:after {
 .side-nav ul li.active:before {
 	content: '';
 	position: absolute;
-	width: 10px;
+	width: 4px;
 	height: 100%;
 	top: 0;
 	left: 0;
