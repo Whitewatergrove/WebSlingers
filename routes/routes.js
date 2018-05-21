@@ -163,6 +163,7 @@ router.get('/profile', (req, res) => {
         db.get_exjobs(req.session.user, function (err, results) {
             if (err) throw err
             else {
+                req.session.getData = results;
                 req.session.exid = results;
 
             }
@@ -174,6 +175,7 @@ router.get('/profile', (req, res) => {
             req.session.quals = results;
             res.render('companyProfile', {
                 get_exjobs: req.session.exid,
+                exjobs: req.session.getData,
                 get_company_user_and_nr: req.session.company,
                 qual_list: req.session.qual_list,
                 quals: req.session.quals
