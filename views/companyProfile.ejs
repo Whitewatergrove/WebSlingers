@@ -15,20 +15,20 @@
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
-	    crossorigin="anonymous"></script>
+	 crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/data.js"></script>
 	<script src="./scripts/profile.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	    crossorigin="anonymous">
+	 crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	    crossorigin="anonymous"></script>
+	 crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	    crossorigin="anonymous"></script>
+	 crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-	    crossorigin="anonymous"></script>
+	 crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="./stylesheets/chat.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -228,8 +228,19 @@
 													<p>
 														<%= result.teaser %>
 													</p>
-
-													<button class="matchbtn">Match</button>
+													<p>
+														<% if(locals.quals) { %>
+															<% quals.forEach(function(results) { %>
+																<% if(results.EID === result.ID) { %>
+																	<%= results.QID %>
+																		<% }; %>
+																			<% }); %>
+																				<% }; %>
+													</p>
+													<form action="/testmatch" method="POST">
+														<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
+														<button type="submit" class="matchbtn" style="width:auto;">Match</button>
+													</form>
 													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
 													<form action="delete_job" method="POST">
 														<input hidden name="job_id" value="<%= result.ID %>"></input>
@@ -355,7 +366,7 @@
 											<input type="text" name="username" id="button2" disabled value=< %=g et_company_user_and_nr[0].UID %>>
 											<input type="text" name="pnum" id="button2" disabled value=< %=g et_company_user_and_nr[0].Orgnr %>>
 											<input type="password" name="password" id="button2" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
-											    title="Fyll i ditt lösenord 4-16 karaktärer">
+											 title="Fyll i ditt lösenord 4-16 karaktärer">
 											<input type="text" name="name" id="button2" maxlength="45" required placeholder="Företagsnamn..." data-toggle="tooltip" title="Fyll i företagsnamn">
 											<input type="text" name="address" id="button2" maxlength="45" required placeholder="Adress..." data-toggle="tooltip" title="Fyll i postadress">
 											<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i företagstelefonnummer">
