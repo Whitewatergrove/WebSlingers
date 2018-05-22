@@ -48,16 +48,21 @@ body {
 
 } */
 
-.matchbtn, .changebtn, .removebtn, .collapsible{
-	float: left;
-	width: 23.5%;
+.matchbtn, .changebtn, .removebtn{
+	width: 100%;
+	min-height: 48px;
+	padding: 2px 0;
+	background-color: #ffff;
+	color: black;
+	border-bottom: 2px solid gray;
+	border-color: #2e78ba;
+	opacity: 0.5;
+}
+.collapsible{
+	width: auto;
 	justify-content: center;
 }
 
-.changebtn, .removebtn, .collapsible{
-	margin-left: 2%;
-	margin-bottom: 2%;
-}
 
 #HomeH1 {
 	color: #FFF;
@@ -388,7 +393,7 @@ span:after {
 }
 
 #buttondbtest{
-	width: 20%;
+	width: auto;
 	height: 20%;
 	margin: auto;
 }
@@ -420,7 +425,7 @@ span:after {
 }
 
 #JobsWidget {
-	height: 80vh;
+	height: 95%;
 	background-color: #fff;
 }
 
@@ -588,3 +593,4 @@ hr {
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
 }
+
