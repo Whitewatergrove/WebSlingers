@@ -9,22 +9,9 @@ let searchTest = require('./search');                   // Test for search funct
 let matchingStudent = require('./match');
 let matchingCompany = require('./companyMatch');
 
-
 let bcrypt = require('bcrypt');
-let mysql = require('mysql');
 let fs = require("fs");
-
-const nodemailer = require('nodemailer');
-
 var sort_test;
-
-var con = mysql.createConnection({
-    host: "83.255.197.121",
-    user: "joakim",
-    password: "joakim97",
-    port: "3306",
-    database: "webslingers"
-});
 
 router.get('/', (req, res) => {
     if (req.session.user) {
@@ -83,8 +70,7 @@ router.get('/login', function (req, res) {
 router.post('/login', function (req, res) {
     var username = req.body.username,
         password = req.body.password;
-    var sql = "SELECT * FROM users WHERE ID = ?";
-    con.query(sql, username, function (err, results) {
+    db.get_user_info(username, function (err, results) {
         if (err) throw err;
         if (results.length == 0) {
             req.flash('danger', 'Invalid username or password');

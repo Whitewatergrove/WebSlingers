@@ -261,7 +261,7 @@
 													<%= result.info %>
 												</p>
 												<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
-												<form action="delete_workexp" method="POST">
+												<form action="delete_workexp" method="POST"  onsubmit="return confirm('Är du säker på att du vill ta bort detta arbete?')">
 													<input hidden name="work_id" value="<%= result.ID %>"></input>
 													<button type="submit" class="removebtn">Remove</button>
 												</form>
@@ -269,7 +269,7 @@
 											<hr>
 											<div id="id02" class="modal test">
 												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-												<form class="modal-content" action="update_workexp" method="POST">
+												<form class="modal-content" action="update_workexp" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
 													<div class="container">
 														<div class="w3-container">
 															<h2>Update job</h2>
@@ -366,7 +366,7 @@
 												</p>
 
 												<button class="changebtn" onclick="openModal('<%= temp1 = temp1 + 1 %>')">Change</button>
-												<form action="delete_education" method="POST">
+												<form action="delete_education" method="POST"  onsubmit="return confirm('Är du säker på att du vill ta bort denna utbildning?')">
 													<input hidden name="education_id" value="<%= result.ID %>"></input>
 													<button type="submit" class="removebtn">Remove</button>
 												</form>
@@ -374,7 +374,7 @@
 											<hr>
 											<div id="id02" class="modal test2">
 												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-												<form class="modal-content" action="update_education" method="POST">
+												<form class="modal-content" action="update_education" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
 													<div class="container">
 														<div class="w3-container">
 															<h2>Update job</h2>
@@ -437,7 +437,7 @@
 
 						<!-- Modal body -->
 						<div class="modal-body">
-							<form action="/change_student_profile" method="POST">
+							<form action="/change_student_profile" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar')">
 								<div class="container">
 									<input type="text" name="username" id="uname" disabled value="<%= student_user_and_nr[0].UID %>">
 									<input type="text" name="pnum" id="pnum" disabled value="<%= student_user_and_nr[0].pnr %>">
@@ -485,7 +485,7 @@
 						</div>
 						<!-- Modal body add student qual-->
 						<div class="modal-body">
-							<form action="/change_skill_student" method="POST">
+							<form action="/change_skill_student" method="POST"  onsubmit="return confirm('Är du säker på att du vill lägga till denna färdighet')">
 								<div class="container">
 									<select name="student_qual">
 										<% if(locals.results) { %>
