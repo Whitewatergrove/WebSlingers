@@ -323,19 +323,6 @@ router.post('/companyMatch', function (req, res) {            // Needs to find a
     });
 });
 
-router.get('/search', function (req, res) {                     // For testing, do not remove!!!!!!
-    //searchTest.exjobMatch();
-});
-
-router.get('/dbtester', function (req, res) {
-    db.get_students(function (err, result) {
-        if (err) throw err;
-        req.session.res = result;
-        console.log("dbtest: " + req.session.res[0].UID);
-        console.log("hejhej:", req.session.qual_list);
-    })
-});
-
 router.post('/forgot', function (req, res) {
     const output = `
     <h3>Your account information</h3>
