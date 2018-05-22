@@ -246,6 +246,17 @@
 								<% if(locals.get_workexp) { %>
 									<% var temp = 0 %>
 										<% get_workexp.forEach(function(result) { %>
+											<div class="dropdown">
+												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Ändra</button>
+													<form action="delete_workexp" method="POST">
+														<input hidden name="work_id" value="<%= result.ID %>"></input>
+														<button type="submit" class="removebtn">Ta bort</button>
+													</form>
+												</div>
+											</div>
 											<div class="w3-container">
 												<h5 class="w3-opacity">
 													<b>
@@ -259,11 +270,6 @@
 												<p>
 													<%= result.info %>
 												</p>
-												<button class="changebtn" style="margin-left: 23.5%" onclick="openModal('<%= temp = temp + 1 %>')">Ändra</button>
-												<form action="delete_workexp" method="POST">
-													<input hidden name="work_id" value="<%= result.ID %>"></input>
-													<button type="submit" style="margin-left: 2%" class="removebtn">Ta bort</button>
-												</form>
 											</div>
 											<hr>
 											<div id="id02" class="modal test">
@@ -311,6 +317,7 @@
 									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Utbildning</h2>
 								<button class="modalbtn" onclick="document.getElementById('id03').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
 								<hr>
+
 								<div id="id03" class="modal">
 									<span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
 									<form class="modal-content" method="POST" action="add_education" style="width:90%; margin:auto;">
@@ -339,10 +346,7 @@
 													<input id="education-info" class="w3-input" type="text" placeholder="Information om utbildningen..." name="info" required>
 												</p>
 											</form>
-											<div class="clearfix">
-												<button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Avbryt</button>
-												<button class="updatebtn" id="add_education" type="submit">Bekräfta</button>
-											</div>
+
 										</div>
 									</form>
 								</div>
@@ -350,6 +354,17 @@
 								<% if(locals.get_education) { %>
 									<% var temp1 = 1000 %>
 										<% get_education.forEach(function(result) { %>
+											<div class="dropdown">
+												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+													<button class="changebtn" onclick="openModal('<%= temp1 = temp1 + 1 %>')">Ändra</button>
+													<form action="delete_education" method="POST">
+														<input hidden name="education_id" value="<%= result.ID %>"></input>
+														<button type="submit" class="removebtn">Ta bort</button>
+													</form>
+												</div>
+											</div>
 											<div class="w3-container">
 												<h5 class="w3-opacity">
 													<b>
@@ -364,11 +379,6 @@
 													<%= result.info %>
 												</p>
 
-												<button class="changebtn" style="margin-left: 23.5%" onclick="openModal('<%= temp1 = temp1 + 1 %>')">Ändra</button>
-												<form action="delete_education" method="POST">
-													<input hidden name="education_id" value="<%= result.ID %>"></input>
-													<button type="submit" style="margin-left: 2%" class="removebtn">Ta bort</button>
-												</form>
 											</div>
 											<hr>
 											<div id="id02" class="modal test2">
@@ -521,13 +531,24 @@
 				<div class="title">Tillgängliga jobb</div>
 				
 				<form action="/hejhopmanstest" method="POST">
-					<Button type="submit" id="buttondbtest"  >Uppdatera db</Button
+					<hr>
+					<Button type="submit" id="buttondbtest">Uppdatera</Button>
 				</form>
 				<% if(locals.matchning) {%>
 					<ul class="Job-list" id="job_list" style="background-color: #fff">
 
 						<% matchning.forEach(function(result) { %>
 							<hr>
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+								style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+										<button class="changebtn"  onclick="document.getElementById('id02').style.display='block'">Ändra</button>
+										<form action="delete_job" method="POST">
+											<input hidden name="job_id" value="<%= result.ID %>"></input>
+											<button type="submit" class="removebtn">Remove</button>
+										</form>
+								</div>
 							<div class="w3-container">
 								<h4 class="w3-opacity">
 									<b>
