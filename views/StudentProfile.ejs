@@ -165,7 +165,7 @@
 									<!-- Skills -->
 									<p class="w3-large">
 										<b>
-											<i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b>
+											<i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Kunskaper</b>
 									</p>
 
 									<!-- <div class="w3-light-grey w3-round-xlarge w3-small">
@@ -192,7 +192,7 @@
 													<% } %>
 									</ul>
 									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModalSkill">
-										<strong>Add Skill</strong>
+										<strong>Lägg till kunskaper</strong>
 									</button>
 									<hr>
 								</div>
@@ -205,7 +205,7 @@
 							<!--______________________________________________WORK EXPERIENCE _______________________________________-->
 							<div class="w3-container w3-card w3-white w3-margin-bottom">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Work Experience</h2>
+									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Arbete</h2>
 								<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
 								<hr>
 								<div id="id01" class="modal">
@@ -221,19 +221,19 @@
 													<label>
 														<strong>Datum</strong>
 													</label>
-													<input id="Job-title" class="w3-input" type="text" name="date" required>
+													<input id="Job-title" class="w3-input" type="text" placeholder="2001-2002..." name="date" required>
 												</p>
 												<p>
 													<label>
 														<strong>Titel</strong>
 													</label>
-													<input id="Job-title" class="w3-input" type="text" name="title" required>
+													<input id="Job-title" class="w3-input" type="text" placeholder="Titel..." name="title" required>
 												</p>
 												<p>
 													<label>
 														<strong>Jobbinformation</strong>
 													</label>
-													<input id="Job-info" class="w3-input" type="text" name="info" required>
+													<input id="Job-info" class="w3-input" type="text" placeholder="Information om jobbet..." name="info" required>
 												</p>
 											</form>
 											<div class="clearfix">
@@ -259,10 +259,10 @@
 												<p>
 													<%= result.info %>
 												</p>
-												<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
+												<button class="changebtn" style="margin-left: 23.5%" onclick="openModal('<%= temp = temp + 1 %>')">Ändra</button>
 												<form action="delete_workexp" method="POST">
 													<input hidden name="work_id" value="<%= result.ID %>"></input>
-													<button type="submit" class="removebtn">Remove</button>
+													<button type="submit" style="margin-left: 2%" class="removebtn">Ta bort</button>
 												</form>
 											</div>
 											<hr>
@@ -271,7 +271,7 @@
 												<form class="modal-content" action="update_workexp" method="POST">
 													<div class="container">
 														<div class="w3-container">
-															<h2>Update job</h2>
+															<h2>Uppdatera jobb</h2>
 														</div>
 														<hr>
 														<form class="w3-container">
@@ -279,24 +279,24 @@
 																<label>
 																	<strong>Datum</strong>
 																</label>
-																<input class="w3-input" type="text" placeholder="" name="date">
+																<input class="w3-input" type="text" value="<%= result.date %>" name="date">
 															</p>
 															<p>
 																<label>
-																	<strong>Title</strong>
+																	<strong>Titel</strong>
 																</label>
-																<input class="w3-input" type="text" name="name">
+																<input class="w3-input" type="text" value="<%= result.work %>" name="name">
 															</p>
 															<p>
 																<label>
-																	<strong>Job info</strong>
+																	<strong>Jobb information</strong>
 																</label>
-																<input class="w3-input" type="text" name="info">
+																<input class="w3-input" type="text" value="<%= result.info %>" name="info">
 															</p>
 															<div class="clearfix">
 																<input hidden id="exjob_id" name="work_id" value="<%= result.ID %>"></input>
-																<button type="button" class="cancelbtn">Cancel</button>
-																<button type="submit" class="updatebtn">Save changes</button>
+																<button type="button" class="cancelbtn">Avbryt</button>
+																<button type="submit" class="updatebtn">Spara</button>
 															</div>
 														</form>
 													</div>
@@ -308,7 +308,7 @@
 							<!--   ______________________________ EDUCATION ______________________________________________________-->
 							<div class="w3-container w3-card w3-white">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Education</h2>
+									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Utbildning</h2>
 								<button class="modalbtn" onclick="document.getElementById('id03').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
 								<hr>
 								<div id="id03" class="modal">
@@ -324,19 +324,19 @@
 													<label>
 														<strong>Datum</strong>
 													</label>
-													<input id="education-title" class="w3-input" type="text" name="date" required>
+													<input id="education-title" class="w3-input" type="text" placeholder="2001-2002..." name="date" required>
 												</p>
 												<p>
 													<label>
-														<strong>Titel</strong>
+														<strong>Utbildning</strong>
 													</label>
-													<input id="education-title" class="w3-input" type="text" name="title" required>
+													<input id="education-title" class="w3-input" type="text" placeholder="Titel..." name="title" required>
 												</p>
 												<p>
 													<label>
 														<strong>Utbildningsinformation</strong>
 													</label>
-													<input id="education-info" class="w3-input" type="text" name="info" required>
+													<input id="education-info" class="w3-input" type="text" placeholder="Information om utbildningen..." name="info" required>
 												</p>
 											</form>
 											<div class="clearfix">
@@ -364,10 +364,10 @@
 													<%= result.info %>
 												</p>
 
-												<button class="changebtn" onclick="openModal('<%= temp1 = temp1 + 1 %>')">Change</button>
+												<button class="changebtn" style="margin-left: 23.5%" onclick="openModal('<%= temp1 = temp1 + 1 %>')">Ändra</button>
 												<form action="delete_education" method="POST">
 													<input hidden name="education_id" value="<%= result.ID %>"></input>
-													<button type="submit" class="removebtn">Remove</button>
+													<button type="submit" style="margin-left: 2%" class="removebtn">Ta bort</button>
 												</form>
 											</div>
 											<hr>
@@ -376,7 +376,7 @@
 												<form class="modal-content" action="update_education" method="POST">
 													<div class="container">
 														<div class="w3-container">
-															<h2>Update job</h2>
+															<h2>Uppdatera utbildning</h2>
 														</div>
 														<hr>
 														<form class="w3-container">
@@ -384,24 +384,24 @@
 																<label>
 																	<strong>Datum</strong>
 																</label>
-																<input class="w3-input" type="text" name="date">
+																<input class="w3-input" type="text" value="<%= result.date %>" name="date">
 															</p>
 															<p>
 																<label>
-																	<strong>Title</strong>
+																	<strong>Utbildning</strong>
 																</label>
-																<input class="w3-input" type="text" name="name">
+																<input class="w3-input" type="text" value="<%= result.edu %>" name="name">
 															</p>
 															<p>
 																<label>
-																	<strong>Job info</strong>
+																	<strong>Utbildningsinformation</strong>
 																</label>
-																<input class="w3-input" type="text" name="info">
+																<input class="w3-input" type="text" value="<%= result.info %>" name="info">
 															</p>
 															<div class="clearfix">
 																<input hidden name="education_id" value="<%= result.ID %>"></input>
-																<button type="button" class="cancelbtn">Cancel</button>
-																<button type="submit" class="updatebtn">Save changes</button>
+																<button type="button" class="cancelbtn">Avbryt</button>
+																<button type="submit" class="updatebtn">Spara</button>
 															</div>
 														</form>
 													</div>
@@ -480,7 +480,7 @@
 						<!-- Modal Header -->
 						<div class="modal-header">
 							<button type="button" class="button3" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Add skill</h4>
+							<h4 class="modal-title">Lägg till kunskaper</h4>
 						</div>
 						<!-- Modal body add student qual-->
 						<div class="modal-body">
