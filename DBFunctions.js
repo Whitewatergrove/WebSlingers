@@ -44,7 +44,6 @@ module.exports = {
             callback(null, results);
         })
     },
-
     get_cv: function (id, callback) {
         var sql = "select file from students where pnr = ?;";
         con.query(sql, id, function (err, results) {
@@ -187,17 +186,6 @@ module.exports = {
                 console.log("query ok");
             }
         })
-    },
-
-    get_users: function (req, res, callback) {
-        con.query('SELECT * FROM users', function (err, results) {
-            if (err) {
-                callback(err, null);
-            } else {
-                callback(null, results);
-            }
-        })
-
     },
     get_messages: function (req, res, callback) {
         con.query('SELECT * FROM messages', function (err, results) {

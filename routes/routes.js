@@ -186,7 +186,6 @@ router.get('/profile', (req, res) => {
         req.flash('danger', 'Logga in innan du går vidare')
         res.redirect('/')
     }
-
 });
 router.get('/logout', (req, res) => {
     console.log("qual_list: ", req.session.qual_list);
@@ -313,7 +312,6 @@ router.post('/hejhopmanstest', function (req, res) {            // Needs to find
     });
 
 });
-
 router.post('/companyMatchTest', function (req, res) {            // Needs to find an other solution!!!!
     db.get_student_user_and_nr(req.session.user, function (err, result) {
         if (err) throw err;
@@ -323,26 +321,7 @@ router.post('/companyMatchTest', function (req, res) {            // Needs to fi
         });
     });
 });
-
-router.get('/search', function (req, res) {                     // For testing, do not remove!!!!!!
-    //searchTest.testmatch();
-});
-
-router.get('/dbtester', function (req, res) {
-    db.get_students(function (err, result) {
-        if (err) throw err;
-        req.session.res = result;
-        console.log("dbtest: " + req.session.res[0].UID);
-        console.log("hejhej:", req.session.qual_list);
-    })
-});
-
 router.post('/add_job', function (req, res) {
-    console.log(req.body.title);
-    console.log(req.body.info);
-    console.log(req.session.orgnr);
-    console.log(req.body.date);
-
     db.insert_exjobs(req.session.orgnr, req.body.title, req.body.info, req.body.date, req.body.teaser, function (err, results) {
         if (err) {
             req.flash('danger', 'Ett fel har uppstått');
@@ -377,9 +356,6 @@ router.post('/delete_job', function (req, res) {
             res.redirect('/profile');
         }
     })
-});
-router.get('/profileStudentProfile', function (req, res) {
-    res.render("pages/profileStudentProfile");
 });
 router.post('/testmatch', function(req,res){
     req.body.job_id 
