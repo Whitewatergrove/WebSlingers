@@ -225,7 +225,7 @@ module.exports = {
         })
     },
     get_student_qualifications: function (UID, callback) {
-        var sql = "select QID from students, studentqualifications where UID = ? group by QID;;";
+        var sql = "select QID from studentqualifications where SID = (select pnr from students where UID = ?)  group by QID;";
         con.query(sql, UID, function (err, results) {
             if (err) {
 

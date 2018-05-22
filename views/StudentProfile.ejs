@@ -68,7 +68,7 @@
 		<nav>
 			<!-- All buttoms in the sidepanel -->
 			<ul class="tabs">
-				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 10px solid #2e78ba" ;>
+				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
 					<a>
 						<span>
 							<i class="fa fa-user" id="SideIcon"></i>
@@ -109,6 +109,8 @@
 	</div>
 	<!-- Profile -->
 	<div class="main-content" id="home">
+			<%- messages('message', locals) %>
+		
 		<div class="main2" id="main2Profile">
 
 			<body id="blueb">
@@ -444,7 +446,7 @@
 									<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..." data-toggle="tooltip" title="Fyll i ditt fullständiga namn ">
 									<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress..." data-toggle="tooltip" title="Fyll i din postadress">
 									<input type="text" name="tel" id="tel" maxlength="20" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i ditt nummer 12 siffror"
-									 patter="[0-9]">
+									 pattern="[0-9]">
 									<select name="gender">
 										<option value="Male">Man</option>
 										<option value="Female">Kvinna</option>
