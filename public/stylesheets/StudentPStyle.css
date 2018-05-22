@@ -3,7 +3,7 @@
 }
 
 body {
-	margin: 0;
+	margin: auto;
 	padding: 0;
 	font-family: 'Source Sans Pro', sans-serif;
 	background-color: #faf9f6;
@@ -19,7 +19,7 @@ body {
 	background-color: #2e78ba;
 	border-bottom: 3px solid #2e78ba;
 }
-
+/* 
 #HomeID {
 	background-image: url('../images/safe_image.jpg');
 	overflow: auto;
@@ -32,18 +32,46 @@ body {
 	bottom: 0;
 	position: fixed;
 	margin: auto;
+} */
+/* .matchbtn{
+	float:left;
+	margin-left: 27%;
 }
+.changebtn{
+	float:left;
+	margin-left: 1%;
+
+}
+.removebtn{
+	float:left;
+	margin-left: 1%;
+
+} */
+
+.matchbtn, .changebtn, .removebtn{
+	width: 100%;
+	min-height: 48px;
+	padding: 2px 0;
+	background-color: #ffff;
+	color: black;
+	border-bottom: 2px solid gray;
+	border-color: #2e78ba;
+	opacity: 0.5;
+}
+.collapsible{
+	width: auto;
+	justify-content: center;
+}
+
 
 #HomeH1 {
 	color: #FFF;
-	margin: auto;
 }
 
-#main2Profile{
-	margin: auto;
+#dbtest{
+	width: 50%;
+	height: 50%;
 }
-
-
 
 #blueb{
 	background-color: #f2f4f7;
@@ -147,7 +175,7 @@ span:after {
 .side-nav {
 	position: absolute;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	background-color: #f2f4f7;
 	z-index: 1;
 	display: none;
@@ -204,7 +232,7 @@ span:after {
 	padding: 0;
 	padding-top: 44px;
 	height: 100%;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .main-content .title {
@@ -350,6 +378,12 @@ span:after {
 	width: 80%;
 	padding-left: 20%;
 }
+.Editbtn{
+	width: 100%;
+	padding: 3%;
+	border-radius: 1%;
+	outline: 0px;
+}
 
 
 
@@ -360,12 +394,25 @@ span:after {
 	outline: 0px;
 }
 
+#buttondbtest{
+	width: auto;
+	height: 20%;
+	margin: auto;
+}
+
+#textdbdtest{
+	width: 50%;
+	height: 50%;
+	margin: auto;
+}
+
 #butt {
 	width: 100%;
 	padding: 3%;
 	border-radius: 1%;
 	outline: 0px;
 }
+
 
 .font2 {
 	/* background-color: #6d6e70; */
@@ -380,7 +427,7 @@ span:after {
 }
 
 #JobsWidget {
-	height: 80vh;
+	height: 95%;
 	background-color: #fff;
 }
 
@@ -449,11 +496,11 @@ button {
     background-color: #f44336;
 }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .updatebtn {
-  float: left;
-  width: 50%;
-}
+/* Float cancel and signup buttons and add an equal width
+.cancelbtn, .updatebtn, .matchbtn, .changebtn {
+  width: 25%;
+  margin-right: 2%;
+} */
 
 /* Add padding to container elements */
 .container {
@@ -474,14 +521,6 @@ button {
     padding-top: 50px;
 }
 
-/* Modal Content/Box */
-.modal-content {
-	background-color: #fefefe;
-    margin: auto; /* 5% from the top, 15% from the bottom and centered */
-	border: 1px solid #888;
-
-    width: 50%; /* Could be more or less, depending on screen size */
-}
 
 /* Style the horizontal ruler */
 hr {
@@ -506,6 +545,9 @@ hr {
 }
 
 /* Clear floats */
+.clearfix{
+	margin: auto;
+}
 .clearfix::after {
     content: "";
     clear: both;
@@ -530,5 +572,27 @@ hr {
 	background-color: #2e79ba56;
 	list-style-type: none;
 	margin-bottom: 10px;
+}
+
+
+
+.collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.collapseContent {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
 }
 

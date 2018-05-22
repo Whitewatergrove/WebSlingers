@@ -7,12 +7,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
-	<title>Responsive vertical menu navigation</title>
+	<title>Profile</title>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 	<link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
-	
+	<link rel="stylesheet" type="text/css" href="./stylesheets/styleindex.css">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/HelpProfile.css">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
@@ -29,32 +31,25 @@
 			font-family: "Roboto", sans-serif
 		}
 	</style>
-
-
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
-	    crossorigin="anonymous"></script>
-
+	 crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/data.js"></script>
-	 <!-- <script src="./scripts/StudentPScript.js"></script> -->
-	<script src="./scripts/profile.js"></script> 
-	
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="./stylesheets/test.css">
-	
-	 <link href="http://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheets" type="text/css"> 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-	
-
-
+	<script src="./scripts/StudentPScript.js"></script>
+	<script src="../scripts/profile.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	 crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+	 crossorigin="anonymous"></script>
 </head>
 
 <body>
+	<!-- Image at the top -->
 	<div class="header">
 		<div class="logo">
 			<img src="images/oru-16x16.png">
@@ -64,43 +59,39 @@
 			<span></span>
 		</a>
 	</div>
+	<!-- Image at bottom -->
 	<div class="side-nav">
 		<div class="logo">
 			<img src="images/oru-16x16.png">
 			<span>Webslingers</span>
 		</div>
 		<nav>
+			<!-- All buttoms in the sidepanel -->
 			<ul class="tabs">
 				<li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
 					<a>
 						<span>
-							<i class="fa fa-user"id="SideIcon"></i>
+							<i class="fa fa-user" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Profile</span>
+						<span id="BlackT">Profil</span>
 					</a>
 				</li>
-				<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
-					<a>
-						<span>
-							<i class="fa fa-envelope"id="SideIcon"></i>
-						</span>
-						<span id="BlackT">Messages</span>
-					</a>
-				</li>
+				
 				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
 					<a>
 						<span>
-							<i class="fas fa-folder"id="SideIcon"></i>
+							<i class="fas fa-folder" id="SideIcon"></i>
+							
 						</span>
-						<span id="BlackT">Ex-Job</span>
+						<span id="BlackT">Ex-Jobb</span>
 					</a>
 				</li>
-				<li>
+				<li class="tabBorder" onclick="openTab('Helps', 'Help')" id="Help">
 					<a>
 						<span>
 							<i class="fa fa-credit-card-alt" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Manual</span>
+						<span id="BlackT">Hjälp</span>
 					</a>
 				</li>
 				<li>
@@ -108,18 +99,17 @@
 						<span>
 							<i class="fas fa-sign-out-alt" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Sign out</span>
+						<span id="BlackT">Logga ut</span>
 					</a>
 				</li>
 				<img src="./images/oru.png" class="si">
 			</ul>
+			<!-- End buttoms sidepanel -->
 		</nav>
 	</div>
+	<!-- Profile -->
 	<div class="main-content" id="home">
 		<div class="main2" id="main2Profile">
-			<!-- <h2>Välkommen <%= results[0].UID %></h2>  ett försök har gjorts för att få bort den -->
-			<!-- <iframe src="profileStudentProfile.html" width="1200" height="700"> </iframe> -->
-
 
 			<body id="blueb">
 				<!-- Page Container -->
@@ -133,243 +123,543 @@
 
 							<div class="w3-white w3-text-grey w3-card-4">
 								<div class="w3-display-container">
-									<img src="./images/Stefan-beskuren.jpg" style="width:100%" alt="Avatar">
+									<img src="./images/login.png" style="width:50%" alt="Avatar">
 									<div class="w3-display-bottomleft w3-container w3-text-black">
 
 									</div>
-									<h2> Steffe fule löfven</h2>
+									<h2>
+										<%= student_user_and_nr[0].Name %>
+									</h2>
 								</div>
-								<div class="w3-container">
+								<!-- Person information box -->
+								<div class="w3-container" style="text-align: left;">
 									<p>
-										<i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>Designer</p>
-									<p>
-										<i class="fa fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>London, UK</p>
-									<p>
-										<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i><%= results[0].UID %>
+										<i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+										<%= student_user_and_nr[0].pnr %>
 									</p>
 									<p>
-										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>1224435534</p>
+										<i class="fa fa-user fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+										<%= student_user_and_nr[0].gender %>
+									</p>
+
+									<p>
+										<i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+										<%= student_user_and_nr[0].UID %>
+									</p>
+									<p>
+										<i class="fas fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+										<%= student_user_and_nr[0].Adress %>
+									</p>
+									<p>
+										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+										<%= student_user_and_nr[0].Tel %>
+									</p>
+									<p>
+										<a href="Certificate">Certificate</a>
+									</p>
 									<hr>
-
-									<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b></p>
-									<p>C++/C#</p>
-									<div class="w3-light-grey w3-round-xlarge w3-small">
-									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">90%</div>
-									</div>
-								<br>
-									<p>Java-script</p>
-									<div class="w3-light-grey w3-round-xlarge w3-small">
-									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:60%">60%</div>
-									</div>
-								<br>
-									<p>Python</p>
-									<div class="w3-light-grey w3-round-xlarge w3-small">
-									  <div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:30%">30%</div>
-									</div>
-								<br>
+									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModal">
+										<strong>Redigera</strong>
+									</button>
 									<hr>
+									<!-- Skills -->
+									<p class="w3-large">
+										<b>
+											<i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Kunskaper</b>
+									</p>
 
+									<!-- <div class="w3-light-grey w3-round-xlarge w3-small">
+										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">C++/C#</div>
+									</div>
+									<br>
 
+									<div class="w3-light-grey w3-round-xlarge w3-small">
+										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:60%">Java Script</div>
+									</div>
+									<br>
+									<div class="w3-light-grey w3-round-xlarge w3-small">
+										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:30%">Python</div>
+									</div>
+									<br> -->
+									<hr>
+									<ul>
+										<% if(locals.get_student_qual) { %>
+											<% get_student_qual.forEach(function(result){ %>
+												<li>
+													<%= result.QID %>
+												</li>
+												<% }) %>
+													<% } %>
+									</ul>
+									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModalSkill">
+										<strong>Lägg till kunskaper</strong>
+									</button>
+									<hr>
 								</div>
 							</div>
 							<br>
-
 							<!-- End Left Column -->
 						</div>
-						
-
 						<!-- Right Column -->
 						<div class="w3-twothird">
-
+							<!--______________________________________________WORK EXPERIENCE _______________________________________-->
 							<div class="w3-container w3-card w3-white w3-margin-bottom">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text "id="blueP"></i>Work Experience</h2>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>Front End Developer / w3schools.com</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Jan 2015 -
-										<span class="w3-tag w3-round">Current</span>
-									</h6>
-									<p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic.
-										Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
-									<hr>
+									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Arbete</h2>
+								<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
+								<hr>
+								<div id="id01" class="modal">
+									<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+									<form class="modal-content" method="POST" action="add_workexp" style="width:90%; margin:auto;">
+										<div class="container">
+											<div class="w3-container">
+												<h2>Lägg till jobb</h2>
+											</div>
+											<hr>
+											<form class="w3-container">
+												<p>
+													<label>
+														<strong>Datum</strong>
+													</label>
+													<input id="Job-title" class="w3-input" type="text" placeholder="2001-2002..." name="date" required>
+												</p>
+												<p>
+													<label>
+														<strong>Titel</strong>
+													</label>
+													<input id="Job-title" class="w3-input" type="text" placeholder="Titel..." name="title" required>
+												</p>
+												<p>
+													<label>
+														<strong>Jobbinformation</strong>
+													</label>
+													<input id="Job-info" class="w3-input" type="text" placeholder="Information om jobbet..." name="info" required>
+												</p>
+											</form>
+											<div class="clearfix">
+												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Avbryt</button>
+												<button class="updatebtn" id="addjob" type="submit">Bekräfta</button>
+											</div>
+										</div>
+									</form>
 								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>Web Developer / something.com</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Mar 2012 - Dec 2014</h6>
-									<p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic.
-										Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
-									<hr>
-								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>Graphic Designer / designsomething.com</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Jun 2010 - Mar 2012</h6>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-									<br>
-								</div>
+								<% if(locals.get_workexp) { %>
+									<% var temp = 0 %>
+										<% get_workexp.forEach(function(result) { %>
+											<div class="dropdown">
+												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Ändra</button>
+													<form action="delete_workexp" method="POST">
+														<input hidden name="work_id" value="<%= result.ID %>"></input>
+														<button type="submit" class="removebtn">Ta bort</button>
+													</form>
+												</div>
+											</div>
+											<div class="w3-container">
+												<h5 class="w3-opacity">
+													<b>
+														<%= result.work %>
+													</b>
+												</h5>
+												<h6 class="w3-text">
+													<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>
+													<%= result.date %>
+												</h6>
+												<p>
+													<%= result.info %>
+												</p>
+											</div>
+											<hr>
+											<div id="id02" class="modal test">
+												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+												<form class="modal-content" action="update_workexp" method="POST">
+													<div class="container">
+														<div class="w3-container">
+															<h2>Uppdatera jobb</h2>
+														</div>
+														<hr>
+														<form class="w3-container">
+															<p>
+																<label>
+																	<strong>Datum</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.date %>" name="date">
+															</p>
+															<p>
+																<label>
+																	<strong>Titel</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.work %>" name="name">
+															</p>
+															<p>
+																<label>
+																	<strong>Jobb information</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.info %>" name="info">
+															</p>
+															<div class="clearfix">
+																<input hidden id="exjob_id" name="work_id" value="<%= result.ID %>"></input>
+																<button type="button" class="cancelbtn">Avbryt</button>
+																<button type="submit" class="updatebtn">Spara</button>
+															</div>
+														</form>
+													</div>
+												</form>
+											</div>
+											<% }); %>
+												<% } %>
 							</div>
-
+							<!--   ______________________________ EDUCATION ______________________________________________________-->
 							<div class="w3-container w3-card w3-white">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Education</h2>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>W3Schools.com</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right "id="blueP"></i>Forever</h6>
-									<p>Web Development! All I need to know in one place</p>
-									<hr>
-								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>London Business School</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right" id="blueP"></i>2013 - 2015</h6>
-									<p>Master Degree</p>
-									<hr>
-								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>School of Coding</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right" id="blueP"></i>2010 - 2013</h6>
-									<p>Bachelor Degree</p>
-									<br>
-								</div>
-							</div>
+									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Utbildning</h2>
+								<button class="modalbtn" onclick="document.getElementById('id03').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
+								<hr>
 
-							<!-- End Right Column -->
+								<div id="id03" class="modal">
+									<span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+									<form class="modal-content" method="POST" action="add_education" style="width:90%; margin:auto;">
+										<div class="container">
+											<div class="w3-container">
+												<h2>Lägg till utbildning</h2>
+											</div>
+											<hr>
+											<form class="w3-container">
+												<p>
+													<label>
+														<strong>Datum</strong>
+													</label>
+													<input id="education-title" class="w3-input" type="text" placeholder="2001-2002..." name="date" required>
+												</p>
+												<p>
+													<label>
+														<strong>Utbildning</strong>
+													</label>
+													<input id="education-title" class="w3-input" type="text" placeholder="Titel..." name="title" required>
+												</p>
+												<p>
+													<label>
+														<strong>Utbildningsinformation</strong>
+													</label>
+													<input id="education-info" class="w3-input" type="text" placeholder="Information om utbildningen..." name="info" required>
+												</p>
+											</form>
+
+										</div>
+									</form>
+								</div>
+
+								<% if(locals.get_education) { %>
+									<% var temp1 = 1000 %>
+										<% get_education.forEach(function(result) { %>
+											<div class="dropdown">
+												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+													<button class="changebtn" onclick="openModal('<%= temp1 = temp1 + 1 %>')">Ändra</button>
+													<form action="delete_education" method="POST">
+														<input hidden name="education_id" value="<%= result.ID %>"></input>
+														<button type="submit" class="removebtn">Ta bort</button>
+													</form>
+												</div>
+											</div>
+											<div class="w3-container">
+												<h5 class="w3-opacity">
+													<b>
+														<%= result.edu %>
+													</b>
+												</h5>
+												<h6 class="w3-text">
+													<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>
+													<%= result.date %>
+												</h6>
+												<p>
+													<%= result.info %>
+												</p>
+
+											</div>
+											<hr>
+											<div id="id02" class="modal test2">
+												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+												<form class="modal-content" action="update_education" method="POST">
+													<div class="container">
+														<div class="w3-container">
+															<h2>Uppdatera utbildning</h2>
+														</div>
+														<hr>
+														<form class="w3-container">
+															<p>
+																<label>
+																	<strong>Datum</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.date %>" name="date">
+															</p>
+															<p>
+																<label>
+																	<strong>Utbildning</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.edu %>" name="name">
+															</p>
+															<p>
+																<label>
+																	<strong>Utbildningsinformation</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.info %>" name="info">
+															</p>
+															<div class="clearfix">
+																<input hidden name="education_id" value="<%= result.ID %>"></input>
+																<button type="button" class="cancelbtn">Avbryt</button>
+																<button type="submit" class="updatebtn">Spara</button>
+															</div>
+														</form>
+													</div>
+												</form>
+											</div>
+											<% }); %>
+												<% } %>
+							</div>
 						</div>
 
-						<!-- End Grid -->
+						<!-- End Right Column -->
 					</div>
 
-					<!-- End Page Container -->
+					<!-- End Grid -->
 				</div>
 
-<!-- <h1>Ändra Personuppgifter</h1>
-					<form action="/change_student_profile" method="POST">
-						<div class="container">
-							<input type="text" name="username" id="button2" disabled value = <%= results[0].UID %>>
-							<br />
-							<br/>
-							<input type="text" name="pnum" id="button2" disabled value = <%= results[0].pnr %>>
-							<br />
-							<br/>
-							<input type="password" name="password" id="button2" maxlength="30" required placeholder="Enter Password...">
-							<br />
-							<br/>
-							<input type="text" name="name" id="button2" maxlength="45" required placeholder="Enter Name...">
-							<br />
-							<br/>
-							<input type="text" name="address" id="button2" maxlength="45" required placeholder="Enter address...">
-							<br />
-							<br/>
-							<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Enter Phonenumber...">
-							<br />
-							<br/>
-							<select name="gender">
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-								<option value="Other">Other</option>
-							</select>
-							<br />
-							<br/>
-						</div>
-						<Button type="submit" id="butt" >Update changes</Button>
-					</form> -->
-<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
-
-		</body>
-	</div>
-</div>
- <div class="main-content" id="likes" style="display:none"> 
-	 <div class="main2"> 
-		  <div class="font2">
-			<div class="StudentDiv2"> 
-				<!-- <h2>Chat</h2> -->
-					<!-- <form>
-						<ul id="messages"></ul>
-						  <input required class="input-field" id="messages" type="text" placeholder=" messages" autocomplete="off"/>
-						  <button type="button">Send</button>
-					  </form> -->
-					   <!-- <section>
-						<div id="change_username">
-					  <input id="username" type="text" />
-					  <button id="send_username" type="button">Change username</button>
-						</div>
-					  </section> -->
-				  
-					   <section id="chatroom">
-					  <section id="feedback"></section>
-					  </section> 
-
-					  <section id="input_zone"> 
-						<input id="message" class="vertical-align" type="text" />
-						<button id="send_message" class="vertical-align" type="button">Send</button>
-					  </section> 
-					  
-					
-
-				<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
-			</div>
+				<!-- End Page Container -->
 		</div>
-	</div>
-</div>
-<div class="main-content" id="Jobs" style="display:none">
-	<div class="main">
-		<div class="widget" id="JobsWidget">
-			<div class="title">Available jobs</div>
-			<div class="Tinder">
-				<div id="user">
-					<p></p>
+		<div class="container">
+			<div id="modalBG">
+			</div>
+			<!-- The Modal -->
+			<div class="modal fade" id="ProfileModal">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<button type="button" class="button3" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title" style="margin: auto;">Redigera profil</h4>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<form action="/change_student_profile" method="POST">
+								<div class="container">
+									<input type="text" name="username" id="uname" disabled value="<%= student_user_and_nr[0].UID %>">
+									<input type="text" name="pnum" id="pnum" disabled value="<%= student_user_and_nr[0].pnr %>">
+									<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
+									 title="Fyll i ett nytt lösenord  4-16 karaktärer">
+									<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..." data-toggle="tooltip" title="Fyll i ditt fullständiga namn ">
+									<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress..." data-toggle="tooltip" title="Fyll i din postadress">
+									<input type="text" name="tel" id="tel" maxlength="20" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i ditt nummer 12 siffror"
+									 patter="[0-9]">
+									<select name="gender">
+										<option value="Male">Man</option>
+										<option value="Female">Kvinna</option>
+										<option value="Other">Andra</option>
+									</select>
+									<br/>
+								</div>
+								<Button type="submit" id="butt">Uppdatera ändringar</Button>
+							</form>
+							<form action="/filetest" method="POST" enctype="multipart/form-data">
+								<input type="file" name="filename">
+								<input type="submit" value="Ladda upp">
+							</form>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+		<div class="container">
+			<div id="modalBG">
+			</div>
+			<!-- The Modal -->
+			<div class="modal fade" id="ProfileModalSkill">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<button type="button" class="button3" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Lägg till kunskaper</h4>
+						</div>
+						<!-- Modal body add student qual-->
+						<div class="modal-body">
+							<form action="/change_skill_student" method="POST">
+								<div class="container">
+									<select name="student_qual">
+										<% if(locals.results) { %>
+											<% results.forEach(function(result) { %>
+												<option value="<%= result.Qualification %>">
+													<%= result.Qualification %>
+												</option>
+												<% }); %>
+													<% } %>
+									</select>
+									<br/>
+								</div>
+								<button type="submit" id="butt">Update Skill</button>
+							</form>
+
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+
+						</div>
+					</div>
+				</div>
+			</div>
+			</body>
+		</div>
 	</div>
-</div>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="chat.js"></script>
+
+
+	<!-- Ex-jobs -->
+	<div class="main-content" id="Jobs" style="display:none">
+		<div class="main">
+			<div class="widget" id="JobsWidget">
+				<div class="title">Tillgängliga jobb</div>
+				
+				<form action="/hejhopmanstest" method="POST">
+					<hr>
+					<Button type="submit" id="buttondbtest">Uppdatera</Button>
+				</form>
+				<% if(locals.matchning) {%>
+					<ul class="Job-list" id="job_list" style="background-color: #fff">
+
+						<% matchning.forEach(function(result) { %>
+							<hr>
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+								style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+										<button class="changebtn"  onclick="document.getElementById('id02').style.display='block'">Ändra</button>
+										<form action="delete_job" method="POST">
+											<input hidden name="job_id" value="<%= result.ID %>"></input>
+											<button type="submit" class="removebtn">Remove</button>
+										</form>
+								</div>
+							<div class="w3-container">
+								<h4 class="w3-opacity">
+									<b>
+										<%= result.Name %>
+									</b>
+								</h4>
+								<h6 class="w3-text">
+									<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
+								<p>
+									<%= result.Info %>
+								</p>
+								<button class="matchbtn">Ansök</button>
+							</div>
+							<% }); %>
+					</ul>
+					<% } %>
+			</div>
+		</div>
+	</div>
+
+	<!-- Help -->
+	<div class="main-content" id="Helps" style="display:none">
+		<div class="main">
+			<div class="widget" id="JobsWidget">
+				<div class="title">Hjälp</div>
+				<div class="HelpBox">
+					<div class="helpRow">
+						<div class="column" onclick="openHelptab('b1');" style="background:#1f5686;">
+							Kom igång
+						</div>
+						<div class="column" onclick="openHelptab('b2');" style="background:#2e78ba;">
+							Stickers
+						</div>
+						<div class="column" onclick="openHelptab('b3');" style="background:#40a4fc;">
+							Chat
+						</div>
+						<div class="column" onclick="openHelptab('b4');" style="background:#65b5fc;">
+							Övrigt
+						</div>
+						<!-- Kom igång -->
+						<div id="b1" class="containerTab" style="display:none;background:#1f5686">
+							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<h2>Redigera din profil</h2>
+							<p>
+								Under taben "Profil" finner du till vänster knappen "Edit", där klickar du för att redigera informationen på din profil.
+								Du bör lägga till information i samtliga fält.
+							</p>
+							<hr>
+						</div>
+						<!-- Anonymitet -->
+						<div id="b2" class="containerTab" style="display:none;background:#2e78ba">
+							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<h2>Stickers</h2>
+							<p>
+								Under taben "Profil" finner du din profilinformation till vänster och "Arbetsstickers" till höger. Stickers är objekt av
+								olika examensarbeten som ni erbjuder studenter.
+							</p>
+							<hr>
+							<h2>Lägg till ett examensarbete</h2>
+							<p>
+								För att lägga till en ny sticker så klickar du på "Add job" och fyller i alla fält och klickar sedan "Add job" för att slutföra.
+								Ni kan när som helst både ta bort och redigera ett befintligt examensarbete.
+							</p>
+							<hr>
+							<h2>Ta bort ett examensarbete</h2>
+							<p>
+								Genom att klicka på knappen "Ta bort" på en befintlig sticker så kommer den att tas bort.
+							</p>
+							<hr>
+							<h2>Uppdatera ett examensarbete</h2>
+							<p>
+								Genom att klicka på knappen "Uppdatera" på en befintlig sticker så kommer ett fönster med redigerbara knappar att dyka upp.
+								Här fyller du i all information och klickar sedan på knappen "Uppdatera" för att uppdatera fälten i stickern.
+							</p>
+							<hr>
+						</div>
+						<!-- Chat -->
+						<div id="b3" class="containerTab" style="display:none;background:#40a4fc">
+							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<h2>Meddelanden</h2>
+							<p>Kontakt med en matchad student sker under taben "Chat".</p>
+							<hr>
+						</div>
+						<!-- Övrigt -->
+						<div id="b4" class="containerTab" style="display:none;background:#65b5fc">
+							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<h2>Övrigt</h2>
+							<p>ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf adf ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf
+								adf dsfsdf
+							</p>
+							<hr>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		let el = document.getElementsByClassName('test');
+		let el2 = document.getElementsByClassName('test2');
+		let j = 0;
+		let temporary = 1000;
+		for (let i = 0; i < el.length; i++) {
+			j++
+			el[i].id = j;
+		}
+		for (let inc = 0; inc < el2.length; inc++) {
+			temporary++
+			el2[inc].id = temporary;
+		}
+	</script>
 </body>
-<footer class="w3-container w3-center w3-margin-top" id="BlackT">
-	<p>Find me on social media.</p>
-	<i class="fa fa-facebook-official w3-hover-opacity" id="blueP"></i>
-	<i class="fa fa-instagram w3-hover-opacity"id="blueP"></i>
-	<i class="fa fa-snapchat w3-hover-opacity"id="blueP"></i>
-	<i class="fa fa-pinterest-p w3-hover-opaciidy"id="blueP"></i>
-	<i class="fa fa-twitter w3-hover-opacity"id="blueP"></i>
-	<i class="fa fa-linkedin w3-hover-opacity"id="blueP"></i>
-	<p>Powered by Webbslingers</p>
-	<hr>
-</footer>
-
-
 
 </html>
-
-<!-- <div id="usertable">
-						<table>
-							<tr>
-								<th>UserName</th>
-								<th>Password</th>
-								<th>Role</th>
-							</tr>
-							<tr><% results.forEach(function(result) { %>
-								<td><%= result.ID %></td>
-								<td><%= result.Password %></td>
-								<td><%= result.Role %></td>										
-								<% }); %>
-							</tr>
-						</table>
-					</div> -->

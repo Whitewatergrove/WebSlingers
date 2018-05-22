@@ -2,10 +2,12 @@
 <html lang="en">
 
 <head>
-    <title>Startpage</title>
+    <title>Förstasida</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -23,30 +25,28 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <script src="../scripts/profile.js"></script>
     <!-- <script src="./scripts/profile.js"></script>  -->
-   
-</script>
-   
- 
 
+
+    </script>
 
 </head>
 
 <body>
 
     <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-            <%- messages('message', locals) %>
+        <%- messages('message', locals) %>
 
-        <div class="w3-display-middle">
-            <h1 class="w3-jumbo w3-animate-top">LET'S MAKE SOME MAGIC</h1>
+            <div class="w3-display-middle">
+                <h1 class="w3-jumbo w3-animate-top">Exjobb - Webslingers</h1>
 
-            <button type="button" class="loginbtn"data-toggle="modal" data-target="#myModal">
-                <strong>LOG IN</strong>
-            </button>
-        </div>
-        <div class="w3-display-bottomleft w3-padding-large">
-            Powered by
-            <strong>Webslingers</strong>
-        </div>
+                <button type="button" class="loginbtn" data-toggle="modal" data-target="#myModal">
+                    <strong>Logga in</strong>
+                </button>
+            </div>
+            <div class="w3-display-bottomleft w3-padding-large">
+                Drivs av
+                <strong>Webslingers</strong>
+            </div>
     </div>
 
     <div class="container">
@@ -60,7 +60,7 @@
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Please login</h4>
+                        <h4 class="modal-title">Logga in</h4>
                     </div>
 
                     <!-- Modal body -->
@@ -70,10 +70,10 @@
                             <!-- Tab-navigering -->
                             <ul class="nav nav-tabs">
                                 <li class="active">
-                                    <a data-toggle="tab" href="#login">Log in</a>
+                                    <a data-toggle="tab" href="#login">Logga in</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#register">Register</a>
+                                    <a data-toggle="tab" href="#register">Registrera</a>
                                 </li>
                             </ul>
                         </div>
@@ -88,23 +88,25 @@
                                     <!-- Username input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-user"></i>
-                                        <input required class="input-field" type="text" placeholder="Username" name="username">
+                                        <input required class="input-field" type="username" required placeholder="Användarnamn" name="username" maxlength="16" autocomplete="on"
+                                            data-toggle="tooltip" title="Ditt användarnamn är även din email">
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-key"></i>
-                                        <input required class="input-field" type="password" maxlength="30" placeholder="Password" name="password">
+                                        <input required class="input-field" type="password" maxlength="16" minlength="4" required placeholder="Lösenord" name="password"
+                                            autocomplete="on" data-toggle="tooltip" title="Fyll i ett lösenord 4-16 karaktärer ">
                                     </div>
 
                                     <!-- Remember me checkbox -->
                                     <div class="input-container">
-                                        <i>Remember me&ensp;</i>
+                                        <i>Kom ihåg mig&ensp;</i>
                                         <input id="checkBox" type="checkbox" name="remember">
                                         <br>
                                     </div>
                                     <!-- Sign in button -->
-                                    <button type="submit" class="btn" href="/profile">Sign in</button>
+                                    <button type="submit" class="btn" href="/profile">Logga in</button>
                                 </form>
                             </div>
 
@@ -117,30 +119,34 @@
                                         <i id="icon" name="icontest" class="fas fa-graduation-cap"></i>
                                         <select id="role" onchange="setIcon()" name="role">
                                             <option value="student">Student</option>
-                                            <option value="company">Company</option>
+                                            <option value="company">Företag</option>
                                         </select>
                                     </div>
 
                                     <!-- Username input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-user"></i>
-                                        <input required class="input-field" type="text" placeholder="Example@example.com..." name="username">
+                                        <input required class="input-field" type="text" placeholder="Exempel@exempel.com..." name="username" maxlength="45" autocomplete="on"
+                                            data-toggle="tooltip" title="Ditt användarnamn">
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-key"></i>
-                                        <input required class="input-field" type="password" placeholder="Password" name="password">
+                                        <input required class="input-field" type="password" placeholder="Lösenord" name="password" minlength="4" maxlength="16" autocomplete="on"
+                                            data-toggle="tooltip" title="Fyll i ditt lösenord minst 4-16 karaktärer">
                                     </div>
 
                                     <!-- Personal id input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-calendar-plus"></i>
-                                        <input required class="input-field" type="text" placeholder="yymmddxxxx..." name="pnum" id="pnum">
+                                        <input required class="input-field" type="text" placeholder="ååmmddxxxx..." name="pnum" id="pnum" minlength="10" maxlength="10"
+                                            autocomplete="on" data-toggle="tooltip" title="Fyll i ditt personnummer 10 siffror"
+                                            pattern="[0-9]">
                                     </div>
 
-                                    <!-- Sign up button -->                                   
-                                    <button type="submit" class="btn" href="/register" value="Submit">Sign up</button>
+                                    <!-- Sign up button -->
+                                    <button type="submit" class="btn" href="/register" value="Submit">Registrera</button>
                                 </form>
                             </div>
                         </div>
@@ -154,4 +160,5 @@
         </div>
     </div>
 </body>
+
 </html>
