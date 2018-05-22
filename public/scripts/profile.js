@@ -63,7 +63,7 @@ function setIcon() {
         el.className += ' fas fa-graduation-cap';
 
     } else if (selectedRole == 'company') {
-        ph.placeholder = 'Organization number...';
+        ph.placeholder = 'Organisation nummer...';
         ph.title = "Fyll i ditt Org.nummer 10 siffror"
         el.className -= " fas fa-graduation-cap";
         el.className += " fas fa-industry";

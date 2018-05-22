@@ -133,6 +133,14 @@ router.get('/profile', (req, res) => {
             if (err) throw err;
             req.session.get_student_qual = results
         });
+        db.get_workexp(req.session.user, function (err, results) {
+            if (err) throw err;
+            req.session.get_workexp = results;
+        })
+        db.get_education(req.session.user, function(err, results){
+            if (err) throw err;
+            req.session.get_education = results
+        })
         db.get_qualifications(function (err, results) {
             if (err) {
                 console.log("err: " + err)
@@ -141,7 +149,9 @@ router.get('/profile', (req, res) => {
             res.render('StudentProfile', {
                 results: results,
                 student_user_and_nr: req.session.student,
-                get_student_qual: req.session.get_student_qual
+                get_student_qual: req.session.get_student_qual,
+                get_workexp: req.session.get_workexp,
+                get_education: req.session.get_education
             });
         })
     }
@@ -162,6 +172,7 @@ router.get('/profile', (req, res) => {
         db.get_exjobs(req.session.user, function (err, results) {
             if (err) throw err
             else {
+                req.session.getData = results;
                 req.session.exid = results;
 
             }
@@ -173,6 +184,7 @@ router.get('/profile', (req, res) => {
             req.session.quals = results;
             res.render('companyProfile', {
                 get_exjobs: req.session.exid,
+                exjobs: req.session.getData,
                 get_company_user_and_nr: req.session.company,
                 qual_list: req.session.qual_list,
                 quals: req.session.quals
@@ -501,6 +513,7 @@ router.post('/change_skill_xjob', function (req, res) {
     db.insert_xjob_qual(req.body.job_id, req.body.xjob_qual, function (err, results) {
         if (err) {
             req.flash('danger', 'The qualification already exists on this user');
+            res.redirect('/profile');
         }
         else {
             req.flash('success', 'You have successfully added a qualification');
@@ -508,6 +521,74 @@ router.post('/change_skill_xjob', function (req, res) {
         }
     })
 });
-
+router.post('/add_workexp', function (req, res) {
+    db.insert_workexp(req.session.user, req.body.title, req.body.date, req.body.info, function (err, results) {
+        if (err) {
+            console.log('error while adding experience', err);
+        }
+        else {
+            console.log('new workexp added')
+            res.redirect('/profile');
+        }
+    })
+});
+router.post('/update_workexp', function (req, res) {
+    db.update_workexp(req.body.name, req.body.date, req.body.info, req.body.work_id, function (err, results) {
+        if (err){
+            req.flash('danger', 'Error while updating work experience');
+            res.redirect('/profile');
+        }
+        else{
+            req.flash('success', 'You have updated a work experience');
+            res.redirect('/profile');
+        }
+    })
+});
+router.post('/delete_workexp', function (req, res) {
+    db.delete_workexp(req.body.work_id, function (err, results) {
+        if (err) throw err;
+        else {
+            req.flash('success', 'You have deleted a work experience');
+            res.redirect('/profile');
+        }
+    })
+});
+router.post('/add_education', function (req, res) {
+    db.insert_education(req.session.user, req.body.title, req.body.date, req.body.info, function (err, results) {
+        if (err) {
+            req.flash('danger', 'An error has occured while adding a new education');
+            res.redirect('/profile');
+        }
+        else {
+            console.log('new education added')
+            req.flash('success', 'You have added a new education')
+            res.redirect('/profile');
+        }
+    })
+});
+router.post('/delete_education', function (req, res) {
+    db.delete_education(req.body.education_id, function (err, results) {
+        if (err) {
+            req.flash('danger', 'An error has occured');
+            res.redirect('/profile');
+        }
+        else {
+            req.flash('success', 'You have deleted a education experience');
+            res.redirect('/profile');
+        }
+    })
+});
+router.post('/update_education', function (req, res) {
+    db.update_education(req.body.name, req.body.date, req.body.info, req.body.education_id, function (err, results) {
+        if (err){
+            req.flash('danger', 'Error while updating education experience');
+            res.redirect('/profile');
+        }
+        else{
+            req.flash('success', 'You have updated a education experience');
+            res.redirect('/profile');
+        }
+    })
+});
 module.exports = router;
 

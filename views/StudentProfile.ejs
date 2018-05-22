@@ -6,6 +6,7 @@
 	<title>Student profile</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
 	<title>Profile</title>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -75,18 +76,12 @@
 						<span id="BlackT">Profil</span>
 					</a>
 				</li>
-				<li class="tabBorder" onclick="openTab('likes', 'Messages')" id="Messages">
-					<a>
-						<span>
-							<i class="fa fa-envelope" id="SideIcon"></i>
-						</span>
-						<span id="BlackT">Meddelanden</span>
-					</a>
-				</li>
+				
 				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
 					<a>
 						<span>
 							<i class="fas fa-folder" id="SideIcon"></i>
+							
 						</span>
 						<span id="BlackT">Ex-Jobb</span>
 					</a>
@@ -96,7 +91,7 @@
 						<span>
 							<i class="fa fa-credit-card-alt" id="SideIcon"></i>
 						</span>
-						<span id="BlackT">Help</span>
+						<span id="BlackT">Hjälp</span>
 					</a>
 				</li>
 				<li>
@@ -128,7 +123,7 @@
 
 							<div class="w3-white w3-text-grey w3-card-4">
 								<div class="w3-display-container">
-									<img src="./images/Stefan-beskuren.jpg" style="width:100%" alt="Avatar">
+									<img src="./images/login.png" style="width:50%" alt="Avatar">
 									<div class="w3-display-bottomleft w3-container w3-text-black">
 
 									</div>
@@ -170,7 +165,7 @@
 									<!-- Skills -->
 									<p class="w3-large">
 										<b>
-											<i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Skills</b>
+											<i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Kunskaper</b>
 									</p>
 
 									<!-- <div class="w3-light-grey w3-round-xlarge w3-small">
@@ -187,19 +182,18 @@
 									</div>
 									<br> -->
 									<hr>
-									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModalSkill">
-										<strong>Add Skill</strong>
-									</button>
-								</br>
 									<ul>
 										<% if(locals.get_student_qual) { %>
 											<% get_student_qual.forEach(function(result){ %>
 												<li>
-												<%= result.QID %>
+													<%= result.QID %>
 												</li>
-											<% }) %>
-										<% } %>
-										</ul>
+												<% }) %>
+													<% } %>
+									</ul>
+									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModalSkill">
+										<strong>Lägg till kunskaper</strong>
+									</button>
 									<hr>
 								</div>
 							</div>
@@ -208,187 +202,327 @@
 						</div>
 						<!-- Right Column -->
 						<div class="w3-twothird">
-
+							<!--______________________________________________WORK EXPERIENCE _______________________________________-->
 							<div class="w3-container w3-card w3-white w3-margin-bottom">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Work Experience</h2>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>Front End Developer / w3schools.com</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Jan 2015 -
-										<span class="w3-tag w3-round">Current</span>
-									</h6>
-									<p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic.
-										Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
-									<hr>
+									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Arbete</h2>
+								<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
+								<hr>
+								<div id="id01" class="modal">
+									<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+									<form class="modal-content" method="POST" action="add_workexp" style="width:90%; margin:auto;">
+										<div class="container">
+											<div class="w3-container">
+												<h2>Lägg till jobb</h2>
+											</div>
+											<hr>
+											<form class="w3-container">
+												<p>
+													<label>
+														<strong>Datum</strong>
+													</label>
+													<input id="Job-title" class="w3-input" type="text" placeholder="2001-2002..." name="date" required>
+												</p>
+												<p>
+													<label>
+														<strong>Titel</strong>
+													</label>
+													<input id="Job-title" class="w3-input" type="text" placeholder="Titel..." name="title" required>
+												</p>
+												<p>
+													<label>
+														<strong>Jobbinformation</strong>
+													</label>
+													<input id="Job-info" class="w3-input" type="text" placeholder="Information om jobbet..." name="info" required>
+												</p>
+											</form>
+											<div class="clearfix">
+												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Avbryt</button>
+												<button class="updatebtn" id="addjob" type="submit">Bekräfta</button>
+											</div>
+										</div>
+									</form>
 								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>Web Developer / something.com</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
-									<p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic.
-										Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
-									<hr>
-								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>Graphic Designer / designsomething.com</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Jun 2010 - Mar 2012</h6>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-									<br>
-								</div>
+								<% if(locals.get_workexp) { %>
+									<% var temp = 0 %>
+										<% get_workexp.forEach(function(result) { %>
+											<div class="dropdown">
+												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Ändra</button>
+													<form action="delete_workexp" method="POST">
+														<input hidden name="work_id" value="<%= result.ID %>"></input>
+														<button type="submit" class="removebtn">Ta bort</button>
+													</form>
+												</div>
+											</div>
+											<div class="w3-container">
+												<h5 class="w3-opacity">
+													<b>
+														<%= result.work %>
+													</b>
+												</h5>
+												<h6 class="w3-text">
+													<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>
+													<%= result.date %>
+												</h6>
+												<p>
+													<%= result.info %>
+												</p>
+											</div>
+											<hr>
+											<div id="id02" class="modal test">
+												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+												<form class="modal-content" action="update_workexp" method="POST">
+													<div class="container">
+														<div class="w3-container">
+															<h2>Uppdatera jobb</h2>
+														</div>
+														<hr>
+														<form class="w3-container">
+															<p>
+																<label>
+																	<strong>Datum</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.date %>" name="date">
+															</p>
+															<p>
+																<label>
+																	<strong>Titel</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.work %>" name="name">
+															</p>
+															<p>
+																<label>
+																	<strong>Jobb information</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.info %>" name="info">
+															</p>
+															<div class="clearfix">
+																<input hidden id="exjob_id" name="work_id" value="<%= result.ID %>"></input>
+																<button type="button" class="cancelbtn">Avbryt</button>
+																<button type="submit" class="updatebtn">Spara</button>
+															</div>
+														</form>
+													</div>
+												</form>
+											</div>
+											<% }); %>
+												<% } %>
 							</div>
-
+							<!--   ______________________________ EDUCATION ______________________________________________________-->
 							<div class="w3-container w3-card w3-white">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Education</h2>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>W3Schools.com</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Forever</h6>
-									<p>Web Development! All I need to know in one place</p>
-									<hr>
-								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>London Business School</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right" id="blueP"></i>2013 - 2015</h6>
-									<p>Master Degree</p>
-									<hr>
-								</div>
-								<div class="w3-container">
-									<h5 class="w3-opacity">
-										<b>School of Coding</b>
-									</h5>
-									<h6 class="w3-text">
-										<i class="fa fa-calendar fa-fw w3-margin-right" id="blueP"></i>2010 - 2013</h6>
-									<p>Bachelor Degree</p>
-									<br>
-								</div>
-							</div>
+									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Utbildning</h2>
+								<button class="modalbtn" onclick="document.getElementById('id03').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
+								<hr>
 
-							<!-- End Right Column -->
-						</div>
-
-						<!-- End Grid -->
-					</div>
-
-					<!-- End Page Container -->
-				</div>
-				<div class="container">
-					<div id="modalBG">
-					</div>
-					<!-- The Modal -->
-					<div class="modal fade" id="ProfileModal">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content">
-
-								<!-- Modal Header -->
-								<div class="modal-header">
-									<button type="button" class="button3" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title" style="margin: auto;">Redigera profil</h4>
-								</div>
-
-								<!-- Modal body -->
-								<div class="modal-body">
-									<form action="/change_student_profile" method="POST">
+								<div id="id03" class="modal">
+									<span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+									<form class="modal-content" method="POST" action="add_education" style="width:90%; margin:auto;">
 										<div class="container">
-											<input type="text" name="username" id="uname" disabled value=< %= student_user_and_nr[0].UID %>>
-											<input type="text" name="pnum" id="pnum" disabled value=< %= student_user_and_nr[0].pnr %>>
-											<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
-											 title="Fyll i ett nytt lösenord  4-16 karaktärer">
-											<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..." data-toggle="tooltip" title="Fyll i ditt fullständiga namn ">
-											<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress..." data-toggle="tooltip" title="Fyll i din postadress">
-											<input type="text" name="tel" id="tel" maxlength="20" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i ditt nummer 12 siffror"
-											 patter="[0-9]">
-											<select name="gender">
-												<option value="Male">Man</option>
-												<option value="Female">Kvinna</option>
-												<option value="Other">Andra</option>
-											</select>
-											<br/>
+											<div class="w3-container">
+												<h2>Lägg till utbildning</h2>
+											</div>
+											<hr>
+											<form class="w3-container">
+												<p>
+													<label>
+														<strong>Datum</strong>
+													</label>
+													<input id="education-title" class="w3-input" type="text" placeholder="2001-2002..." name="date" required>
+												</p>
+												<p>
+													<label>
+														<strong>Utbildning</strong>
+													</label>
+													<input id="education-title" class="w3-input" type="text" placeholder="Titel..." name="title" required>
+												</p>
+												<p>
+													<label>
+														<strong>Utbildningsinformation</strong>
+													</label>
+													<input id="education-info" class="w3-input" type="text" placeholder="Information om utbildningen..." name="info" required>
+												</p>
+											</form>
+
 										</div>
-										<Button type="submit" id="butt">Uppdatera ändringar</Button>
-									</form>
-									<form action="/filetest" method="POST" enctype="multipart/form-data">
-										<input type="file" name="filename">
-										<input type="submit" value="Ladda upp">
 									</form>
 								</div>
 
-								<!-- Modal footer -->
-								<div class="modal-footer">
+								<% if(locals.get_education) { %>
+									<% var temp1 = 1000 %>
+										<% get_education.forEach(function(result) { %>
+											<div class="dropdown">
+												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+													<button class="changebtn" onclick="openModal('<%= temp1 = temp1 + 1 %>')">Ändra</button>
+													<form action="delete_education" method="POST">
+														<input hidden name="education_id" value="<%= result.ID %>"></input>
+														<button type="submit" class="removebtn">Ta bort</button>
+													</form>
+												</div>
+											</div>
+											<div class="w3-container">
+												<h5 class="w3-opacity">
+													<b>
+														<%= result.edu %>
+													</b>
+												</h5>
+												<h6 class="w3-text">
+													<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>
+													<%= result.date %>
+												</h6>
+												<p>
+													<%= result.info %>
+												</p>
 
-								</div>
+											</div>
+											<hr>
+											<div id="id02" class="modal test2">
+												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+												<form class="modal-content" action="update_education" method="POST">
+													<div class="container">
+														<div class="w3-container">
+															<h2>Uppdatera utbildning</h2>
+														</div>
+														<hr>
+														<form class="w3-container">
+															<p>
+																<label>
+																	<strong>Datum</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.date %>" name="date">
+															</p>
+															<p>
+																<label>
+																	<strong>Utbildning</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.edu %>" name="name">
+															</p>
+															<p>
+																<label>
+																	<strong>Utbildningsinformation</strong>
+																</label>
+																<input class="w3-input" type="text" value="<%= result.info %>" name="info">
+															</p>
+															<div class="clearfix">
+																<input hidden name="education_id" value="<%= result.ID %>"></input>
+																<button type="button" class="cancelbtn">Avbryt</button>
+																<button type="submit" class="updatebtn">Spara</button>
+															</div>
+														</form>
+													</div>
+												</form>
+											</div>
+											<% }); %>
+												<% } %>
 							</div>
+						</div>
+
+						<!-- End Right Column -->
+					</div>
+
+					<!-- End Grid -->
+				</div>
+
+				<!-- End Page Container -->
+		</div>
+		<div class="container">
+			<div id="modalBG">
+			</div>
+			<!-- The Modal -->
+			<div class="modal fade" id="ProfileModal">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<button type="button" class="button3" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title" style="margin: auto;">Redigera profil</h4>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<form action="/change_student_profile" method="POST">
+								<div class="container">
+									<input type="text" name="username" id="uname" disabled value="<%= student_user_and_nr[0].UID %>">
+									<input type="text" name="pnum" id="pnum" disabled value="<%= student_user_and_nr[0].pnr %>">
+									<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
+									 title="Fyll i ett nytt lösenord  4-16 karaktärer">
+									<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..." data-toggle="tooltip" title="Fyll i ditt fullständiga namn ">
+									<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress..." data-toggle="tooltip" title="Fyll i din postadress">
+									<input type="text" name="tel" id="tel" maxlength="20" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i ditt nummer 12 siffror"
+									 patter="[0-9]">
+									<select name="gender">
+										<option value="Male">Man</option>
+										<option value="Female">Kvinna</option>
+										<option value="Other">Andra</option>
+									</select>
+									<br/>
+								</div>
+								<Button type="submit" id="butt">Uppdatera ändringar</Button>
+							</form>
+							<form action="/filetest" method="POST" enctype="multipart/form-data">
+								<input type="file" name="filename">
+								<input type="submit" value="Ladda upp">
+							</form>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+
 						</div>
 					</div>
 				</div>
-				<div class="container">
-					<div id="modalBG">
-					</div>
-					<!-- The Modal -->
-					<div class="modal fade" id="ProfileModalSkill">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content">
+			</div>
+		</div>
+		<div class="container">
+			<div id="modalBG">
+			</div>
+			<!-- The Modal -->
+			<div class="modal fade" id="ProfileModalSkill">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
 
-								<!-- Modal Header -->
-								<div class="modal-header">
-									<button type="button" class="button3" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title">Add skill</h4>
-								</div>
-								<!-- Modal body add student qual-->
-								<div class="modal-body">
-									<form action="/change_skill_student" method="POST">
-										<div class="container">
-											<select name="student_qual">
-												<% if(locals.results) { %>
-												<% results.forEach(function(result) { %>
-													<option value="<%= result.Qualification %>">
-														<%= result.Qualification %>
-													</option>
-													<% }); %>
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<button type="button" class="button3" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Lägg till kunskaper</h4>
+						</div>
+						<!-- Modal body add student qual-->
+						<div class="modal-body">
+							<form action="/change_skill_student" method="POST">
+								<div class="container">
+									<select name="student_qual">
+										<% if(locals.results) { %>
+											<% results.forEach(function(result) { %>
+												<option value="<%= result.Qualification %>">
+													<%= result.Qualification %>
+												</option>
+												<% }); %>
 													<% } %>
-											</select>
-											<br/>
-										</div>
-										<button type="submit" id="butt">Update Skill</button>
-									</form>
-
+									</select>
+									<br/>
 								</div>
+								<button type="submit" id="butt">Update Skill</button>
+							</form>
 
-								<!-- Modal footer -->
-								<div class="modal-footer">
+						</div>
 
-								</div>
-							</div>
+						<!-- Modal footer -->
+						<div class="modal-footer">
+
 						</div>
 					</div>
-			</body>
-			</div>
-		</div>
-	</div>
-	<!-- Chat -->
-	<div class="main-content" id="likes" style="display:none">
-		<div class="main2">
-			<div class="font2">
-				<div class="StudentDiv2">
-					<h2>Chat</h2>
-					<!--<img src="images/oru.png" style="max-width:50%;height:auto;"> -->
 				</div>
 			</div>
+			</body>
 		</div>
 	</div>
+
 
 	<!-- Ex-jobs -->
 	<div class="main-content" id="Jobs" style="display:none">
@@ -403,6 +537,16 @@
 
 						<% matchning.forEach(function(result) { %>
 							<hr>
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+								style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+										<button class="changebtn"  onclick="document.getElementById('id02').style.display='block'">Ändra</button>
+										<form action="delete_job" method="POST">
+											<input hidden name="job_id" value="<%= result.ID %>"></input>
+											<button type="submit" class="removebtn">Remove</button>
+										</form>
+								</div>
 							<div class="w3-container">
 								<h4 class="w3-opacity">
 									<b>
@@ -500,6 +644,20 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		let el = document.getElementsByClassName('test');
+		let el2 = document.getElementsByClassName('test2');
+		let j = 0;
+		let temporary = 1000;
+		for (let i = 0; i < el.length; i++) {
+			j++
+			el[i].id = j;
+		}
+		for (let inc = 0; inc < el2.length; inc++) {
+			temporary++
+			el2[inc].id = temporary;
+		}
+	</script>
 </body>
 
 </html>
