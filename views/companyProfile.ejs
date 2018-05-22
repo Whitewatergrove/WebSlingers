@@ -237,9 +237,9 @@
 																			<% }); %>
 																				<% }; %>
 													</p>
-													<form action="/testmatch" method="POST">
+													<form action="/exjobMatch" method="POST">
 														<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
-														<button type="submit" class="matchbtn" style="width:auto;">Match</button>
+														<button class="matchbtn">Match</button>
 													</form>
 													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
 													<form action="delete_job" method="POST">
@@ -363,8 +363,8 @@
 								<div class="modal-body">
 									<form action="/change_company_profile" method="POST">
 										<div class="container">
-											<input type="text" name="username" id="button2" disabled value=< %=g et_company_user_and_nr[0].UID %>>
-											<input type="text" name="pnum" id="button2" disabled value=< %=g et_company_user_and_nr[0].Orgnr %>>
+											<input type="text" name="username" id="button2" disabled value=<%= get_company_user_and_nr[0].UID %>>
+											<input type="text" name="pnum" id="button2" disabled value=<%= get_company_user_and_nr[0].Orgnr %>>
 											<input type="password" name="password" id="button2" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
 											 title="Fyll i ditt lösenord 4-16 karaktärer">
 											<input type="text" name="name" id="button2" maxlength="45" required placeholder="Företagsnamn..." data-toggle="tooltip" title="Fyll i företagsnamn">

@@ -101,7 +101,7 @@ module.exports = {
         });
         temp.exjobs = temp.exjobs.filter(exjob => exjob.weight > 0);
         console.log(temp.exjobs);
-
+        
         return temp.exjobs;
     }
 }

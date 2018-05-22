@@ -110,7 +110,9 @@ router.post('/login', function (req, res) {
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
                     if(req.session.role === 'student')
+                    {
                         matchingStudent.prematching(req.session.user);
+                    }
                     else if(req.session.role === 'company')
                         matchingCompany.companyPrematching(req.session.user);
                 }
@@ -143,7 +145,7 @@ router.get('/profile', (req, res) => {
                 results: results,
                 student_user_and_nr: req.session.student,
                 get_student_qual: req.session.get_student_qual
-            });
+            });         
         })
     }
     else if (req.session.user && req.session.role == 'company') {
@@ -301,7 +303,7 @@ router.get('/Certificate', function (req, res) {
     })
 })
 
-router.post('/hejhopmanstest', function (req, res) {            // Needs to find an other solution!!!!
+router.post('/studentMatch', function (req, res) {            // Needs to find an other solution!!!!
     db.get_student_user_and_nr(req.session.user, function (err, result) {
         if (err) throw err;
         res.render('StudentProfile', {
@@ -309,10 +311,9 @@ router.post('/hejhopmanstest', function (req, res) {            // Needs to find
             matchning: matchingStudent.matcha()
         });
     });
-
 });
 
-router.post('/companyMatchTest', function (req, res) {            // Needs to find an other solution!!!!
+router.post('/companyMatch', function (req, res) {            // Needs to find an other solution!!!!
     db.get_student_user_and_nr(req.session.user, function (err, result) {
         if (err) throw err;
         res.render('companyProfile', {
@@ -323,7 +324,7 @@ router.post('/companyMatchTest', function (req, res) {            // Needs to fi
 });
 
 router.get('/search', function (req, res) {                     // For testing, do not remove!!!!!!
-    //searchTest.testmatch();
+    //searchTest.exjobMatch();
 });
 
 router.get('/dbtester', function (req, res) {
@@ -451,9 +452,9 @@ router.post('/delete_job', function (req, res) {
 router.get('/profileStudentProfile', function (req, res) {
     res.render("pages/profileStudentProfile");
 });
-router.post('/testmatch', function(req,res){
+router.post('/exjobMatch', function(req,res){
     req.body.job_id 
-    res.render('testmatch', {
+    res.render('exjobMatch', {
         matchning: matchingCompany.companyMatcha(req.body.job_id)
     });
 })
