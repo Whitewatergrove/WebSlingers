@@ -29,10 +29,7 @@
 	    crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	    crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="./stylesheets/chat.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="./scripts/chat.js"></script>
+	
 </head>
 
 <body>
@@ -157,7 +154,7 @@
 														<label>
 															<strong>Datum</strong>
 														</label>
-														<input id="Job-title" class="w3-input" type="text" name="date" required>
+														<input id="Job-title" class="w3-input" type="text" name="date" required autofocus ="autofocus">
 													</p>
 													<p>
 														<label>
@@ -300,7 +297,7 @@
 																		<label>
 																			<strong>Datum</strong>
 																		</label>
-																		<input class="w3-input" type="text" placeholder="Fyll i Datum" name="date" data-toggle="tooltip" title="ååmmdd" value="<%= exjobs[0].date %>">
+																		<input class="w3-input" type="text" placeholder="Fyll i Datum" name="date" data-toggle="tooltip" title="ååmmdd" value="<%= exjobs[0].date %>"autofocus ="autofocus">
 																	</p>
 																	<p>
 																		<label>
@@ -369,7 +366,7 @@
 												<input type="text" name="username" id="button2" disabled value="<%= get_company_user_and_nr[0].UID %>">
 												<input type="text" name="pnum" id="button2" disabled value="<%= get_company_user_and_nr[0].Orgnr %>">
 												<input type="password" name="password" id="button2" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
-												    title="Fyll i ditt lösenord 4-16 karaktärer">
+												    title="Fyll i ditt lösenord 4-16 karaktärer"autofocus ="autofocus">
 												<input type="text" name="name" id="button2" maxlength="45" required placeholder="Företagsnamn..." data-toggle="tooltip" title="Fyll i företagsnamn">
 												<input type="text" name="address" id="button2" maxlength="45" required placeholder="Adress..." data-toggle="tooltip" title="Fyll i postadress">
 												<input type="text" name="tel" id="button2" maxlength="45" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i företagstelefonnummer">
