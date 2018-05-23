@@ -100,7 +100,7 @@
 						<!-- Ex-jobs -->
 						<div class="w3-container w3-card w3-white w3-margin-bottom" style="size:fixed">
 							<h2 class="w3-text-grey w3-padding-16">
-								<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Dina job</h2>
+								<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Potentiella studenter</h2>
 							<div class="w3-container">
 								<% if(locals.matchning) {%>
 									<ul class="Job-list" id="job_list" style="background-color: #fff">
@@ -114,11 +114,15 @@
 													</b>
 												</h4>
 												<h6 class="w3-text">
-													<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
+													<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>datum</h6>
 												<p>
 													<%= result.QUAL%>
 												</p>
-												<button class="matchbtn">Ansök</button>
+												<button class="collapsible" onclick="openCollapse()">Kontakt</button>
+													<div class="collapseContent">
+														<h5><a href="mailto:<%= result.UID %>">Mailadress: <%= result.UID %></a> <br/> Telefon: <%= result.Tel %></h5>
+														<hr>
+													</div>
 											</div>
 											<% }); %>
 									</ul>
