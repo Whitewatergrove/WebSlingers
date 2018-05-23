@@ -48,32 +48,6 @@ body {
 
 } */
 
-.matchbtn, .changebtn, .removebtn, .collapsible, .updatebtn, .cancelbtn, #buttondbtest{
-	width: 100%;
-	text-align: center;
-	min-height: 48px;
-	padding: 3px 0;
-	background-color: #ffff;
-	color: black;
-	border-bottom: 3px solid gray;
-	border-color: #2e78ba;
-	opacity: 0.5;
-	font-weight: bold;
-}
-
-
-.Editbtn, .modalbtn{
-	font-weight: bold;
-	width: 100%;
-	text-align: center;
-	min-height: 48px;
-	padding: 3px 0;
-	background-color: #ffff;
-	color: black;
-	border: 3px solid gray;
-	border-color: #2e78ba;
-	opacity: 0.5;
-}
 
 
 #HomeH1 {
@@ -483,6 +457,32 @@ input[type=text]:focus, input[type=password]:focus {
     outline: none;
 }
 
+.matchbtn, .changebtn, .removebtn, .collapsible, .updatebtn, .cancelbtn, #buttondbtest{
+	width: 100%;
+	text-align: center;
+	min-height: 48px;
+	padding: 3px 0;
+	background-color: #ffff;
+	color: black;
+	border-bottom: 3px solid gray;
+	border-color: #2e78ba;
+	opacity: 0.5;
+	font-weight: bold;	
+}
+
+
+.Editbtn, .modalbtn{
+	font-weight: bold;
+	width: 100%;
+	text-align: center;
+	min-height: 48px;
+	padding: 3px 0;
+	background-color: #ffff;
+	color: black;
+	border: 3px solid gray;
+	border-color: #2e78ba;
+	opacity: 0.5;
+}
 /* Set a style for all buttons */
 button {
     background-color: #2e78ba;
@@ -495,7 +495,7 @@ button {
     opacity: 0.9;
 }
 
-.modalbtn:hover, button:hover {
+.modalbtn:hover, button:hover, .updatebtn:hover {
     opacity:1;
 }
 

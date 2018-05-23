@@ -497,6 +497,26 @@
 							<h4 class="modal-title">Lägg till kunskaper</h4>
 						</div>
 						<!-- Modal body add student qual-->
+
+						<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false" style="color: gray; background-color: #ffff; border: 0; float: right; font-size: 1.5rem;"></button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+								<form action="/change_skill_student" method="POST">
+										<select name="student_qual">
+											<% if(locals.results) { %>
+												<% results.forEach(function(result) { %>
+													<option value="<%= result.Qualification %>">
+														<%= result.Qualification %>
+													</option>
+													<% }); %>
+														<% } %>
+										</select>
+										<br/>
+								</form>
+							</div>
+						</div>
+
 						<div class="modal-body">
 							<form action="/change_skill_student" method="POST">
 								<div class="container">
