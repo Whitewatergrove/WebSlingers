@@ -48,16 +48,33 @@ body {
 
 } */
 
-.matchbtn, .changebtn, .removebtn, .collapsible{
-	float: left;
-	width: 23.5%;
-	justify-content: center;
+.matchbtn, .changebtn, .removebtn, .collapsible, .updatebtn, .cancelbtn, #buttondbtest{
+	width: 100%;
+	text-align: center;
+	min-height: 48px;
+	padding: 3px 0;
+	background-color: #ffff;
+	color: black;
+	border-bottom: 3px solid gray;
+	border-color: #2e78ba;
+	opacity: 0.5;
+	font-weight: bold;
 }
 
-.changebtn, .removebtn, .collapsible{
-	margin-left: 2%;
-	margin-bottom: 2%;
+
+.Editbtn, .modalbtn{
+	font-weight: bold;
+	width: 100%;
+	text-align: center;
+	min-height: 48px;
+	padding: 3px 0;
+	background-color: #ffff;
+	color: black;
+	border: 3px solid gray;
+	border-color: #2e78ba;
+	opacity: 0.5;
 }
+
 
 #HomeH1 {
 	color: #FFF;
@@ -336,7 +353,6 @@ span:after {
 /* main box container */
 
 .main2 {
-	display: flex;
 	flex-flow: row wrap;
 	text-align: center;
 	height: 100%;
@@ -388,7 +404,7 @@ span:after {
 }
 
 #buttondbtest{
-	width: 20%;
+	width: auto;
 	height: 20%;
 	margin: auto;
 }
@@ -406,6 +422,7 @@ span:after {
 	outline: 0px;
 }
 
+
 .font2 {
 	/* background-color: #6d6e70; */
 	text-align: center;
@@ -419,7 +436,7 @@ span:after {
 }
 
 #JobsWidget {
-	height: 80vh;
+	height: 95%;
 	background-color: #fff;
 }
 
@@ -482,11 +499,6 @@ button {
     opacity:1;
 }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-    padding: 14px 20px;
-    background-color: #f44336;
-}
 
 /* Float cancel and signup buttons and add an equal width
 .cancelbtn, .updatebtn, .matchbtn, .changebtn {
@@ -566,8 +578,6 @@ hr {
 	margin-bottom: 10px;
 }
 
-
-
 .collapsible:after {
     content: '\002B';
     color: white;
@@ -586,4 +596,25 @@ hr {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: #f1f1f1;
+}
+
+.plusbutt{
+	color: #2e78ba ;
+	float: left;
+	opacity: 0.5;
+	border: 2px solid #2e78ba;
+	border-radius: 50%;
+	font-size: 1.5rem;
+	padding: 8.5px 17.045px;
+	background-color: #f1f1f1;
+}
+.plusbutt:hover{
+	color: #2e78ba ;
+	float: left;
+	opacity: 1;
+	border: 2px solid #2e78ba;
+	border-radius: 50%;
+	font-size: 1.5rem;
+	padding: 8.5px 17.045px;
+	background-color: #f1f1f1;
 }

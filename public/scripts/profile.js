@@ -4,8 +4,6 @@ $(document).ready(function () {
     });
 });
 
-let matching = require('../routes/match');
-
 function openCollapse() {
     var coll = document.getElementsByClassName("collapsible");
 
@@ -50,10 +48,6 @@ function openTab(pageName, tab) {
     document.getElementById(tab).style.borderLeft = "5px solid #2e78ba";
     document.getElementById(pageName).style.display = "block";
 
-    if (pageName === 'Jobs') {
-        matching.matcha();
-        //******************************************************************************************************************************************************************************************** */
-    }
 }
 
 function setIcon() {
@@ -69,7 +63,7 @@ function setIcon() {
         el.className += ' fas fa-graduation-cap';
 
     } else if (selectedRole == 'company') {
-        ph.placeholder = 'Organization number...';
+        ph.placeholder = 'Organisation nummer...';
         ph.title = "Fyll i ditt Org.nummer 10 siffror"
         el.className -= " fas fa-graduation-cap";
         el.className += " fas fa-industry";

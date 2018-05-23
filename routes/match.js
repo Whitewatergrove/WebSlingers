@@ -20,7 +20,7 @@ module.exports = {
         current.student = thisStudent;
 
         Promise.all([                                       // Creating an array of promises. 
-            db.get_xjob_promise(exjobs),                                // Fetching all exjobs.
+            db.get_xjob_promise(),                                      // Fetching all exjobs.
             db.get_class_catagories_promise(),                          // Fetching all classes.
             db.get_student_qual_promise(current.student),               // Fetching the qualificatons of the student.
             db.get_demanded_promise(),                                  // Fetching all demanded qualifications for all exjob.
@@ -37,9 +37,7 @@ module.exports = {
                 exjob.demanded = [];                                    // sets their demandingqualifications.
                 lists[3].forEach(demand => {
                     if(exjob.ID === demand.EID)
-                    {
                         exjob.demanded[exjob.demanded.length] = demand.QID;
-                    }
                 })
             }),
 
@@ -47,12 +45,11 @@ module.exports = {
                 klass.qual = [];
                 lists[4].forEach(qual => {
                     if(klass.class === qual.class)
-                    {
                         klass.qual[klass.qual.length] = qual.qualifications;
-                    }
                 })
             }),
 
+            console.log("Student"),
             console.log(line);
 
         }).catch((error) => {
@@ -104,7 +101,7 @@ module.exports = {
         });
         temp.exjobs = temp.exjobs.filter(exjob => exjob.weight > 0);
         console.log(temp.exjobs);
-
+        
         return temp.exjobs;
     }
 }

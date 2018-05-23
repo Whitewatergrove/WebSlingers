@@ -7,39 +7,51 @@ let db = require('../DBFunctions');
 
 
 let students;
-let exjob;
+let exjobs;
 let classes;
 let line = '---------------------------------------------';
 
 module.exports = {
 
-    companyPrematching: function(thisExjob)                     // The function that makes all the preworking 
+    companyPrematching: function(thisCompany)                     // The function that makes all the preworking 
     {                                                           // to match students to the current exjob.
 
         let current = {};
         let tempqual;
-        current.exjob = thisExjob;
+        current.exjobs = [];
 
         Promise.all([                                           // Creating an array of promises. 
-            db.get_xjob_demanded_promise(exthisExjobjob.ID),
+            db.get_xjob_promise(),
             db.get_students_promise(),
             db.get_studentqualifications_promise(),
             db.get_class_catagories_promise(),
             db.get_qualifications_catagories_promise(),
+            db.get_demanded_promise(),
+            db.get_company_promise(thisCompany),
         ]).then((lists) => {                                    // Starts working with the promises when all
                                                                 // of them is resolved or rejected.
-            current.demanded = lists[0],
+            current.company = lists[6][0],
+            lists[0].forEach(exjob => {
+                if(current.company.Orgnr === exjob.ExOID)
+                    current.exjobs[current.exjobs.length] = exjob;
+            })
+            exjobs = current.exjobs,
             students = lists[1],
             classes = lists[3],
-            exjob = current,
+
+            exjobs.forEach(exjob => {                           // Sets the demanding qualification that
+                exjob.demanded = [];                            // each exjob have.
+                lists[5].forEach(demand => {
+                    if(exjob.ID === demand.EID)
+                        exjob.demanded[exjob.demanded.length] = demand.QID;
+                })
+            })
 
             students.forEach(student => {                       // Looping through all exjobs and
-                students.QUAL = [];                             // sets their demandingqualifications.
+                student.QUAL = [];                             // sets their demandingqualifications.
                 lists[2].forEach(qual => {
-                    if(student.ID === qual.SID)
-                    {
-                        students.QUAL[students.QUAL.length] = qual.QID;
-                    }
+                    if(student.pnr === qual.SID)
+                        student.QUAL[student.QUAL.length] = qual.QID;
                 })
             }),
 
@@ -47,12 +59,10 @@ module.exports = {
                 klass.qual = [];
                 lists[4].forEach(qual => {
                     if(klass.class === qual.class)
-                    {
                         klass.qual[klass.qual.length] = qual.qualifications;
-                    }
                 })
             }),
-
+            console.log("Company"),
             console.log(line);
 
         }).catch((error) => {
@@ -61,29 +71,25 @@ module.exports = {
         });
     },
 
-    companyMatcha: function()                                   // The function that is matching exjob to students.
+    companyMatcha: function(thisExjobID)                                   // The function that is matching exjob to students.
     {
-        let temp = {}
-        console.log("exjob");
-        temp.exjob = exjob;
-        temp.students = [];
-        console.log(exjob); 
-        console.log(exjob.demanded.length);
+        let temp = {};
+        temp.exjob = {};
+        exjobs.forEach(exjob => {
+            if(exjob.ID.toString() === thisExjobID)
+                temp.exjob = exjob;
+        })
+        temp.exjob.students = [];
         students.forEach(student => {
-            console.log("student");
-            if(exjob.demanded.length > 0)
+            if(temp.exjob.demanded.length > 0)
             {
-                exjob.demanded.forEach(demd => {                // Checking if the there is any exjobs that demanding 
-                    console.log("Demands");                     // any of the student qualification.
-                    console.log(demd);
-                    console.log(exjob.demanded)
+                student.weight = 0;
+                temp.exjob.demanded.forEach(demd => {                // Checking if the there is any exjobs that demanding 
                     student.QUAL.forEach(qual => {
-                        if(temp.students[temp.students.length - 1] != student)
-                                temp.students[temp.students.length] = student;
-                        console.log("qual");
-                        console.log(qual.QID);
-                        if(qual.QID === demd)
-                            student.weight = student.weight +1;
+                        if(temp.exjob.students[temp.exjob.students.length - 1] != student)
+                            temp.exjob.students[temp.exjob.students.length] = student;
+                        if(qual === demd)
+                            temp.exjob.students[temp.exjob.students.length - 1].weight = temp.exjob.students[temp.exjob.students.length - 1].weight +1;
                         else
                         {
                             let tempSQ = 'tempSQ';
@@ -92,30 +98,26 @@ module.exports = {
                                 obj.qual.forEach(element =>{
                                     if(element === demd)
                                     tempED = obj.class;
-                                    if(element === qual.QID)
+                                    if(element === qual)
                                     tempSQ = obj.class;
                                 })
                             })
                             if(tempED === tempSQ)
-                                student.weight = student.weight + 0.4;
+                                temp.exjob.students[temp.exjob.students.length - 1].weight = temp.exjob.students[temp.exjob.students.length - 1].weight + 0.4;
                         }
                     })
                 })
             }
             else{ console.error('No qualifications');}
         })
-        console.log(line);
-        console.log(line);
-        console.log(temp);
-        console.log(line);
-        console.log(line);
 
-        temp.exjobs.sort(function(a, b){
+        temp.exjob.students.sort(function(a, b){
             return b.weight - a.weight;
         });
-        temp.exjobs = temp.exjobs.filter(exjob => exjob.weight > 0);
-        console.log(temp.exjobs);
+        temp.exjob.students = temp.exjob.students.filter(student => student.weight > 0);
 
-        return temp.students;
+        console.log(temp.exjob.students);
+
+        return temp.exjob.students;
     }
 }
