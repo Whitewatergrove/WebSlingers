@@ -232,7 +232,9 @@ span:after {
 }
 
 /* set element styles to fit tablet and higher(desktop) */
-
+.tabBorder:hover{
+	cursor: pointer;
+}
 @media screen and (min-width: 600px) {
 	.header {
 		background-color: #2e78ba;
