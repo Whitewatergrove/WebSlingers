@@ -1,8 +1,5 @@
 'use strict';
-let express = require('express');
 let mysql = require('mysql');
-let app = express();
-let bodyParser = require('body-parser')
 
 //database connection
 var con = mysql.createConnection({
@@ -44,7 +41,18 @@ module.exports = {
             callback(null, results);
         })
     },
-
+    get_user_info: function (username, callback) {
+        var sql = "SELECT * FROM users WHERE ID = ?";
+        con.query(sql, username,function (err, results) {
+            callback(err, results);
+            if (err) {
+                console.log('error in query');
+            }
+            else {
+                console.log('query functional');
+            }
+        })
+    },
     get_cv: function (id, callback) {
         var sql = "select file from students where pnr = ?;";
         con.query(sql, id, function (err, results) {
@@ -188,17 +196,6 @@ module.exports = {
             }
         })
     },
-
-    get_users: function (req, res, callback) {
-        con.query('SELECT * FROM users', function (err, results) {
-            if (err) {
-                callback(err, null);
-            } else {
-                callback(null, results);
-            }
-        })
-
-    },
     get_messages: function (req, res, callback) {
         con.query('SELECT * FROM messages', function (err, results) {
             if (err) {
@@ -225,7 +222,7 @@ module.exports = {
         })
     },
     get_student_qualifications: function (UID, callback) {
-        var sql = "select QID from students, studentqualifications where UID = ? group by QID;";
+        var sql = "select QID from studentqualifications where SID = (select pnr from students where UID = ?)  group by QID;";
         con.query(sql, UID, function (err, results) {
             if (err) {
 
