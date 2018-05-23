@@ -94,7 +94,7 @@ module.exports = {
     },
 
     get_student_user_and_nr: function (username, callback) {
-        var sql = "select Name, Adress, gender, Tel, UID, pnr from students where UID = ?;";
+        var sql = "select * from students where UID = ?;";
         con.query(sql, username, function (err, results) {
             if (err) {
                 console.log('error in query');
@@ -513,7 +513,7 @@ module.exports = {
         con.query(sql, [exid, qual], function (err, res) {
             callback(err, res);
             if (err) {
-                console.log("insert xjobqual query not working" + err);
+                console.log("insert xjobqual query not working: " + err);
             }
             else {
                 console.log("insert xjobqual query working");
