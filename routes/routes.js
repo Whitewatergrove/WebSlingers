@@ -590,5 +590,6 @@ router.post('/update_education', function (req, res) {
         }
     })
 });
+
 module.exports = router;
 
