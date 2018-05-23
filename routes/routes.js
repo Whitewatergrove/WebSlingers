@@ -334,7 +334,7 @@ router.get('/studentMatch', function (req, res) {            // Needs to find an
                 console.log("err: " + err)
             }
             req.session.qual_list = results;
-            res.render('StudentProfile', {
+            res.render('studentMatch', {
                 results: results,
                 student_user_and_nr: req.session.student,
                 get_student_qual: req.session.get_student_qual,
