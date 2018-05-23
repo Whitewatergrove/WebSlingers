@@ -77,7 +77,7 @@
 					</a>
 				</li>
 				
-				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
+				<li class="tabBorder">
 					<a href="studentMatch">
 						<span>
 							<i class="fas fa-folder" id="SideIcon"></i>
@@ -141,7 +141,7 @@
 									</p>
 									<p>
 										<i class="fa fa-user fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
-										<%= student_user_and_nr[0].gender %>
+										<%= student_user_and_nr[0].Gender %>
 									</p>
 
 									<p>
@@ -155,9 +155,6 @@
 									<p>
 										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
 										<%= student_user_and_nr[0].Tel %>
-									</p>
-									<p>
-										<a href="Certificate">Certificate</a>
 									</p>
 									<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; " data-toggle="modal" data-target="#ProfileModal">
 										<strong>Redigera</strong>
@@ -461,17 +458,13 @@
 									<input type="text" name="tel" id="tel" maxlength="20" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i ditt nummer 12 siffror"
 									 pattern="[0-9]">
 									<select name="gender">
-										<option value="Male">Man</option>
-										<option value="Female">Kvinna</option>
-										<option value="Other">Andra</option>
+										<option value="Man">Man</option>
+										<option value="Kvinna">Kvinna</option>
+										<option value="Övrigt">Övrigt</option>
 									</select>
 									<br/>
 								</div>
 								<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Uppdatera ändringar</Button>
-							</form>
-							<form action="/filetest" method="POST" enctype="multipart/form-data">
-								<input type="file" name="filename">
-								<input type="submit" value="Ladda upp">
 							</form>
 						</div>
 
@@ -498,7 +491,7 @@
 						</div>
 						<!-- Modal body add student qual-->
 						<div class="modal-body">
-							<form action="/change_skill_student" method="POST"  onsubmit="return confirm('Är du säker på att du vill lägga till denna färdighet')">
+							<form action="/change_skill_student" method="POST"  onsubmit="return confirm('Varning! Detta går inte att ändra senare. Är du säker på att du vill lägga till denna kunskap')">
 								<div class="container" style="text-align: center;">
 									<select name="student_qual">
 										<% if(locals.results) { %>
