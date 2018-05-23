@@ -242,14 +242,14 @@
 									</form>
 								</div>
 								<% if(locals.get_workexp) { %>
-									<% var temp = 0 %>
+									<% let openModalTemp = 0, closeModalTemp = 0 %>
 										<% get_workexp.forEach(function(result) { %>
 											<div class="dropdown">
 												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
 													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; font-size: 1.5rem;
 													border: 0; float: right;"></button>
 												<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
-													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Ändra</button>
+													<button class="changebtn" onclick="openModal('<%= openModalTemp = openModalTemp + 1 %>')">Ändra</button>
 													<form action="delete_workexp" method="POST" onsubmit="return confirm('Är du säker på att du vill ta bort detta arbete?')">
 														<input hidden name="work_id" value="<%= result.ID %>"></input>
 														<button type="submit" class="removebtn">Ta bort</button>
@@ -300,7 +300,7 @@
 															</p>
 															<div class="clearfix">
 																<input hidden id="exjob_id" name="work_id" value="<%= result.ID %>"></input>
-																<button type="button" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
+																<button type="button" class="cancelbtn" onclick="closeModal('<%= closeModalTemp = closeModalTemp + 1 %>')" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
 																<button type="submit" class="updatebtn" style="width: 50%; background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Spara</button>
 															</div>
 														</form>
@@ -352,7 +352,8 @@
 								</div>
 
 								<% if(locals.get_education) { %>
-									<% var temp1 = 1000 %>
+									<% let temp1 = 1000 %>
+									<% let closeModalTemp = 1000 %>
 										<% get_education.forEach(function(result) { %>
 											<div class="dropdown">
 												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
@@ -411,7 +412,7 @@
 															</p>
 															<div class="clearfix">
 																<input hidden name="education_id" value="<%= result.ID %>"></input>
-																<button type="button" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
+																<button type="button" class="cancelbtn" onclick="closeModal('<%= closeModalTemp = closeModalTemp + 1 %>')" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
 																<button type="submit" class="updatebtn" style="width: 50%; background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Spara</button>
 															</div>
 														</form>
@@ -596,20 +597,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		let el = document.getElementsByClassName('test');
-		let el2 = document.getElementsByClassName('test2');
-		let j = 0;
-		let temporary = 1000;
-		for (let i = 0; i < el.length; i++) {
-			j++
-			el[i].id = j;
-		}
-		for (let inc = 0; inc < el2.length; inc++) {
-			temporary++
-			el2[inc].id = temporary;
-		}
-	</script>
 </body>
 
 </html>
