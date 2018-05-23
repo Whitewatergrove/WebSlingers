@@ -4,8 +4,6 @@ $(document).ready(function () {
     });
 });
 
-let routes = require("../../routes/routes")
-
 function openCollapse() {
     var coll = document.getElementsByClassName("collapsible");
 
