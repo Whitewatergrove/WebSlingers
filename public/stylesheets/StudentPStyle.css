@@ -230,6 +230,9 @@ span:after {
 	color: #faf9f6;
 	font-size: 18px;
 }
+.w3-opacity{
+	margin: 15px 10%;
+}
 
 /* set element styles to fit tablet and higher(desktop) */
 .tabBorder:hover{
@@ -542,8 +545,8 @@ hr {
     right: 35px;
     top: 15px;
     font-size: 40px;
-    font-weight: bold;
-    color: #f1f1f1;
+	font-weight: bold;
+	color: #2e78ba
 }
 
 .close:hover,
@@ -604,21 +607,17 @@ hr {
 
 .plusbutt{
 	color: #2e78ba ;
-	float: left;
+	float: right;
 	opacity: 0.5;
-	border: 2px solid #2e78ba;
-	border-radius: 50%;
-	font-size: 1.5rem;
-	padding: 8.5px 17.045px;
+	border: 0;
+	border-radius: 0;
+	padding:  0;
+	text-align: center;
+	font-size: 36px;
+	font-weight: bold;
 	background-color: #f1f1f1;
 }
 .plusbutt:hover{
-	color: #2e78ba ;
-	float: left;
 	opacity: 1;
-	border: 2px solid #2e78ba;
-	border-radius: 50%;
-	font-size: 1.5rem;
-	padding: 8.5px 17.045px;
 	background-color: #f1f1f1;
 }

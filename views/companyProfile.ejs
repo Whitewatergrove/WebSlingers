@@ -147,8 +147,9 @@
 									<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:100%;" margin="auto">Lägg till</button>
 									<div id="id01" class="modal">
 
-										<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal" style="color: white;">&times;</span>
+										
 										<form class="modal-content" method="POST" action="add_job" style="width:90%; margin:auto;">
+										<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 											<div class="container">
 												<div class="w3-container">
 													<h2>Lägg till</h2>
@@ -160,25 +161,25 @@
 														<label>
 															<strong>Datum</strong>
 														</label>
-														<input id="Job-title" class="w3-input" type="text" name="date" maxlength="20" required autofocus ="autofocus"maxlength="20">
+														<input id="Job-title" placeholder="Startdatum - slutdatum" class="w3-input" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" type="text" name="date" maxlength="20" required autofocus ="autofocus">
 													</p>
 													<p>
 														<label>
-															<strong>Titel</strong>
+															<strong>Namn</strong>
 														</label>
-														<input id="Job-title" class="w3-input" type="text" name="title"   maxlength="50"required  >
+														<input id="Job-title" class="w3-input" placeholder="Jobbnamn" type="text" name="title" maxlength="50" >
 													</p>
 													<p>
 														<label>
 															<strong>Teaser</strong>
 														</label>
-														<input id="Job-title" class="w3-input" type="text" name="teaser"  maxlength="50" required >
+														<input id="Job-title" class="w3-input" placeholder="Kort information om jobbet" type="text" name="teaser"  maxlength="50">
 													</p>
 													<p>
 														<label>
 															<strong>Jobbinformation</strong>
 														</label>
-														<input id="Job-info" class="w3-input" type="text"  maxlength="500" name="info" required>
+														<input id="Job-info" class="w3-input" placeholder="Detaljerad information om uppdraget" type="text"  maxlength="500" name="info" data-toggle="tooltip" title="Fyll i maximalt 500 karaktärer" >
 													</p>
 												</form>
 												<hr>
@@ -229,10 +230,10 @@
 															<%= result.Info %>
 														</p>
 														<hr>
-														<h3>Kvalifikationer</h3>
-														<button type="button" class="plusbutt" data-toggle="modal" data-target="#<%= temp2 = temp2+1 %>">
-															<strong>+</strong>
-														</button>
+														<h3 style="margin-left: 25px;">Kvalifikationer <button type="button" class="plusbutt" data-toggle="modal" data-target="#<%= temp2 = temp2+1 %>">
+															+
+														</button></h3>
+														
 														<ul>
 															<% if(locals.quals) { %>
 																<% quals.forEach(function(results) { %>
@@ -244,14 +245,14 @@
 																			<% }); %>
 																				<% }; %>
 														</ul>
-														<hr>
+														
 														<div class="container">
 															<div id="modalBG1">
 															</div>
 															<!-- The Modal -->
 															<div class="modal fade qualtest" id="CompanyModalSkill">
 																<div class="modal-dialog modal-dialog-centered">
-																	<div class="modal-content">
+																	<div class="modal-content" style="width:90%; margin:auto;">
 																		<button type="button" class="close" data-dismiss="modal">&times;</button>
 																		<!-- Modal Header -->
 																		<div class="modal-header">
@@ -288,12 +289,13 @@
 													</div>
 
 													<div id="id02" class="modal test">
-														<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+														
 
 														<form class="modal-content" action="update_job" method="POST" style="width:90%; margin:auto;" onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
+															<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 															<div class="container">
 																<div class="w3-container">
-																	<h2>Uppdatera job</h2>
+																	<h2>Uppdatera jobb</h2>
 																</div>
 																<hr>
 																<form class="w3-container">
@@ -301,25 +303,25 @@
 																		<label>
 																			<strong>Datum</strong>
 																		</label>
-																		<input class="w3-input" type="text" placeholder="Fyll i Datum" name="date" data-toggle="tooltip" title="ååmmdd" value="<%= exjobs[0].date %>"autofocus ="autofocus">
+																		<input class="w3-input" type="text" name="date" placeholder="Startdatum - slutdatum" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" value="<%= exjobs[0].date %>"autofocus ="autofocus">
 																	</p>
 																	<p>
 																		<label>
-																			<strong>Title</strong>
+																			<strong>Namn</strong>
 																		</label>
-																		<input class="w3-input" type="text" name="name" placeholder="Fyll i namn" data-toogle="tooltip" title="Jobb titel" value="<%= exjobs[0].Name %>">
+																		<input class="w3-input" type="text" name="name" placeholder="Jobbnamn" value="<%= exjobs[0].Name %>">
 																	</p>
 																	<p>
 																		<label>
 																			<strong>Teaser</strong>
 																		</label>
-																		<input class="w3-input" type="text" placeholder="Teaser" data-toogle title="Något intressant" name="teaser" value="<%= exjobs[0].teaser %>">
+																		<input class="w3-input" type="text" placeholder="Kort information om jobbet" name="teaser" value="<%= exjobs[0].teaser %>">
 																	</p>
 																	<p>
 																		<label>
-																			<strong>Jobb info</strong>
+																			<strong>Jobbinformation</strong>
 																		</label>
-																		<input class="w3-input" placeholder="Info" type="text" name="info" data-toogle="Jobb beskrivning" title="Fyll i jobb beskrivning"
+																		<input class="w3-input" placeholder="Detaljerad information om uppdraget" maxlength="500" type="text" name="info" data-toggle="tooltip" title="Fyll i maximalt 500 karaktärer"
 																		    value="<%= exjobs[0].Info %>">
 																	</p>
 
@@ -372,9 +374,9 @@
 												<input type="text" name="pnum" id="button2" disabled value="<%= get_company_user_and_nr[0].Orgnr %>">
 												<input type="password" name="password" id="button2" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
 												    title="Fyll i ditt lösenord 4-16 karaktärer"autofocus ="autofocus">
-												<input type="text" name="name" id="button2" maxlength="45" required placeholder="Företagsnamn..." data-toggle="tooltip" title="Fyll i företagsnamn">
-												<input type="text" name="address" id="button2" maxlength="45" required placeholder="Adress..." data-toggle="tooltip" title="Fyll i postadress">
-												<input type="text" name="tel" id="button2" pattern= "[0-9]{0,12}" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i företagstelefonnummer">
+												<input type="text" name="name" id="button2" maxlength="45" required placeholder="Företagsnamn" data-toggle="tooltip" title="Fyll i företagsnamn">
+												<input type="text" name="address" id="button2" maxlength="45" required placeholder="Adress" data-toggle="tooltip" title="Fyll i stad">
+												<input type="text" name="tel" id="button2" pattern= "[0-9]{0,12}" required placeholder="Telefonnummer" data-toggle="tooltip" title="Fyll i telefonnummer max 12 siffror">
 											</div>
 											<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Uppdatera ändringar</button>
 										</form>
