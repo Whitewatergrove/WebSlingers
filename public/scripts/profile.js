@@ -26,11 +26,10 @@ $(document).ready(function () {
         coll[i].addEventListener("click", function () {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            if (content.style.maxHeight) {
+            if (content.style.maxHeight) 
                 content.style.maxHeight = null;
-            } else {
+            else
                 content.style.maxHeight = content.scrollHeight + "px";
-            }
         });
     }
 })
@@ -73,13 +72,13 @@ function setIcon() {
     console.log(el.className);
     if (selectedRole == "student") {
         ph.placeholder = 'yymmddxxxx...';
-        ph.title = "Fyll i ditt personnummer 10 siffror"
+        ph.title = 'Fyll i ditt personnummer 10 siffror';
         el.className -= " fas fa-industry";
         el.className += ' fas fa-graduation-cap';
 
     } else if (selectedRole == 'company') {
         ph.placeholder = 'Organisation nummer...';
-        ph.title = "Fyll i ditt Org.nummer 10 siffror"
+        ph.title = 'Fyll i ditt Org.nummer 10 siffror';
         el.className -= " fas fa-graduation-cap";
         el.className += " fas fa-industry";
     }
@@ -113,9 +112,8 @@ var modal = document.getElementById('id01');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-    if (event.target == modal) {
+    if (event.target == modal)
         modal.style.display = "none";
-    }
 }
 // $(document).ready(function(){
 //     $("#addjob").click(function(){
