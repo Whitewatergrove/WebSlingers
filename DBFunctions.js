@@ -5,7 +5,7 @@ let app = express();
 let bodyParser = require('body-parser')
 
 //database connection
-var con = mysql.createConnection({
+let con = mysql.createConnection({
     host: "83.255.197.121",
     user: "joakim",
     password: "joakim97",
@@ -15,7 +15,7 @@ var con = mysql.createConnection({
 
 module.exports = {
 
-    
+
     //***********************************************************************************/
     //selects
 
@@ -413,6 +413,25 @@ module.exports = {
     get_company_promise: function (username) {
         return new Promise((resolve, reject) => {
             var sql = "SELECT * FROM companies WHERE UID = ?;";
+            con.query(sql, username, function (err, results) {
+                if (err) {
+                    console.log("get_company_promise query error");
+                    con.onerror = function () {
+                        let msg = "Promise error";
+                        reject(new Error(msg));
+                    }
+                }
+                else {
+                    console.log("get_company_promise query functional");
+                    resolve(results);
+                }
+            })
+        })
+    },
+
+    get_all_company_promise: function (username) {
+        return new Promise((resolve, reject) => {
+            var sql = "SELECT * FROM companies;";
             con.query(sql, username, function (err, results) {
                 if (err) {
                     console.log("get_company_promise query error");

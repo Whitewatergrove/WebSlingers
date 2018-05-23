@@ -9,6 +9,7 @@ let db = require('../DBFunctions');
 let students;
 let exjobs;
 let classes;
+let allCompanies;
 
 module.exports = {
 
@@ -24,19 +25,26 @@ module.exports = {
             db.get_student_qual_promise(current.student),               // Fetching the qualificatons of the student.
             db.get_demanded_promise(),                                  // Fetching all demanded qualifications for all exjob.
             db.get_qualifications_catagories_promise(),
+            db.get_all_company_promise(),
         ]).then((lists) => {                                // Starts working with the promises when all
                                                             // of them is resolved or rejected.
             exjobs = lists[0],
             classes = lists[1],
             current.QUAL = lists[2],
             students = current,
+            allCompanies = lists[5],
 
             exjobs.forEach(exjob => {                                   // Looping through all exjobs and
                 exjob.demanded = [];                                    // sets their demandingqualifications.
+                exjob.company = {};
                 lists[3].forEach(demand => {
                     if(exjob.ID === demand.EID)
                         exjob.demanded[exjob.demanded.length] = demand.QID;
                 });
+                lists[5].forEach(companie => {
+                    if(exjob.ExOID === companie.Orgnr)
+                    exjob.company = companie
+                })
             }),
 
             classes.forEach(klass => {
