@@ -3,8 +3,23 @@ $(document).ready(function () {
         $('.side-nav').toggleClass('visible');
     });
 });
+$(document).ready(function () {
 
-function openCollapse() {
+    let el = document.getElementsByClassName('test');
+    let el2 = document.getElementsByClassName('test2');
+    let j = 0;
+    let temporary = 1000;
+    for (let i = 0; i < el.length; i++) {
+        j++
+        el[i].id = j;
+    }
+    for (let inc = 0; inc < el2.length; inc++) {
+        temporary++
+        el2[inc].id = temporary;
+    }
+
+});
+$(document).ready(function () {
     var coll = document.getElementsByClassName("collapsible");
 
     for (var i = 0; i < coll.length; i++) {
@@ -17,7 +32,7 @@ function openCollapse() {
                 content.style.maxHeight = content.scrollHeight + "px";
         });
     }
-}
+})
 
 function openHelptab(tabName) {
     var i, x;
@@ -93,7 +108,6 @@ $(function () {
 //     JobList.appendChild(ListVar);
 // }
 
-// Get the modal
 var modal = document.getElementById('id01');
 
 // When the user clicks anywhere outside of the modal, close it
@@ -109,12 +123,16 @@ window.onclick = function (event) {
 // });
 
 function openModal(k) {
-						
-    $('.changebtn').click(function () {
-        document.getElementById(k).style.display = 'block'
-    });
-
-    $('.cancelbtn').click(function () {
-        document.getElementById(k).style.display = 'none'
-    });
+    document.getElementById(k).style.display = 'block'
 }
+function closeModal(k) {
+    document.getElementById(k).style.display = 'none'
+
+}
+// $('.changebtn').click(function () {
+//     document.getElementById(k).style.display = 'block'
+// });
+// $('.cancelbtn').click(function () {
+//     document.getElementById(k).style.display = 'none'
+// });
+

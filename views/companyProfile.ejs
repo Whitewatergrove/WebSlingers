@@ -190,7 +190,7 @@
 										</form>
 									</div>
 									<ul class="Job-list" id="job_list">
-										<% var temp = 0, temp2 = 1000; %>
+										<% var openModalTemp = 0, temp2 = 1000, closeModalTemp = 0 %>
 										
 											<% get_exjobs.forEach(function(result) { %>
 												<hr>
@@ -202,7 +202,7 @@
 															<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
 															<button class="matchbtn">Match</button>
 														</form>
-														<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Change</button>
+														<button class="changebtn" onclick="openModal('<%= openModalTemp = openModalTemp + 1 %>')">Change</button>
 														<form action="delete_job" method="POST" onsubmit="return confirm('Är du säker på att du vill ta bort detta arbete?')">
 															<input hidden name="job_id" value="<%= result.ID %>"></input>
 															<button type="submit" class="removebtn">Remove</button>
@@ -222,7 +222,7 @@
 													<p>
 														<%= result.teaser %>
 													</p>
-													<button class="collapsible" onclick="openCollapse()">Mer info</button>
+													<button class="collapsible">Mer info</button>
 													<div class="collapseContent">
 														<h3>Jobbeskrivning</h3>
 														<p>
@@ -326,7 +326,7 @@
 																	<div class="clearfix">
 																		<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
 
-																		<button type="button" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Avbryt</button>
+																		<button type="button" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;" onclick="closeModal('<%= closeModalTemp = closeModalTemp + 1 %>')" class="cancelbtn">Avbryt</button>
 																		<button class="updatebtn" id="addjob" style="width: 50%; float: left;"type="submit">Spara</button>
 																	</div>
 																</form>
