@@ -9,7 +9,6 @@ let db = require('../DBFunctions');
 let students;
 let exjobs;
 let classes;
-let line = '---------------------------------------------';
 
 module.exports = {
 
@@ -29,7 +28,6 @@ module.exports = {
                                                             // of them is resolved or rejected.
             exjobs = lists[0],
             classes = lists[1],
-
             current.QUAL = lists[2],
             students = current,
 
@@ -38,7 +36,7 @@ module.exports = {
                 lists[3].forEach(demand => {
                     if(exjob.ID === demand.EID)
                         exjob.demanded[exjob.demanded.length] = demand.QID;
-                })
+                });
             }),
 
             classes.forEach(klass => {
@@ -46,12 +44,8 @@ module.exports = {
                 lists[4].forEach(qual => {
                     if(klass.class === qual.class)
                         klass.qual[klass.qual.length] = qual.qualifications;
-                })
-            }),
-
-            console.log("Student"),
-            console.log(line);
-
+                });
+            });
         }).catch((error) => {
             // handle error here,
             console.error("Student Prematching Promise Error");
@@ -64,8 +58,7 @@ module.exports = {
         temp.student = students;
         temp.exjobs = [];
         exjobs.forEach(exjob => {                           // Checking if the there is any exjobs that demanding 
-            if(students.QUAL.length > 0)                    // any of the student qualification.
-            {
+            if(students.QUAL.length > 0) {                  // any of the student qualification.
                 exjob.weight = 0;
                 students.QUAL.forEach(qual => { 
                     exjob.demanded.forEach(demd => {
@@ -74,8 +67,7 @@ module.exports = {
 
                         if(qual.QID === demd)
                             exjob.weight = exjob.weight +1;
-                        else
-                        {
+                        else {
                             let tempSQ = 'tempSQ';
                             let tempED = 'tempED';
                             classes.forEach(obj => {
@@ -94,14 +86,14 @@ module.exports = {
             }
             else
                 console.error('No qualifications');
-        })
+        });
 
-        temp.exjobs.sort(function(a, b){
+        temp.exjobs.sort(function(a, b){                                // Sort the array, Highest to lowest by weight.
                 return b.weight - a.weight;
         });
-        temp.exjobs = temp.exjobs.filter(exjob => exjob.weight > 0);
+        temp.exjobs = temp.exjobs.filter(exjob => exjob.weight > 0);    // Removes all exjobs that has a weight that is 0 or lower.
+
         console.log(temp.exjobs);
-        
         return temp.exjobs;
     }
 }

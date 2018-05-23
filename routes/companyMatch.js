@@ -5,11 +5,9 @@ let app = express();
 let bodyParser = require('body-parser')
 let db = require('../DBFunctions');
 
-
 let students;
 let exjobs;
 let classes;
-let line = '---------------------------------------------';
 
 module.exports = {
 
@@ -61,10 +59,7 @@ module.exports = {
                     if(klass.class === qual.class)
                         klass.qual[klass.qual.length] = qual.qualifications;
                 })
-            }),
-            console.log("Company"),
-            console.log(line);
-
+            });
         }).catch((error) => {
             // handle error here,
             console.error("Company Prematching Promise Error");
@@ -81,8 +76,7 @@ module.exports = {
         })
         temp.exjob.students = [];
         students.forEach(student => {
-            if(temp.exjob.demanded.length > 0)
-            {
+            if(temp.exjob.demanded.length > 0) {
                 student.weight = 0;
                 temp.exjob.demanded.forEach(demd => {                // Checking if the there is any exjobs that demanding 
                     student.QUAL.forEach(qual => {
@@ -90,8 +84,7 @@ module.exports = {
                             temp.exjob.students[temp.exjob.students.length] = student;
                         if(qual === demd)
                             temp.exjob.students[temp.exjob.students.length - 1].weight = temp.exjob.students[temp.exjob.students.length - 1].weight +1;
-                        else
-                        {
+                        else {
                             let tempSQ = 'tempSQ';
                             let tempED = 'tempED';
                             classes.forEach(obj => {
@@ -100,24 +93,23 @@ module.exports = {
                                     tempED = obj.class;
                                     if(element === qual)
                                     tempSQ = obj.class;
-                                })
-                            })
+                                });
+                            });
                             if(tempED === tempSQ)
                                 temp.exjob.students[temp.exjob.students.length - 1].weight = temp.exjob.students[temp.exjob.students.length - 1].weight + 0.4;
                         }
-                    })
-                })
+                    });
+                });
             }
             else{ console.error('No qualifications');}
-        })
+        });
 
-        temp.exjob.students.sort(function(a, b){
+        temp.exjob.students.sort(function(a, b){                                            // Sort the array, Highest to lowest by weight.
             return b.weight - a.weight;
         });
-        temp.exjob.students = temp.exjob.students.filter(student => student.weight > 0);
+        temp.exjob.students = temp.exjob.students.filter(student => student.weight > 0);    // Removes all exjobs that has a weight that is 0 or lower.
 
         console.log(temp.exjob.students);
-
         return temp.exjob.students;
     }
 }

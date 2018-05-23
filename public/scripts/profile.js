@@ -11,11 +11,10 @@ function openCollapse() {
         coll[i].addEventListener("click", function () {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            if (content.style.maxHeight) {
+            if (content.style.maxHeight) 
                 content.style.maxHeight = null;
-            } else {
+            else
                 content.style.maxHeight = content.scrollHeight + "px";
-            }
         });
     }
 }
@@ -99,9 +98,8 @@ var modal = document.getElementById('id01');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-    if (event.target == modal) {
+    if (event.target == modal)
         modal.style.display = "none";
-    }
 }
 // $(document).ready(function(){
 //     $("#addjob").click(function(){
