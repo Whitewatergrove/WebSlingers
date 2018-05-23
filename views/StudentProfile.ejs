@@ -210,8 +210,8 @@
 								<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" margin="auto">Lägg till</button>
 								<hr>
 								<div id="id01" class="modal">
-									<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 									<form class="modal-content" method="POST" action="add_workexp" style="width:90%; margin:auto;">
+											<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 										<div class="container">
 											<div class="w3-container">
 												<h2>Lägg till jobb</h2>
@@ -275,8 +275,8 @@
 											</div>
 											<hr>
 											<div id="id02" class="modal test">
-												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 												<form class="modal-content" action="update_workexp" method="POST">
+													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 													<div class="container">
 														<div class="w3-container">
 															<h2>Uppdatera jobb</h2>
@@ -321,8 +321,8 @@
 								<hr>
 
 								<div id="id03" class="modal">
-									<span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
 									<form class="modal-content" method="POST" action="add_education" style="width:90%; margin:auto;">
+											<span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
 										<div class="container">
 											<div class="w3-container">
 												<h2>Lägg till utbildning</h2>
@@ -386,8 +386,8 @@
 											</div>
 											<hr>
 											<div id="id02" class="modal test2">
-												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 												<form class="modal-content" action="update_education" method="POST">
+													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 													<div class="container">
 														<div class="w3-container">
 															<h2>Uppdatera utbildning</h2>
@@ -441,10 +441,10 @@
 			<div class="modal fade" id="ProfileModal">
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 						<!-- Modal Header -->
 						<div class="modal-header">
-							<button type="button" class="button3" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title" style="margin: auto;">Redigera profil</h4>
 						</div>
 
@@ -467,7 +467,7 @@
 									</select>
 									<br/>
 								</div>
-								<Button type="submit" id="butt">Uppdatera ändringar</Button>
+								<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Uppdatera ändringar</Button>
 							</form>
 							<form action="/filetest" method="POST" enctype="multipart/form-data">
 								<input type="file" name="filename">
@@ -490,16 +490,16 @@
 			<div class="modal fade" id="ProfileModalSkill">
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 						<!-- Modal Header -->
 						<div class="modal-header">
-							<button type="button" class="button3" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Lägg till kunskaper</h4>
+							<h4 class="modal-title" style="margin: auto;">Lägg till kunskaper</h4>
 						</div>
 						<!-- Modal body add student qual-->
-						<div class="modal-body">
+						<div class="modal-body" >
 							<form action="/change_skill_student" method="POST">
-								<div class="container">
+								<div class="container" style="text-align: center;">
 									<select name="student_qual">
 										<% if(locals.results) { %>
 											<% results.forEach(function(result) { %>
@@ -511,7 +511,11 @@
 									</select>
 									<br/>
 								</div>
+<<<<<<< HEAD
 								<button type="submit" id="butt">Uppdatera Erfaranhet</button>
+=======
+								<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Uppdatera</button>
+>>>>>>> c56df66eff8a82fe5f3ab7a16660908ceb061cbb
 							</form>
 
 						</div>
