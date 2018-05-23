@@ -77,7 +77,7 @@
 					</a>
 				</li>
 				
-				<li class="tabBorder">
+				<li class="tabBorder" id="Job">
 					<a href="studentMatch">
 						<span>
 							<i class="fas fa-folder" id="SideIcon"></i>
@@ -219,19 +219,19 @@
 													<label>
 														<strong>Datum</strong>
 													</label>
-													<input id="Job-title" class="w3-input" type="text" placeholder="2001-2002..." name="date" required autofocus ="autofocus">
+													<input id="Job-title" class="w3-input" type="text" placeholder="Startdatum - slutdatum" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" name="date" autofocus ="autofocus">
 												</p>
 												<p>
 													<label>
-														<strong>Titel</strong>
+														<strong>Jobbtitel</strong>
 													</label>
-													<input id="Job-title" class="w3-input" type="text" placeholder="Titel..." name="title" required>
+													<input id="Job-title" class="w3-input" type="text"placeholder="Jobbnamn" name="title">
 												</p>
 												<p>
 													<label>
 														<strong>Jobbinformation</strong>
 													</label>
-													<input id="Job-info" class="w3-input" type="text" placeholder="Information om jobbet..." name="info" required>
+													<input id="Job-info" class="w3-input" type="text" placeholder="Kort information om erfarenheterna" name="info">
 												</p>
 											</form>
 
@@ -272,8 +272,9 @@
 											</div>
 											<hr>
 											<div id="id02" class="modal test">
-												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+												
 												<form class="modal-content" action="update_workexp" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
+													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 													<div class="container">
 														<div class="w3-container">
 															<h2>Uppdatera jobb</h2>
@@ -284,19 +285,19 @@
 																<label>
 																	<strong>Datum</strong>
 																</label>
-																<input class="w3-input" type="text" value="<%= result.date %>" name="date" autofocus ="autofocus">
+																<input class="w3-input" type="text" value="<%= result.date %>" name="date" placeholder="Startdatum - slutdatum" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" autofocus ="autofocus">
 															</p>
 															<p>
 																<label>
 																	<strong>Titel</strong>
 																</label>
-																<input class="w3-input" type="text" value="<%= result.work %>" name="name">
+																<input class="w3-input" type="text" value="<%= result.work %>" name="name" placeholder="Jobbtitel">
 															</p>
 															<p>
 																<label>
 																	<strong>Jobb information</strong>
 																</label>
-																<input class="w3-input" type="text" value="<%= result.info %>" name="info">
+																<input class="w3-input" type="text" value="<%= result.info %>" name="info" placeholder="Kort information om erfarenheterna">
 															</p>
 															<div class="clearfix">
 																<input hidden id="exjob_id" name="work_id" value="<%= result.ID %>"></input>
@@ -384,8 +385,9 @@
 											</div>
 											<hr>
 											<div id="id02" class="modal test2">
-												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-												<form class="modal-content" action="update_education" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
+												<form class="modal-content" style="width:90%; margin:auto;" action="update_education" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
+													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+												
 													<div class="container">
 														<div class="w3-container">
 															<h2>Uppdatera utbildning</h2>
@@ -438,7 +440,7 @@
 			<!-- The Modal -->
 			<div class="modal fade" id="ProfileModal">
 				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
+					<div class="modal-content" style="width:90%; margin:auto;">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 						<!-- Modal Header -->
@@ -452,11 +454,11 @@
 								<div class="container">
 									<input type="text" name="username" id="uname" disabled value="<%= student_user_and_nr[0].UID %>">
 									<input type="text" name="pnum" id="pnum" disabled value="<%= student_user_and_nr[0].pnr %>">
-									<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
+									<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord" data-toggle="tooltip"
 									 title="Fyll i ett nytt lösenord  4-16 karaktärer" autofocus ="autofocus">
-									<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..." data-toggle="tooltip" title="Fyll i ditt fullständiga namn ">
-									<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress..." data-toggle="tooltip" title="Fyll i din postadress">
-									<input type="text" name="tel" id="tel" pattern="[0-9]{0,12}" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i ditt telnummer max 12 siffror">
+									<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn" data-toggle="tooltip" title="Fyll i ditt fullständiga namn">
+									<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress" data-toggle="tooltip" title="Stadsnamn">
+									<input type="text" name="tel" id="tel" pattern="[0-9]{0,12}" required placeholder="Telefonnummer" data-toggle="tooltip" title="Fyll i telefonnummer max 12 siffror">
 									<select name="gender">
 										<option value="Man">Man</option>
 										<option value="Kvinna">Kvinna</option>
@@ -482,7 +484,7 @@
 			<!-- The Modal -->
 			<div class="modal fade" id="ProfileModalSkill">
 				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
+					<div class="modal-content" style="width:90%; margin:auto;">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 						<!-- Modal Header -->
