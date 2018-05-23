@@ -9,7 +9,6 @@ let db = require('../DBFunctions');
 let students;
 let exjobs;
 let classes;
-let allCompanies;
 
 module.exports = {
 
@@ -32,7 +31,6 @@ module.exports = {
             classes = lists[1],
             current.QUAL = lists[2],
             students = current,
-            allCompanies = lists[5],
 
             exjobs.forEach(exjob => {                                   // Looping through all exjobs and
                 exjob.demanded = [];                                    // sets their demandingqualifications.
@@ -43,8 +41,8 @@ module.exports = {
                 });
                 lists[5].forEach(companie => {
                     if(exjob.ExOID === companie.Orgnr)
-                    exjob.company = companie
-                })
+                    exjob.company = companie;
+                });
             }),
 
             classes.forEach(klass => {
