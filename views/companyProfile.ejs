@@ -121,11 +121,15 @@
 											<i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
 											<%= get_company_user_and_nr[0].Orgnr %>
 										</p>
-										<hr>
-										<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModal">
+										<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; " data-toggle="modal" data-target="#ProfileModal">
 											<strong>Redigera</strong>
 										</button>
 										<hr>
+										<!-- <hr>
+										<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModal">
+											<strong>Redigera</strong>
+										</button>
+										<hr> -->
 								</div>
 							</div>
 							<br>
@@ -184,7 +188,8 @@
 										</form>
 									</div>
 									<ul class="Job-list" id="job_list">
-										<% var temp = 0 %>
+										<% var temp = 0, temp2 = 1000; %>
+										
 											<% get_exjobs.forEach(function(result) { %>
 												<hr>
 												<div class="dropdown">
@@ -202,7 +207,7 @@
 														</form>
 													</div>
 												</div>
-												<div class="w3-container">
+												
 													<h4 class="w3-opacity">
 														<b>
 															<%= result.Name %>
@@ -223,7 +228,7 @@
 														</p>
 														<hr>
 														<h3>Kvalifikationer</h3>
-														<button type="button" class="plusbutt" data-toggle="modal" data-target="#CompanyModalSkill">
+														<button type="button" class="plusbutt" data-toggle="modal" data-target="#<%= temp2 = temp2+1 %>">
 															<strong>+</strong>
 														</button>
 														<ul>
@@ -242,7 +247,7 @@
 															<div id="modalBG1">
 															</div>
 															<!-- The Modal -->
-															<div class="modal fade" id="CompanyModalSkill">
+															<div class="modal fade qualtest" id="CompanyModalSkill">
 																<div class="modal-dialog modal-dialog-centered">
 																	<div class="modal-content">
 																		<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -253,12 +258,12 @@
 																		</div>
 																		<!-- Modal body add student qual-->
 																		<div class="modal-body">
-																			<form action="/change_skill_xjob" method="POST">
+																			<form action="/update_skill_xjob" method="POST">
 																				<div class="container">
 																					<select name="xjob_qual">
-																						<% qual_list.forEach(function(result) { %>
-																							<option value="<%= result.Qualification %>">
-																								<%= result.Qualification %>
+																						<% qual_list.forEach(function(resultat) { %>
+																							<option value="<%= resultat.Qualification %>">
+																								<%= resultat.Qualification %>
 																							</option>
 																							<% }); %>
 																					</select>
@@ -267,7 +272,6 @@
 																				</div>
 																				<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Lägg till</button>
 																			</form>
-
 																		</div>
 
 																		<!-- Modal footer -->
@@ -330,6 +334,7 @@
 
 													</div>
 													<% }); %>
+												
 									</ul>
 									<hr>
 									<!-- End Ex-jobs -->
@@ -464,10 +469,17 @@
 		<script type="text/javascript">
 			let el = document.getElementsByClassName('test');
 			let j = 0;
+			let le = document.getElementsByClassName('qualtest');
+			let y = 1000;
 
 			for (let i = 0; i < el.length; i++) {
 				j++
 				el[i].id = j;
 			}
+			for (let i = 0; i < le.length; i++){
+				y++;
+				le[i].id = y;
+			}
 		</script>
+
 </body>

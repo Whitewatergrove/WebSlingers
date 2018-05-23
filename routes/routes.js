@@ -13,8 +13,6 @@ let bcrypt = require('bcrypt');
 let mysql = require('mysql');
 let fs = require("fs");
 
-const nodemailer = require('nodemailer');
-
 var sort_test;
 
 var con = mysql.createConnection({
@@ -266,35 +264,43 @@ router.post('/change_company_profile', function (req, res) {
 });
 
 // filhantering cv
-router.post('/filetest', function (req, res) {
-
-    if (req.files) {
-        console.log(req.files);
-        console.log(req.files.filename.data);
-        //var file = req.files.filename,
-        //    filename = file.name;
-        //    console.log("filnamnet: "+ filename);
-        //file.mv("../public/upload/"+filename, function(err){
-        //    if(err){
-        //        console.log('error occured'+err);
-        //        req.flash('danger', 'error occured');
-        //    }
-        //    else{
-        //        req.flash('success', 'Done!');
-        //        res.redirect("/profile");
-        //    }
-        //})
-        db.update_user_cv(req.session.pnr, req.files.filename.data, function (err, result) {
-            if (err) {
-                req.flash('danger', 'An error has occured while updating');
-                res.redirect('/profile');
-            }
-            else if (!err) {
-                req.flash('success', 'You have succcessfully updated your profile');
-                res.redirect('/profile');
-            }
-        })
-    }
+router.post('/fileupload', (req, res) => {
+    //upload(req, res, (err) => {
+    //    if(err){
+    //        req.flash('danger', "error occured" + err);
+    //        res.redirect('/profile');
+    //    }
+    //    else{
+    //        console.log("filetest: ", req.file);
+    //    }
+    //});
+    //if (req.files) {
+    //    console.log(req.files);
+    //    console.log(req.files.filename.data);
+    //    //var file = req.files.filename,
+    //    //    filename = file.name;
+    //    //    console.log("filnamnet: "+ filename);
+    //    //file.mv("../public/upload/"+filename, function(err){
+    //    //    if(err){
+    //    //        console.log('error occured'+err);
+    //    //        req.flash('danger', 'error occured');
+    //    //    }
+    //    //    else{
+    //    //        req.flash('success', 'Done!');
+    //    //        res.redirect("/profile");
+    //    //    }
+    //    //})
+    //    //db.update_user_cv(req.session.pnr, req.files.filename.data, function (err, result) {
+    //    //    if (err) {
+    //    //        req.flash('danger', 'An error has occured while updating');
+    //    //        res.redirect('/profile');
+    //    //    }
+    //    //    else if (!err) {
+    //    //        req.flash('success', 'You have succcessfully updated your profile');
+    //    //        res.redirect('/profile');
+    //    //    }
+    //    //})
+    //}
 });
 // skriva ut cv på sidan
 router.get('/Certificate', function (req, res) {
@@ -509,7 +515,9 @@ router.post('/change_skill_student', function (req, res) {
         }
     })
 });
-router.post('/change_skill_xjob', function (req, res) {
+router.post('/update_skill_xjob', function (req, res) {
+    console.log("felsökning: ", req.body.job_id);
+    console.log("felsökning: ", req.body.xjob_qual);
     db.insert_xjob_qual(req.body.job_id, req.body.xjob_qual, function (err, results) {
         if (err) {
             req.flash('danger', 'The qualification already exists on this user');
