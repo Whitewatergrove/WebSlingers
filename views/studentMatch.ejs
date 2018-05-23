@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Student profile</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
+	<title>Profile</title>
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/styleindex.css">
+	<link rel="stylesheet" type="text/css" href="./stylesheets/HelpProfile.css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		html,
+		body,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: "Roboto", sans-serif
+		}
+	</style>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+	 crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="./scripts/StudentPScript.js"></script>
+	<script src="../scripts/profile.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	 crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+	 crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<!-- Image at the top -->
+	<div class="header">
+		<div class="logo">
+			<img src="images/oru-16x16.png">
+			<span>Webslingers</span>
+		</div>
+		<a href="#" class="nav-trigger">
+			<span></span>
+		</a>
+	</div>
+	<!-- Image at bottom -->
+	<div class="side-nav">
+		<div class="logo">
+			<img src="images/oru-16x16.png">
+			<span>Webslingers</span>
+		</div>
+		<nav>
+			<!-- All buttoms in the sidepanel -->
+			<ul class="tabs">
+                
+				<li class="tabBorder" style="border-left: solid 5px #2e78ba ">
+					<a href= "/profile">
+						<span>
+                            <i class="fas fa-arrow-left"  id="SideIcon"></i>
+						</span>
+						<span id="BlackT">Backa</span>
+					</a>
+				</li>
+				<li>
+					<a href="/logout">
+						<span>
+							<i class="fas fa-sign-out-alt" id="SideIcon"></i>
+						</span>
+						<span>Logga ut</span>
+					</a>
+				</li>
+				<img src="./images/oru.png" class="si">
+			</ul>
+			<!-- End buttoms sidepanel -->
+		</nav>
+	</div>
+
+	<!-- Ex-jobs -->
+	<div class="main-content" id="Jobs" style="display:block">
+		<div class="main">
+			<div class="widget" id="JobsWidget">
+				<div class="title">Tillgängliga jobb</div>
+				<% if(locals.matchning) {%>
+					<ul class="Job-list" id="job_list" style="background-color: #fff">
+
+						<% matchning.forEach(function(result) { %>
+							<hr>
+							<div class="dropdown">
+								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+								style="color: gray; width: auto; background-color: #ffff; border: 0; float: right; font-size: 1.5rem;
+								margin-right: 24px;"></button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+								</div>
+							</div>
+							<div class="w3-container">
+								<h4 class="w3-opacity">
+									<b>
+										<%= result.Name %>
+									</b>
+								</h4>
+								<h6 class="w3-text">
+									<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
+								<p>
+									<%= result.Info %>
+								</p>
+								<button class="matchbtn">Ansök</button>
+							</div>
+							<% }); %>
+					</ul>
+					<% } %>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		let el = document.getElementsByClassName('test');
+		let el2 = document.getElementsByClassName('test2');
+		let j = 0;
+		let temporary = 1000;
+		for (let i = 0; i < el.length; i++) {
+			j++
+			el[i].id = j;
+		}
+		for (let inc = 0; inc < el2.length; inc++) {
+			temporary++
+			el2[inc].id = temporary;
+		}
+	</script>
+</body>
+
+</html>

@@ -78,7 +78,7 @@
 				</li>
 				
 				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
-					<a>
+					<a href="studentMatch">
 						<span>
 							<i class="fas fa-folder" id="SideIcon"></i>
 							
@@ -210,8 +210,8 @@
 								<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" margin="auto">Lägg till</button>
 								<hr>
 								<div id="id01" class="modal">
-									<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 									<form class="modal-content" method="POST" action="add_workexp" style="width:90%; margin:auto;">
+											<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 										<div class="container">
 											<div class="w3-container">
 												<h2>Lägg till jobb</h2>
@@ -275,8 +275,8 @@
 											</div>
 											<hr>
 											<div id="id02" class="modal test">
-												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 												<form class="modal-content" action="update_workexp" method="POST">
+													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 													<div class="container">
 														<div class="w3-container">
 															<h2>Uppdatera jobb</h2>
@@ -321,8 +321,8 @@
 								<hr>
 
 								<div id="id03" class="modal">
-									<span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
 									<form class="modal-content" method="POST" action="add_education" style="width:90%; margin:auto;">
+											<span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
 										<div class="container">
 											<div class="w3-container">
 												<h2>Lägg till utbildning</h2>
@@ -386,8 +386,8 @@
 											</div>
 											<hr>
 											<div id="id02" class="modal test2">
-												<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 												<form class="modal-content" action="update_education" method="POST">
+													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 													<div class="container">
 														<div class="w3-container">
 															<h2>Uppdatera utbildning</h2>
@@ -441,10 +441,10 @@
 			<div class="modal fade" id="ProfileModal">
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 						<!-- Modal Header -->
 						<div class="modal-header">
-							<button type="button" class="button3" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title" style="margin: auto;">Redigera profil</h4>
 						</div>
 
@@ -467,7 +467,7 @@
 									</select>
 									<br/>
 								</div>
-								<Button type="submit" id="butt">Uppdatera ändringar</Button>
+								<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Uppdatera ändringar</Button>
 							</form>
 							<form action="/filetest" method="POST" enctype="multipart/form-data">
 								<input type="file" name="filename">
@@ -490,36 +490,16 @@
 			<div class="modal fade" id="ProfileModalSkill">
 				<div class="modal-dialog modal-dialog-centered">
 					<div class="modal-content">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 						<!-- Modal Header -->
 						<div class="modal-header">
-							<button type="button" class="button3" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Lägg till kunskaper</h4>
+							<h4 class="modal-title" style="margin: auto;">Lägg till kunskaper</h4>
 						</div>
 						<!-- Modal body add student qual-->
-
-						<div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false" style="color: gray; background-color: #ffff; border: 0; float: right; font-size: 1.5rem;"></button>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
-								<form action="/change_skill_student" method="POST">
-										<select name="student_qual">
-											<% if(locals.results) { %>
-												<% results.forEach(function(result) { %>
-													<option value="<%= result.Qualification %>">
-														<%= result.Qualification %>
-													</option>
-													<% }); %>
-														<% } %>
-										</select>
-										<br/>
-								</form>
-							</div>
-						</div>
-
-						<div class="modal-body">
+						<div class="modal-body" >
 							<form action="/change_skill_student" method="POST">
-								<div class="container">
+								<div class="container" style="text-align: center;">
 									<select name="student_qual">
 										<% if(locals.results) { %>
 											<% results.forEach(function(result) { %>
@@ -531,7 +511,7 @@
 									</select>
 									<br/>
 								</div>
-								<button type="submit" id="butt">Update Skill</button>
+								<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Uppdatera</button>
 							</form>
 
 						</div>
@@ -546,54 +526,6 @@
 			</body>
 		</div>
 	</div>
-
-
-	<!-- Ex-jobs -->
-	<div class="main-content" id="Jobs" style="display:none">
-		<div class="main">
-			<div class="widget" id="JobsWidget">
-				<div class="title">Tillgängliga jobb</div>
-				
-				<form action="/hejhopmanstest" method="POST">
-					<hr>
-					<Button type="submit" id="buttondbtest">Uppdatera</Button>
-				</form>
-				<% if(locals.matchning) {%>
-					<ul class="Job-list" id="job_list" style="background-color: #fff">
-
-						<% matchning.forEach(function(result) { %>
-							<hr>
-							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-								style="color: gray; width: auto; background-color: #ffff; border: 0; float: right; font-size: 1.5rem;
-								margin-right: 24px;"></button>
-								<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
-										<button class="changebtn"  onclick="document.getElementById('id02').style.display='block'">Ändra</button>
-										<form action="delete_job" method="POST">
-											<input hidden name="job_id" value="<%= result.ID %>"></input>
-											<button type="submit" class="removebtn">Remove</button>
-										</form>
-								</div>
-							<div class="w3-container">
-								<h4 class="w3-opacity">
-									<b>
-										<%= result.Name %>
-									</b>
-								</h4>
-								<h6 class="w3-text">
-									<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
-								<p>
-									<%= result.Info %>
-								</p>
-								<button class="matchbtn">Ansök</button>
-							</div>
-							<% }); %>
-					</ul>
-					<% } %>
-			</div>
-		</div>
-	</div>
-
 	<!-- Help -->
 	<div class="main-content" id="Helps" style="display:none">
 		<div class="main">

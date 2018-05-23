@@ -5,7 +5,6 @@ let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 let db = require('../DBfunctions');
 
-let searchTest = require('./search');                   // Test for search function, do not remove!
 let matchingStudent = require('./match');
 let matchingCompany = require('./companyMatch');
 
@@ -109,9 +108,9 @@ router.post('/login', function (req, res) {
                     req.session.role = results[0].Role;
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
-                    if(req.session.role === 'student')
+                    if (req.session.role === 'student') 
                         matchingStudent.prematching(req.session.user);
-                    else if(req.session.role === 'company')
+                    else if (req.session.role === 'company')
                         matchingCompany.companyPrematching(req.session.user);
                 }
                 else {
@@ -313,38 +312,32 @@ router.get('/Certificate', function (req, res) {
     })
 })
 
-router.post('/hejhopmanstest', function (req, res) {            // Needs to find an other solution!!!!
-    db.get_student_user_and_nr(req.session.user, function (err, result) {
-        if (err) throw err;
-        res.render('StudentProfile', {
-            student_user_and_nr: result,
-            matchning: matchingStudent.matcha()
+router.get('/studentMatch', function (req, res) {            // Needs to find an other solution!!!!
+    if (req.session.user && req.session.role == 'student') {
+        db.get_student_user_and_nr(req.session.user, function (err, result) {
+            if (err) throw err;
+            req.session.pnr = result[0].pnr;
+            req.session.student = result;
         });
-    });
-
-});
-
-router.post('/companyMatchTest', function (req, res) {            // Needs to find an other solution!!!!
-    db.get_student_user_and_nr(req.session.user, function (err, result) {
-        if (err) throw err;
-        res.render('companyProfile', {
-            results: result,
-            matchning: matchingCompany.companyMatcha()
+        db.get_student_qualifications(req.session.user, function (err, results) {
+            if (err) throw err;
+            req.session.get_student_qual = results
         });
-    });
-});
-
-router.get('/search', function (req, res) {                     // For testing, do not remove!!!!!!
-    //searchTest.testmatch();
-});
-
-router.get('/dbtester', function (req, res) {
-    db.get_students(function (err, result) {
-        if (err) throw err;
-        req.session.res = result;
-        console.log("dbtest: " + req.session.res[0].UID);
-        console.log("hejhej:", req.session.qual_list);
-    })
+        db.get_qualifications(function (err, results) {
+            if (err) {
+                console.log("err: " + err)
+            }
+            req.session.qual_list = results;
+            res.render('studentMatch', {
+                results: results,
+                student_user_and_nr: req.session.student,
+                get_student_qual: req.session.get_student_qual,
+                matchning: matchingStudent.matcha()
+            });
+        })
+    }
+    else
+        res.redirect('/')
 });
 
 router.post('/forgot', function (req, res) {
@@ -463,11 +456,45 @@ router.post('/delete_job', function (req, res) {
 router.get('/profileStudentProfile', function (req, res) {
     res.render("pages/profileStudentProfile");
 });
-router.post('/testmatch', function(req,res){
-    req.body.job_id 
-    res.render('testmatch', {
-        matchning: matchingCompany.companyMatcha(req.body.job_id)
-    });
+router.post('/exjobMatch', function (req, res) { 
+    if (req.session.user && req.session.role == 'company') {
+        db.get_company_user_and_nr(req.session.user, function (err, result) {
+            if (err) throw err
+            else {
+                req.session.orgnr = result[0].Orgnr;
+                req.session.company = result;
+            }
+        });
+        db.get_qualifications(function (err, results) {
+            if (err) {
+                console.log("err: " + err)
+            }
+            req.session.qual_list = results;
+        });
+        db.get_exjobs(req.session.user, function (err, results) {
+            if (err) throw err
+            else {
+                req.session.exid = results;
+
+            }
+        });
+        db.get_demanded_qual(req.body.job_id, function (err, results) {
+            if (err) {
+                console.log("err: " + err)
+            }
+            req.session.quals = results;
+            req.body.job_id;
+            res.render('exjobMatch', {
+                get_exjobs: req.session.exid,
+                get_company_user_and_nr: req.session.company,
+                qual_list: req.session.qual_list,
+                quals: req.session.quals,
+                matchning: matchingCompany.companyMatcha(req.body.job_id)
+            })
+        });
+    }
+    else
+        res.redirect('/')
 })
 
 router.post('/change_skill_student', function (req, res) {

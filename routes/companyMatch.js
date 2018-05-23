@@ -39,8 +39,8 @@ module.exports = {
             students = lists[1],
             classes = lists[3],
 
-            exjobs.forEach(exjob => {
-                exjob.demanded = [];
+            exjobs.forEach(exjob => {                           // Sets the demanding qualification that
+                exjob.demanded = [];                            // each exjob have.
                 lists[5].forEach(demand => {
                     if(exjob.ID === demand.EID)
                         exjob.demanded[exjob.demanded.length] = demand.QID;
