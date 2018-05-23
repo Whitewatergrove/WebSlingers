@@ -191,6 +191,7 @@
 												<% }) %>
 													<% } %>
 									</ul>
+									<hr>
 									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModalSkill">
 										<strong>Lägg till kunskaper</strong>
 									</button>
@@ -206,7 +207,7 @@
 							<div class="w3-container w3-card w3-white w3-margin-bottom">
 								<h2 class="w3-text-grey w3-padding-16">
 									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Arbete</h2>
-								<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
+								<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" margin="auto">Lägg till</button>
 								<hr>
 								<div id="id01" class="modal">
 									<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -236,10 +237,10 @@
 													<input id="Job-info" class="w3-input" type="text" placeholder="Information om jobbet..." name="info" required>
 												</p>
 											</form>
-											<div class="clearfix">
-												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Avbryt</button>
-												<button class="updatebtn" id="addjob" type="submit">Bekräfta</button>
-											</div>
+
+												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
+												<button class="updatebtn" id="addjob" type="submit" style="width: 50%; background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Bekräfta</button>
+
 										</div>
 									</form>
 								</div>
@@ -248,7 +249,8 @@
 										<% get_workexp.forEach(function(result) { %>
 											<div class="dropdown">
 												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; font-size: 1.5rem;
+													border: 0; float: right;"></button>
 												<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
 													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Ändra</button>
 													<form action="delete_workexp" method="POST">
@@ -301,8 +303,8 @@
 															</p>
 															<div class="clearfix">
 																<input hidden id="exjob_id" name="work_id" value="<%= result.ID %>"></input>
-																<button type="button" class="cancelbtn">Avbryt</button>
-																<button type="submit" class="updatebtn">Spara</button>
+																<button type="button" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
+																<button type="submit" class="updatebtn" style="width: 50%; background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Spara</button>
 															</div>
 														</form>
 													</div>
@@ -315,7 +317,7 @@
 							<div class="w3-container w3-card w3-white">
 								<h2 class="w3-text-grey w3-padding-16">
 									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Utbildning</h2>
-								<button class="modalbtn" onclick="document.getElementById('id03').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
+								<button class="modalbtn" onclick="document.getElementById('id03').style.display='block'"  margin="auto">Lägg till</button>
 								<hr>
 
 								<div id="id03" class="modal">
@@ -346,7 +348,8 @@
 													<input id="education-info" class="w3-input" type="text" placeholder="Information om utbildningen..." name="info" required>
 												</p>
 											</form>
-
+											<button type="button" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
+											<button type="submit" class="updatebtn" style="width: 50%; background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Spara</button>
 										</div>
 									</form>
 								</div>
@@ -356,7 +359,8 @@
 										<% get_education.forEach(function(result) { %>
 											<div class="dropdown">
 												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; border: 0; float: right; font-size: 1.5rem;
+													"></button>
 												<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
 													<button class="changebtn" onclick="openModal('<%= temp1 = temp1 + 1 %>')">Ändra</button>
 													<form action="delete_education" method="POST">
@@ -410,8 +414,8 @@
 															</p>
 															<div class="clearfix">
 																<input hidden name="education_id" value="<%= result.ID %>"></input>
-																<button type="button" class="cancelbtn">Avbryt</button>
-																<button type="submit" class="updatebtn">Spara</button>
+																<button type="button" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
+																<button type="submit" class="updatebtn" style="width: 50%; background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Spara</button>
 															</div>
 														</form>
 													</div>
@@ -541,7 +545,8 @@
 							<hr>
 							<div class="dropdown">
 								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-								style="color: gray; width: auto; background-color: #ffff; border: 0; float: right;"></button>
+								style="color: gray; width: auto; background-color: #ffff; border: 0; float: right; font-size: 1.5rem;
+								margin-right: 24px;"></button>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
 										<button class="changebtn"  onclick="document.getElementById('id02').style.display='block'">Ändra</button>
 										<form action="delete_job" method="POST">
