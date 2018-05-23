@@ -48,19 +48,31 @@ body {
 
 } */
 
-.matchbtn, .changebtn, .removebtn{
+.matchbtn, .changebtn, .removebtn, .collapsible, .updatebtn, .cancelbtn, #buttondbtest{
 	width: 100%;
+	text-align: center;
 	min-height: 48px;
-	padding: 2px 0;
+	padding: 3px 0;
 	background-color: #ffff;
 	color: black;
-	border-bottom: 2px solid gray;
+	border-bottom: 3px solid gray;
 	border-color: #2e78ba;
 	opacity: 0.5;
+	font-weight: bold;
 }
-.collapsible{
-	width: auto;
-	justify-content: center;
+
+
+.Editbtn, .modalbtn{
+	font-weight: bold;
+	width: 100%;
+	text-align: center;
+	min-height: 48px;
+	padding: 3px 0;
+	background-color: #ffff;
+	color: black;
+	border: 3px solid gray;
+	border-color: #2e78ba;
+	opacity: 0.5;
 }
 
 
@@ -341,7 +353,6 @@ span:after {
 /* main box container */
 
 .main2 {
-	display: flex;
 	flex-flow: row wrap;
 	text-align: center;
 	height: 100%;
@@ -488,11 +499,6 @@ button {
     opacity:1;
 }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-    padding: 14px 20px;
-    background-color: #f44336;
-}
 
 /* Float cancel and signup buttons and add an equal width
 .cancelbtn, .updatebtn, .matchbtn, .changebtn {
@@ -572,8 +578,6 @@ hr {
 	margin-bottom: 10px;
 }
 
-
-
 .collapsible:after {
     content: '\002B';
     color: white;
@@ -594,3 +598,23 @@ hr {
     background-color: #f1f1f1;
 }
 
+.plusbutt{
+	color: #2e78ba ;
+	float: left;
+	opacity: 0.5;
+	border: 2px solid #2e78ba;
+	border-radius: 50%;
+	font-size: 1.5rem;
+	padding: 8.5px 17.045px;
+	background-color: #f1f1f1;
+}
+.plusbutt:hover{
+	color: #2e78ba ;
+	float: left;
+	opacity: 1;
+	border: 2px solid #2e78ba;
+	border-radius: 50%;
+	font-size: 1.5rem;
+	padding: 8.5px 17.045px;
+	background-color: #f1f1f1;
+}
