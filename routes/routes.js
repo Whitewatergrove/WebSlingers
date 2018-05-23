@@ -83,7 +83,7 @@ router.post('/login', function (req, res) {
                     req.session.role = results[0].Role;
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
-                    if (req.session.role === 'student') 
+                    if (req.session.role === 'student')
                         matchingStudent.prematching(req.session.user);
                     else if (req.session.role === 'company')
                         matchingCompany.companyPrematching(req.session.user);
@@ -111,12 +111,12 @@ router.get('/profile', (req, res) => {
             if (err) throw err;
             req.session.get_workexp = results;
         })
-        db.get_education(req.session.user, function(err, results){
+        db.get_education(req.session.user, function (err, results) {
             if (err) throw err;
             req.session.get_education = results
         })
         db.get_qualifications(function (err, results) {
-            if (err) 
+            if (err)
                 console.log("err: " + err)
             req.session.qual_list = results;
             res.render('StudentProfile', {
@@ -144,7 +144,6 @@ router.get('/profile', (req, res) => {
         db.get_exjobs(req.session.user, function (err, results) {
             if (err) throw err
             else {
-                req.session.getData = results;
                 req.session.exid = results;
             }
         });
@@ -154,14 +153,13 @@ router.get('/profile', (req, res) => {
             req.session.quals = results;
             res.render('companyProfile', {
                 get_exjobs: req.session.exid,
-                exjobs: req.session.getData,
                 get_company_user_and_nr: req.session.company,
                 qual_list: req.session.qual_list,
                 quals: req.session.quals
             })
         });
     }
-    else{
+    else {
         req.flash('danger', 'Logga in innan du går vidare')
         res.redirect('/')
     }
@@ -299,7 +297,7 @@ router.post('/delete_job', function (req, res) {
     })
 });
 
-router.post('/exjobMatch', function (req, res) { 
+router.post('/exjobMatch', function (req, res) {
     if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function (err, result) {
             if (err) throw err
@@ -370,7 +368,7 @@ router.post('/add_workexp', function (req, res) {
             res.redirect('/profile')
         }
         else {
-            req.flash('success','Du har lagt till ett nytt jobb')
+            req.flash('success', 'Du har lagt till ett nytt jobb')
             res.redirect('/profile');
         }
     })
@@ -378,11 +376,11 @@ router.post('/add_workexp', function (req, res) {
 
 router.post('/update_workexp', function (req, res) {
     db.update_workexp(req.body.name, req.body.date, req.body.info, req.body.work_id, function (err, results) {
-        if (err){
+        if (err) {
             req.flash('danger', 'Ett fel har uppstått');
             res.redirect('/profile')
         }
-        else{
+        else {
             req.flash('success', 'Du har ändrat ett arbete');
             res.redirect('/profile');
         }
@@ -430,15 +428,43 @@ router.post('/delete_education', function (req, res) {
 
 router.post('/update_education', function (req, res) {
     db.update_education(req.body.name, req.body.date, req.body.info, req.body.education_id, function (err, results) {
-        if (err){
+        if (err) {
             req.flash('danger', 'Ett fel har uppstått');
             res.redirect('/profile')
         }
-        else{
+        else {
             req.flash('success', 'You have ändrat en utbildning');
             res.redirect('/profile');
         }
     })
 });
-
+router.post('/test', function (req, res) {
+    console.log('testest', req.body.hiddenUID);
+    if (req.session.user && req.session.role == 'company') {
+        db.get_student_user_and_nr(req.body.hiddenUID, function (err, result) {
+            if (err) throw err;
+            req.session.temp = result
+        });
+        db.get_student_qualifications(req.body.hiddenUID, function (err, results) {
+            if (err) throw err;
+            req.session.temp2 = results
+        });
+        db.get_workexp(req.body.hiddenUID, function (err, results) {
+            if (err) throw err;
+            req.session.temp3 = results            
+        })
+        db.get_education(req.body.hiddenUID, function(err, results){
+            if (err) throw err;
+            res.render('test', {
+                student_user_and_nr: req.session.temp,
+                get_student_qual: req.session.temp2,
+                get_workexp: req.session.temp3,
+                get_education: results
+            });
+        })
+    }
+    else{
+        res.redirect('/');
+    }
+})
 module.exports = router;
