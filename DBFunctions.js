@@ -516,7 +516,7 @@ module.exports = {
         con.query(sql, [exid, qual], function (err, res) {
             callback(err, res);
             if (err) {
-                console.log("insert xjobqual query not working" + err);
+                console.log("insert xjobqual query not working: " + err);
             }
             else {
                 console.log("insert xjobqual query working");

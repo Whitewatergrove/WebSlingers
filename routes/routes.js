@@ -515,7 +515,9 @@ router.post('/change_skill_student', function (req, res) {
         }
     })
 });
-router.post('/change_skill_xjob', function (req, res) {
+router.post('/update_skill_xjob', function (req, res) {
+    console.log("felsökning: ", req.body.job_id);
+    console.log("felsökning: ", req.body.xjob_qual);
     db.insert_xjob_qual(req.body.job_id, req.body.xjob_qual, function (err, results) {
         if (err) {
             req.flash('danger', 'The qualification already exists on this user');
