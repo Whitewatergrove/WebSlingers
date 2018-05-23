@@ -259,9 +259,9 @@
 																			<form action="/change_skill_xjob" method="POST">
 																				<div class="container">
 																					<select name="xjob_qual">
-																						<% qual_list.forEach(function(result) { %>
+																						<% qual_list.forEach(function(resultat) { %>
 																							<option value="<%= result.Qualification %>">
-																								<%= result.Qualification %>
+																								<%= resultat.Qualification %>
 																							</option>
 																							<% }); %>
 																					</select>
