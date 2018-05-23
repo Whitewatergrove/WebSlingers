@@ -8,28 +8,15 @@ let db = require('../DBfunctions');
 let matchingStudent = require('./match');
 let matchingCompany = require('./companyMatch');
 
-
 let bcrypt = require('bcrypt');
-let mysql = require('mysql');
-let fs = require("fs");
 
 var sort_test;
-
-var con = mysql.createConnection({
-    host: "83.255.197.121",
-    user: "joakim",
-    password: "joakim97",
-    port: "3306",
-    database: "webslingers"
-});
 
 router.get('/', (req, res) => {
     if (req.session.user) {
         db.getuname(req.session.user, function (err, result) {
             if (err) throw err;
             res.redirect('/profile');
-            console.log('user', req.session.orgnr);
-            console.log('exid', req.session.exid);
         });
     }
     else
@@ -41,15 +28,11 @@ router.post('/register', (req, res) => {
         role = req.body.role,
         pnum = req.body.pnum;
 
-    console.log(role);
-
     bcrypt.hash(req.body.password, 10, function (err, hash) {
         if (err) throw err;
 
         db.insert_user(username, hash, role, function (err, result) {
-            console.log('db.insert_user')
             if (err) {
-                console.log("fel: " + err);
                 req.flash('danger', 'User already exists. Please choose another username and try again.')
                 res.redirect('/');
             }
@@ -86,8 +69,7 @@ router.get('/login', function (req, res) {
 router.post('/login', function (req, res) {
     var username = req.body.username,
         password = req.body.password;
-    var sql = "SELECT * FROM users WHERE ID = ?";
-    con.query(sql, username, function (err, results) {
+    db.get_user_info(username, function (err, results) {
         if (err) throw err;
         if (results.length == 0) {
             req.flash('danger', 'Invalid username or password');
@@ -112,7 +94,6 @@ router.post('/login', function (req, res) {
                         matchingCompany.companyPrematching(req.session.user);
                 }
                 else {
-                    console.log('wtf');
                     req.flash('danger', 'Invalid username or password');
                     res.redirect('/');
                 }
@@ -141,7 +122,6 @@ router.get('/profile', (req, res) => {
         })
         db.get_qualifications(function (err, results) {
             if (err) {
-                console.log("err: " + err)
             }
             req.session.qual_list = results;
             res.render('StudentProfile', {
@@ -163,7 +143,6 @@ router.get('/profile', (req, res) => {
         });
         db.get_qualifications(function (err, results) {
             if (err) {
-                console.log("err: " + err)
             }
             req.session.qual_list = results;
         });
@@ -177,7 +156,6 @@ router.get('/profile', (req, res) => {
         });
         db.get_demanded_qual(req.body.job_id, function (err, results) {
             if (err) {
-                console.log("err: " + err)
             }
             req.session.quals = results;
             res.render('companyProfile', {
@@ -189,12 +167,11 @@ router.get('/profile', (req, res) => {
             })
         });
     }
-    else
+    else{
+        req.flash('danger', 'Logga in innan du går vidare')
         res.redirect('/')
+    }
 });
-router.get('/test', function (req, res) {
-    console.log('asdhaiosdha', req.session.exid);
-})
 router.get('/logout', (req, res) => {
     console.log("qual_list: ", req.session.qual_list);
     req.session.destroy();
@@ -263,61 +240,6 @@ router.post('/change_company_profile', function (req, res) {
     })
 });
 
-// filhantering cv
-router.post('/fileupload', (req, res) => {
-    //upload(req, res, (err) => {
-    //    if(err){
-    //        req.flash('danger', "error occured" + err);
-    //        res.redirect('/profile');
-    //    }
-    //    else{
-    //        console.log("filetest: ", req.file);
-    //    }
-    //});
-    //if (req.files) {
-    //    console.log(req.files);
-    //    console.log(req.files.filename.data);
-    //    //var file = req.files.filename,
-    //    //    filename = file.name;
-    //    //    console.log("filnamnet: "+ filename);
-    //    //file.mv("../public/upload/"+filename, function(err){
-    //    //    if(err){
-    //    //        console.log('error occured'+err);
-    //    //        req.flash('danger', 'error occured');
-    //    //    }
-    //    //    else{
-    //    //        req.flash('success', 'Done!');
-    //    //        res.redirect("/profile");
-    //    //    }
-    //    //})
-    //    //db.update_user_cv(req.session.pnr, req.files.filename.data, function (err, result) {
-    //    //    if (err) {
-    //    //        req.flash('danger', 'An error has occured while updating');
-    //    //        res.redirect('/profile');
-    //    //    }
-    //    //    else if (!err) {
-    //    //        req.flash('success', 'You have succcessfully updated your profile');
-    //    //        res.redirect('/profile');
-    //    //    }
-    //    //})
-    //}
-});
-// skriva ut cv på sidan
-router.get('/Certificate', function (req, res) {
-    db.get_cv(req.session.pnr, function (err, result) {
-        if (err) {
-            req.flash('danger', 'An error has occured while loading');
-            res.redirect('/profile');
-        }
-        else if (!err) {
-            console.log("result: ", result)
-            res.render('Certificate', {
-                results: result
-            });
-        }
-    })
-})
-
 router.get('/studentMatch', function (req, res) {            // Needs to find an other solution!!!!
     if (req.session.user && req.session.role == 'student') {
         db.get_student_user_and_nr(req.session.user, function (err, result) {
@@ -346,94 +268,19 @@ router.get('/studentMatch', function (req, res) {            // Needs to find an
         res.redirect('/')
 });
 
-router.post('/forgot', function (req, res) {
-    const output = `
-    <h3>Your account information</h3>
-    <ul>
-        <li>Account: ${req.body.email}</li>
-        <li>Password: password</li>
-    </ul>
-    `
-    db.getuname(req.body.email, function (err, results) {
-        if (err) throw err;
-        if (results.length == 0) {
-            console.log('empty');
-            req.flash('danger', 'No user with this email could be found');
-            res.redirect('/');
-        }
-        else {
-            console.log(results);
-            console.log('found one user with email');
-            bcrypt.compare(results[0].Password, results[0].Password, function (err, match) {
-                if (err) throw err;
-                else if (match)
-                    bcrypt.hash('password', 10, function (err, hash) {
-                        if (err) throw err;
-                        db.update_user(req.body.email, hash, function (err, result) {
-                            if (err) {
-                                req.flash('danger', 'An error has occured while updating');
-                                res.redirect('/profile');
-                            }
-                            else if (!err) {
-                                var transporter = nodemailer.createTransport({
-                                    service: 'gmail',
-                                    auth: {
-                                        user: 'customerservice.webslingers@gmail.com',
-                                        pass: 'jocketest'
-                                    },
-                                    tls: {
-                                        rejectUnauthorized: false
-                                    }
-                                });
-                                const mailOptions = {
-                                    from: "Jocke Le 💩<customerservice.webslingers@hotmail.com>",
-                                    to: req.body.email,
-                                    subject: 'Password Reset - Webslingers',
-                                    html: output
-                                    // html: '<p>You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-                                    // 'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                                    // 'http://' + /*req.headers.host + */ '/reset/' /*+ token*/ + '\n\n' +
-                                    // 'If you did not request this, please ignore this email and your password will remain unchanged.\n</p>'// plain text body
-
-                                };
-                                transporter.sendMail(mailOptions, function (err, info) {
-                                    if (err) throw err;
-                                    else {
-                                        req.flash('success', 'An email has been sent to you. Please check your inbox.');
-                                        res.redirect('/');
-                                    }
-                                });
-                            }
-                        })
-                    })
-            })
-        }
-    });
-});
-
 router.post('/add_job', function (req, res) {
-    console.log(req.body.title);
-    console.log(req.body.info);
-    console.log(req.session.orgnr);
-    console.log(req.body.date);
-
     db.insert_exjobs(req.session.orgnr, req.body.title, req.body.info, req.body.date, req.body.teaser, function (err, results) {
         if (err) {
-            req.flash('danger', 'An error has occured');
+            req.flash('danger', 'Ett fel har uppstått');
             res.redirect('/profile');
         }
         else {
-            req.flash('success', 'You have added a new job');
+            req.flash('success', 'Du har lagt till ett nytt jobb');
             res.redirect('/profile');
         }
     })
 });
 router.post('/update_job', function (req, res) {
-    console.log('req.body.name', req.body.name);
-    console.log('req.body.info', req.body.info);
-    console.log('req.body.job_id', req.body.job_id);
-    console.log('req.body.date', req.body.date);
-
     db.update_exjob(req.body.name, req.body.info, req.body.date, req.body.teaser, req.body.job_id, function (err, result) {
         if (err) {
             req.flash('danger', 'An error has occured while updating your profile');
@@ -446,8 +293,6 @@ router.post('/update_job', function (req, res) {
     })
 });
 router.post('/delete_job', function (req, res) {
-
-    console.log('.asdad', req.body.job_id);
     db.delete_exjob(req.body.job_id, function (err, results) {
         if (err) {
             req.flash('danger', 'An error has occured');
@@ -458,9 +303,6 @@ router.post('/delete_job', function (req, res) {
             res.redirect('/profile');
         }
     })
-});
-router.get('/profileStudentProfile', function (req, res) {
-    res.render("pages/profileStudentProfile");
 });
 router.post('/exjobMatch', function (req, res) { 
     if (req.session.user && req.session.role == 'company') {
@@ -516,8 +358,6 @@ router.post('/change_skill_student', function (req, res) {
     })
 });
 router.post('/update_skill_xjob', function (req, res) {
-    console.log("felsökning: ", req.body.job_id);
-    console.log("felsökning: ", req.body.xjob_qual);
     db.insert_xjob_qual(req.body.job_id, req.body.xjob_qual, function (err, results) {
         if (err) {
             req.flash('danger', 'The qualification already exists on this user');
@@ -532,10 +372,11 @@ router.post('/update_skill_xjob', function (req, res) {
 router.post('/add_workexp', function (req, res) {
     db.insert_workexp(req.session.user, req.body.title, req.body.date, req.body.info, function (err, results) {
         if (err) {
-            console.log('error while adding experience', err);
+            req.flash('danger', 'Ett fel har uppstått');
+            res.redirect('/profile')
         }
         else {
-            console.log('new workexp added')
+            req.flash('success','Du har lagt till ett nytt jobb')
             res.redirect('/profile');
         }
     })
@@ -543,20 +384,23 @@ router.post('/add_workexp', function (req, res) {
 router.post('/update_workexp', function (req, res) {
     db.update_workexp(req.body.name, req.body.date, req.body.info, req.body.work_id, function (err, results) {
         if (err){
-            req.flash('danger', 'Error while updating work experience');
-            res.redirect('/profile');
+            req.flash('danger', 'Ett fel har uppstått');
+            res.redirect('/profile')
         }
         else{
-            req.flash('success', 'You have updated a work experience');
+            req.flash('success', 'Du har ändrat ett arbete');
             res.redirect('/profile');
         }
     })
 });
 router.post('/delete_workexp', function (req, res) {
     db.delete_workexp(req.body.work_id, function (err, results) {
-        if (err) throw err;
+        if (err) {
+            req.flash('danger', 'Ett fel har uppstått');
+            res.redirect('/profile')
+        }
         else {
-            req.flash('success', 'You have deleted a work experience');
+            req.flash('success', 'Du har tagit bort ett arbete');
             res.redirect('/profile');
         }
     })
@@ -564,12 +408,11 @@ router.post('/delete_workexp', function (req, res) {
 router.post('/add_education', function (req, res) {
     db.insert_education(req.session.user, req.body.title, req.body.date, req.body.info, function (err, results) {
         if (err) {
-            req.flash('danger', 'An error has occured while adding a new education');
-            res.redirect('/profile');
+            req.flash('danger', 'Ett fel har uppstått');
+            res.redirect('/profile')
         }
         else {
-            console.log('new education added')
-            req.flash('success', 'You have added a new education')
+            req.flash('success', 'Du har lagt till en ny utbildning')
             res.redirect('/profile');
         }
     })
@@ -577,11 +420,11 @@ router.post('/add_education', function (req, res) {
 router.post('/delete_education', function (req, res) {
     db.delete_education(req.body.education_id, function (err, results) {
         if (err) {
-            req.flash('danger', 'An error has occured');
-            res.redirect('/profile');
+            req.flash('danger', 'Ett fel har uppstått');
+            res.redirect('/profile')
         }
         else {
-            req.flash('success', 'You have deleted a education experience');
+            req.flash('success', 'Du har tagit bort en utbildning');
             res.redirect('/profile');
         }
     })
@@ -589,11 +432,11 @@ router.post('/delete_education', function (req, res) {
 router.post('/update_education', function (req, res) {
     db.update_education(req.body.name, req.body.date, req.body.info, req.body.education_id, function (err, results) {
         if (err){
-            req.flash('danger', 'Error while updating education experience');
-            res.redirect('/profile');
+            req.flash('danger', 'Ett fel har uppstått');
+            res.redirect('/profile')
         }
         else{
-            req.flash('success', 'You have updated a education experience');
+            req.flash('success', 'You have ändrat en utbildning');
             res.redirect('/profile');
         }
     })
