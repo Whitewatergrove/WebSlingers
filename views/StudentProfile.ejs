@@ -458,8 +458,7 @@
 									 title="Fyll i ett nytt lösenord  4-16 karaktärer" autofocus ="autofocus">
 									<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..." data-toggle="tooltip" title="Fyll i ditt fullständiga namn ">
 									<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress..." data-toggle="tooltip" title="Fyll i din postadress">
-									<input type="text" name="tel" id="tel" maxlength="12" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i ditt telnummer max 12 siffror"
-									 patter="[0-9]">
+									<input type="text" name="tel" id="tel" pattern="[0-9]{0,12}" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i ditt telnummer max 12 siffror">
 									<select name="gender">
 										<option value="Male">Man</option>
 										<option value="Female">Kvinna</option>
@@ -511,11 +510,7 @@
 									</select>
 									<br/>
 								</div>
-<<<<<<< HEAD
-								<button type="submit" id="butt">Uppdatera Erfaranhet</button>
-=======
 								<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Uppdatera</button>
->>>>>>> c56df66eff8a82fe5f3ab7a16660908ceb061cbb
 							</form>
 
 						</div>
