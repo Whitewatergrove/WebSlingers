@@ -101,13 +101,6 @@
 
 						<% matchning.forEach(function(result) { %>
 							<hr>
-							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-								style="color: gray; width: auto; background-color: #ffff; border: 0; float: right; font-size: 1.5rem;
-								margin-right: 24px;"></button>
-								<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
-								</div>
-							</div>
 							<div class="w3-container">
 								<h4 class="w3-opacity">
 									<b>
@@ -117,9 +110,23 @@
 								<h6 class="w3-text">
 									<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
 								<p>
-									<%= result.Info %>
+									<%= result.teaser %>
 								</p>
-								<button class="matchbtn">Ansök</button>
+
+								<button class="collapsible" onclick="openCollapse()">Mer info</button>
+													<div class="collapseContent">
+														<h3>Jobbeskrivning</h3>
+														<p>
+															<%= result.Info %>
+														</p>
+														<hr>
+														<h5>Kontakt: <a href="mailto:test@test.com">Test@test.jocke</a> + tel</h5>
+														
+						
+														<hr>
+														
+													</div>
+
 							</div>
 							<% }); %>
 					</ul>
