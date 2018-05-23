@@ -103,7 +103,7 @@
 									<div class="w3-display-bottomleft w3-container w3-text-black">
 
 									</div>
-									<h2>
+									<h2 style="font-size: 1.5rem;">
 										<%= get_company_user_and_nr[0].Name %>
 									</h2>
 								</div>
@@ -141,10 +141,10 @@
 								<h2 class="w3-text-grey w3-padding-16">
 									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Dina job</h2>
 								<div class="w3-container">
-									<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" margin="auto">Lägg till</button>
+									<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" style="width:100%;" margin="auto">Lägg till</button>
 									<div id="id01" class="modal">
 
-										<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+										<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal" style="color: white;">&times;</span>
 										<form class="modal-content" method="POST" action="add_job" style="width:90%; margin:auto;">
 											<div class="container">
 												<div class="w3-container">
@@ -178,9 +178,10 @@
 														<input id="Job-info" class="w3-input" type="text" name="info" required>
 													</p>
 												</form>
+												<hr>
 												<div class="clearfix">
-													<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Avbryt</button>
-													<button class="updatebtn" id="addjob" type="submit">Lägg till Jobb</button>
+													<button type="button" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Avbryt</button>
+													<button class="updatebtn" id="addjob" style="width: 50%; float: left;"type="submit">Spara</button>
 												</div>
 											</div>
 										</form>
@@ -191,7 +192,7 @@
 												<hr>
 												<div class="dropdown">
 													<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-													    aria-expanded="false" style="color: gray; background-color: #ffff; border: 0; float: right;"></button>
+													    aria-expanded="false" style="color: gray; background-color: #ffff; border: 0; float: right; font-size: 1.5rem;"></button>
 													<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
 														<form action="/exjobMatch" method="POST">
 															<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
@@ -225,11 +226,14 @@
 														</p>
 														<hr>
 														<h3>Kvalifikationer</h3>
+														<button type="button" class="plusbutt" data-toggle="modal" data-target="#CompanyModalSkill">
+															<strong>+</strong>
+														</button>
 														<ul>
 															<% if(locals.quals) { %>
 																<% quals.forEach(function(results) { %>
 																	<% if(results.EID === result.ID) { %>
-																		<li style="text-align: left;">
+																		<li style="text-align: left; list-style-type: none; margin-left: 48px">
 																			<%= results.QID %>
 																		</li>
 																		<% }; %>
@@ -237,9 +241,6 @@
 																				<% }; %>
 														</ul>
 														<hr>
-														<button type="button" class="butt" style="background-size: 10%" data-toggle="modal" data-target="#CompanyModalSkill">
-															<strong>+</strong>
-														</button>
 														<div class="container">
 															<div id="modalBG1">
 															</div>
@@ -427,21 +428,21 @@
 					<div class="title">Help</div>
 					<div class="HelpBox">
 						<div class="helpRow">
-							<div class="column" onclick="openHelptab('b1');" style="background:#1f5686;">
+							<div class="column" onclick="openHelptab('b1');" style="background-color:#1f5686;">
 								Börja
 							</div>
-							<div class="column" onclick="openHelptab('b2');" style="background:#2e78ba;">
+							<div class="column" onclick="openHelptab('b2');" style="background-color:#2e78ba;">
 								Stickers
 							</div>
-							<div class="column" onclick="openHelptab('b3');" style="background:#40a4fc;">
+							<div class="column" onclick="openHelptab('b3');" style="background-color:#40a4fc;">
 								Chat
 							</div>
-							<div class="column" onclick="openHelptab('b4');" style="background:#65b5fc;">
+							<div class="column" onclick="openHelptab('b4');" style="background-color:#65b5fc;">
 								Övrigt
 							</div>
 							<!-- Kom igång -->
-							<div id="b1" class="containerTab" style="display:none;background:#1f5686">
-								<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<div id="b1" class="containerTab" style="display:none; background-color:#1f5686">
+								<span onclick="this.parentElement.style.display='none'" class="closebtn"style="float: right; font-size: 1.5rem;">&times;</span>
 								<h2>Redigera din profil</h2>
 								<p>
 									Under taben "Profil" finner du till vänster knappen "Edit", där klickar du för att redigera informationen på din profil.
@@ -450,8 +451,8 @@
 								<hr>
 							</div>
 							<!-- Anonymitet -->
-							<div id="b2" class="containerTab" style="display:none;background:#2e78ba">
-								<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<div id="b2" class="containerTab" style="display:none;background-color:#2e78ba">
+								<span onclick="this.parentElement.style.display='none'" class="closebtn" style="float: right; font-size: 1.5rem;">&times;</span>
 								<h2>Stickers</h2>
 								<p>
 									Under taben "Profil" finner du din profilinformation till vänster och "Arbetsstickers" till höger. Stickers är objekt av
@@ -477,15 +478,15 @@
 								<hr>
 							</div>
 							<!-- Chat -->
-							<div id="b3" class="containerTab" style="display:none;background:#40a4fc">
-								<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<div id="b3" class="containerTab" style="display:none;background-color:#40a4fc">
+								<span onclick="this.parentElement.style.display='none'" class="closebtn" style="float: right; font-size: 1.5rem;">&times;</span>
 								<h2>Meddelanden</h2>
 								<p>Kontakt med en matchad student sker under taben "Chat".</p>
 								<hr>
 							</div>
 							<!-- Övrigt -->
-							<div id="b4" class="containerTab" style="display:none;background:#65b5fc">
-								<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<div id="b4" class="containerTab" style="display:none;background-color:#65b5fc">
+								<span onclick="this.parentElement.style.display='none'" class="closebtn" style="float: right; font-size: 1.5rem;">&times;</span>
 								<h2>Övrigt</h2>
 								<p>ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf adf ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf
 									adf dsfsdf
