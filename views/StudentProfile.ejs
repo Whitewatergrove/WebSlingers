@@ -78,7 +78,7 @@
 				</li>
 				
 				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
-					<a>
+					<a href="studentMatch">
 						<span>
 							<i class="fas fa-folder" id="SideIcon"></i>
 							
@@ -525,52 +525,6 @@
 			</body>
 		</div>
 	</div>
-
-
-	<!-- Ex-jobs -->
-	<div class="main-content" id="Jobs" style="display:none">
-		<div class="main">
-			<div class="widget" id="JobsWidget">
-				<div class="title">Tillgängliga jobb</div>
-				<form action="/studentMatch" method="get">
-					<button type="submit" id="buttondbtest">Hitta Exjob</button>
-				</form>
-				<% if(locals.matchning) {%>
-					<ul class="Job-list" id="job_list" style="background-color: #fff">
-
-						<% matchning.forEach(function(result) { %>
-							<hr>
-							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-								style="color: gray; width: auto; background-color: #ffff; border: 0; float: right; font-size: 1.5rem;
-								margin-right: 24px;"></button>
-								<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
-										<button class="changebtn"  onclick="document.getElementById('id02').style.display='block'">Ändra</button>
-										<form action="delete_job" method="POST">
-											<input hidden name="job_id" value="<%= result.ID %>"></input>
-											<button type="submit" class="removebtn">Remove</button>
-										</form>
-								</div>
-							<div class="w3-container">
-								<h4 class="w3-opacity">
-									<b>
-										<%= result.Name %>
-									</b>
-								</h4>
-								<h6 class="w3-text">
-									<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
-								<p>
-									<%= result.Info %>
-								</p>
-								<button class="matchbtn">Ansök</button>
-							</div>
-							<% }); %>
-					</ul>
-					<% } %>
-			</div>
-		</div>
-	</div>
-
 	<!-- Help -->
 	<div class="main-content" id="Helps" style="display:none">
 		<div class="main">
