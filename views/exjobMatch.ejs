@@ -34,8 +34,9 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="./scripts/chat.js"></script>
 </head>
+
 <body>
-    <div class="header">
+	<div class="header">
 		<div class="logo">
 			<img src="images/oru-16x16.png">
 			<span>Webslingers</span>
@@ -52,11 +53,11 @@
 		<nav>
 			<!-- The tab menu -->
 			<ul class="tabs">
-                
+
 				<li class="tabBorder" style="border-left: solid 5px #2e78ba ">
-					<a href= "/profile">
+					<a href="/profile">
 						<span>
-                            <i class="fas fa-arrow-left"  id="SideIcon"></i>
+							<i class="fas fa-arrow-left" id="SideIcon"></i>
 						</span>
 						<span id="BlackT">Backa</span>
 					</a>
@@ -73,13 +74,13 @@
 			</ul>
 		</nav>
 	</div>
-<!-- Profile -->
-<div class="main-content" id="profile">
-	<div class="main2" id="main2Profile" style="margin-right: 60%;">
+	<!-- Profile -->
+	<div class="main-content" id="profile">
+		<div class="main2" id="main2Profile">
 			<div class="w3-content w3-margin-top" style="max-width: 1400px;">
 
 				<!-- The Grid -->
-				<div class="w3-row-padding" style="width: 240%;">
+				<div class="w3-row-padding" style="width: 100%;">
 
 					<!-- Left Column -->
 					<div class="w3-third">
@@ -100,31 +101,53 @@
 						<!-- Ex-jobs -->
 						<div class="w3-container w3-card w3-white w3-margin-bottom" style="size:fixed">
 							<h2 class="w3-text-grey w3-padding-16">
-								<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Dina job</h2>
+								<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Potentiella studenter</h2>
 							<div class="w3-container">
 								<% if(locals.matchning) {%>
 									<ul class="Job-list" id="job_list" style="background-color: #fff">
-									
+
 										<% matchning.forEach(function(result) { %>
 											<hr>
 											<div class="w3-container">
+												<div class="dropdown">
+													<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+													 aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; font-size: 1.5rem;
+																border: 0; float: right;"></button>
+													<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+														<form action="test" method="POST">
+															<input hidden name="hiddenUID" value="<%= result.UID %>">
+															<button class="collapsible">Visa Profil</button>
+														</form>
+													</div>
+												</div>
 												<h4 class="w3-opacity">
 													<b>
 														<%= result.Name %>
 													</b>
 												</h4>
 												<h6 class="w3-text">
-													<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
+													<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>datum</h6>
 												<p>
 													<%= result.QUAL%>
 												</p>
-												<button class="matchbtn">Ansök</button>
+
+												<button class="collapsible" onclick="openCollapse()">Kontakt</button>
+												<div class="collapseContent">
+													<h5>
+														<a href="mailto:<%= result.UID %>">Mailadress:
+															<%= result.UID %>
+														</a>
+														<br/> Telefon:
+														<%= result.Tel %>
+													</h5>
+													<hr>
+												</div>
 											</div>
 											<% }); %>
 									</ul>
 									<% } %>
-								<!-- End Ex-jobs -->
-								<!-- End Right Column -->
+										<!-- End Ex-jobs -->
+										<!-- End Right Column -->
 							</div>
 
 							<!-- End Grid -->
