@@ -379,7 +379,7 @@ router.post('/update_workexp', function (req, res) {
             res.redirect('/profile')
         }
         else {
-            req.flash('success', 'Ändringarna du gjorde har nu sparats');
+            req.flash('success', 'Ändringarna har nu sparats');
             res.redirect('/profile');
         }
     })
@@ -448,7 +448,7 @@ router.post('/update_education', function (req, res) {
             res.redirect('/profile')
         }
         else {
-            req.flash('success', 'Ändringarna du gjorde har nu sparade');
+            req.flash('success', 'Ändringarna har nu sparade');
             res.redirect('/profile');
         }
     })
