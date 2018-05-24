@@ -29,10 +29,8 @@
 	 crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	 crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="./stylesheets/chat.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="./scripts/chat.js"></script>
 </head>
 
 <body>
@@ -105,47 +103,59 @@
 							<div class="w3-container">
 								<% if(locals.matchning) {%>
 									<ul class="Job-list" id="job_list" style="background-color: #fff">
-
-										<% matchning.forEach(function(result) { %>
-											<hr>
-											<div class="w3-container">
-												<div class="dropdown">
-													<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-													 aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; font-size: 1.5rem;
+										<% let temp = 0 %>
+											<% matchning.forEach(function(result) { %>
+												<hr>
+												<div class="w3-container">
+													<div class="dropdown">
+														<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+														 aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; font-size: 1.5rem;
 																border: 0; float: right;"></button>
-													<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
-														<form action="publicProfile" method="POST">
-															<input hidden name="hiddenUID" value="<%= result.UID %>">
-															<button class="collapsible">Visa Profil</button>
-														</form>
+														<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
+															<form action="publicProfile" method="POST">
+																<input hidden name="hiddenUID" value="<%= result.UID %>">
+																<button class="collapsible">Visa Profil</button>
+															</form>
+														</div>
+													</div>
+													<h4 class="w3-opacity">
+														<b>
+															<%= result.Name %>
+														</b>
+													</h4>
+													<div class="container">
+														<div class="progress">
+															<div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+																<%= result.procent %>% Matching
+															</div>
+														</div>
+													</div>
+													<script>
+														window.onload = progress('<%= result.procent %>', '<%= temp = temp + 1%>')
+														function progress(value, id) {
+															let prog = document.getElementsByClassName('progress-bar');
+															let j = 0;
+															for (var i = 0; i < prog.length; i++) {
+																j++
+																prog[i].id = j;
+															}
+															let temp = document.getElementById(id);
+															temp.style.width = value + '%'
+														}
+													</script>
+													<button class="collapsible" onclick="openCollapse()">Kontakt</button>
+													<div class="collapseContent">
+														<h5>
+															<a href="mailto:<%= result.UID %>">Mailadress:
+																<%= result.UID %>
+															</a>
+															<br/> Telefon:
+															<%= result.Tel %>
+														</h5>
+														<hr>
 													</div>
 												</div>
-												<h4 class="w3-opacity">
-													<b>
-														<%= result.Name %>
-													</b>
-												</h4>
-												<div class="container">
-														<div class="progress">
-														  <div class="progress-bar" role="progressbar" aria-valuenow="0.5" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-																60% Matching
-														  </div>
-														</div>
-													  </div>
-
-												<button class="collapsible" onclick="openCollapse()">Kontakt</button>
-												<div class="collapseContent">
-													<h5>
-														<a href="mailto:<%= result.UID %>">Mailadress:
-															<%= result.UID %>
-														</a>
-														<br/> Telefon:
-														<%= result.Tel %>
-													</h5>
-													<hr>
-												</div>
-											</div>
-											<% }); %>
+												<% }); %>
 									</ul>
 									<% } %>
 										<!-- End Ex-jobs -->
@@ -161,4 +171,5 @@
 			</div>
 		</div>
 	</div>
+
 </body>
