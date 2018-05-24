@@ -114,7 +114,7 @@
 													 aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; font-size: 1.5rem;
 																border: 0; float: right;"></button>
 													<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
-														<form action="test" method="POST">
+														<form action="publicProfile" method="POST">
 															<input hidden name="hiddenUID" value="<%= result.UID %>">
 															<button class="collapsible">Visa Profil</button>
 														</form>
@@ -125,12 +125,6 @@
 														<%= result.Name %>
 													</b>
 												</h4>
-												<h6 class="w3-text">
-													<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>datum</h6>
-												<p>
-													<%= result.QUAL%>
-												</p>
-
 												<button class="collapsible" onclick="openCollapse()">Kontakt</button>
 												<div class="collapseContent">
 													<h5>

@@ -83,10 +83,6 @@ router.post('/login', function (req, res) {
                     req.session.role = results[0].Role;
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
-                    if (req.session.role === 'student')
-                        matchingStudent.prematching(req.session.user);
-                    else if (req.session.role === 'company')
-                        matchingCompany.companyPrematching(req.session.user);
                 }
                 else {
                     req.flash('danger', 'Invalid username or password');
@@ -127,6 +123,7 @@ router.get('/profile', (req, res) => {
                 get_education: req.session.get_education
             });
         })
+        matchingStudent.prematching(req.session.user);
     }
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function (err, result) {
@@ -158,6 +155,7 @@ router.get('/profile', (req, res) => {
                 quals: req.session.quals
             })
         });
+        matchingCompany.companyPrematching(req.session.user);
     }
     else {
         req.flash('danger', 'Logga in innan du går vidare')
@@ -321,7 +319,7 @@ router.post('/exjobMatch', function (req, res) {
                 console.log("err: " + err)
             }
             req.session.quals = results;
-            req.body.job_id;
+            req.session.jobid = req.body.job_id;
             res.render('exjobMatch', {
                 get_exjobs: req.session.exid,
                 get_company_user_and_nr: req.session.company,
@@ -338,11 +336,11 @@ router.post('/exjobMatch', function (req, res) {
 router.post('/change_skill_student', function (req, res) {
     db.insert_studentqual(req.session.pnr, req.body.student_qual, function (err, results) {
         if (err) {
-            req.flash('danger', 'The qualification already exists on this user');
+            req.flash('danger', 'Kvalifikationen du försöker lägga till är redan tillagd');
             res.redirect('/profile');
         }
         else {
-            req.flash('success', 'You have successfully added a qualification');
+            req.flash('success', 'Du har lagt till en ny kvalifikation');
             res.redirect('/profile');
         }
     })
@@ -351,11 +349,11 @@ router.post('/change_skill_student', function (req, res) {
 router.post('/update_skill_xjob', function (req, res) {
     db.insert_xjob_qual(req.body.job_id, req.body.xjob_qual, function (err, results) {
         if (err) {
-            req.flash('danger', 'The qualification already exists on this user');
+            req.flash('danger', 'Kvalifikationen du försöker lägga till är redan tillagd');
             res.redirect('/profile');
         }
         else {
-            req.flash('success', 'You have successfully added a qualification');
+            req.flash('success', 'Du har lagt till en ny kvalifikation');
             res.redirect('/profile');
         }
     })
@@ -426,6 +424,23 @@ router.post('/delete_education', function (req, res) {
     })
 });
 
+router.get('/exjobMatch', function (req, res) {
+    if (req.session.user && req.session.role == 'company') {
+        
+            res.render('exjobMatch', {
+                get_exjobs: req.session.exid,
+                get_company_user_and_nr: req.session.company,
+                qual_list: req.session.qual_list,
+                quals: req.session.quals,
+                matchning: matchingCompany.companyMatcha(req.session.jobid)
+            })
+      
+    }
+    else
+        res.redirect('/')
+});
+
+
 router.post('/update_education', function (req, res) {
     db.update_education(req.body.name, req.body.date, req.body.info, req.body.education_id, function (err, results) {
         if (err) {
@@ -433,13 +448,12 @@ router.post('/update_education', function (req, res) {
             res.redirect('/profile')
         }
         else {
-            req.flash('success', 'You have ändrat en utbildning');
+            req.flash('success', 'Du har ändrat en utbildning');
             res.redirect('/profile');
         }
     })
 });
-router.post('/test', function (req, res) {
-    console.log('testest', req.body.hiddenUID);
+router.post('/publicProfile', function (req, res) {
     if (req.session.user && req.session.role == 'company') {
         db.get_student_user_and_nr(req.body.hiddenUID, function (err, result) {
             if (err) throw err;
@@ -451,11 +465,11 @@ router.post('/test', function (req, res) {
         });
         db.get_workexp(req.body.hiddenUID, function (err, results) {
             if (err) throw err;
-            req.session.temp3 = results            
+            req.session.temp3 = results
         })
-        db.get_education(req.body.hiddenUID, function(err, results){
+        db.get_education(req.body.hiddenUID, function (err, results) {
             if (err) throw err;
-            res.render('test', {
+            res.render('publicProfile', {
                 student_user_and_nr: req.session.temp,
                 get_student_qual: req.session.temp2,
                 get_workexp: req.session.temp3,
@@ -463,7 +477,7 @@ router.post('/test', function (req, res) {
             });
         })
     }
-    else{
+    else {
         res.redirect('/');
     }
 })
