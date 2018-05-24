@@ -113,7 +113,7 @@ module.exports = {
             if((student.weight /temp.exjob.demanded.length) > 1)
                 student.procent = 100;
             else
-                student.procent = ((student.weight /temp.exjob.demanded.length) * 100);
+                student.procent = Math.round((student.weight /temp.exjob.demanded.length) * 100);
         }); 
 
         console.log(temp.exjob.students);
