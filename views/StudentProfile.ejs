@@ -216,7 +216,7 @@
 											<form class="w3-container">
 												<p>
 													<label>
-														<strong>Datum</strong>
+														<strong>Startdatum - Slutdatum</strong>
 													</label>
 													<input id="Job-title" class="w3-input" type="text" placeholder="Startdatum - slutdatum" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" name="date" autofocus ="autofocus">
 												</p>
@@ -282,7 +282,7 @@
 														<form class="w3-container">
 															<p>
 																<label>
-																	<strong>Datum</strong>
+																	<strong>Startdatum - Slutdatum</strong>
 																</label>
 																<input class="w3-input" type="text" value="<%= result.date %>" name="date" placeholder="Startdatum - slutdatum" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" autofocus ="autofocus">
 															</p>
@@ -294,7 +294,7 @@
 															</p>
 															<p>
 																<label>
-																	<strong>Jobb information</strong>
+																	<strong>Jobbinformation</strong>
 																</label>
 																<input class="w3-input" type="text" value="<%= result.info %>" name="info" placeholder="Kort information om erfarenheterna">
 															</p>
@@ -328,24 +328,24 @@
 											<form class="w3-container">
 												<p>
 													<label>
-														<strong>Datum</strong>
+														<strong>Startdatum - Slutdatum</strong>
 													</label>
-													<input id="education-title" class="w3-input" type="text" maxlength="20" placeholder="2001-2002..." name="date" required>
+													<input id="education-title" class="w3-input" type="text" maxlength="30" placeholder="2001-2002..." name="date" >
 												</p>
 												<p>
 													<label>
 														<strong>Utbildning</strong>
 													</label>
-													<input id="education-title" class="w3-input" type="text" maxlength="30" placeholder="Titel..." name="title" required>
+													<input id="education-title" class="w3-input" type="text" maxlength="500" placeholder="Titel..." name="title">
 												</p>
 												<p>
 													<label>
 														<strong>Utbildningsinformation</strong>
 													</label>
-													<input id="education-info" class="w3-input" type="text" placeholder="Information om utbildningen..." maxlength="60" name="info" required>
+													<input id="education-info" class="w3-input" type="text" placeholder="Information om utbildningen..." maxlength="500" name="info">
 												</p>
 											</form>
-											<button type="button" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
+											<button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
 											<button type="submit" class="updatebtn" style="width: 50%; background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Spara</button>
 										</div>
 									</form>
@@ -402,13 +402,13 @@
 																<label>
 																	<strong>Utbildning</strong>
 																</label>
-																<input class="w3-input" type="text" value="<%= result.edu %>" name="name" maxlength="30">
+																<input class="w3-input" type="text" value="<%= result.edu %>" name="name" maxlength="500">
 															</p>
 															<p>
 																<label>
 																	<strong>Utbildningsinformation</strong>
 																</label>
-																<input class="w3-input" type="text" value="<%= result.info %>" name="info" maxlength="60">
+																<input class="w3-input" type="text" value="<%= result.info %>" name="info" maxlength="500">
 															</p>
 															<div class="clearfix">
 																<input hidden name="education_id" value="<%= result.ID %>"></input>
@@ -452,10 +452,10 @@
 								<div class="container">
 									<input type="text" name="username" id="uname" disabled value="<%= student_user_and_nr[0].UID %>">
 									<input type="text" name="pnum" id="pnum" disabled value="<%= student_user_and_nr[0].pnr %>">
-									<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord" data-toggle="tooltip"
-									 title="Fyll i ett nytt lösenord  4-16 karaktärer" autofocus ="autofocus">
-									<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn" data-toggle="tooltip" title="Fyll i ditt fullständiga namn">
-									<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress" data-toggle="tooltip" title="Stadsnamn">
+									<input type="password" name="password" id="pass" maxlength="30" minlength="4" required placeholder="Lösenord" data-toggle="tooltip"
+									 title="Fyll i ett nytt lösenord  4-30 karaktärer" autofocus ="autofocus">
+									<input type="text" name="name" id="name" maxlength="50" required placeholder="Namn" data-toggle="tooltip" title="Fyll i ditt fullständiga namn">
+									<input type="text" name="address" id="adress" maxlength="50" required placeholder="Adress" data-toggle="tooltip" title="Stadsnamn">
 									<input type="text" name="tel" id="tel" pattern="[0-9]{0,12}" required placeholder="Telefonnummer" data-toggle="tooltip" title="Fyll i telefonnummer max 12 siffror">
 									<select name="gender">
 										<option value="Man">Man</option>
@@ -540,7 +540,7 @@
 						</div>
 						<!-- Kom igång -->
 						<div id="b1" class="containerTab" style="display:none;background:#1f5686">
-							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<span onclick="this.parentElement.style.display='none'" class="closebtn" style="float: right; font-size: 1.5rem;">&times;</span>
 							<h2>Redigera din profil</h2>
 							<p>
 								Under taben "Profil" finner du till vänster knappen "Edit", där klickar du för att redigera informationen på din profil.
@@ -550,7 +550,7 @@
 						</div>
 						<!-- Anonymitet -->
 						<div id="b2" class="containerTab" style="display:none;background:#2e78ba">
-							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<span onclick="this.parentElement.style.display='none'" class="closebtn" style="float: right; font-size: 1.5rem;">&times;</span>
 							<h2>Stickers</h2>
 							<p>
 								Under taben "Profil" finner du din profilinformation till vänster och "Arbetsstickers" till höger. Stickers är objekt av
@@ -577,14 +577,14 @@
 						</div>
 						<!-- Chat -->
 						<div id="b3" class="containerTab" style="display:none;background:#40a4fc">
-							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<span onclick="this.parentElement.style.display='none'" class="closebtn" style="float: right; font-size: 1.5rem;">&times;</span>
 							<h2>Meddelanden</h2>
 							<p>Kontakt med en matchad student sker under taben "Chat".</p>
 							<hr>
 						</div>
 						<!-- Övrigt -->
 						<div id="b4" class="containerTab" style="display:none;background:#65b5fc">
-							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<span onclick="this.parentElement.style.display='none'" class="closebtn" style="float: right; font-size: 1.5rem;">&times;</span>
 							<h2>Övrigt</h2>
 							<p>ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf adf ha dfa df dfsdf adf adf adf af adf adf adf dfadff aadf
 								adf dsfsdf
