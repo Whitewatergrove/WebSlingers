@@ -203,7 +203,7 @@
 							<!--______________________________________________WORK EXPERIENCE _______________________________________-->
 							<div class="w3-container w3-card w3-white w3-margin-bottom">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Arbete</h2>
+									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Arbetslivserfarenhet</h2>
 								<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" margin="auto">Lägg till</button>
 								<hr>
 								<div id="id01" class="modal">
@@ -242,7 +242,7 @@
 									</form>
 								</div>
 								<% if(locals.get_workexp) { %>
-									<% let openModalTemp = 0, closeModalTemp = 0 %>
+									<% let openModalTemp = 0, closeModalTemp = 0, closeModalX = 0 %>
 										<% get_workexp.forEach(function(result) { %>
 											<div class="dropdown">
 												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
@@ -274,7 +274,7 @@
 											<div id="id02" class="modal test">
 												
 												<form class="modal-content" action="update_workexp" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
-													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+													<span onclick="closeModal('<%= closeModalX = closeModalX + 1 %>')" class="close" title="Close Modal">&times;</span>
 													<div class="container">
 														<div class="w3-container">
 															<h2>Uppdatera jobb</h2>
@@ -314,7 +314,7 @@
 							<!--   ______________________________ EDUCATION ______________________________________________________-->
 							<div class="w3-container w3-card w3-white">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Utbildning</h2>
+									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Utbildningar</h2>
 								<button class="modalbtn" onclick="document.getElementById('id03').style.display='block'"  margin="auto">Lägg till</button>
 								<hr>
 
@@ -353,8 +353,7 @@
 								</div>
 
 								<% if(locals.get_education) { %>
-									<% let temp1 = 1000 %>
-									<% let closeModalTemp = 1000 %>
+									<% let temp1 = 1000, closeModalTemp = 1000, closeModalX = 1000 %>
 										<% get_education.forEach(function(result) { %>
 											<div class="dropdown">
 												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
@@ -386,7 +385,7 @@
 											<hr>
 											<div id="id02" class="modal test2">
 												<form class="modal-content" style="width:90%; margin:auto;" action="update_education" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
-													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+													<span onclick="closeModal('<%= closeModalX = closeModalX + 1 %>')" class="close" title="Close Modal">&times;</span>
 												
 													<div class="container">
 														<div class="w3-container">

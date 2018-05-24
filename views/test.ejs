@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Student profile</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="../images/oru-16x16.png" sizes="16x16">
+    <title>Profile</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="./stylesheets/StudentPStyle.css">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/styleindex.css">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/HelpProfile.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Roboto", sans-serif
+        }
+    </style>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="./scripts/StudentPScript.js"></script>
+    <script src="../scripts/profile.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Image at the top -->
+    <div class="header">
+        <div class="logo">
+            <img src="images/oru-16x16.png">
+            <span>Webslingers</span>
+        </div>
+        <a href="#" class="nav-trigger">
+            <span></span>
+        </a>
+    </div>
+    <!-- Image at bottom -->
+    <div class="side-nav">
+        <div class="logo">
+            <img src="images/oru-16x16.png">
+            <span>Webslingers</span>
+        </div>
+        <nav>
+            <!-- All buttoms in the sidepanel -->
+            <ul class="tabs">
+                <li class="tabBorder" onclick="openTab('home', 'Open')" id="Open" style="border-Left: 5px solid #2e78ba" ;>
+                    <a>
+                        <span>
+                            <i class="fa fa-user" id="SideIcon"></i>
+                        </span>
+                        <span id="BlackT">
+                            <%= student_user_and_nr[0].Name %>s profil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <span>
+                            <i class="fas fa-sign-out-alt" id="SideIcon"></i>
+                        </span>
+                        <span id="BlackT">Logga ut</span>
+                    </a>
+                </li>
+                <img src="./images/oru.png" class="si">
+            </ul>
+            <!-- End buttoms sidepanel -->
+        </nav>
+    </div>
+    <!-- Profile -->
+    <div class="main-content" id="home">
+        <div class="main2" id="main2Profile">
+
+            <body id="blueb">
+                <!-- Page Container -->
+                <div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+                    <!-- The Grid -->
+                    <div class="w3-row-padding">
+
+                        <!-- Left Column -->
+                        <div class="w3-third">
+
+                            <div class="w3-white w3-text-grey w3-card-4">
+                                <div class="w3-display-container">
+                                    <img src="./images/login.png" style="width:50%" alt="Avatar">
+                                    <div class="w3-display-bottomleft w3-container w3-text-black">
+
+                                    </div>
+                                    <h2>
+                                        <%= student_user_and_nr[0].Name %>
+                                    </h2>
+                                </div>
+                                <!-- Person information box -->
+                                <div class="w3-container" style="text-align: left;">
+                                    <p>
+                                        <i class="fa fa-calendar fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+                                        <%= student_user_and_nr[0].pnr %>
+                                    </p>
+                                    <p>
+                                        <i class="fa fa-user fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+                                        <%= student_user_and_nr[0].Gender %>
+                                    </p>
+
+                                    <p>
+                                        <i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+                                        <%= student_user_and_nr[0].UID %>
+                                    </p>
+                                    <p>
+                                        <i class="fas fa-home fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+                                        <%= student_user_and_nr[0].Adress %>
+                                    </p>
+                                    <p>
+                                        <i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
+                                        <%= student_user_and_nr[0].Tel %>
+                                    </p>
+                                    <hr>
+                                    <!-- Skills -->
+                                    <p class="w3-large">
+                                        <b>
+                                            <i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Kunskaper</b>
+                                    </p>
+
+                                    <hr>
+                                    <ul>
+                                        <% if(locals.get_student_qual) { %>
+                                            <% get_student_qual.forEach(function(result){ %>
+                                                <li>
+                                                    <%= result.QID %>
+                                                </li>
+                                                <% }) %>
+                                                    <% } %>
+                                    </ul>
+                                    <hr>
+                                </div>
+                            </div>
+                            <br>
+                            <!-- End Left Column -->
+                        </div>
+                        <!-- Right Column -->
+                        <div class="w3-twothird">
+                            <!--______________________________________________WORK EXPERIENCE _______________________________________-->
+                            <div class="w3-container w3-card w3-white w3-margin-bottom">
+                                <h2 class="w3-text-grey w3-padding-16">
+                                    <i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Arbetslivserfarenhet</h2>
+                                <hr>
+
+                                <% if(locals.get_workexp) { %>
+                                    <% let openModalTemp = 0, closeModalTemp = 0, closeModalX = 0 %>
+                                        <% get_workexp.forEach(function(result) { %>
+                                            <div class="w3-container">
+                                                <h5 class="w3-opacity">
+                                                    <b>
+                                                        <%= result.work %>
+                                                    </b>
+                                                </h5>
+                                                <h6 class="w3-text">
+                                                    <i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>
+                                                    <%= result.date %>
+                                                </h6>
+                                                <p>
+                                                    <%= result.info %>
+                                                </p>
+                                            </div>
+                                            <hr>
+
+                                            <% }); %>
+                                                <% } %>
+                            </div>
+                            <!--   ______________________________ EDUCATION ______________________________________________________-->
+                            <div class="w3-container w3-card w3-white">
+                                <h2 class="w3-text-grey w3-padding-16">
+                                    <i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Utbildningar</h2>
+                                <hr>
+
+
+                                <% if(locals.get_education) { %>
+                                    <% let temp1 = 1000, closeModalTemp = 1000, closeModalX = 1000 %>
+                                        <% get_education.forEach(function(result) { %>
+
+                                            <div class="w3-container">
+                                                <h5 class="w3-opacity">
+                                                    <b>
+                                                        <%= result.edu %>
+                                                    </b>
+                                                </h5>
+                                                <h6 class="w3-text">
+                                                    <i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>
+                                                    <%= result.date %>
+                                                </h6>
+                                                <p>
+                                                    <%= result.info %>
+                                                </p>
+
+                                            </div>
+                                            <hr>
+                                            <% }); %>
+                                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </div>
+    </div>
+</body>
+
+</html>
