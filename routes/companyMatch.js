@@ -109,6 +109,13 @@ module.exports = {
         });
         temp.exjob.students = temp.exjob.students.filter(student => student.weight > 0);    // Removes all exjobs that has a weight that is 0 or lower.
 
+        temp.exjob.students.forEach(student => {
+            if((student.weight /temp.exjob.demanded.length) > 1)
+                student.procent = 100;
+            else
+                student.procent = ((student.weight /temp.exjob.demanded.length) * 100);
+        }); 
+
         console.log(temp.exjob.students);
         return temp.exjob.students;
     }
