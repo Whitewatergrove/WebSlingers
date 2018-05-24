@@ -83,10 +83,10 @@ router.post('/login', function (req, res) {
                     req.session.role = results[0].Role;
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
-                    if (req.session.role === 'student')
-                        matchingStudent.prematching(req.session.user);
-                    else if (req.session.role === 'company')
-                        matchingCompany.companyPrematching(req.session.user);
+                    //if (req.session.role === 'student')
+                    //    matchingStudent.prematching(req.session.user);
+                    //else if (req.session.role === 'company')
+                    //    matchingCompany.companyPrematching(req.session.user);
                 }
                 else {
                     req.flash('danger', 'Invalid username or password');
@@ -127,6 +127,7 @@ router.get('/profile', (req, res) => {
                 get_education: req.session.get_education
             });
         })
+        matchingStudent.prematching(req.session.user);
     }
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function (err, result) {
@@ -158,6 +159,7 @@ router.get('/profile', (req, res) => {
                 quals: req.session.quals
             })
         });
+        matchingCompany.companyPrematching(req.session.user);
     }
     else {
         req.flash('danger', 'Logga in innan du går vidare')
