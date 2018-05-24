@@ -83,10 +83,6 @@ router.post('/login', function (req, res) {
                     req.session.role = results[0].Role;
                     req.flash('success', 'You have successfully logged in');
                     res.redirect('/profile');
-                    //if (req.session.role === 'student')
-                    //    matchingStudent.prematching(req.session.user);
-                    //else if (req.session.role === 'company')
-                    //    matchingCompany.companyPrematching(req.session.user);
                 }
                 else {
                     req.flash('danger', 'Invalid username or password');
