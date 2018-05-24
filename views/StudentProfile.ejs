@@ -164,20 +164,6 @@
 										<b>
 											<i class="fa fa-asterisk fa-fw w3-margin-right w3-text"></i>Kunskaper</b>
 									</p>
-
-									<!-- <div class="w3-light-grey w3-round-xlarge w3-small">
-										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:90%">C++/C#</div>
-									</div>
-									<br>
-
-									<div class="w3-light-grey w3-round-xlarge w3-small">
-										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:60%">Java Script</div>
-									</div>
-									<br>
-									<div class="w3-light-grey w3-round-xlarge w3-small">
-										<div class="w3-container w3-center w3-round-xlarge w3-blue" style="width:30%">Python</div>
-									</div>
-									<br> -->
 									<hr>
 									<ul>
 										<% if(locals.get_student_qual) { %>
@@ -345,7 +331,7 @@
 													<input id="education-info" class="w3-input" type="text" placeholder="Information om utbildningen..." maxlength="60" name="info" required>
 												</p>
 											</form>
-											<button type="button" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
+											<button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
 											<button type="submit" class="updatebtn" style="width: 50%; background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Spara</button>
 										</div>
 									</form>
@@ -383,6 +369,7 @@
 											</div>
 											<hr>
 											<div id="id02" class="modal test2">
+												<div class="modal-dialog modal-dialog-centered">
 												<form class="modal-content" style="width:90%; margin:auto;" action="update_education" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
 													<span onclick="closeModal('<%= closeModalX = closeModalX + 1 %>')" class="close" title="Close Modal">&times;</span>
 												
@@ -418,6 +405,7 @@
 														</form>
 													</div>
 												</form>
+												</div>
 											</div>
 											<% }); %>
 												<% } %>
@@ -540,7 +528,7 @@
 						</div>
 						<!-- Kom igång -->
 						<div id="b1" class="containerTab" style="display:none;background:#1f5686">
-							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<span onclick="this.parentElement.style.display='none'" class="closebtn" style="float: right; font-size: 1.5rem;">&times;</span>
 							<h2>Redigera din profil</h2>
 							<p>
 								Under taben "Profil" finner du till vänster knappen "Edit", där klickar du för att redigera informationen på din profil.
@@ -550,7 +538,7 @@
 						</div>
 						<!-- Anonymitet -->
 						<div id="b2" class="containerTab" style="display:none;background:#2e78ba">
-							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<span onclick="this.parentElement.style.display='none'" class="closebtn" style="float: right; font-size: 1.5rem;">&times;</span>
 							<h2>Stickers</h2>
 							<p>
 								Under taben "Profil" finner du din profilinformation till vänster och "Arbetsstickers" till höger. Stickers är objekt av
