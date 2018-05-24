@@ -336,11 +336,11 @@ router.post('/exjobMatch', function (req, res) {
 router.post('/change_skill_student', function (req, res) {
     db.insert_studentqual(req.session.pnr, req.body.student_qual, function (err, results) {
         if (err) {
-            req.flash('danger', 'The qualification already exists on this user');
+            req.flash('danger', 'Kvalifikationen du försöker lägga till är redan tillagd');
             res.redirect('/profile');
         }
         else {
-            req.flash('success', 'You have successfully added a qualification');
+            req.flash('success', 'Du har lagt till en ny kvalifikation');
             res.redirect('/profile');
         }
     })
@@ -349,11 +349,11 @@ router.post('/change_skill_student', function (req, res) {
 router.post('/update_skill_xjob', function (req, res) {
     db.insert_xjob_qual(req.body.job_id, req.body.xjob_qual, function (err, results) {
         if (err) {
-            req.flash('danger', 'The qualification already exists on this user');
+            req.flash('danger', 'Kvalifikationen du försöker lägga till är redan tillagd');
             res.redirect('/profile');
         }
         else {
-            req.flash('success', 'You have successfully added a qualification');
+            req.flash('success', 'Du har lagt till en ny kvalifikation');
             res.redirect('/profile');
         }
     })
@@ -448,13 +448,12 @@ router.post('/update_education', function (req, res) {
             res.redirect('/profile')
         }
         else {
-            req.flash('success', 'You have ändrat en utbildning');
+            req.flash('success', 'Du har ändrat en utbildning');
             res.redirect('/profile');
         }
     })
 });
-router.post('/test', function (req, res) {
-    console.log('testest', req.body.hiddenUID);
+router.post('/publicProfile', function (req, res) {
     if (req.session.user && req.session.role == 'company') {
         db.get_student_user_and_nr(req.body.hiddenUID, function (err, result) {
             if (err) throw err;
@@ -466,11 +465,11 @@ router.post('/test', function (req, res) {
         });
         db.get_workexp(req.body.hiddenUID, function (err, results) {
             if (err) throw err;
-            req.session.temp3 = results            
+            req.session.temp3 = results
         })
-        db.get_education(req.body.hiddenUID, function(err, results){
+        db.get_education(req.body.hiddenUID, function (err, results) {
             if (err) throw err;
-            res.render('test', {
+            res.render('publicProfile', {
                 student_user_and_nr: req.session.temp,
                 get_student_qual: req.session.temp2,
                 get_workexp: req.session.temp3,
@@ -478,7 +477,7 @@ router.post('/test', function (req, res) {
             });
         })
     }
-    else{
+    else {
         res.redirect('/');
     }
 })
