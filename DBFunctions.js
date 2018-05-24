@@ -507,7 +507,7 @@ module.exports = {
     },
 
     insert_student: function (uname, pnr, callback) {
-        var sql = "INSERT INTO students (pnr, UID, Name, Gender, Adress, Tel, Status) VALUES (?, ?, 'Name', 'Gender', 'Address', 'Phonenumber', '0');";
+        var sql = "INSERT INTO students (pnr, UID, Name, Gender, Adress, Tel, Status) VALUES (?, ?, 'Name', 'Kön', 'Address', 'Telefonnummer', '0');";
         con.query(sql, [pnr, uname], function (err, res) {
             callback(err, res);
             if (err)
