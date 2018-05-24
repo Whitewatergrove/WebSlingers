@@ -384,6 +384,7 @@
 											</div>
 											<hr>
 											<div id="id02" class="modal test2">
+												<div class="modal-dialog modal-dialog-centered">
 												<form class="modal-content" style="width:90%; margin:auto;" action="update_education" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
 													<span onclick="closeModal('<%= closeModalX = closeModalX + 1 %>')" class="close" title="Close Modal">&times;</span>
 												
@@ -419,6 +420,7 @@
 														</form>
 													</div>
 												</form>
+												</div>
 											</div>
 											<% }); %>
 												<% } %>
@@ -541,7 +543,7 @@
 						</div>
 						<!-- Kom igång -->
 						<div id="b1" class="containerTab" style="display:none;background:#1f5686">
-							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<span onclick="this.parentElement.style.display='none'" class="closebtn" style="float: right; font-size: 1.5rem;">&times;</span>
 							<h2>Redigera din profil</h2>
 							<p>
 								Under taben "Profil" finner du till vänster knappen "Edit", där klickar du för att redigera informationen på din profil.
@@ -551,7 +553,7 @@
 						</div>
 						<!-- Anonymitet -->
 						<div id="b2" class="containerTab" style="display:none;background:#2e78ba">
-							<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+							<span onclick="this.parentElement.style.display='none'" class="closebtn" style="float: right; font-size: 1.5rem;">&times;</span>
 							<h2>Stickers</h2>
 							<p>
 								Under taben "Profil" finner du din profilinformation till vänster och "Arbetsstickers" till höger. Stickers är objekt av
