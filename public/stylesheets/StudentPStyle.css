@@ -19,37 +19,6 @@ body {
 	background-color: #2e78ba;
 	border-bottom: 3px solid #2e78ba;
 }
-/* 
-#HomeID {
-	background-image: url('../images/safe_image.jpg');
-	overflow: auto;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	position: fixed;
-	margin: auto;
-} */
-/* .matchbtn{
-	float:left;
-	margin-left: 27%;
-}
-.changebtn{
-	float:left;
-	margin-left: 1%;
-
-}
-.removebtn{
-	float:left;
-	margin-left: 1%;
-
-} */
-
-
-
 #HomeH1 {
 	color: #FFF;
 }
@@ -505,13 +474,6 @@ button {
 .modalbtn:hover, button:hover, .updatebtn:hover {
     opacity:1;
 }
-
-
-/* Float cancel and signup buttons and add an equal width
-.cancelbtn, .updatebtn, .matchbtn, .changebtn {
-  width: 25%;
-  margin-right: 2%;
-} */
 
 /* Add padding to container elements */
 .container {
