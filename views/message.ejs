@@ -3,8 +3,15 @@
         <% messages[type].forEach(function (message) { %>
             <div class="alert alert-<%= type %> alert-dismiss">
                 <%= message %>
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             </div>
-        <% }) %>
-    <% }) %>
+            <% }) %>
+                <% }) %>
 </div>
+<script>
+    window.setTimeout(function () {
+        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 3000);
+</script>

@@ -77,8 +77,8 @@
 					</a>
 				</li>
 				
-				<li class="tabBorder" onclick="openTab('Jobs', 'Job')" id="Job">
-					<a>
+				<li class="tabBorder" id="Job">
+					<a href="studentMatch">
 						<span>
 							<i class="fas fa-folder" id="SideIcon"></i>
 							
@@ -109,6 +109,8 @@
 	</div>
 	<!-- Profile -->
 	<div class="main-content" id="home">
+			<%- messages('message', locals) %>
+		
 		<div class="main2" id="main2Profile">
 
 			<body id="blueb">
@@ -139,7 +141,7 @@
 									</p>
 									<p>
 										<i class="fa fa-user fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
-										<%= student_user_and_nr[0].gender %>
+										<%= student_user_and_nr[0].Gender %>
 									</p>
 
 									<p>
@@ -154,11 +156,7 @@
 										<i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text" id="blueP"></i>
 										<%= student_user_and_nr[0].Tel %>
 									</p>
-									<p>
-										<a href="Certificate">Certificate</a>
-									</p>
-									<hr>
-									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModal">
+									<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; " data-toggle="modal" data-target="#ProfileModal">
 										<strong>Redigera</strong>
 									</button>
 									<hr>
@@ -191,8 +189,7 @@
 												<% }) %>
 													<% } %>
 									</ul>
-									<hr>
-									<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModalSkill">
+									<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; " data-toggle="modal" data-target="#ProfileModalSkill">
 										<strong>Lägg till kunskaper</strong>
 									</button>
 									<hr>
@@ -206,7 +203,7 @@
 							<!--______________________________________________WORK EXPERIENCE _______________________________________-->
 							<div class="w3-container w3-card w3-white w3-margin-bottom">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Arbete</h2>
+									<i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text " id="blueP"></i>Arbetslivserfarenhet</h2>
 								<button class="modalbtn" onclick="document.getElementById('id01').style.display='block'" margin="auto">Lägg till</button>
 								<hr>
 								<div id="id01" class="modal">
@@ -222,19 +219,19 @@
 													<label>
 														<strong>Datum</strong>
 													</label>
-													<input id="Job-title" class="w3-input" type="text" placeholder="2001-2002..." name="date" required>
+													<input id="Job-title" class="w3-input" type="text" placeholder="Startdatum - slutdatum" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" name="date" autofocus ="autofocus">
 												</p>
 												<p>
 													<label>
-														<strong>Titel</strong>
+														<strong>Jobbtitel</strong>
 													</label>
-													<input id="Job-title" class="w3-input" type="text" placeholder="Titel..." name="title" required>
+													<input id="Job-title" class="w3-input" type="text"placeholder="Jobbnamn" name="title">
 												</p>
 												<p>
 													<label>
 														<strong>Jobbinformation</strong>
 													</label>
-													<input id="Job-info" class="w3-input" type="text" placeholder="Information om jobbet..." name="info" required>
+													<input id="Job-info" class="w3-input" type="text" placeholder="Kort information om erfarenheterna" name="info">
 												</p>
 											</form>
 
@@ -245,15 +242,15 @@
 									</form>
 								</div>
 								<% if(locals.get_workexp) { %>
-									<% var temp = 0 %>
+									<% let openModalTemp = 0, closeModalTemp = 0, closeModalX = 0 %>
 										<% get_workexp.forEach(function(result) { %>
 											<div class="dropdown">
 												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
 													aria-expanded="false" style="color: gray; width: auto; background-color: #ffff; font-size: 1.5rem;
 													border: 0; float: right;"></button>
 												<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
-													<button class="changebtn" onclick="openModal('<%= temp = temp + 1 %>')">Ändra</button>
-													<form action="delete_workexp" method="POST">
+													<button class="changebtn" onclick="openModal('<%= openModalTemp = openModalTemp + 1 %>')">Ändra</button>
+													<form action="delete_workexp" method="POST" onsubmit="return confirm('Är du säker på att du vill ta bort detta arbete?')">
 														<input hidden name="work_id" value="<%= result.ID %>"></input>
 														<button type="submit" class="removebtn">Ta bort</button>
 													</form>
@@ -275,8 +272,9 @@
 											</div>
 											<hr>
 											<div id="id02" class="modal test">
-												<form class="modal-content" action="update_workexp" method="POST">
-													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+												
+												<form class="modal-content" action="update_workexp" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
+													<span onclick="closeModal('<%= closeModalX = closeModalX + 1 %>')" class="close" title="Close Modal">&times;</span>
 													<div class="container">
 														<div class="w3-container">
 															<h2>Uppdatera jobb</h2>
@@ -287,23 +285,23 @@
 																<label>
 																	<strong>Datum</strong>
 																</label>
-																<input class="w3-input" type="text" value="<%= result.date %>" name="date">
+																<input class="w3-input" type="text" value="<%= result.date %>" name="date" placeholder="Startdatum - slutdatum" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" autofocus ="autofocus">
 															</p>
 															<p>
 																<label>
 																	<strong>Titel</strong>
 																</label>
-																<input class="w3-input" type="text" value="<%= result.work %>" name="name">
+																<input class="w3-input" type="text" value="<%= result.work %>" name="name" placeholder="Jobbtitel">
 															</p>
 															<p>
 																<label>
 																	<strong>Jobb information</strong>
 																</label>
-																<input class="w3-input" type="text" value="<%= result.info %>" name="info">
+																<input class="w3-input" type="text" value="<%= result.info %>" name="info" placeholder="Kort information om erfarenheterna">
 															</p>
 															<div class="clearfix">
 																<input hidden id="exjob_id" name="work_id" value="<%= result.ID %>"></input>
-																<button type="button" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
+																<button type="button" class="cancelbtn" onclick="closeModal('<%= closeModalTemp = closeModalTemp + 1 %>')" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
 																<button type="submit" class="updatebtn" style="width: 50%; background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Spara</button>
 															</div>
 														</form>
@@ -316,7 +314,7 @@
 							<!--   ______________________________ EDUCATION ______________________________________________________-->
 							<div class="w3-container w3-card w3-white">
 								<h2 class="w3-text-grey w3-padding-16">
-									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Utbildning</h2>
+									<i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text" id="blueP"></i>Utbildningar</h2>
 								<button class="modalbtn" onclick="document.getElementById('id03').style.display='block'"  margin="auto">Lägg till</button>
 								<hr>
 
@@ -333,19 +331,19 @@
 													<label>
 														<strong>Datum</strong>
 													</label>
-													<input id="education-title" class="w3-input" type="text" placeholder="2001-2002..." name="date" required>
+													<input id="education-title" class="w3-input" type="text" maxlength="20" placeholder="2001-2002..." name="date" required>
 												</p>
 												<p>
 													<label>
 														<strong>Utbildning</strong>
 													</label>
-													<input id="education-title" class="w3-input" type="text" placeholder="Titel..." name="title" required>
+													<input id="education-title" class="w3-input" type="text" maxlength="30" placeholder="Titel..." name="title" required>
 												</p>
 												<p>
 													<label>
 														<strong>Utbildningsinformation</strong>
 													</label>
-													<input id="education-info" class="w3-input" type="text" placeholder="Information om utbildningen..." name="info" required>
+													<input id="education-info" class="w3-input" type="text" placeholder="Information om utbildningen..." maxlength="60" name="info" required>
 												</p>
 											</form>
 											<button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
@@ -355,7 +353,7 @@
 								</div>
 
 								<% if(locals.get_education) { %>
-									<% var temp1 = 1000 %>
+									<% let temp1 = 1000, closeModalTemp = 1000, closeModalX = 1000 %>
 										<% get_education.forEach(function(result) { %>
 											<div class="dropdown">
 												<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
@@ -363,7 +361,7 @@
 													"></button>
 												<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
 													<button class="changebtn" onclick="openModal('<%= temp1 = temp1 + 1 %>')">Ändra</button>
-													<form action="delete_education" method="POST">
+													<form action="delete_education" method="POST" onsubmit="return confirm('Är du säker på att du vill ta bort denna utbildning?')">
 														<input hidden name="education_id" value="<%= result.ID %>"></input>
 														<button type="submit" class="removebtn">Ta bort</button>
 													</form>
@@ -386,8 +384,9 @@
 											</div>
 											<hr>
 											<div id="id02" class="modal test2">
-												<form class="modal-content" action="update_education" method="POST">
-													<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+												<form class="modal-content" style="width:90%; margin:auto;" action="update_education" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar?')">
+													<span onclick="closeModal('<%= closeModalX = closeModalX + 1 %>')" class="close" title="Close Modal">&times;</span>
+												
 													<div class="container">
 														<div class="w3-container">
 															<h2>Uppdatera utbildning</h2>
@@ -398,23 +397,23 @@
 																<label>
 																	<strong>Datum</strong>
 																</label>
-																<input class="w3-input" type="text" value="<%= result.date %>" name="date">
+																<input class="w3-input" type="text" value="<%= result.date %>" name="date" maxlength="20">
 															</p>
 															<p>
 																<label>
 																	<strong>Utbildning</strong>
 																</label>
-																<input class="w3-input" type="text" value="<%= result.edu %>" name="name">
+																<input class="w3-input" type="text" value="<%= result.edu %>" name="name" maxlength="30">
 															</p>
 															<p>
 																<label>
 																	<strong>Utbildningsinformation</strong>
 																</label>
-																<input class="w3-input" type="text" value="<%= result.info %>" name="info">
+																<input class="w3-input" type="text" value="<%= result.info %>" name="info" maxlength="60">
 															</p>
 															<div class="clearfix">
 																<input hidden name="education_id" value="<%= result.ID %>"></input>
-																<button type="button" class="cancelbtn" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
+																<button type="button" class="cancelbtn" onclick="closeModal('<%= closeModalTemp = closeModalTemp + 1 %>')" style="width: 50%; background-color: #ffff; border-color: #f44336; padding: 0; float: left;">Avbryt</button>
 																<button type="submit" class="updatebtn" style="width: 50%; background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Spara</button>
 															</div>
 														</form>
@@ -440,7 +439,7 @@
 			<!-- The Modal -->
 			<div class="modal fade" id="ProfileModal">
 				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
+					<div class="modal-content" style="width:90%; margin:auto;">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 						<!-- Modal Header -->
@@ -450,28 +449,23 @@
 
 						<!-- Modal body -->
 						<div class="modal-body">
-							<form action="/change_student_profile" method="POST">
+							<form action="/change_student_profile" method="POST"  onsubmit="return confirm('Är du säker på att du vill spara dessa ändringar')">
 								<div class="container">
 									<input type="text" name="username" id="uname" disabled value="<%= student_user_and_nr[0].UID %>">
 									<input type="text" name="pnum" id="pnum" disabled value="<%= student_user_and_nr[0].pnr %>">
-									<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
-									 title="Fyll i ett nytt lösenord  4-16 karaktärer">
-									<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn..." data-toggle="tooltip" title="Fyll i ditt fullständiga namn ">
-									<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress..." data-toggle="tooltip" title="Fyll i din postadress">
-									<input type="text" name="tel" id="tel" maxlength="20" required placeholder="Telefonnummer..." data-toggle="tooltip" title="Fyll i ditt nummer 12 siffror"
-									 patter="[0-9]">
+									<input type="password" name="password" id="pass" maxlength="16" minlength="4" required placeholder="Lösenord" data-toggle="tooltip"
+									 title="Fyll i ett nytt lösenord  4-16 karaktärer" autofocus ="autofocus">
+									<input type="text" name="name" id="name" maxlength="45" required placeholder="Namn" data-toggle="tooltip" title="Fyll i ditt fullständiga namn">
+									<input type="text" name="address" id="adress" maxlength="45" required placeholder="Adress" data-toggle="tooltip" title="Stadsnamn">
+									<input type="text" name="tel" id="tel" pattern="[0-9]{0,12}" required placeholder="Telefonnummer" data-toggle="tooltip" title="Fyll i telefonnummer max 12 siffror">
 									<select name="gender">
-										<option value="Male">Man</option>
-										<option value="Female">Kvinna</option>
-										<option value="Other">Andra</option>
+										<option value="Man">Man</option>
+										<option value="Kvinna">Kvinna</option>
+										<option value="Övrigt">Övrigt</option>
 									</select>
 									<br/>
 								</div>
 								<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Uppdatera ändringar</Button>
-							</form>
-							<form action="/filetest" method="POST" enctype="multipart/form-data">
-								<input type="file" name="filename">
-								<input type="submit" value="Ladda upp">
 							</form>
 						</div>
 
@@ -489,7 +483,7 @@
 			<!-- The Modal -->
 			<div class="modal fade" id="ProfileModalSkill">
 				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
+					<div class="modal-content" style="width:90%; margin:auto;">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 						<!-- Modal Header -->
@@ -497,8 +491,8 @@
 							<h4 class="modal-title" style="margin: auto;">Lägg till kunskaper</h4>
 						</div>
 						<!-- Modal body add student qual-->
-						<div class="modal-body" >
-							<form action="/change_skill_student" method="POST">
+						<div class="modal-body">
+							<form action="/change_skill_student" method="POST"  onsubmit="return confirm('Varning! Detta går inte att ändra senare. Är du säker på att du vill lägga till denna kunskap')">
 								<div class="container" style="text-align: center;">
 									<select name="student_qual">
 										<% if(locals.results) { %>
@@ -526,52 +520,6 @@
 			</body>
 		</div>
 	</div>
-
-
-	<!-- Ex-jobs -->
-	<div class="main-content" id="Jobs" style="display:none">
-		<div class="main">
-			<div class="widget" id="JobsWidget">
-				<div class="title">Tillgängliga jobb</div>
-				<form action="/studentMatch" method="get">
-					<button type="submit" id="buttondbtest">Hitta Exjob</button>
-				</form>
-				<% if(locals.matchning) {%>
-					<ul class="Job-list" id="job_list" style="background-color: #fff">
-
-						<% matchning.forEach(function(result) { %>
-							<hr>
-							<div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-								style="color: gray; width: auto; background-color: #ffff; border: 0; float: right; font-size: 1.5rem;
-								margin-right: 24px;"></button>
-								<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
-										<button class="changebtn"  onclick="document.getElementById('id02').style.display='block'">Ändra</button>
-										<form action="delete_job" method="POST">
-											<input hidden name="job_id" value="<%= result.ID %>"></input>
-											<button type="submit" class="removebtn">Remove</button>
-										</form>
-								</div>
-							<div class="w3-container">
-								<h4 class="w3-opacity">
-									<b>
-										<%= result.Name %>
-									</b>
-								</h4>
-								<h6 class="w3-text">
-									<i class="fa fa-calendar fa-fw w3-margin-right " id="blueP"></i>Mar 2012 - Dec 2014</h6>
-								<p>
-									<%= result.Info %>
-								</p>
-								<button class="matchbtn">Ansök</button>
-							</div>
-							<% }); %>
-					</ul>
-					<% } %>
-			</div>
-		</div>
-	</div>
-
 	<!-- Help -->
 	<div class="main-content" id="Helps" style="display:none">
 		<div class="main">
@@ -649,20 +597,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		let el = document.getElementsByClassName('test');
-		let el2 = document.getElementsByClassName('test2');
-		let j = 0;
-		let temporary = 1000;
-		for (let i = 0; i < el.length; i++) {
-			j++
-			el[i].id = j;
-		}
-		for (let inc = 0; inc < el2.length; inc++) {
-			temporary++
-			el2[inc].id = temporary;
-		}
-	</script>
 </body>
 
 </html>
