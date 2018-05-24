@@ -44,7 +44,7 @@
                 </button>
             </div>
             <div class="w3-display-bottomleft w3-padding-large">
-                Drivs av
+                Powered by 
                 <strong>Webslingers</strong>
             </div>
     </div>
@@ -88,14 +88,15 @@
                                     <!-- Username input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-user"></i>
-                                        <input required class="input-field" type="username" required placeholder="Användarnamn" name="username" maxlength="100" autocomplete="on"
-                                            data-toggle="tooltip" title="Fyll i maximalt 100 karaktärer"autofocus ="autofocus">
+                                        <input required class="input-field" type="username" required placeholder="Användarnamn"  name="username" maxlength="100"  autocomplete="on"
+                                            data-toggle="tooltip" title="Fyll i maximalt 100 karaktärer"autofocus ="autofocus"
+                                            >
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-key"></i>
-                                        <input required class="input-field" type="password" maxlength="30" minlength="4" required placeholder="Lösenord" name="password"
+                                        <input required class="input-field" type="password" pattern="{4,30}" required placeholder="Lösenord" name="password"
                                             autocomplete="on" data-toggle="tooltip" title="Fyll i 4-30 karaktärer ">
                                     </div>
 
@@ -126,21 +127,21 @@
                                     <!-- Username input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-user"></i>
-                                        <input required class="input-field" type="text" placeholder="Exempel@exempel.com..." name="username" maxlength="100" autocomplete="on"
+                                        <input required class="input-field" type="text" required placeholder="Exempel@exempel.com..." name="username" maxlength="100" autocomplete="on"
                                             data-toggle="tooltip" title="Fyll i maximalt 100 karaktärer"autofocus ="autofocus">
                                     </div>
 
                                     <!-- Password input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-key"></i>
-                                        <input required class="input-field" type="password" placeholder="Lösenord" name="password" minlength="4" maxlength="30" autocomplete="on"
-                                            data-toggle="tooltip" title="Fyll i 4-30 karaktärer">
+                                        <input required class="input-field" type="password" required placeholder="Lösenord" name="password" autocomplete="on"
+                                            data-toggle="tooltip" title="Fyll i 4-30 karaktärer"  pattern="{4,30}" >
                                     </div>
 
-                                    <!-- Personal id input -->
+                                    <!-- Personal id/org nummer input input -->
                                     <div class="input-container">
                                         <i id="icon" class="fas fa-calendar-plus"></i>
-                                        <input required class="input-field" type="text" placeholder="ååmmddxxxx..." name="pnum" id="pnum" 
+                                        <input required class="input-field" type="text"  required placeholder="ååmmddxxxx..." name="pnum" id="pnum" 
                                             autocomplete="on" data-toggle="tooltip" title="Fyll i 10 siffror"
                                             pattern="[0-9{10}">
                                     </div>
