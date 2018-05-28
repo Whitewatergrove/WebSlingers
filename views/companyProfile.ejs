@@ -127,11 +127,6 @@
 											<strong>Redigera</strong>
 										</button>
 										<hr>
-										<!-- <hr>
-										<button type="button" class="Editbtn" data-toggle="modal" data-target="#ProfileModal">
-											<strong>Redigera</strong>
-										</button>
-										<hr> -->
 								</div>
 							</div>
 							<br>
@@ -159,21 +154,21 @@
 												<form class="w3-container">
 													<p>
 														<label>
-															<strong>Datum</strong>
+															<strong>Startdatum - slutdatum</strong>
 														</label>
-														<input id="Job-title" placeholder="Startdatum - slutdatum" class="w3-input" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" type="text" name="date" maxlength="20" required autofocus ="autofocus">
+														<input id="Job-title" required placeholder="Startdatum - slutdatum" class="w3-input" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" type="text" name="date" maxlength="20" autofocus ="autofocus">
 													</p>
 													<p>
 														<label>
 															<strong>Namn</strong>
 														</label>
-														<input id="Job-title" class="w3-input" placeholder="Jobbnamn" type="text" name="title" maxlength="50" >
+														<input id="Job-title" class="w3-input" required placeholder="Jobbnamn" type="text" name="title" maxlength="50" >
 													</p>
 													<p>
 														<label>
 															<strong>Teaser</strong>
 														</label>
-														<input id="Job-title" class="w3-input" placeholder="Kort information om jobbet" type="text" name="teaser"  maxlength="50">
+														<input id="Job-title" class="w3-input" placeholder="Kort information om jobbet" type="text" name="teaser"  maxlength="500">
 													</p>
 													<p>
 														<label>
@@ -201,12 +196,12 @@
 													<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="padding: 0;">
 														<form action="/exjobMatch" method="POST">
 															<input hidden id="exjob_id" name="job_id" value="<%= result.ID %>"></input>
-															<button class="matchbtn">Match</button>
+															<button class="matchbtn">Matcha</button>
 														</form>
-														<button class="changebtn" onclick="openModal('<%= openModalTemp = openModalTemp + 1 %>')">Change</button>
+														<button class="changebtn" onclick="openModal('<%= openModalTemp = openModalTemp + 1 %>')">Ändra</button>
 														<form action="delete_job" method="POST" onsubmit="return confirm('Är du säker på att du vill ta bort detta arbete?')">
 															<input hidden name="job_id" value="<%= result.ID %>"></input>
-															<button type="submit" class="removebtn">Remove</button>
+															<button type="submit" class="removebtn">Ta bort</button>
 														</form>
 													</div>
 												</div>
@@ -299,27 +294,27 @@
 																<form class="w3-container">
 																	<p>
 																		<label>
-																			<strong>Datum</strong>
+																			<strong>Startdatum - Slutdatum</strong>
 																		</label>
-																		<input class="w3-input" type="text" name="date" placeholder="Startdatum - slutdatum" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" value="<%= result.date %>"autofocus ="autofocus">
+																		<input class="w3-input" type="text" name="date" maxlength="30"  required placeholder="Startdatum - slutdatum" data-toggle="tooltip" title="åååå-mm-dd - åååå-mm-dd" value="<%= result.date %>"autofocus ="autofocus">
 																	</p>
 																	<p>
 																		<label>
 																			<strong>Namn</strong>
 																		</label>
-																		<input class="w3-input" type="text" name="name" placeholder="Jobbnamn" value="<%= result.Name %>">
+																		<input class="w3-input" type="text" name="name"  required placeholder="Jobbnamn" value="<%= result.Name %>"maxlength="50">
 																	</p>
 																	<p>
 																		<label>
 																			<strong>Teaser</strong>
 																		</label>
-																		<input class="w3-input" type="text" placeholder="Kort information om jobbet" name="teaser" value="<%= result.teaser %>">
+																		<input class="w3-input" type="text" required placeholder="Kort information om jobbet" name="teaser" value="<%= result.teaser %>"maxlength="500">
 																	</p>
 																	<p>
 																		<label>
 																			<strong>Jobbinformation</strong>
 																		</label>
-																		<input class="w3-input" placeholder="Detaljerad information om uppdraget" maxlength="500" type="text" name="info" data-toggle="tooltip" title="Fyll i maximalt 500 karaktärer"
+																		<input class="w3-input" required placeholder="Detaljerad information om uppdraget" maxlength="500" type="text" name="info" data-toggle="tooltip" title="Fyll i maximalt 500 karaktärer"
 																		    value="<%= result.Info %>">
 																	</p>
 
@@ -370,10 +365,10 @@
 											<div class="container">
 												<input type="text" name="username" id="button2" disabled value="<%= get_company_user_and_nr[0].UID %>">
 												<input type="text" name="pnum" id="button2" disabled value="<%= get_company_user_and_nr[0].Orgnr %>">
-												<input type="password" name="password" id="button2" maxlength="16" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
-												    title="Fyll i ditt lösenord 4-16 karaktärer"autofocus ="autofocus">
-												<input type="text" name="name" id="button2" maxlength="45" required placeholder="Företagsnamn" data-toggle="tooltip" title="Fyll i företagsnamn">
-												<input type="text" name="address" id="button2" maxlength="45" required placeholder="Adress" data-toggle="tooltip" title="Fyll i stad">
+												<input type="password" name="password" id="button2" maxlength="30" minlength="4" required placeholder="Lösenord..." data-toggle="tooltip"
+												    title="Fyll i ditt lösenord 4-30 karaktärer"autofocus ="autofocus">
+												<input type="text" name="name" id="button2" maxlength="50" required placeholder="Företagsnamn" data-toggle="tooltip" title="Fyll i företagsnamn">
+												<input type="text" name="address" id="button2" maxlength="50" required placeholder="Adress" data-toggle="tooltip" title="Fyll i stad">
 												<input type="text" name="tel" id="button2" pattern= "[0-9]{0,12}" required placeholder="Telefonnummer" data-toggle="tooltip" title="Fyll i telefonnummer max 12 siffror">
 											</div>
 											<button type="submit" class="updatebtn" style="background-color: #ffff; border-color: #2e78ba; padding: 0; float: left;">Uppdatera ändringar</button>
@@ -394,7 +389,7 @@
 		<div class="main-content" id="Helps" style="display:none">
 			<div class="main">
 				<div class="widget" id="JobsWidget">
-					<div class="title">Help</div>
+					<div class="title">Hjälp</div>
 					<div class="HelpBox">
 						<div class="helpRow">
 							<div class="column" onclick="openHelptab('b1');" style="background-color:#1f5686;">

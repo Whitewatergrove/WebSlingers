@@ -32,20 +32,20 @@ router.post('/register', (req, res) => {
 
         db.insert_user(username, hash, role, function (err, result) {
             if (err) {
-                req.flash('danger', 'User already exists. Please choose another username and try again.')
+                req.flash('danger', 'Emailen du slog in existerar redan. Var vänlig och försök igen')
                 res.redirect('/');
             }
             else if (role === "student" && !err) {
                 db.insert_student(username, pnum, function (err, result) {
                     if (err) throw err;
-                    req.flash('success', 'You have successfully registered your account.');
+                    req.flash('success', 'Ett nytt konto har registrerats');
                     res.redirect('/');
                 })
             }
             else if (role === "company" && !err) {
                 db.insert_company(username, pnum, function (err, result) {
                     if (err) throw err;
-                    req.flash('success', 'You have successfully registered your account.');
+                    req.flash('success', 'Ett nytt konto har registrerats');
                     res.redirect('/');
                 })
             }
@@ -69,7 +69,7 @@ router.post('/login', function (req, res) {
     db.get_user_info(username, function (err, results) {
         if (err) throw err;
         if (results.length == 0) {
-            req.flash('danger', 'Invalid username or password');
+            req.flash('danger', 'Ogiltigt email eller lösenord');
             res.redirect('/');
         }
         else {
@@ -81,15 +81,11 @@ router.post('/login', function (req, res) {
                         req.session.cookie.expires = null;
                     req.session.user = username;
                     req.session.role = results[0].Role;
-                    req.flash('success', 'You have successfully logged in');
+                    req.flash('success', 'Du har nu loggat in!');
                     res.redirect('/profile');
-                    if (req.session.role === 'student')
-                        matchingStudent.prematching(req.session.user);
-                    else if (req.session.role === 'company')
-                        matchingCompany.companyPrematching(req.session.user);
                 }
                 else {
-                    req.flash('danger', 'Invalid username or password');
+                    req.flash('danger', 'Ogiltigt email eller lösenord');
                     res.redirect('/');
                 }
             });
@@ -127,6 +123,7 @@ router.get('/profile', (req, res) => {
                 get_education: req.session.get_education
             });
         })
+        matchingStudent.prematching(req.session.user);
     }
     else if (req.session.user && req.session.role == 'company') {
         db.get_company_user_and_nr(req.session.user, function (err, result) {
@@ -158,6 +155,7 @@ router.get('/profile', (req, res) => {
                 quals: req.session.quals
             })
         });
+        matchingCompany.companyPrematching(req.session.user);
     }
     else {
         req.flash('danger', 'Logga in innan du går vidare')
@@ -181,17 +179,17 @@ router.post('/change_student_profile', function (req, res) {
         if (err) throw err;
         db.update_user(req.session.user, hash, function (err, result) {
             if (err) {
-                req.flash('danger', 'An error has occured while updating');
+                req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
                 res.redirect('/profile');
             }
             else if (!err) {
                 db.update_studentprofile(req.session.pnr, req.session.user, name, gender, adress, tel, function (err, result) {
                     if (err) {
-                        req.flash('danger', 'An error has occured while updating');
+                        req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
                         res.redirect('/profile');
                     }
                     else {
-                        req.flash('success', 'You have succcessfully updated your profile');
+                        req.flash('success', 'Ändringarna har nu sparats');
                         res.redirect('/profile');
                     }
                 })
@@ -212,17 +210,17 @@ router.post('/change_company_profile', function (req, res) {
         if (err) throw err;
         db.update_company(req.session.user, hash, function (err, result) {
             if (err) {
-                req.flash('danger', 'An error has occured while updating');
+                req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
                 res.redirect('/profile');
             }
             else if (!err) {
                 db.update_companyprofile(req.session.orgnr, req.session.user, name, adress, tel, function (err, result) {
                     if (err) {
-                        req.flash('danger', 'An error has occured while updating');
+                        req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
                         res.redirect('/profile');
                     }
                     else {
-                        req.flash('success', 'You have succcessfully updated your profile');
+                        req.flash('success', 'Ändringarna har nu sparats!');
                         res.redirect('/profile');
                     }
                 })
@@ -261,7 +259,7 @@ router.get('/studentMatch', function (req, res) {
 router.post('/add_job', function (req, res) {
     db.insert_exjobs(req.session.orgnr, req.body.title, req.body.info, req.body.date, req.body.teaser, function (err, results) {
         if (err) {
-            req.flash('danger', 'Ett fel har uppstått');
+            req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
             res.redirect('/profile');
         }
         else {
@@ -274,11 +272,11 @@ router.post('/add_job', function (req, res) {
 router.post('/update_job', function (req, res) {
     db.update_exjob(req.body.name, req.body.info, req.body.date, req.body.teaser, req.body.job_id, function (err, result) {
         if (err) {
-            req.flash('danger', 'An error has occured while updating your profile');
+            req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
             res.redirect('/profile');
         }
         else {
-            req.flash('success', 'You have successfully updated a job');
+            req.flash('success', 'Ändringarna har nu sparats');
             res.redirect('/profile');
         }
     })
@@ -287,11 +285,11 @@ router.post('/update_job', function (req, res) {
 router.post('/delete_job', function (req, res) {
     db.delete_exjob(req.body.job_id, function (err, results) {
         if (err) {
-            req.flash('danger', 'An error has occured');
+            req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
             res.redirect('/profile');
         }
         else {
-            req.flash('success', 'You have successfully removed a job')
+            req.flash('success', 'Jobbet har nu tagits bort')
             res.redirect('/profile');
         }
     })
@@ -338,11 +336,11 @@ router.post('/exjobMatch', function (req, res) {
 router.post('/change_skill_student', function (req, res) {
     db.insert_studentqual(req.session.pnr, req.body.student_qual, function (err, results) {
         if (err) {
-            req.flash('danger', 'The qualification already exists on this user');
+            req.flash('danger', 'Kunskapen du försöker lägga till är redan tillagd');
             res.redirect('/profile');
         }
         else {
-            req.flash('success', 'You have successfully added a qualification');
+            req.flash('success', 'Du har lagt till en ny kunskap');
             res.redirect('/profile');
         }
     })
@@ -351,11 +349,11 @@ router.post('/change_skill_student', function (req, res) {
 router.post('/update_skill_xjob', function (req, res) {
     db.insert_xjob_qual(req.body.job_id, req.body.xjob_qual, function (err, results) {
         if (err) {
-            req.flash('danger', 'The qualification already exists on this user');
+            req.flash('danger', 'Kvalifikationen du försöker lägga till är redan tillagd');
             res.redirect('/profile');
         }
         else {
-            req.flash('success', 'You have successfully added a qualification');
+            req.flash('success', 'Du har lagt till en ny kvalifikation');
             res.redirect('/profile');
         }
     })
@@ -364,7 +362,7 @@ router.post('/update_skill_xjob', function (req, res) {
 router.post('/add_workexp', function (req, res) {
     db.insert_workexp(req.session.user, req.body.title, req.body.date, req.body.info, function (err, results) {
         if (err) {
-            req.flash('danger', 'Ett fel har uppstått');
+            req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
             res.redirect('/profile')
         }
         else {
@@ -377,11 +375,11 @@ router.post('/add_workexp', function (req, res) {
 router.post('/update_workexp', function (req, res) {
     db.update_workexp(req.body.name, req.body.date, req.body.info, req.body.work_id, function (err, results) {
         if (err) {
-            req.flash('danger', 'Ett fel har uppstått');
+            req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
             res.redirect('/profile')
         }
         else {
-            req.flash('success', 'Du har ändrat ett arbete');
+            req.flash('success', 'Ändringarna har nu sparats');
             res.redirect('/profile');
         }
     })
@@ -390,11 +388,11 @@ router.post('/update_workexp', function (req, res) {
 router.post('/delete_workexp', function (req, res) {
     db.delete_workexp(req.body.work_id, function (err, results) {
         if (err) {
-            req.flash('danger', 'Ett fel har uppstått');
+            req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
             res.redirect('/profile')
         }
         else {
-            req.flash('success', 'Du har tagit bort ett arbete');
+            req.flash('success', 'Arbetet har nu tagits bort');
             res.redirect('/profile');
         }
     })
@@ -403,7 +401,7 @@ router.post('/delete_workexp', function (req, res) {
 router.post('/add_education', function (req, res) {
     db.insert_education(req.session.user, req.body.title, req.body.date, req.body.info, function (err, results) {
         if (err) {
-            req.flash('danger', 'Ett fel har uppstått');
+            req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
             res.redirect('/profile')
         }
         else {
@@ -420,7 +418,7 @@ router.post('/delete_education', function (req, res) {
             res.redirect('/profile')
         }
         else {
-            req.flash('success', 'Du har tagit bort en utbildning');
+            req.flash('success', 'Utbildningen har nu tagits bort');
             res.redirect('/profile');
         }
     })
@@ -446,17 +444,16 @@ router.get('/exjobMatch', function (req, res) {
 router.post('/update_education', function (req, res) {
     db.update_education(req.body.name, req.body.date, req.body.info, req.body.education_id, function (err, results) {
         if (err) {
-            req.flash('danger', 'Ett fel har uppstått');
+            req.flash('danger', 'Ett fel har uppstått. Var vänlig och försök igen');
             res.redirect('/profile')
         }
         else {
-            req.flash('success', 'You have ändrat en utbildning');
+            req.flash('success', 'Ändringarna har nu sparade');
             res.redirect('/profile');
         }
     })
 });
-router.post('/test', function (req, res) {
-    console.log('testest', req.body.hiddenUID);
+router.post('/publicProfile', function (req, res) {
     if (req.session.user && req.session.role == 'company') {
         db.get_student_user_and_nr(req.body.hiddenUID, function (err, result) {
             if (err) throw err;
@@ -468,11 +465,11 @@ router.post('/test', function (req, res) {
         });
         db.get_workexp(req.body.hiddenUID, function (err, results) {
             if (err) throw err;
-            req.session.temp3 = results            
+            req.session.temp3 = results
         })
-        db.get_education(req.body.hiddenUID, function(err, results){
+        db.get_education(req.body.hiddenUID, function (err, results) {
             if (err) throw err;
-            res.render('test', {
+            res.render('publicProfile', {
                 student_user_and_nr: req.session.temp,
                 get_student_qual: req.session.temp2,
                 get_workexp: req.session.temp3,
@@ -480,7 +477,7 @@ router.post('/test', function (req, res) {
             });
         })
     }
-    else{
+    else {
         res.redirect('/');
     }
 })
